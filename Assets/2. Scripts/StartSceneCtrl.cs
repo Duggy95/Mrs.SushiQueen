@@ -16,14 +16,29 @@ public class StartSceneCtrl : MonoBehaviour
 
     private void Awake()
     {
-        mainCam.gameObject.SetActive(true);
-        storyCam.gameObject.SetActive(false);
-        modeCam.gameObject.SetActive(false);
+        if (GameManager.instance != null)
+        {
+            if (!GameManager.instance.nextStage)
+            {
+                mainCam.gameObject.SetActive(true);
+                storyCam.gameObject.SetActive(false);
+                modeCam.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                mainCam.gameObject.SetActive(false);
+                storyCam.gameObject.SetActive(false);
+                modeCam.gameObject.SetActive(true);
+
+                GameManager.instance.nextStage = false;
+            }
+        }
     }
 
     private void Update()
     {
-        if(count == 0 && Input.GetMouseButtonDown(0))
+        if (count == 0 && Input.GetMouseButtonDown(0))
         {
             count++;
             mainCam.gameObject.SetActive(false);

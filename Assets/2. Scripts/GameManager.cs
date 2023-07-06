@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
+    public GameObject InventoryImg;
     public Text dateTxt;  // 날짜 + 점수 텍스트
     public Text goldTxt;  // 골드 보유 텍스트
     public int dateCount;  //  날짜
     public int score;  // 점수
     public int gold;  // 골드
+    public bool nextStage;
 
     private void Awake()
     {
@@ -95,12 +97,17 @@ public class GameManager : MonoBehaviour
     public void ViewInventory()
     {
         // 인벤토리 활성화
+        InventoryImg.gameObject.SetActive(true);
+    }
+
+    public void EscInventory()
+    {
+        InventoryImg.gameObject.SetActive(false);
     }
 
     public void GoHome()
     {
-        // 메인씬으로
-        // 제일 초기화면 셋팅
+        SceneManager.LoadScene(0);
     }
 
     private void OnDisable()
