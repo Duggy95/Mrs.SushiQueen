@@ -1330,8 +1330,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1050191753}
+        m_TargetAssemblyTypeName: EndSceneCtrl, Assembly-CSharp
         m_MethodName: EscInventory
         m_Mode: 1
         m_Arguments:
@@ -1597,8 +1597,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 18635622}
   m_HandleRect: {fileID: 18635621}
   m_Direction: 0
-  m_Value: 0.00000084507934
-  m_Size: 0.72306216
+  m_Value: 0.00000084507997
+  m_Size: 0.7230623
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3952,9 +3952,9 @@ MonoBehaviour:
   fishingSV: {fileID: 540600170}
   ShopSV: {fileID: 1820523937}
   SkillSV: {fileID: 109085275}
-  dateTxt: {fileID: 0}
-  goldTxt: {fileID: 0}
-  InventoryImg: {fileID: 0}
+  dateTxt: {fileID: 1862713316}
+  goldTxt: {fileID: 43870072}
+  InventoryImg: {fileID: 952636466}
 --- !u!1 &1076115634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,8 +4214,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1050191753}
+        m_TargetAssemblyTypeName: EndSceneCtrl, Assembly-CSharp
         m_MethodName: ViewInventory
         m_Mode: 1
         m_Arguments:
