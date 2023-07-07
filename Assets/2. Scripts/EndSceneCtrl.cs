@@ -9,6 +9,11 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject fishingSV;
     public GameObject ShopSV;
     public GameObject SkillSV;
+    public Text dateTxt;
+    public Text goldTxt;
+    public GameObject InventoryImg;
+
+
 
     private void Awake()
     {
@@ -41,6 +46,33 @@ public class EndSceneCtrl : MonoBehaviour
     public void NextStage()
     {
         GameManager.instance.nextStage = true;
+        SceneManager.LoadScene(0);
+    }
+
+    private void Update()
+    {
+        UIUpdate();
+    }
+
+    public void UIUpdate()
+    {
+        dateTxt.text = GameManager.instance.dateCount + "일차 / 평판 : " + GameManager.instance.score;
+        goldTxt.text = "gold : " + GameManager.instance.gold;
+    }
+
+    public void ViewInventory()
+    {
+        // 인벤토리 활성화
+        InventoryImg.gameObject.SetActive(true);
+    }
+
+    public void EscInventory()
+    {
+        InventoryImg.gameObject.SetActive(false);
+    }
+
+    public void GoHome()
+    {
         SceneManager.LoadScene(0);
     }
 }

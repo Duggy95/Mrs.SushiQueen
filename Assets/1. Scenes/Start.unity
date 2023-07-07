@@ -1701,8 +1701,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1716512909}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1182263661}
+        m_TargetAssemblyTypeName: StartSceneCtrl, Assembly-CSharp
         m_MethodName: ViewInventory
         m_Mode: 1
         m_Arguments:
@@ -2780,6 +2780,9 @@ MonoBehaviour:
   StartTxt: {fileID: 1857383208}
   storytxt:
   - {fileID: 1545383538}
+  dateTxt: {fileID: 1011198123}
+  goldTxt: {fileID: 90514012}
+  InventoryImg: {fileID: 947332552}
 --- !u!1 &1182484503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,8 +4199,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1716512909}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1182263661}
+        m_TargetAssemblyTypeName: StartSceneCtrl, Assembly-CSharp
         m_MethodName: EscInventory
         m_Mode: 1
         m_Arguments:
@@ -4351,9 +4354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f064061ecded0d4b8828bd4d553c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryImg: {fileID: 947332552}
-  dateTxt: {fileID: 1011198123}
-  goldTxt: {fileID: 90514012}
   dateCount: 0
   score: 0
   gold: 0

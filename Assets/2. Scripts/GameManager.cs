@@ -19,9 +19,6 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    public GameObject InventoryImg;
-    public Text dateTxt;  // 날짜 + 점수 텍스트
-    public Text goldTxt;  // 골드 보유 텍스트
     public int dateCount;  //  날짜
     public int score;  // 점수
     public int gold;  // 골드
@@ -33,8 +30,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject); // 씬전환이 돼도 삭제X
 
+        else
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
         // 골드 저장된 값이 없다면 초기 0 저장
         if (PlayerPrefs.HasKey("GOLD") == false)
         {
@@ -68,46 +70,6 @@ public class GameManager : MonoBehaviour
         {
             score = PlayerPrefs.GetInt("SCORE", score);
         }
-
-        if(dateTxt == null)
-            dateTxt = GameObject.Find("Time_Text").GetComponent<Text>();
-
-        if (goldTxt == null)
-            goldTxt = GameObject.Find("Gold_Text").GetComponent<Text>();
-
-    }
-
-    void Start()
-    {
-        dateTxt.text = dateCount + "일차 / 평판 : " + score;
-        goldTxt.text = "gold : " + gold;
-    }
-
-    void Update()
-    {
-        UIUpdate();
-    }
-
-    public void UIUpdate()
-    {
-        dateTxt.text = dateCount + "일차 / 평판 : " + score;
-        goldTxt.text = "gold : " + gold;
-    }
-
-    public void ViewInventory()
-    {
-        // 인벤토리 활성화
-        InventoryImg.gameObject.SetActive(true);
-    }
-
-    public void EscInventory()
-    {
-        InventoryImg.gameObject.SetActive(false);
-    }
-
-    public void GoHome()
-    {
-        SceneManager.LoadScene(0);
     }
 
     private void OnDisable()
