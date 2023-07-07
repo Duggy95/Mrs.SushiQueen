@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class FishingManager : MonoBehaviour, IPointerClickHandler
 {
     public GameObject hpBarPrefab;
+    public Text dateTxt;
+    public Text goldTxt;
+    public GameObject InventoryImg;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -15,7 +18,34 @@ public class FishingManager : MonoBehaviour, IPointerClickHandler
         var fishHpBar = Instantiate(hpBarPrefab, clickPos, new Quaternion(0, 0, 0, 0));
     }
 
-    public void GoCookScene()
+    void Update()
+    {
+        UIUpdate();
+    }
+
+    public void UIUpdate()
+    {
+        dateTxt.text = GameManager.instance.dateCount + "일차 / 평판 : " + GameManager.instance.score;
+        goldTxt.text = "gold : " + GameManager.instance.gold;
+    }
+
+    public void ViewInventory()
+    {
+        // 인벤토리 활성화
+        InventoryImg.gameObject.SetActive(true);
+    }
+
+    public void EscInventory()
+    {
+        InventoryImg.gameObject.SetActive(false);
+    }
+
+    public void GoHome()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void GoCook()
     {
         SceneManager.LoadScene(2);
     }

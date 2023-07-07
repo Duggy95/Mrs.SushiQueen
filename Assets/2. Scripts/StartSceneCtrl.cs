@@ -51,7 +51,6 @@ public class StartSceneCtrl : MonoBehaviour
         }
 
         UIUpdate();
-
     }
 
     public void UIUpdate()
