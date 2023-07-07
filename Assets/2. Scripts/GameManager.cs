@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    public int dateCount;  //  날짜
-    public int score;  // 점수
-    public int gold;  // 골드
+    public int dateCount = 5;  //  날짜
+    public int score = 50;  // 점수
+    public int gold = 500;  // 골드
     public bool nextStage;
 
     private void Awake()
@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         // 골드 저장된 값이 없다면 초기 0 저장
         if (PlayerPrefs.HasKey("GOLD") == false)
         {
-            gold = 0;
             PlayerPrefs.SetInt("GOLD", gold);
         }
         // 있다면 골드에 저장된 값 저장
@@ -51,7 +50,6 @@ public class GameManager : MonoBehaviour
         // 날짜 저장된 값이 없다면 초기 0 저장
         if (PlayerPrefs.HasKey("DATE") == false)
         {
-            dateCount = 0;
             PlayerPrefs.SetInt("DATE", dateCount);
         }
         // 있다면 값 가져와서 저장
@@ -62,7 +60,6 @@ public class GameManager : MonoBehaviour
         // 점수 저장된 값이 없다면 초기 0 저장
         if (PlayerPrefs.HasKey("SCORE") == false)
         {
-            score = 0;
             PlayerPrefs.SetInt("SCORE", score);
         }
         // 있다면 점수 값 가져와 저장

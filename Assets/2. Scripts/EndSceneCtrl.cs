@@ -49,7 +49,7 @@ public class EndSceneCtrl : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void Update()
+    private void Start()
     {
         UIUpdate();
     }

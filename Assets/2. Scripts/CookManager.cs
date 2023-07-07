@@ -19,11 +19,11 @@ public class CookManager : MonoBehaviour
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
         cookView.SetActive(false);
+        UIUpdate();
     }
 
     void Update()
     {
-        UIUpdate();
     }
 
     public void GoEndScene()  //운영씬으로
