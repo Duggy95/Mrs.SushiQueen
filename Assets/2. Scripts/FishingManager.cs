@@ -12,15 +12,21 @@ public class FishingManager : MonoBehaviour, IPointerClickHandler
     public Text goldTxt;
     public GameObject InventoryImg;
 
+    void Start()
+    {
+        UIUpdate();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Vector2 clickPos = eventData.position;
-        var fishHpBar = Instantiate(hpBarPrefab, clickPos, new Quaternion(0, 0, 0, 0));
+        print(clickPos);
+        //var fishHpBar = Instantiate(hpBarPrefab, clickPos, new Quaternion(0, 0, 0, 0));
     }
 
     void Start()
     {
-        UIUpdate();
+        
     }
 
     void UIUpdate()
