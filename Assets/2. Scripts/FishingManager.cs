@@ -24,11 +24,6 @@ public class FishingManager : MonoBehaviour, IPointerClickHandler
         //var fishHpBar = Instantiate(hpBarPrefab, clickPos, new Quaternion(0, 0, 0, 0));
     }
 
-    void Start()
-    {
-        
-    }
-
     void UIUpdate()
     {
         dateTxt.text = GameManager.instance.dateCount + "일차 / 평판 : " + GameManager.instance.score;
