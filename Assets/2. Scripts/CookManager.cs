@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class CookManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CookManager : MonoBehaviour
     public Text dateTxt;
     public Text goldTxt;
     public GameObject InventoryImg;
+    public RawImage[] fishImg;
 
     int count = 0;
 
@@ -57,16 +59,26 @@ public class CookManager : MonoBehaviour
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
     {
         count++;
-        if(count%2 == 0)
+        if (count % 2 == 0)
         {
             orderView.SetActive(true);
-            cookView.SetActive(false) ;
+            cookView.SetActive(false);
             count = 0;
+
+            for (int i = 0; i < fishImg.Length; i++)
+            {
+                Destroy(fishImg[i].GetComponent<DragItem>());
+            }
         }
         else
         {
             cookView.SetActive(true);
             orderView.SetActive(false);
+
+            for (int i = 0; i < fishImg.Length; i++)
+            {
+                fishImg[i].AddComponent<DragItem>();
+            }
         }
     }
 }
