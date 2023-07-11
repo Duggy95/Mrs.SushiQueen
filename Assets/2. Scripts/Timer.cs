@@ -7,15 +7,23 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     Image timer; //타이머 이미지
-    float maxTime = 100; //최대시간
+    float maxTime; //최대시간
     float currTime;  //현재시간
     Color currColor;  //현재색
     Color initColor = new Vector4(0f, 1f, 0f, 1f);  //초기색
-    bool isFish = false; //낚시중인지 아닌지 판단 
 
     void Start()
     {
         timer = GetComponent<Image>();
+
+        if(gameObject.CompareTag("CUSTOMER"))
+        {
+            maxTime = 30;
+        }
+        else
+        {
+            maxTime = 100;
+        }
 
         currTime = maxTime;  // 초기값
         timer.color = initColor;  //초기색 초록색으로
@@ -38,15 +46,25 @@ public class Timer : MonoBehaviour
 
         timer.color = currColor;  //타이머 색을 현재색으로
         timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
-
-        LoadCookScene();
+        if(currTime <= 0)
+        {
+            if(gameObject.CompareTag("TIMER"))
+            {
+                LoadMainScene();
+            }
+            else if(gameObject.CompareTag("CUSTOMER"))
+            {
+                //평판 깎임.
+                print("님 평판 깎임.");
+            }
+        }
     }
 
-    void LoadCookScene()
+    void LoadMainScene()
     {
-        if((currTime <= 0 && !isFish)) // 현재시간이 0이고 낚시중이 아닐 때
+        if(currTime <= 0)
         {
-            SceneManager.LoadScene(2);  //요리씬으로 넘어감
+            SceneManager.LoadScene(0);
         }
     }
 }

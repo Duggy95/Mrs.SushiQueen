@@ -7,11 +7,15 @@ using Unity.VisualScripting;
 
 public class CookManager : MonoBehaviour
 {
-    public GameObject orderView;
-    public GameObject cookView;
-    public Text dateTxt;
-    public Text goldTxt;
-    public GameObject InventoryImg;
+    public GameObject orderView;  //주문화면
+    public GameObject cookView;  //요리화면
+    public GameObject timer;  //손님 타이머
+    public GameObject yesBtn;  //수락 버튼
+    public GameObject noBtn;  //거절 버튼
+    public Text dateTxt;  //날짜 + 평판
+    public Text goldTxt;  //골드
+    public Text orderTxt;
+    public GameObject InventoryImg;  //인벤토리
     public RawImage[] fishImg;
 
     int count = 0;
@@ -39,15 +43,13 @@ public class CookManager : MonoBehaviour
         goldTxt.text = "gold : " + GameManager.instance.gold;
     }
 
-    public void ViewInventory()
+    public void ViewInventory() //인벤토리 활성화
     {
-        // 인벤토리 활성화
         InventoryImg.gameObject.SetActive(true);
     }
 
-    public void EscInventory()
+    public void EscInventory() //인벤토리 나가기
     {
-        //인벤토리 나가기
         InventoryImg.gameObject.SetActive(false);
     }
 
@@ -62,7 +64,6 @@ public class CookManager : MonoBehaviour
         if (count % 2 == 0)
         {
             orderView.SetActive(true);
-            cookView.SetActive(false);
             count = 0;
 
             for (int i = 0; i < fishImg.Length; i++)
@@ -73,12 +74,25 @@ public class CookManager : MonoBehaviour
         else
         {
             cookView.SetActive(true);
-            orderView.SetActive(false);
-
             for (int i = 0; i < fishImg.Length; i++)
             {
                 fishImg[i].AddComponent<DragItem>();
             }
         }
     }
+
+    public void ShowTimer()  //손님 타이머 활성화
+    {
+        timer.SetActive(true);
+        yesBtn.SetActive(false);
+        noBtn.SetActive(false);
+    }
+
+    public void NoBtn() //거절 버튼.
+    {
+        orderTxt.text = "님 실망임.";
+        yesBtn.SetActive(false);
+        noBtn.SetActive(false);
+        print("님 평판 깎임");
+    }  
 }

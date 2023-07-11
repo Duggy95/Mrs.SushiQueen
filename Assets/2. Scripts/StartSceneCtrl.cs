@@ -7,14 +7,14 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneCtrl : MonoBehaviour
 {
-    public Camera mainCam;
-    public Camera storyCam;
-    public Camera modeCam;
-    public Text StartTxt;
-    public Text[] storytxt;
-    public Text dateTxt;
-    public Text goldTxt;
-    public GameObject InventoryImg;
+    public Camera mainCam;  //타이틀화면
+    public Camera storyCam;  //스토리화면
+    public Camera modeCam;  //선택화면
+    public Text StartTxt;  //터치해서 게임시작 텍스트
+    public Text[] storytxt;  //스토리 텍스트
+    public Text dateTxt;  //날짜 + 평판 텍스트
+    public Text goldTxt;  //골드 텍스트
+    public GameObject InventoryImg; //인벤토리 이미지
 
     int count = 0;
 
@@ -22,20 +22,18 @@ public class StartSceneCtrl : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            if (!GameManager.instance.nextStage)
+            if (!GameManager.instance.nextStage) //
             {
                 mainCam.gameObject.SetActive(true);
                 storyCam.gameObject.SetActive(false);
                 modeCam.gameObject.SetActive(false);
             }
 
-            else
+            else //
             {
                 mainCam.gameObject.SetActive(false);
                 storyCam.gameObject.SetActive(false);
                 modeCam.gameObject.SetActive(true);
-
-                GameManager.instance.nextStage = false;
             }
         }
     }
@@ -70,10 +68,10 @@ public class StartSceneCtrl : MonoBehaviour
         InventoryImg.gameObject.SetActive(false);
     }
 
-    public void GoHome()
+ /*   public void GoHome()
     {
         SceneManager.LoadScene(0);
-    }
+    }*/
 
     // 터치해서 게임 시작하는 함수 구현할 것
 
@@ -92,5 +90,15 @@ public class StartSceneCtrl : MonoBehaviour
     public void GoShop()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void GoUpgrade()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
