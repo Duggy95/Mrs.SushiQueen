@@ -392,8 +392,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderView: {fileID: 889701663}
   cookView: {fileID: 1866088807}
+  timer: {fileID: 0}
+  yesBtn: {fileID: 0}
+  noBtn: {fileID: 0}
   dateTxt: {fileID: 1862713316}
   goldTxt: {fileID: 43870072}
+  orderTxt: {fileID: 0}
   InventoryImg: {fileID: 739183799}
   fishImg:
   - {fileID: 415359162}
