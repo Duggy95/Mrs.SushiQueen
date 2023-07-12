@@ -7,18 +7,14 @@ using Unity.VisualScripting;
 
 public class CookManager : MonoBehaviour
 {
-    public Canvas canvas;
+    public Canvas canvas;  //Order Canvas 주문 캔버스
     public GameObject customerPrefab;  //손님 프리팹
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
-    public GameObject timer;  //손님 타이머
-    public GameObject yesBtn;  //수락 버튼
-    public GameObject noBtn;  //거절 버튼
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
-    public Text orderTxt;  //주문 텍스트
     public GameObject InventoryImg;  //인벤토리
-    public RawImage[] fishImg;  //생선이미지
+    public Image[] fishImg;  //생선이미지
 
     Vector2 customerTr = Vector2.zero;
     int count = 0;
@@ -36,7 +32,7 @@ public class CookManager : MonoBehaviour
 
     void Update()
     {
-
+        UIUpdate();
     }
 
     public void GoEndScene()  //운영씬으로
@@ -88,7 +84,7 @@ public class CookManager : MonoBehaviour
         }
     }
 
-    public void ShowTimer()  //손님 타이머 활성화
+    /*public void ShowTimer()  //손님 타이머 활성화
     {
         timer.SetActive(true);
         yesBtn.SetActive(false);
@@ -101,7 +97,7 @@ public class CookManager : MonoBehaviour
         yesBtn.SetActive(false);
         noBtn.SetActive(false);
         print("님 평판 깎임");
-    }
+    }*/
 
     public void Create()
     {

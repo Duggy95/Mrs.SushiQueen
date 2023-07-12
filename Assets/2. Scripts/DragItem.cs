@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Transform inventoryTr;  //인벤토리 위치
-    public Transform fishListTr;  //생선리스트 위치
-    public Transform cookListTr;  //요리리스트 위치
+    public Transform fishListTr;  //수족관 위치
+    public Transform cookListTr;  //회스크롤뷰 위치
     public Transform[] cookChildTr;  //----
+
 
     //회 스크롤 뷰 범위이다.
     float right;
@@ -75,9 +77,10 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             {
                 if (cookChildTr[i].childCount == 1)
                 {
-                    itemTr.SetParent(cookChildTr[i].transform);
-                    itemTr.position = cookChildTr[i].position;
-                    Destroy(this);
+                    //itemTr.SetParent(cookChildTr[i].transform);
+                    cookChildTr[i].gameObject.GetComponent<Image>().sprite = itemTr.gameObject.GetComponent<Image>().sprite;
+                    //itemTr.position = cookChildTr[i].position;
+                    Destroy(gameObject);
                     break;
                 }
             }

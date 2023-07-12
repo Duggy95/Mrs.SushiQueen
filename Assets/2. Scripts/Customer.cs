@@ -7,17 +7,32 @@ using UnityEngine.UI;
 public class Customer : MonoBehaviour
 {
     public Text orderTxt;  //주문 텍스트
-    public Sprite[] sprites;
-    public string[] sushis;
-    public string[] wasabis;
+    public Sprite[] sprites;  //손님 스프라이트 배열
+    public string[] sushis;  //초밥 종류 배열
+    public string[] wasabis;  //와사비
+    public GameObject yesBtn;  //수락 버튼
+    public GameObject noBtn;  //거절 버튼
+    public GameObject timerObj; //타이머 오브젝트
+    public Image timer; //타이머 이미지
 
     CookManager cookManager;
     string message = "주세요.";
-    string order;
-    Image timer; //타이머 이미지
+    string order;  //주문
     float maxTime; //최대시간
     float currTime;  //현재시간
-    float currTimePercent;
+    //float currTimePercent;  //현재시간 비율
+    bool isTimer;
+
+    private void Awake()
+    {
+        cookManager = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<CookManager>();
+    }
+
+    private void Start()
+    {
+        maxTime = 30;
+        currTime = maxTime;  //타이머 초기값 설정
+    }
 
     void OnEnable()
     {
@@ -29,34 +44,43 @@ public class Customer : MonoBehaviour
         order = sushis[randomSushi] + "초밥 " +
                     Random.Range(1, 4) + "개 " +
                     "와사비 " + wasabis[randomWasabi] + message;
-        Text orderTxt = GameObject.Find("Order_Text").GetComponent<Text>();
+
         orderTxt.text = order;
-    }
-
-    private void Awake()
-    {
-        cookManager = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<CookManager>();
-    }
-
-    private void Start()
-    {
-        timer = GetComponent<Image>();
-        maxTime = 30;
-        currTime = maxTime;  // 초기값
     }
 
     private void Update()
     {
-        currTime -= Time.deltaTime * 5;  //시간이 줄어듬
-        currTimePercent = currTime / maxTime;  //남은시간 비율
-        timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
-        if (currTime <= 0)
+        if(isTimer)
         {
-            //평판 깎임.
-            print("님 평판 깎임.");
-            orderTxt.text = "님 실망임.";
-            cookManager.Create();
-            Destroy(gameObject);
+            currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+            float currTimePercent = currTime / maxTime;  //남은시간 비율
+            timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
+            if (currTime <= 0)
+            {
+                print("님 평판 깎임.");
+                orderTxt.text = "님 실망임.";
+                Destroy(gameObject, 0.5f);
+                cookManager.Create();
+                isTimer = false;
+            }
         }
+    }
+
+    public void ShowTimer()  //손님 타이머 활성화
+    {
+        isTimer = true;
+        timerObj.SetActive(true);
+        yesBtn.SetActive(false);
+        noBtn.SetActive(false);
+    }
+
+    public void NoBtn() //거절 버튼.
+    {
+        orderTxt.text = "님 실망임.";
+        Destroy(gameObject, 0.5f);
+        cookManager.Create();
+        yesBtn.SetActive(false);
+        noBtn.SetActive(false);
+        print("님 평판 깎임");
     }
 }
