@@ -12,7 +12,7 @@ public class FishData : ScriptableObject
     public float probability;   // 확률
     public Sprite fishImg;      // 생선 이미지
     public Sprite netaImg;      // 회 이미지
-    public Text fishInfo;       // 생선 정보
+    public Text info;       // 생선 정보
     
     // 잡았을 때 - 이름 이미지, 정보, 골드
     // 수족관 - 생선이미지
