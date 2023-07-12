@@ -43,7 +43,6 @@ public class Customer : MonoBehaviour
         timer = GetComponent<Image>();
         maxTime = 30;
         currTime = maxTime;  // �ʱⰪ
-
     }
 
     private void Update()

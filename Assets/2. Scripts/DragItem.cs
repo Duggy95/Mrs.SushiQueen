@@ -10,6 +10,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public Transform cookListTr;  //요리리스트 위치
     public Transform[] cookChildTr;  //
 
+    //회 스크롤 뷰 범위
     float right;
     float left;
     float top;
