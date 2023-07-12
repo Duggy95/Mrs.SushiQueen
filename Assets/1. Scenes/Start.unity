@@ -2777,8 +2777,8 @@ GameObject:
   - component: {fileID: 1182263660}
   - component: {fileID: 1182263661}
   m_Layer: 0
-  m_Name: StartSceneCtrl
-  m_TagString: Untagged
+  m_Name: StartManager
+  m_TagString: MANAGER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

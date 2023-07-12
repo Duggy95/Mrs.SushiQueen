@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CUSTOMER
   - TIMER
+  - MANAGER
   layers:
   - Default
   - TransparentFX

@@ -2183,6 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cda1cadffb385f4aa0f9037c96a7435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderTxt: {fileID: 0}
 --- !u!114 &927378302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,7 +3961,7 @@ GameObject:
   - component: {fileID: 1814812678}
   m_Layer: 0
   m_Name: FishManager
-  m_TagString: Untagged
+  m_TagString: MANAGER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3992,10 +3993,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1a002624095ec42ab0943e72e55c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarPrefab: {fileID: 7153825917935358477, guid: 9064717253c93a64b9729430a0b3b181, type: 3}
+  canvas: {fileID: 1177845761}
   dateTxt: {fileID: 638343333}
   goldTxt: {fileID: 1104859540}
   InventoryImg: {fileID: 900417535}
+  fishInfo: {fileID: 635353780}
+  fishObj: {fileID: 4445985424681281884, guid: 2773b65e969ebee4dbb452d0c1f68bb1, type: 3}
+  fishRun: {fileID: 1238647980}
+  fishImg:
+  - {fileID: 21300000, guid: 05afd58773e2bad4182c06441f4c2898, type: 3}
+  - {fileID: 21300000, guid: c29cc45af1f25d64f84e6a4538fb7685, type: 3}
+  isFishing: 0
 --- !u!1 &1869692554
 GameObject:
   m_ObjectHideFlags: 0

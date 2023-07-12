@@ -1500,7 +1500,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 18635621}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.73333335
+  m_Size: 0.7333334
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3760,8 +3760,8 @@ GameObject:
   - component: {fileID: 1050191752}
   - component: {fileID: 1050191753}
   m_Layer: 0
-  m_Name: EndSceneCtrl
-  m_TagString: Untagged
+  m_Name: EndManager
+  m_TagString: MANAGER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
