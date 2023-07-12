@@ -8,7 +8,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public Transform inventoryTr;  //인벤토리 위치
     public Transform fishListTr;  //생선리스트 위치
     public Transform cookListTr;  //요리리스트 위치
-    public Transform[] cookChildTr;  //
+    public Transform[] cookChildTr;  //----
 
     //회 스크롤 뷰 범위이다.
     float right;
