@@ -9,19 +9,27 @@ public class Fish : MonoBehaviour
     public GameObject hpBarPrefab; // 물고기 체력바 프리팹
     public GameObject bobber;   // 찌 이미지
     public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
+    public FishData[] fishDatas;
 
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
     GameObject _bobber;
+    FishData fishData;
 
-    int maxHP = 10; //최대체력
+    int maxHP; //최대체력
     int currHP;  //현재체력
-    int heal = 1;  // 회복력
+    int heal;  // 회복력
     int atk = 1;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
     float maxTime = 30f;  // 최대 타임
     float currTime;    // 현재 타임
     bool fishing = false;  // 낚시중인지
+
+    public void Setup(FishData fishData)
+    {
+        maxHP = fishData.hp;
+        heal = fishData.heal;
+    }
 
     private void Awake()
     {
@@ -31,7 +39,6 @@ public class Fish : MonoBehaviour
 
     void Start()
     {
-        currHP = maxHP;
         currTime = maxTime;
 
         Vector3 bobberPos = transform.position;
@@ -74,7 +81,11 @@ public class Fish : MonoBehaviour
 
                 if (currHP <= 0)
                 {
-                    fm.Fish();
+                    Debug.Log(fishData.fishImg);
+                    Debug.Log(fishData.info);
+
+                    fm.Fish(fishData);
+
                     Destroy(gameObject);
                 }
             }
@@ -87,6 +98,10 @@ public class Fish : MonoBehaviour
         // 물장구 이미지는 터치한 부분보다 아래에 위치
         Vector3 hpPos = pos + new Vector3(0, 100, 0);
         yield return new WaitForSeconds(delayTime);
+        int fishNum = Random.Range(0, fishDatas.Length);
+        fishData = fishDatas[fishNum];
+        Setup(fishData);
+        currHP = maxHP;
         fishing = true;
 
         Debug.Log("물장구 시작");
@@ -124,11 +139,11 @@ public class Fish : MonoBehaviour
 
         while (fishing)
         {
-            // 현재 체력이 최대 체력보다 적다면
+            // 현재 체력 + 회복력이 최대 체력보다 적다면
             // 1초마다 힐량 만큼 체력 회복
             yield return new WaitForSeconds(1f);
 
-            if (currHP < maxHP)
+            if (currHP + heal < maxHP)
             {
                 currHP += heal;
                 hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남

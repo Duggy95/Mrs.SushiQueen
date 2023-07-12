@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class FishingManager : MonoBehaviour
 {
@@ -11,15 +12,19 @@ public class FishingManager : MonoBehaviour
     public Text dateTxt;
     public Text goldTxt;
     public GameObject InventoryImg;  // 인벤토리 이미지
+    public GameObject FishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
+    public Image fish_Img;
+    public Text fishInfo_Txt;
     public GameObject fishObj;
     public Text fishRun;
-    public Sprite[] fishImg;  // 생선 이미지 배열
     public bool isFishing = false;
+
+    int maxCount = 0; // 수족관에 최대로 넣을 수 있는 물고기 수
 
     void Start()
     {
-        //UIUpdate();
+        UIUpdate();
     }
 
     void Update()
@@ -41,31 +46,45 @@ public class FishingManager : MonoBehaviour
 
 
     // 잡은 경우에 물고기 정보창 띄움
-    public void Fish()
+    public void Fish(FishData fishData)
     {
         Debug.Log("낚시 성공");
+        Debug.Log(fishData);
 
         fishInfo.gameObject.SetActive(true);
+        fishInfo_Txt.text = fishData.info.text;
+        fish_Img.sprite = fishData.fishImg;
     }
 
     // 팔기 버튼을 누르면 정보창 닫고 다시 낚시 준비
-    public void Sell()
+    public void Sell(FishData fishData)
     {
         Debug.Log("판매");
 
         fishInfo.gameObject.SetActive(false);
+        //GameManager.instance.gold += fishData.gold;
         // 골드 ++
-        // UIUpdate();
+        //UIUpdate();
         isFishing = false;
     }
 
     // 수족관으로 버튼 누르면 정보창 닫고 다시 낚시 준비
-    public void Get()
+    public void Get(FishData fishData)
     {
         Debug.Log("수족관으로");
 
         fishInfo.gameObject.SetActive(false);
         // 수족관에 이미지 추가
+        Image[] fishImgs = FishContent.GetComponents<Image>();
+        for (int i = 0; i < fishImgs.Length; i++)
+        {
+            Slot _slot = fishImgs[i].GetComponent<Slot>();
+            if (_slot.isEmpty == false)
+            {
+                fishImgs[i].sprite = fishData.fishImg;
+                _slot.isEmpty = true;
+            }
+        }
         isFishing = false;
     }
 
