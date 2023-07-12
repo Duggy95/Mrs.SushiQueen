@@ -5,13 +5,13 @@ using static UnityEditor.Progress;
 
 public class Neta : MonoBehaviour
 {
-    //FishData fish;
+    FishData fish;
     SpriteRenderer sprite;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        //sprite.sprite = fish.netaImg;
+        sprite.sprite = fish.netaImg;
     }
 
     void Update()
