@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class FishingManager : MonoBehaviour //, IPointerClickHandler
+public class FishingManager : MonoBehaviour
 {
     public Canvas canvas;
     public Text dateTxt;
@@ -19,15 +19,8 @@ public class FishingManager : MonoBehaviour //, IPointerClickHandler
 
     void Start()
     {
-        UIUpdate();
+        //UIUpdate();
     }
-
-    /*public void OnPointerClick(PointerEventData eventData)
-    {
-        Vector2 clickPos = eventData.position;
-        print(clickPos);
-        //var fishHpBar = Instantiate(hpBarPrefab, clickPos, new Quaternion(0, 0, 0, 0));
-    }*/
 
     void Update()
     {
