@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
+    public Text orderTxt;  //주문 텍스트
     Image timer; //타이머 이미지
     float maxTime; //최대시간
     float currTime;  //현재시간
@@ -16,7 +17,7 @@ public class Timer : MonoBehaviour
     {
         timer = GetComponent<Image>();
 
-        if(gameObject.CompareTag("CUSTOMER"))
+        if(gameObject.CompareTag("CUSTOMER"))  //게임오브젝트 태그가 CUSTOMER이면 
         {
             maxTime = 30;
         }
@@ -48,19 +49,21 @@ public class Timer : MonoBehaviour
         timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
         if(currTime <= 0)
         {
-            if(gameObject.CompareTag("TIMER"))
+            if(gameObject.CompareTag("TIMER"))  //태그가 TIMER이면 홈 화면으로
             {
                 LoadMainScene();
             }
-            else if(gameObject.CompareTag("CUSTOMER"))
+            else if(gameObject.CompareTag("CUSTOMER"))  //태그가 CUSTOMER이면 평판감소 텍스트 출력.
             {
                 //평판 깎임.
                 print("님 평판 깎임.");
+                orderTxt.text = "님 실망임.";
+                CookManager.instance.Create();
             }
         }
     }
 
-    void LoadMainScene()
+    void LoadMainScene()  //홈 화면 전환
     {
         if(currTime <= 0)
         {

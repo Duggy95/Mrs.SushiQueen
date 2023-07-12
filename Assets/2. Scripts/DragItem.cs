@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public Transform inventoryTr;
-    public Transform fishListTr;
-    public Transform cookListTr;
-    public Transform[] cookChildTr;
+    public Transform inventoryTr;  //인벤토리 위치
+    public Transform fishListTr;  //생선리스트 위치
+    public Transform cookListTr;  //요리리스트 위치
+    public Transform[] cookChildTr;  //
 
     float right;
     float left;

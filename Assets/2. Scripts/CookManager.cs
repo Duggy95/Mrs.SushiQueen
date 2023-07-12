@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 
 public class CookManager : MonoBehaviour
 {
+    public static CookManager instance;
+    public GameObject customerPrefab;  //손님 프리팹
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
     public GameObject timer;  //손님 타이머
@@ -14,11 +16,25 @@ public class CookManager : MonoBehaviour
     public GameObject noBtn;  //거절 버튼
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
-    public Text orderTxt;
+    public Text orderTxt;  //주문 텍스트
     public GameObject InventoryImg;  //인벤토리
-    public RawImage[] fishImg;
+    public RawImage[] fishImg;  //생선이미지
+    public bool isCustomer = false;
 
+    Vector2 customerTr = Vector2.zero;
     int count = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
+    }
 
     void Start()
     {
@@ -26,10 +42,13 @@ public class CookManager : MonoBehaviour
         orderView.SetActive(true);
         cookView.SetActive(false);
         UIUpdate();
+
+        Create();
     }
 
     void Update()
     {
+
     }
 
     public void GoEndScene()  //운영씬으로
@@ -63,7 +82,7 @@ public class CookManager : MonoBehaviour
         count++;
         if (count % 2 == 0)
         {
-            orderView.SetActive(true);
+            cookView.SetActive(false);
             count = 0;
 
             for (int i = 0; i < fishImg.Length; i++)
@@ -94,5 +113,14 @@ public class CookManager : MonoBehaviour
         yesBtn.SetActive(false);
         noBtn.SetActive(false);
         print("님 평판 깎임");
-    }  
+        isCustomer = false;
+    }
+
+    public void Create()
+    {
+        GameObject customer = Instantiate(customerPrefab, customerTr,
+                                                                Quaternion.identity, GameObject.Find("OrderCanvas").transform);
+        customer.transform.localPosition = new Vector2(-400, -100);
+        customer.transform.SetSiblingIndex(1);
+    }
 }
