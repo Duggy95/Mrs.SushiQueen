@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timer = GetComponent<Image>();
-        maxTime = 100;
+        maxTime = 180;
 
         currTime = maxTime;  // 초기값
         timer.color = initColor;  //초기색 초록색으로
@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+        currTime -= Time.deltaTime;  //시간이 줄어듬
 
         float currTimePercent = currTime / maxTime;  //남은시간 비율
         if (currTimePercent > 0.5f)  // 반이상 남았을 때

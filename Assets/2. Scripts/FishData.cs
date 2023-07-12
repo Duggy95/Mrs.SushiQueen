@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class FishData : ScriptableObject
 {
     public string fishName;     // 이름 
+    public int fishNum;         // 식별번호
     public int hp;              // 체력
     public int heal;            // 회복력 
     public int gold;            // 골드
