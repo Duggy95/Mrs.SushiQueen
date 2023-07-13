@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b3d820df750364ca03235c9bff8e86, type: 3}
   m_Name: Snapper Data
   m_EditorClassIdentifier: 
-  fishName: Flatfish
+  fishName: Snapper
   fishNum: 2
   hp: 50
   heal: 4

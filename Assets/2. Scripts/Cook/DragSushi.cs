@@ -62,7 +62,11 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         {
             sushiTr.SetParent(dishTr);
             sushiTr.position = Input.mousePosition;
-            Destroy(this);
+            //Destroy(this);
+
+            Dish dish = dishTr.GetComponent<Dish>();
+            Rice rice = sushiTr.GetComponent<Rice>();
+            dish.sushiList.Add(rice.sushiName, rice.wasabi);
         }
         else
         {

@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class Neta : MonoBehaviour
 {
-    FishData fish;
-    SpriteRenderer sprite;
+    public FishData fishData;
+    Image image;
 
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        //sprite.sprite = fish.netaImg;
-    }
+        image = GetComponent<Image>();
+        image.sprite = fishData.netaImg;
 
-    void Update()
-    {
-        
+        Rice rice = GetComponentInParent<Rice>();
+        rice.sushiName = fishData.fishName;
+        //print(rice.sushiName);
     }
 }

@@ -14,6 +14,7 @@ public class Customer : MonoBehaviour
     public GameObject noBtn;  //거절 버튼
     public GameObject timerObj; //타이머 오브젝트
     public Image timer; //타이머 이미지
+    Dictionary<string, int> _order = new Dictionary<string, int>();
 
     CookManager cookManager;
     string message = "주세요.";
@@ -41,11 +42,22 @@ public class Customer : MonoBehaviour
 
         int randomSushi = Random.Range(0, sushis.Length);
         int randomWasabi = Random.Range(0, wasabis.Length);
+        int count = Random.Range(1, 4);
+
         order = sushis[randomSushi] + "초밥 " +
-                    Random.Range(1, 4) + "개 " +
+                    count + "개 " +
                     "와사비 " + wasabis[randomWasabi] + message;
 
         orderTxt.text = order;
+
+        _order.Add(sushis[randomSushi], count);
+
+        foreach (var kvp in _order)
+        {
+            string sushiType = kvp.Key;
+            int sushiCount = kvp.Value;
+            Debug.Log($"Sushi Type: {sushiType}, Count: {sushiCount}");
+        }
     }
 
     private void Update()
