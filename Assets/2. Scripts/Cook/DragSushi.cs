@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -67,6 +68,15 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             Dish dish = dishTr.GetComponent<Dish>();
             Rice rice = sushiTr.GetComponent<Rice>();
             dish.sushiList.Add(rice.sushiName, rice.wasabi);
+
+            /*if (dish.sushiList.ContainsValue())
+            {
+                Console.WriteLine("{0}는 이미 등록되어 있습니다.", str);
+            }
+            else
+            {
+                Console.WriteLine("{0}는 등록되어 있지 않습니다.", str);
+            }*/
         }
         else
         {
