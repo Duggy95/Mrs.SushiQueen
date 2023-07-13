@@ -21,26 +21,43 @@ public class FishingManager : MonoBehaviour
     public bool isFishing = false;
 
     int maxCount = 0; // 수족관에 최대로 넣을 수 있는 물고기 수
+    FishData data;
 
     void Start()
     {
+        InventoryImg.gameObject.SetActive(false);
         UIUpdate();
     }
 
     void Update()
     {
+ 
         // 터치를 하고 물고기 잡는 중이 아니라면
         if (Input.GetMouseButtonDown(0) && isFishing == false)
         {
             Debug.Log("낚시 시작");
             Debug.Log("위치" + Input.mousePosition);
 
-            // 물고기 잡는 중으로 변경
-            isFishing = true;
-            // 물고기 도망 텍스트 비활성화
-            fishRun.gameObject.SetActive(false);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (!hit.collider.CompareTag("UI"))
+                {
+                    return;
+                }
+            }
+
+            else
+            {
+                // 물고기 잡는 중으로 변경
+                isFishing = true;
+                // 물고기 도망 텍스트 비활성화
+                fishRun.gameObject.SetActive(false);
+
+                Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
+            }
         }
     }
 
@@ -50,39 +67,43 @@ public class FishingManager : MonoBehaviour
     {
         Debug.Log("낚시 성공");
         Debug.Log(fishData);
-
+        data = fishData;
         fishInfo.gameObject.SetActive(true);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
     }
 
     // 팔기 버튼을 누르면 정보창 닫고 다시 낚시 준비
-    public void Sell(FishData fishData)
+    public void Sell()
     {
         Debug.Log("판매");
 
         fishInfo.gameObject.SetActive(false);
-        //GameManager.instance.gold += fishData.gold;
+        GameManager.instance.gold += data.gold;
+        GameManager.instance.SetGold();
         // 골드 ++
-        //UIUpdate();
+        UIUpdate();
         isFishing = false;
     }
 
     // 수족관으로 버튼 누르면 정보창 닫고 다시 낚시 준비
-    public void Get(FishData fishData)
+    public void Get()
     {
         Debug.Log("수족관으로");
 
         fishInfo.gameObject.SetActive(false);
         // 수족관에 이미지 추가
-        Image[] fishImgs = FishContent.GetComponents<Image>();
-        for (int i = 0; i < fishImgs.Length; i++)
+        Image[] _fishs = FishContent.GetComponentsInChildren<Image>();
+        Debug.Log("수족관 칸 수 : " + _fishs.Length);
+
+        for (int i = 0; i < _fishs.Length; i++)
         {
-            Slot _slot = fishImgs[i].GetComponent<Slot>();
+            Slot _slot = _fishs[i].GetComponent<Slot>();
             if (_slot.isEmpty == false)
             {
-                fishImgs[i].sprite = fishData.fishImg;
+                _fishs[i].sprite = data.fishImg;
                 _slot.isEmpty = true;
+                break;
             }
         }
         isFishing = false;
@@ -101,7 +122,8 @@ public class FishingManager : MonoBehaviour
         fishRun.gameObject.SetActive(true);
         isFishing = false;
         // 화면 누르면 텍스트 비활성화
-        yield return Input.GetMouseButtonDown(0);
+        yield return new WaitForSeconds(2f);
+        Debug.Log("다시");
         fishRun.gameObject.SetActive(false);
     }
 

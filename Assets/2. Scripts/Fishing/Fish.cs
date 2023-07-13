@@ -21,7 +21,7 @@ public class Fish : MonoBehaviour
     int heal;  // 회복력
     int atk = 1;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
-    float maxTime = 30f;  // 최대 타임
+    float maxTime = 15f;  // 최대 타임
     float currTime;    // 현재 타임
     bool fishing = false;  // 낚시중인지
 
@@ -98,11 +98,29 @@ public class Fish : MonoBehaviour
         // 물장구 이미지는 터치한 부분보다 아래에 위치
         Vector3 hpPos = pos + new Vector3(0, 100, 0);
         yield return new WaitForSeconds(delayTime);
-        int fishNum = Random.Range(0, fishDatas.Length);
-        fishData = fishDatas[fishNum];
-        Setup(fishData);
-        currHP = maxHP;
-        fishing = true;
+
+        // 확률에 따라 나오도록
+        List<FishData> fish_Data = new List<FishData>();
+        float fish_Probability;
+
+        for (int i = 0; i < fishDatas.Length; i++)
+        {
+            fish_Probability = fishDatas[i].probability * 100;
+
+            for (int j = 0; j < fish_Probability; j++)
+            {
+                fish_Data.Add(fishDatas[i]);
+            }
+        }
+
+        Debug.Log(fish_Data.Count);
+
+        int fishNum = Random.Range(0, fish_Data.Count);
+
+        fishData = fish_Data[fishNum]; // 확률에 따른 물고기 종류 지정
+        Setup(fishData);  // 물고기 체력 및 회복력 셋업
+        currHP = maxHP;   // 현재 체력을 맥스 체력으로
+        fishing = true;   // 낚시 시작
 
         Debug.Log("물장구 시작");
 
@@ -143,7 +161,7 @@ public class Fish : MonoBehaviour
             // 1초마다 힐량 만큼 체력 회복
             yield return new WaitForSeconds(1f);
 
-            if (currHP + heal < maxHP)
+            if (currHP + heal <= maxHP)
             {
                 currHP += heal;
                 hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
