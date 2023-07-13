@@ -14,6 +14,8 @@ public class FishingManager : MonoBehaviour
     public GameObject InventoryImg;  // 인벤토리 이미지
     public GameObject FishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
+    public GameObject FishingRod; // 낚싯대 이미지
+    public GameObject lineStartPos;
     public Image fish_Img;
     public Text fishInfo_Txt;
     public Text full_Txt;
@@ -56,7 +58,14 @@ public class FishingManager : MonoBehaviour
                 isFishing = true;
                 // 물고기 도망 텍스트 비활성화
                 fishRun.gameObject.SetActive(false);
+                LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
 
+                Vector3 startPos = lineStartPos.transform.position; // 시작 지점
+                Vector3 endPos = Input.mousePosition; // 끝 지점
+
+                // Line Renderer 속성 설정
+                fishLine.SetPosition(0, startPos); // 라인의 점들 설정
+                fishLine.SetPosition(1, endPos);
                 Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
             }
         }
@@ -107,6 +116,7 @@ public class FishingManager : MonoBehaviour
                 _fishs[i].sprite = data.fishImg;
                 _slot.fish_ColorNum = data.color;
                 _slot.fish_GradeNum = data.grade;
+                _slot.fish_Name = data.fishName;
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = true;
