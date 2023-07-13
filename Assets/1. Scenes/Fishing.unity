@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 97848774}
   - component: {fileID: 97848773}
   m_Layer: 5
-  m_Name: No_Button
+  m_Name: Sell_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1305,6 +1305,7 @@ RectTransform:
   - {fileID: 1142758064}
   - {fileID: 1347684395}
   - {fileID: 97848772}
+  - {fileID: 1692461090}
   m_Father: {fileID: 1177845762}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2733,8 +2734,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartSceneCtrl, Assembly-CSharp
+      - m_Target: {fileID: 1814812678}
+        m_TargetAssemblyTypeName: FishingManager, Assembly-CSharp
         m_MethodName: EscInventory
         m_Mode: 1
         m_Arguments:
@@ -2796,7 +2797,7 @@ GameObject:
   - component: {fileID: 1347684397}
   - component: {fileID: 1347684396}
   m_Layer: 5
-  m_Name: Yes_Button
+  m_Name: Get_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3438,6 +3439,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667876080}
   m_CullTransparentMesh: 1
+--- !u!1 &1692461089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692461090}
+  - component: {fileID: 1692461092}
+  - component: {fileID: 1692461091}
+  m_Layer: 5
+  m_Name: Full_Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1692461090
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692461089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 635353781}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1692461091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692461089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 50
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\uC218\uC871\uAD00\uC774 \uAC00\uB4DD \uCC3C\uC2B5\uB2C8\uB2E4."
+--- !u!222 &1692461092
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692461089}
+  m_CullTransparentMesh: 1
 --- !u!1 &1762376954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3725,11 +3806,12 @@ MonoBehaviour:
   canvas: {fileID: 1177845761}
   dateTxt: {fileID: 638343333}
   goldTxt: {fileID: 1104859540}
-  InventoryImg: {fileID: 0}
-  FishContent: {fileID: 0}
+  InventoryImg: {fileID: 1328963840}
+  FishContent: {fileID: 1492199568}
   fishInfo: {fileID: 635353780}
   fish_Img: {fileID: 1762376956}
   fishInfo_Txt: {fileID: 1142758065}
+  full_Txt: {fileID: 1692461091}
   fishObj: {fileID: 4445985424681281884, guid: 2773b65e969ebee4dbb452d0c1f68bb1, type: 3}
   fishRun: {fileID: 1238647980}
   isFishing: 0

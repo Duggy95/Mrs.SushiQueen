@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class FishData : ScriptableObject
 {
     public string fishName;     // 이름 
-    public int fishNum;         // 식별번호
+    public int grade;           // 등급번호(0 = 노말, 1 = 레어)
+    public int color;           // 색깔번호(0 = 흰 살, 1 = 붉은 살)
     public int hp;              // 체력
     public int heal;            // 회복력 
     public int gold;            // 골드

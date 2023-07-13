@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Tuna Data
   m_EditorClassIdentifier: 
   fishName: Tuna
-  fishNum: 2
+  grade: 1
+  color: 1
   hp: 50
   heal: 4
   gold: 5000

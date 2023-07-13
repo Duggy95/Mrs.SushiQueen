@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    public int itemCount;
-    public int fishCount;
+    public int itemCount = 3;
+    public int fishCount = 3;
 
-    public int dateCount;  //  날짜
-    public int score;  // 점수
-    public int gold;  // 골드
+    public int dateCount = 1;  //  날짜
+    public int score = 0;  // 점수
+    public int gold = 0;  // 골드
 
     public bool nextStage;
 
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
         {
             gold = PlayerPrefs.GetInt("GOLD");
         }
-
         else
             SetGold();
 
@@ -53,15 +52,13 @@ public class GameManager : MonoBehaviour
         {
             dateCount = PlayerPrefs.GetInt("DATE");
         }
-
         else
-            SetGold();
+            SetDate();
 
         if (PlayerPrefs.HasKey("SCORE"))
         {
             score = PlayerPrefs.GetInt("SCORE");
         }
-
         else
             SetScore();
 
@@ -69,7 +66,6 @@ public class GameManager : MonoBehaviour
         {
             itemCount = PlayerPrefs.GetInt("ITEM");
         }
-
         else
             SetItem();
 
@@ -77,7 +73,6 @@ public class GameManager : MonoBehaviour
         {
             fishCount = PlayerPrefs.GetInt("FISH");
         }
-
         else
             SetFish();
 
@@ -85,31 +80,26 @@ public class GameManager : MonoBehaviour
 
     public void SetGold()
     {
-        gold = 0;
         PlayerPrefs.SetInt("GOLD", gold);
     }
 
     public void SetDate()
     {
-        dateCount = 1;
         PlayerPrefs.SetInt("DATE", dateCount);
     }
 
     public void SetScore()
     {
-        score = 0;
         PlayerPrefs.SetInt("SCORE", score);
     }
 
     public void SetItem()
     {
-        itemCount = 3;
         PlayerPrefs.SetInt("ITEM", itemCount);
     }
 
     public void SetFish()
     {
-        fishCount = 3;
         PlayerPrefs.SetInt("FISH", fishCount);
     }
 

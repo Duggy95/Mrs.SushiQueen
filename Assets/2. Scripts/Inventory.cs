@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     int itemSlotCount;
     int fishSlotCount;
 
-    void OnEnable()
+    void Start()
     {
         itemSlotCount = GameManager.instance.itemCount;
         fishSlotCount = GameManager.instance.fishCount;

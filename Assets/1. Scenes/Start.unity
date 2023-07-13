@@ -3803,11 +3803,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f064061ecded0d4b8828bd4d553c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 0
-  fishCount: 0
-  dateCount: 5
-  score: 50
-  gold: 500
+  itemCount: 3
+  fishCount: 3
+  dateCount: 1
+  score: 0
+  gold: 0
   nextStage: 0
 --- !u!1 &1823626459
 GameObject:
