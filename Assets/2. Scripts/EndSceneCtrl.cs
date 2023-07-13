@@ -13,8 +13,6 @@ public class EndSceneCtrl : MonoBehaviour
     public Text goldTxt;
     public GameObject InventoryImg;
 
-
-
     private void Awake()
     {
         fishingSV.gameObject.SetActive(true);

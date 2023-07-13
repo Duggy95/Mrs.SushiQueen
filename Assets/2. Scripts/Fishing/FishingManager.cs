@@ -16,6 +16,7 @@ public class FishingManager : MonoBehaviour
     public GameObject fishInfo; // 생선 정보 판넬
     public Image fish_Img;
     public Text fishInfo_Txt;
+    public Text full_Txt;
     public GameObject fishObj;
     public Text fishRun;
     public bool isFishing = false;
@@ -31,7 +32,7 @@ public class FishingManager : MonoBehaviour
 
     void Update()
     {
- 
+
         // 터치를 하고 물고기 잡는 중이 아니라면
         if (Input.GetMouseButtonDown(0) && isFishing == false)
         {
@@ -78,6 +79,7 @@ public class FishingManager : MonoBehaviour
     {
         Debug.Log("판매");
 
+        full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
         GameManager.instance.gold += data.gold;
         GameManager.instance.SetGold();
@@ -91,22 +93,37 @@ public class FishingManager : MonoBehaviour
     {
         Debug.Log("수족관으로");
 
-        fishInfo.gameObject.SetActive(false);
         // 수족관에 이미지 추가
-        Image[] _fishs = FishContent.GetComponentsInChildren<Image>();
+        Image[] _fishs = FishContent.gameObject.GetComponentsInChildren<Image>();
         Debug.Log("수족관 칸 수 : " + _fishs.Length);
 
+        bool isFull = false;
+        // 수족관의 스롯을 검사하여 비었으면 해당 정보 전달
         for (int i = 0; i < _fishs.Length; i++)
         {
-            Slot _slot = _fishs[i].GetComponent<Slot>();
+            FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
             if (_slot.isEmpty == false)
             {
                 _fishs[i].sprite = data.fishImg;
+                _slot.fish_ColorNum = data.color;
+                _slot.fish_GradeNum = data.grade;
+                _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
+                isFull = true;
                 break;
             }
         }
-        isFishing = false;
+        // 수족관이 가득 찬 경우 텍스트 띄움
+        if (!isFull)
+        {
+            full_Txt.gameObject.SetActive(true);
+        }
+        // 아닌 경우 정보 패널 비활성화
+        else
+        {
+            isFishing = false;
+            fishInfo.gameObject.SetActive(false);
+        }
     }
 
     public void Run()
@@ -137,6 +154,8 @@ public class FishingManager : MonoBehaviour
     {
         // 인벤토리 활성화
         InventoryImg.gameObject.SetActive(true);
+        // 인벤토리 순서를 제일 마지막으로
+        InventoryImg.transform.SetAsLastSibling();
     }
 
     public void EscInventory()

@@ -11,6 +11,10 @@ public class Fish : MonoBehaviour
     public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
     public FishData[] fishDatas;
 
+    public bool useItem_white;  // 하얀 살 생선 확률 증가 아이템 사용
+    public bool useItem_red;    // 붉은 살 생선 확률 증가 아이템 사용
+    public bool useItem_rare;   // 레어 생선 확률 증가 아이템 사용
+
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
     GameObject _bobber;
@@ -107,6 +111,35 @@ public class Fish : MonoBehaviour
         {
             fish_Probability = fishDatas[i].probability * 100;
 
+            // 아이템 썼을 때 확률 조정
+            if (useItem_white)
+            {
+                if (fishDatas[i].color == 0)
+                    fish_Probability *= 1.5f;
+
+                else if (fishDatas[i].color == 1)
+                    fish_Probability *= 0.5f;
+            }
+
+            else if (useItem_red)
+            {
+                if (fishDatas[i].color == 0)
+                    fish_Probability *= 0.5f;
+
+                else if (fishDatas[i].color == 1)
+                    fish_Probability *= 1.5f;
+            }
+
+            else if(useItem_rare)
+            {
+                if (fishDatas[i].grade == 0)
+                    fish_Probability *= 0.75f;
+
+                else if (fishDatas[i].grade == 1)
+                    fish_Probability *= 2f;
+            }
+
+            // 확률만큼 리스트 저장
             for (int j = 0; j < fish_Probability; j++)
             {
                 fish_Data.Add(fishDatas[i]);
