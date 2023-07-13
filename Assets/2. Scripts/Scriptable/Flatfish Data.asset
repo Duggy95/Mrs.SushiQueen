@@ -19,5 +19,5 @@ MonoBehaviour:
   gold: 1000
   probability: 0.4
   fishImg: {fileID: 21300000, guid: 05afd58773e2bad4182c06441f4c2898, type: 3}
-  netaImg: {fileID: 0}
+  netaImg: {fileID: 21300000, guid: 54952347923f45a438d41337f7c31f9a, type: 3}
   info: {fileID: 7040561584231261383, guid: 7c987efb86c855b40b708557c5e279c2, type: 3}

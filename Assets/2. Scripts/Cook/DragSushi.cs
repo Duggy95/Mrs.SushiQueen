@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEditor.Progress;
@@ -7,9 +8,8 @@ using static UnityEditor.Progress;
 public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     Transform dishTr; //접시위치
-    Transform sushiTr;
-    Transform boardTr;
-    CanvasGroup canvasGroup;
+    Transform sushiTr;  //초밥위치
+    Transform boardTr;  //도마위치
 
     public static GameObject draggingSushi = null;
 
@@ -19,6 +19,8 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     float top;
     float bottom;
 
+    bool isDish;
+
     void Awake()
     {
         dishTr = GameObject.Find("Dish_RawImage").GetComponent<Transform>();
@@ -27,7 +29,6 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
         sushiTr = GetComponent<Transform>();
 
         right = dishTr.position.x + 200;
@@ -39,7 +40,6 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         this.transform.SetParent(boardTr);
         draggingSushi = this.gameObject;
-        canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -55,18 +55,19 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         draggingSushi = null;
-        canvasGroup.blocksRaycasts = true;
 
-        if (sushiTr.parent == boardTr && Input.mousePosition.x > left &&
+        if (sushiTr.parent == boardTr && dishTr != null && Input.mousePosition.x > left &&
             Input.mousePosition.x < right && Input.mousePosition.y < top &&
             Input.mousePosition.y > bottom)
         {
             sushiTr.SetParent(dishTr);
-            sushiTr.position = dishTr.position;
+            sushiTr.position = Input.mousePosition;
+            Destroy(this);
         }
         else
         {
             sushiTr.SetParent(boardTr.transform);
+            sushiTr.position = boardTr.position;
         }
     }
 }

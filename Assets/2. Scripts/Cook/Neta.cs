@@ -11,7 +11,7 @@ public class Neta : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        sprite.sprite = fish.netaImg;
+        //sprite.sprite = fish.netaImg;
     }
 
     void Update()

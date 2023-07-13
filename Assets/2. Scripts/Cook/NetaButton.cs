@@ -19,10 +19,20 @@ public class NetaButton : MonoBehaviour
 
     public void FishBtn()
     {
-        Transform riceTr = GameObject.Find("Rice(Clone)").transform;  //씬에서 밥 위치 찾기.
-        Vector3 netaTr = new Vector3(riceTr.position.x, riceTr.position.y + 15, 0);  //밥 조금 위쪽
+        GameObject board = GameObject.Find("Board_RawImage");
+        
+        if(board != null)
+        {
+            Transform riceTr = board.transform.Find("Rice(Clone)").transform;
+            Vector3 netaTr = new Vector3(riceTr.position.x, riceTr.position.y + 15, 0);  //밥 조금 위쪽
+            GameObject neta = Instantiate(netaPrefab,
+                                                            netaTr, Quaternion.identity, riceTr); //밥 조금 위쪽에 회생성하고 밥의 자식으로 넣기.
+            riceTr.gameObject.AddComponent<DragSushi>();
+        }
+        //Transform riceTr = GameObject.Find("Rice(Clone)").transform;  //씬에서 밥 위치 찾기.
+        /*Vector3 netaTr = new Vector3(riceTr.position.x, riceTr.position.y + 15, 0);  //밥 조금 위쪽
         GameObject neta = Instantiate(netaPrefab, 
                                                         netaTr, Quaternion.identity, riceTr); //밥 조금 위쪽에 회생성하고 밥의 자식으로 넣기.
-        riceTr.gameObject.AddComponent<DragSushi>();
+        riceTr.gameObject.AddComponent<DragSushi>();*/
     }
 }

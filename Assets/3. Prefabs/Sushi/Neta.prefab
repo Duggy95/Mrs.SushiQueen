@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2693122857636282598}
   - component: {fileID: 9089218190572783324}
   - component: {fileID: 6710149625969657148}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Neta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0c73e20f8af029f4d8cfca7b0ad3afe5, type: 3}
+  m_Texture: {fileID: 2800000, guid: e239a5cec66ed674697181c2db5729b9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
