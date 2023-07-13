@@ -51,3 +51,6 @@ MonoBehaviour:
   - {fileID: 5035381807857487921, guid: bc6bdf2a9cba7fd48894c0e1d7e46d9b, type: 3}
   fishDatas:
   - {fileID: 11400000, guid: ab171565f2413d642bf43cd9f42564cd, type: 2}
+  - {fileID: 11400000, guid: e67532ab171f9e0479c8d9ff5c094585, type: 2}
+  - {fileID: 11400000, guid: b8f593d2746496f44a55e86c7e8f2dfd, type: 2}
+  - {fileID: 11400000, guid: 4bfc4cd6c49a9f84e907c8ceae235c66, type: 2}

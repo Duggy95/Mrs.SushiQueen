@@ -19,9 +19,13 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    public int dateCount = 5;  //  날짜
-    public int score = 50;  // 점수
-    public int gold = 500;  // 골드
+    public int itemCount;
+    public int fishCount;
+
+    public int dateCount;  //  날짜
+    public int score;  // 점수
+    public int gold;  // 골드
+
     public bool nextStage;
 
     private void Awake()
@@ -32,41 +36,81 @@ public class GameManager : MonoBehaviour
         }
 
         else
-        DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
     {
-        // 골드 저장된 값이 없다면 초기 0 저장
-        if (PlayerPrefs.HasKey("GOLD") == false)
+        if (PlayerPrefs.HasKey("GOLD"))
         {
-            PlayerPrefs.SetInt("GOLD", gold);
+            gold = PlayerPrefs.GetInt("GOLD");
         }
-        // 있다면 골드에 저장된 값 저장
+
         else
+            SetGold();
+
+        if (PlayerPrefs.HasKey("DATE"))
         {
-            gold = PlayerPrefs.GetInt("GOLD", gold);
+            dateCount = PlayerPrefs.GetInt("DATE");
         }
-        // 날짜 저장된 값이 없다면 초기 0 저장
-        if (PlayerPrefs.HasKey("DATE") == false)
-        {
-            PlayerPrefs.SetInt("DATE", dateCount);
-        }
-        // 있다면 값 가져와서 저장
+
         else
+            SetGold();
+
+        if (PlayerPrefs.HasKey("SCORE"))
         {
-            dateCount = PlayerPrefs.GetInt("DATE", dateCount);
+            score = PlayerPrefs.GetInt("SCORE");
         }
-        // 점수 저장된 값이 없다면 초기 0 저장
-        if (PlayerPrefs.HasKey("SCORE") == false)
-        {
-            PlayerPrefs.SetInt("SCORE", score);
-        }
-        // 있다면 점수 값 가져와 저장
+
         else
+            SetScore();
+
+        if (PlayerPrefs.HasKey("ITEM"))
         {
-            score = PlayerPrefs.GetInt("SCORE", score);
+            itemCount = PlayerPrefs.GetInt("ITEM");
         }
+
+        else
+            SetItem();
+
+        if (PlayerPrefs.HasKey("FISH"))
+        {
+            fishCount = PlayerPrefs.GetInt("FISH");
+        }
+
+        else
+            SetFish();
+
+    }
+
+    public void SetGold()
+    {
+        gold = 0;
+        PlayerPrefs.SetInt("GOLD", gold);
+    }
+
+    public void SetDate()
+    {
+        dateCount = 1;
+        PlayerPrefs.SetInt("DATE", dateCount);
+    }
+
+    public void SetScore()
+    {
+        score = 0;
+        PlayerPrefs.SetInt("SCORE", score);
+    }
+
+    public void SetItem()
+    {
+        itemCount = 3;
+        PlayerPrefs.SetInt("ITEM", itemCount);
+    }
+
+    public void SetFish()
+    {
+        fishCount = 3;
+        PlayerPrefs.SetInt("FISH", fishCount);
     }
 
     private void OnDisable()
