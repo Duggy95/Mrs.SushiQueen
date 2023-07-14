@@ -36,38 +36,47 @@ public class FishingManager : MonoBehaviour
     {
 
         // 터치를 하고 물고기 잡는 중이 아니라면
-        if (Input.GetMouseButtonDown(0) && isFishing == false)
+/*        if (Input.GetMouseButtonDown(0) && isFishing == false)
         {
             Debug.Log("낚시 시작");
             Debug.Log("위치" + Input.mousePosition);
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            // 물고기 잡는 중으로 변경
+            isFishing = true;
+            // 물고기 도망 텍스트 비활성화
+            fishRun.gameObject.SetActive(false);
+            LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (!hit.collider.CompareTag("UI"))
-                {
-                    return;
-                }
-            }
+            Vector3 startPos = lineStartPos.transform.position; // 시작 지점
+            Vector3 endPos = Input.mousePosition; // 끝 지점
 
-            else
-            {
-                // 물고기 잡는 중으로 변경
-                isFishing = true;
-                // 물고기 도망 텍스트 비활성화
-                fishRun.gameObject.SetActive(false);
-                LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
+            // Line Renderer 속성 설정
+            fishLine.SetPosition(0, startPos); // 라인의 점들 설정
+            fishLine.SetPosition(1, endPos);
+            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
+        }*/
+    }
 
-                Vector3 startPos = lineStartPos.transform.position; // 시작 지점
-                Vector3 endPos = Input.mousePosition; // 끝 지점
+    public void Fishing()
+    {
+        if (isFishing == false)
+        {
+            Debug.Log("낚시 시작");
+            Debug.Log("위치" + Input.mousePosition);
 
-                // Line Renderer 속성 설정
-                fishLine.SetPosition(0, startPos); // 라인의 점들 설정
-                fishLine.SetPosition(1, endPos);
-                Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
-            }
+            // 물고기 잡는 중으로 변경
+            isFishing = true;
+            // 물고기 도망 텍스트 비활성화
+            fishRun.gameObject.SetActive(false);
+            LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
+
+            Vector3 startPos = lineStartPos.transform.position; // 시작 지점
+            Vector3 endPos = Input.mousePosition; // 끝 지점
+
+            // Line Renderer 속성 설정
+            fishLine.SetPosition(0, startPos); // 라인의 점들 설정
+            fishLine.SetPosition(1, endPos);
+            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
         }
     }
 

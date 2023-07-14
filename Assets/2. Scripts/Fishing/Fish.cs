@@ -100,7 +100,7 @@ public class Fish : MonoBehaviour
     {
         // 물고기의 체력바는 터치한 부분보다 위에,
         // 물장구 이미지는 터치한 부분보다 아래에 위치
-        Vector3 hpPos = pos + new Vector3(0, 100, 0);
+        Vector3 hpPos = pos + new Vector3(0, 70, 0);
         yield return new WaitForSeconds(delayTime);
 
         // 확률에 따라 나오도록
