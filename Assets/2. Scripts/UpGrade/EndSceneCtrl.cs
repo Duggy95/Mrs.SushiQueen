@@ -41,12 +41,9 @@ public class EndSceneCtrl : MonoBehaviour
         SkillSV.gameObject.SetActive(false);
     }
 
-    // 다음 날 진행 >> 게임매니저의 날짜 정보 업데이트
     public void NextStage()
     {
         GameManager.instance.nextStage = true;
-        GameManager.instance.dateCount++;
-        GameManager.instance.SetDate();
         SceneManager.LoadScene(0);
     }
 

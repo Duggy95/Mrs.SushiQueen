@@ -27,7 +27,8 @@ public class CookManager : MonoBehaviour
         cookView.SetActive(false);
         UIUpdate();
 
-        Create();
+        //Create();
+        Invoke("Create", 3);
     }
 
     void Update()
@@ -84,26 +85,12 @@ public class CookManager : MonoBehaviour
         }
     }
 
-    /*public void ShowTimer()  //손님 타이머 활성화
-    {
-        timer.SetActive(true);
-        yesBtn.SetActive(false);
-        noBtn.SetActive(false);
-    }
-
-    public void NoBtn() //거절 버튼.
-    {
-        orderTxt.text = "님 실망임.";
-        yesBtn.SetActive(false);
-        noBtn.SetActive(false);
-        print("님 평판 깎임");
-    }*/
-
     public void Create()
     {
+        //손님 생성.
         GameObject customer = Instantiate(customerPrefab, customerTr,
                                                                 Quaternion.identity, canvas.transform);
-        customer.transform.localPosition = new Vector2(-400, -100);
-        customer.transform.SetSiblingIndex(1);
+        customer.transform.localPosition = new Vector2(-400, -100);  //손님 위치
+        customer.transform.SetSiblingIndex(1);  //2번째 자식.
     }
 }

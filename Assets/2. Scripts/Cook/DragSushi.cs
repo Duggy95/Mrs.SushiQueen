@@ -34,8 +34,8 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
         right = dishTr.position.x + 200;
         left = dishTr.position.x - 200;
-        top = dishTr.position.y + 200;
-        bottom = dishTr.position.y - 200;
+        top = dishTr.position.y + 125;
+        bottom = dishTr.position.y - 125;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -66,17 +66,8 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             //Destroy(this);
 
             Dish dish = dishTr.GetComponent<Dish>();
-            Rice rice = sushiTr.GetComponent<Rice>();
-            dish.sushiList.Add(rice.sushiName, rice.wasabi);
-
-            /*if (dish.sushiList.ContainsValue())
-            {
-                Console.WriteLine("{0}는 이미 등록되어 있습니다.", str);
-            }
-            else
-            {
-                Console.WriteLine("{0}는 등록되어 있지 않습니다.", str);
-            }*/
+            Sushi sushi = sushiTr.GetComponent<Sushi>();
+            dish.AddSushi(sushi.sushiName, sushi.wasabi);
         }
         else
         {

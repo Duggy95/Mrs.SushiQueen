@@ -14,8 +14,8 @@ public class Neta : MonoBehaviour
         image = GetComponent<Image>();
         image.sprite = fishData.netaImg;
 
-        Rice rice = GetComponentInParent<Rice>();
-        rice.sushiName = fishData.fishName;
+        Sushi sushi = GetComponentInParent<Sushi>();
+        sushi.sushiName = fishData.fishName;
         //print(rice.sushiName);
     }
 }
