@@ -40,14 +40,14 @@ public class Dish : MonoBehaviour
     {
         foreach (var sushi in sushiCounts)
         {
-            string sushiInfo = sushi.Key;
+            string sushiInfo = sushi.Key; 
             int count = sushi.Value;
 
             Debug.Log($"초밥 정보: {sushiInfo}, 중복 횟수: {count}");
         }
     }
 
-    public void ClearSushi()
+    public void ClearSushi()  //접시 위 초밥들 삭제 메서드.
     {
         foreach (RectTransform child in tr)
         {

@@ -769,11 +769,10 @@ MonoBehaviour:
   wasabis:
   - "\uC5C6\uC774 "
   - "\uBCF4\uD1B5\uC73C\uB85C "
-  - "\uB9CE\uC774 \uB123\uC5B4"
+  - "\uB9CE\uC774 \uB123\uC5B4 "
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}
-  dish: {fileID: 0}
   timer: {fileID: 2989136090559844706}
 --- !u!114 &1161832505
 MonoBehaviour:

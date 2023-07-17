@@ -28,7 +28,7 @@ public class CookManager : MonoBehaviour
         UIUpdate();
 
         //Create();
-        Invoke("Create", 3);
+        Invoke("Create", 2);
     }
 
     void Update()

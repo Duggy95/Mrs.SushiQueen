@@ -3634,6 +3634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasabi: {fileID: 8485229920681292411, guid: 80e401428db0e8e41a5a9f29f15438a4, type: 3}
+  wasabi1: {fileID: 8485229920681292411, guid: 74fb97a85795fd64f8d68b6b1b72c4b1, type: 3}
   board: {fileID: 450727882}
 --- !u!1 &1315584861
 GameObject:
