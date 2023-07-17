@@ -21,40 +21,18 @@ public class FishingManager : MonoBehaviour
     public Text full_Txt;
     public GameObject fishObj;
     public Text fishRun;
-    public bool isFishing = false;
 
-    int maxCount = 0; // 수족관에 최대로 넣을 수 있는 물고기 수
+    public bool isFishing = false;
+    public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
+    public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
+    public bool useItem_rare = false;   // 레어 생선 확률 증가 아이템 사용
+
     FishData data;
 
     void Start()
     {
         InventoryImg.gameObject.SetActive(false);
         UIUpdate();
-    }
-
-    void Update()
-    {
-
-        // 터치를 하고 물고기 잡는 중이 아니라면
-/*        if (Input.GetMouseButtonDown(0) && isFishing == false)
-        {
-            Debug.Log("낚시 시작");
-            Debug.Log("위치" + Input.mousePosition);
-
-            // 물고기 잡는 중으로 변경
-            isFishing = true;
-            // 물고기 도망 텍스트 비활성화
-            fishRun.gameObject.SetActive(false);
-            LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
-
-            Vector3 startPos = lineStartPos.transform.position; // 시작 지점
-            Vector3 endPos = Input.mousePosition; // 끝 지점
-
-            // Line Renderer 속성 설정
-            fishLine.SetPosition(0, startPos); // 라인의 점들 설정
-            fishLine.SetPosition(1, endPos);
-            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
-        }*/
     }
 
     public void Fishing()
@@ -126,6 +104,7 @@ public class FishingManager : MonoBehaviour
                 _slot.fish_ColorNum = data.color;
                 _slot.fish_GradeNum = data.grade;
                 _slot.fish_Name = data.fishName;
+                GameManager.instance.fishs.Add(data.fishName);
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = true;

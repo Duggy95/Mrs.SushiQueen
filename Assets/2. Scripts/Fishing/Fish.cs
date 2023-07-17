@@ -11,10 +11,6 @@ public class Fish : MonoBehaviour
     public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
     public FishData[] fishDatas;
 
-    public bool useItem_white;  // 하얀 살 생선 확률 증가 아이템 사용
-    public bool useItem_red;    // 붉은 살 생선 확률 증가 아이템 사용
-    public bool useItem_rare;   // 레어 생선 확률 증가 아이템 사용
-
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
     GameObject _bobber;
@@ -23,7 +19,7 @@ public class Fish : MonoBehaviour
     int maxHP; //최대체력
     int currHP;  //현재체력
     int heal;  // 회복력
-    int atk = 1;  // 공격력
+    int _atk;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
     float maxTime = 15f;  // 최대 타임
     float currTime;    // 현재 타임
@@ -39,6 +35,7 @@ public class Fish : MonoBehaviour
     {
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         transform.SetParent(fm.canvas.transform);
+        _atk = GameManager.instance.atk;
     }
 
     void Start()
@@ -80,7 +77,7 @@ public class Fish : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                currHP -= atk;
+                currHP -= _atk;
                 hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
 
                 if (currHP <= 0)
@@ -112,7 +109,7 @@ public class Fish : MonoBehaviour
             fish_Probability = fishDatas[i].probability * 100;
 
             // 아이템 썼을 때 확률 조정
-            if (useItem_white)
+            if (fm.useItem_white)
             {
                 if (fishDatas[i].color == 0)
                     fish_Probability *= 1.5f;
@@ -121,7 +118,7 @@ public class Fish : MonoBehaviour
                     fish_Probability *= 0.5f;
             }
 
-            else if (useItem_red)
+            else if (fm.useItem_red)
             {
                 if (fishDatas[i].color == 0)
                     fish_Probability *= 0.5f;
@@ -130,7 +127,7 @@ public class Fish : MonoBehaviour
                     fish_Probability *= 1.5f;
             }
 
-            else if(useItem_rare)
+            else if(fm.useItem_rare)
             {
                 if (fishDatas[i].grade == 0)
                     fish_Probability *= 0.75f;

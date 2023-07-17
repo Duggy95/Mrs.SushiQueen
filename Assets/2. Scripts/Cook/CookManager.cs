@@ -70,18 +70,18 @@ public class CookManager : MonoBehaviour
             cookView.SetActive(false);
             count = 0;
 
-            for (int i = 0; i < fishImg.Length; i++)
+            /*for (int i = 0; i < fishImg.Length; i++)
             {
                 Destroy(fishImg[i].GetComponent<DragItem>());
-            }
+            }*/
         }
         else
         {
             cookView.SetActive(true);
-            for (int i = 0; i < fishImg.Length; i++)
+            /*for (int i = 0; i < fishImg.Length; i++)
             {
                 fishImg[i].AddComponent<DragItem>();
-            }
+            }*/
         }
     }
 

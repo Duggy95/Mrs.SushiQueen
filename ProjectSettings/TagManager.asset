@@ -8,6 +8,9 @@ TagManager:
   - TIMER
   - MANAGER
   - UI
+  - DISH
+  - FISH
+  - INVENTORY
   layers:
   - Default
   - TransparentFX

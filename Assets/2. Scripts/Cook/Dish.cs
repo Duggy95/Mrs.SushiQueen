@@ -17,7 +17,7 @@ public class Dish : MonoBehaviour
 
     void Update()
     {
-        UpdateDish();
+        // UpdateDish();
     }
 
     public void AddSushi(string sushiName, string wasabi) //초밥 저장. DragSushi에서 초밥 접시에 놓을 때 호출.

@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public int dateCount = 1;  //  날짜
     public int score = 0;  // 점수
     public int gold = 0;  // 골드
+    public int atk = 1;
+
+    public List<string> items = new List<string>();
+    public List<string> fishs = new List<string>();
 
     public bool nextStage;
 
@@ -76,6 +80,13 @@ public class GameManager : MonoBehaviour
         else
             SetFish();
 
+        if (PlayerPrefs.HasKey("ATK"))
+        {
+            atk = PlayerPrefs.GetInt("ATK");
+        }
+        else
+            SetAtk();
+
     }
 
     public void SetGold()
@@ -101,6 +112,11 @@ public class GameManager : MonoBehaviour
     public void SetFish()
     {
         PlayerPrefs.SetInt("FISH", fishCount);
+    }
+
+    public void SetAtk()
+    {
+        PlayerPrefs.SetInt("ATK", atk);
     }
 
     private void OnDisable()

@@ -16,7 +16,7 @@ public class StartSceneCtrl : MonoBehaviour
     public Text goldTxt;  //골드 텍스트
     public GameObject InventoryImg; //인벤토리 이미지
 
-    int count = 0;
+    bool isStart;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class StartSceneCtrl : MonoBehaviour
                 mainCam.gameObject.SetActive(true);
                 storyCam.gameObject.SetActive(false);
                 modeCam.gameObject.SetActive(false);
+                isStart = true;
             }
 
             else //
@@ -40,9 +41,9 @@ public class StartSceneCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (count == 0 && Input.GetMouseButtonDown(0))
+        if (isStart && Input.GetMouseButtonDown(0))
         {
-            count++;
+            isStart = false;
             mainCam.gameObject.SetActive(false);
             storyCam.gameObject.SetActive(true);
             modeCam.gameObject.SetActive(false);

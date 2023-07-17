@@ -2106,7 +2106,7 @@ GameObject:
   - component: {fileID: 1094717531}
   m_Layer: 5
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: INVENTORY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4125,6 +4125,9 @@ MonoBehaviour:
   fishObj: {fileID: 4445985424681281884, guid: 2773b65e969ebee4dbb452d0c1f68bb1, type: 3}
   fishRun: {fileID: 1238647980}
   isFishing: 0
+  useItem_white: 0
+  useItem_red: 0
+  useItem_rare: 0
 --- !u!1 &1946642888
 GameObject:
   m_ObjectHideFlags: 0

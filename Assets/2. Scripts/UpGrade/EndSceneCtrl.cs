@@ -12,12 +12,14 @@ public class EndSceneCtrl : MonoBehaviour
     public Text dateTxt;
     public Text goldTxt;
     public GameObject InventoryImg;
+    public GameObject noMoneyTxt;
 
     private void Awake()
     {
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
     }
 
     public void OnclickSkill()
