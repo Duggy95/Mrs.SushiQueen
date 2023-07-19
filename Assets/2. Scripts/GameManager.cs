@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public int fishCount = 3;
 
     public int dateCount = 1;  //  날짜
-    public int score = 0;  // 점수
+    public int score = 500;  // 점수
     public int gold = 0;  // 골드
     public int atk = 1;
 

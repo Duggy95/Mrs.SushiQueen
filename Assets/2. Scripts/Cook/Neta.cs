@@ -15,6 +15,7 @@ public class Neta : MonoBehaviour
 
         Sushi sushi = GetComponentInParent<Sushi>(); // 부모 오브젝트인 스시에서 스크립트 가져오기
         sushi.sushiName = fishData.fishName;  //초밥의 이름을 생선 데이터의 생선 이름으로
+        sushi.gold = fishData.gold;  //초밥의 골드를 생선 데이터의 생선 골드로.
         //print(rice.sushiName);
     }
 }

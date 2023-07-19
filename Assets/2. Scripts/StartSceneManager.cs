@@ -5,16 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class StartSceneCtrl : MonoBehaviour
+public class StartSceneManager : MonoBehaviour
 {
     public Camera mainCam;  //타이틀화면
     public Camera storyCam;  //스토리화면
     public Camera modeCam;  //선택화면
-    public Text StartTxt;  //터치해서 게임시작 텍스트
-    public Text[] storytxt;  //스토리 텍스트
+    public Text startTxt;  //터치해서 게임시작 텍스트
+    public Text storyTxt;  //스토리 텍스트
+    public string[] story;  //스토리 내용
     public Text dateTxt;  //날짜 + 평판 텍스트
     public Text goldTxt;  //골드 텍스트
-    public GameObject InventoryImg; //인벤토리 이미지
+    public GameObject inventoryImg; //인벤토리 이미지
 
     bool isStart;
 
@@ -61,12 +62,12 @@ public class StartSceneCtrl : MonoBehaviour
     public void ViewInventory()
     {
         // 인벤토리 활성화
-        InventoryImg.gameObject.SetActive(true);
+        inventoryImg.gameObject.SetActive(true);
     }
 
     public void EscInventory()
     {
-        InventoryImg.gameObject.SetActive(false);
+        inventoryImg.gameObject.SetActive(false);
     }
 
  /*   public void GoHome()

@@ -762,17 +762,28 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 671e13bc8aadd51429c45916ed5cc6cb, type: 3}
   - {fileID: 21300000, guid: 75f36ec6df4cabc4e8652c3c2e626d6a, type: 3}
   sushis:
-  - "\uB3C4\uBBF8 "
-  - "\uAD11\uC5B4 "
-  - "\uC5F0\uC5B4 "
-  - "\uCC38\uCE58 "
+  - "\uB3C4\uBBF8"
+  - "\uAD11\uC5B4"
+  - "\uC5F0\uC5B4"
+  - "\uCC38\uCE58"
   wasabis:
-  - "\uC5C6\uC774 "
-  - "\uBCF4\uD1B5\uC73C\uB85C "
-  - "\uB9CE\uC774 \uB123\uC5B4 "
+  - "\uC5C6\uC774"
+  - "\uBCF4\uD1B5\uC73C\uB85C"
+  - "\uB9CE\uC774 \uB123\uC5B4\uC11C"
+  compliment: []
+  success:
+  - "\uADF8\uB798, \uC774 \uB9DB\uC774\uC57C!!!"
+  - "\uC5ED\uC2DC \uC5EC\uAE30 \uCD08\uBC25\uC774 \uCD5C\uACE0\uC5D0\uC694!!!"
+  - "\uC798 \uBA39\uC744\uAC8C\uC694!!! ^^"
+  fail:
+  - "\uB108 \uC778\uC131 \uBB38\uC81C \uC788\uC5B4?!"
+  - "\uC2E4\uB9DD\uC774 \uD06C\uB124\uC694..."
+  - "\uC81C\uAC00 \uC6D0\uD55C \uCD08\uBC25\uC774 \uC544\uB2C8\uC5D0\uC694! \u3161\u3161"
+  - "\uC774\uB7F0\uAC78 \uB3C8 \uBC1B\uACE0 \uD314\uB824\uACE0? \u3161\u3161"
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}
+  board: {fileID: 0}
   timer: {fileID: 2989136090559844706}
 --- !u!114 &1161832505
 MonoBehaviour:

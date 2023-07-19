@@ -2502,12 +2502,12 @@ MonoBehaviour:
   mainCam: {fileID: 519420031}
   storyCam: {fileID: 1506683885}
   modeCam: {fileID: 584574782}
-  StartTxt: {fileID: 1857383208}
-  storytxt:
-  - {fileID: 1545383538}
+  startTxt: {fileID: 1857383208}
+  storyTxt: {fileID: 1545383538}
+  story: []
   dateTxt: {fileID: 1011198123}
   goldTxt: {fileID: 90514012}
-  InventoryImg: {fileID: 469822147}
+  inventoryImg: {fileID: 0}
 --- !u!1 &1182484503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,7 +3843,7 @@ MonoBehaviour:
   itemCount: 3
   fishCount: 3
   dateCount: 1
-  score: 0
+  score: 500
   gold: 0
   atk: 1
   items: []
@@ -3940,6 +3940,7 @@ GameObject:
   - component: {fileID: 1857383207}
   - component: {fileID: 1857383209}
   - component: {fileID: 1857383208}
+  - component: {fileID: 1857383210}
   m_Layer: 5
   m_Name: StartTxt
   m_TagString: Untagged
@@ -4009,6 +4010,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857383206}
   m_CullTransparentMesh: 1
+--- !u!114 &1857383210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857383206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5a1b4881f214140a74ad08e543fd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1907526664
 GameObject:
   m_ObjectHideFlags: 0

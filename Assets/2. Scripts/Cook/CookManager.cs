@@ -15,20 +15,22 @@ public class CookManager : MonoBehaviour
     public Text goldTxt;  //골드
     public GameObject InventoryImg;  //인벤토리
     public Image[] fishImg;  //생선이미지
+    public bool canMake = false;
+
+    WaitForSeconds ws;
 
     Vector2 customerTr = Vector2.zero;
     int count = 0;
-
 
     void Start()
     {
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
         cookView.SetActive(false);
+        ws = new WaitForSeconds(2f);
         UIUpdate();
 
-        //Create();
-        Invoke("Create", 2);
+        StartCoroutine(Create());
     }
 
     void Update()
@@ -64,30 +66,34 @@ public class CookManager : MonoBehaviour
 
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
     {
-        count++;
-        if (count % 2 == 0)
+        if(canMake)  //만들 수 있을 때
         {
-            cookView.SetActive(false);
-            count = 0;
+            count++;
+            if (count % 2 == 0)
+            {
+                cookView.SetActive(false);
+                count = 0;
 
-            /*for (int i = 0; i < fishImg.Length; i++)
+                /*for (int i = 0; i < fishImg.Length; i++)
+                {
+                    Destroy(fishImg[i].GetComponent<DragItem>());
+                }*/
+            }
+            else
             {
-                Destroy(fishImg[i].GetComponent<DragItem>());
-            }*/
-        }
-        else
-        {
-            cookView.SetActive(true);
-            /*for (int i = 0; i < fishImg.Length; i++)
-            {
-                fishImg[i].AddComponent<DragItem>();
-            }*/
+                cookView.SetActive(true);
+                /*for (int i = 0; i < fishImg.Length; i++)
+                {
+                    fishImg[i].AddComponent<DragItem>();
+                }*/
+            }
         }
     }
 
-    public void Create()
+    public IEnumerator Create()
     {
-        //손님 생성.
+        //2초 후 손님 생성.
+        yield return ws;
         GameObject customer = Instantiate(customerPrefab, customerTr,
                                                                 Quaternion.identity, canvas.transform);
         customer.transform.localPosition = new Vector2(-400, -100);  //손님 위치
