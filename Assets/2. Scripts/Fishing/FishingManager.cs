@@ -55,6 +55,7 @@ public class FishingManager : MonoBehaviour
             fishLine.SetPosition(0, startPos); // 라인의 점들 설정
             fishLine.SetPosition(1, endPos);
             Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
+            //transform.position = Input.mousePosition;
         }
     }
 
@@ -77,8 +78,10 @@ public class FishingManager : MonoBehaviour
 
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        GameManager.instance.gold += data.gold;
-        GameManager.instance.SetGold();
+        //GameManager.instance.gold += data.gold;
+        //GameManager.instance.SetGold();
+        GameManager.instance.save[4].gold += data.gold;
+        GameManager.instance.Save("s");
         // 골드 ++
         UIUpdate();
         isFishing = false;
@@ -104,7 +107,8 @@ public class FishingManager : MonoBehaviour
                 _slot.fish_ColorNum = data.color;
                 _slot.fish_GradeNum = data.grade;
                 _slot.fish_Name = data.fishName;
-                GameManager.instance.fishs.Add(data.fishName);
+                GameManager.instance.inventory_Fishs[0].fish_Name = data.fishName;
+                GameManager.instance.Save("f");
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = true;
@@ -144,8 +148,8 @@ public class FishingManager : MonoBehaviour
 
     void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.dateCount + "일차 / 평판 : " + GameManager.instance.score;
-        goldTxt.text = "gold : " + GameManager.instance.gold;
+        dateTxt.text = GameManager.instance.save[2].dateCount + "일차 / 평판 : " + GameManager.instance.save[3].score;
+        goldTxt.text = "gold : " + GameManager.instance.save[4].gold;
     }
 
     public void ViewInventory()

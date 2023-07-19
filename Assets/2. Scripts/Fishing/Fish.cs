@@ -38,7 +38,7 @@ public class Fish : MonoBehaviour
         _atk = GameManager.instance.atk;
     }
 
-    void Start()
+    void OnEnable()
     {
         currTime = maxTime;
 
@@ -127,7 +127,7 @@ public class Fish : MonoBehaviour
                     fish_Probability *= 1.5f;
             }
 
-            else if(fm.useItem_rare)
+            else if (fm.useItem_rare)
             {
                 if (fishDatas[i].grade == 0)
                     fish_Probability *= 0.75f;
