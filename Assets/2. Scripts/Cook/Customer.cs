@@ -146,8 +146,9 @@ public class Customer : MonoBehaviour
             if (currTime <= 0)
             {
                 print("님 평판 깎임.");
-                GameManager.instance.score -= 20;  //평판 감소
-                GameManager.instance.SetScore();  //평판 저장
+                int _score = int.Parse(GameManager.instance.save[3].score) - 20;  //평판 감소
+                GameManager.instance.save[3].score = _score.ToString();
+                GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();  //UI 최신화
                 cookManager.ViewOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
@@ -181,8 +182,9 @@ public class Customer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
-        GameManager.instance.score -= 20;  //평판 감소
-        GameManager.instance.SetScore();  //평판 저장
+        int _score = int.Parse(GameManager.instance.save[3].score) - 20;  //평판 감소
+        GameManager.instance.save[3].score = _score.ToString();
+        GameManager.instance.Save("s");  //평판 저장
         //cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         Destroy(gameObject, 3f);  //손님 삭제
@@ -235,8 +237,9 @@ public class Customer : MonoBehaviour
                         }
 
                         totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
-                        GameManager.instance.gold += totalPrice;  //골드에 더 하기
-                        GameManager.instance.SetGold();  //골드 저장.
+                        int _gold = int.Parse(GameManager.instance.save[4].gold) + totalPrice;
+                        GameManager.instance.save[4].gold = _gold.ToString();
+                        GameManager.instance.Save("s");
                         //cookManager.UIUpdate();
                     }
                 }
@@ -249,8 +252,9 @@ public class Customer : MonoBehaviour
 
             if (orderMatch)  //일치 시
             {
-                GameManager.instance.score += 30;  //평판 증가
-                GameManager.instance.SetScore();  //평판 저장.
+                int _score = int.Parse(GameManager.instance.save[3].score) - 20;  //평판 감소
+                GameManager.instance.save[3].score = _score.ToString();
+                GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();
                 orderTxt.text = success[Random.Range(0, success.Length)];
                 Debug.Log("총 가격: " + totalPrice);
@@ -264,8 +268,9 @@ public class Customer : MonoBehaviour
             }
             else  //불일치 시
             {
-                GameManager.instance.score -= 20;  //평판 감소
-                GameManager.instance.SetScore();  //평판 저장
+                int _score = int.Parse(GameManager.instance.save[3].score) - 20;  //평판 감소
+                GameManager.instance.save[3].score = _score.ToString();
+                GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();
                 orderTxt.text = fail[Random.Range(0, fail.Length)];
                 orders.Clear();  //주문 리스트 클리어.

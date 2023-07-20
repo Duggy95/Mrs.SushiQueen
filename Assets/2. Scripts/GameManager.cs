@@ -15,8 +15,8 @@ public class Serialization<T>
 [System.Serializable]
 public class InventoryItem
 {
-    public InventoryItem(string _item_Name, string _item_Count)
-    { item_Name = _item_Name; item_Count = _item_Count; }
+    /*public InventoryItem(string _item_Name, string _item_Count)
+    { item_Name = _item_Name; item_Count = _item_Count; }*/
 
     public string item_Name;
     public string item_Count;
@@ -25,8 +25,8 @@ public class InventoryItem
 [System.Serializable]
 public class InventoryFish
 {
-    public InventoryFish(string _fish_Name, string _fish_Gold)
-    { fish_Name = _fish_Name; fish_Gold = _fish_Gold; }
+    /*public InventoryFish(string _fish_Name, string _fish_Gold)
+    { fish_Name = _fish_Name; fish_Gold = _fish_Gold; }*/
 
     public string fish_Name;
     public string fish_Gold;
@@ -35,8 +35,8 @@ public class InventoryFish
 [System.Serializable]
 public class Save
 {
-    public Save(string _itemCount, string _fishCount, string _dateCount, string _score, string _gold, string _atk)
-    { itemCount = _itemCount; fishCount = _fishCount; dateCount = _dateCount; score = _score; gold = _gold; atk = _atk; }
+    /*public Save(string _itemCount, string _fishCount, string _dateCount, string _score, string _gold, string _atk)
+    { itemCount = _itemCount; fishCount = _fishCount; dateCount = _dateCount; score = _score; gold = _gold; atk = _atk; }*/
 
     public string itemCount = "3";
     public string fishCount = "3";
@@ -68,13 +68,16 @@ public class GameManager : MonoBehaviour
     //public TextAsset save;
     public List<Save> save;
 
-    public string itemCount;
+   /* public List<string> items = new List<string>();
+    public List<string> fishs = new List<string>();*/
+
+    /*public string itemCount;
     public string fishCount;
 
     public string dateCount;  //  날짜
     public string score;  // 점수
     public string gold;  // 골드
-    public string atk;
+    public string atk;*/
 
     public bool nextStage;
 

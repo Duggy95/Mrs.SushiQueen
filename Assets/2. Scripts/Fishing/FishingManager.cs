@@ -80,7 +80,8 @@ public class FishingManager : MonoBehaviour
         fishInfo.gameObject.SetActive(false);
         //GameManager.instance.gold += data.gold;
         //GameManager.instance.SetGold();
-        GameManager.instance.save[4].gold += data.gold;
+        int _gold = int.Parse(GameManager.instance.save[4].gold) + data.gold;
+        GameManager.instance.save[4].gold = _gold.ToString();
         GameManager.instance.Save("s");
         // °ñµå ++
         UIUpdate();
@@ -107,7 +108,13 @@ public class FishingManager : MonoBehaviour
                 _slot.fish_ColorNum = data.color;
                 _slot.fish_GradeNum = data.grade;
                 _slot.fish_Name = data.fishName;
-                GameManager.instance.inventory_Fishs[0].fish_Name = data.fishName;
+
+                InventoryFish _inventoryFish = new InventoryFish();
+                _inventoryFish.fish_Name = data.fishName;
+                _inventoryFish.fish_Gold = (data.gold).ToString();
+                GameManager.instance.inventory_Fishs.Add(_inventoryFish);
+
+                //GameManager.instance.fishs = data.fishName;
                 GameManager.instance.Save("f");
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;

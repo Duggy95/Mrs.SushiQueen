@@ -15,16 +15,16 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        itemSlotCount = GameManager.instance.itemCount;
-        fishSlotCount = GameManager.instance.fishCount;
+        itemSlotCount = int.Parse(GameManager.instance.save[0].itemCount);
+        fishSlotCount = int.Parse(GameManager.instance.save[1].fishCount);
 
         for (int i = 0; i < itemSlotCount; i++)
         {
             ItemSlot item_Slot = Instantiate(itemSlotPrefab, itemContent.transform).GetComponent<ItemSlot>();
             //SetItem(item_Slot);
-            if (GameManager.instance.items.Count > i)
+            if (GameManager.instance.inventory_Items.Count > i)
             {
-                string _item = GameManager.instance.items[i];
+                string _item = GameManager.instance.inventory_Items[i].item_Name;
                 item_Slot.GetComponentInChildren<Text>().text = _item;
 
                 if (_item == "Áö··ÀÌ")
@@ -39,11 +39,11 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < fishSlotCount; i++)
         {
             FishSlot fish_Slot = Instantiate(fishSlotPrefab, fishContent.transform).GetComponent<FishSlot>();
-            SetFish(i, fish_Slot);
+            //SetFish(i, fish_Slot);
 
-            if (GameManager.instance.fishs.Count > i)
+            if (GameManager.instance.inventory_Fishs.Count > i)
             {
-                string _fish = GameManager.instance.fishs[i];
+                string _fish = GameManager.instance.inventory_Fishs[i].fish_Name;
                 fish_Slot.GetComponentInChildren<Text>().text = _fish;
 
                 if (_fish == "±¤¾î")
@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
     }
 
     
-    void SetFish(int i, FishSlot slot)
+    /*void SetFish(int i, FishSlot slot)
     {
         int count = GameManager.instance.fishs.Count;
         if (count >= i)
@@ -69,5 +69,5 @@ public class Inventory : MonoBehaviour
                 string _fish = GameManager.instance.fishs[j];
             }
         }
-    }
+    }*/
 }
