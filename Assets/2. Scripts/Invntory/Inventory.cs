@@ -17,8 +17,8 @@ public class Inventory : MonoBehaviour
     {
         /*itemSlotCount = int.Parse(GameManager.instance.save[0].itemCount);
         fishSlotCount = int.Parse(GameManager.instance.save[1].fishCount);*/
-        itemSlotCount = int.Parse(GameManager.instance.save.itemCount);
-        fishSlotCount = int.Parse(GameManager.instance.save.fishCount);
+        itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
+        fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
 
         for (int i = 0; i < itemSlotCount; i++)
         {
@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
             if (GameManager.instance.inventory_Items.Count > i)
             {
                 string _item = GameManager.instance.inventory_Items[i].item_Name;
-                item_Slot.GetComponentInChildren<Text>().text = _item;
+                item_Slot.GetComponentInChildren<Text>().text = _item + "   " + GameManager.instance.inventory_Items[i].item_Count + "°³";
 
                 if (_item == "Áö··ÀÌ")
                     item_Slot.GetComponent<Image>().sprite = Resources.Load("White", typeof(Sprite)) as Sprite;
@@ -59,17 +59,4 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-    
-    /*void SetFish(int i, FishSlot slot)
-    {
-        int count = GameManager.instance.fishs.Count;
-        if (count >= i)
-        {
-            for (int j = 0; j < count; j++)
-            {
-                string _fish = GameManager.instance.fishs[j];
-            }
-        }
-    }*/
 }

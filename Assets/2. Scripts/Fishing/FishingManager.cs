@@ -80,8 +80,8 @@ public class FishingManager : MonoBehaviour
         fishInfo.gameObject.SetActive(false);
         //GameManager.instance.gold += data.gold;
         //GameManager.instance.SetGold();
-        int _gold = int.Parse(GameManager.instance.save.gold) + data.gold;
-        GameManager.instance.save.gold = _gold.ToString();
+        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
+        GameManager.instance.data.gold = _gold.ToString();
         GameManager.instance.Save("s");
         // 골드 ++
         UIUpdate();
@@ -111,7 +111,6 @@ public class FishingManager : MonoBehaviour
 
                 InventoryFish _inventoryFish = new InventoryFish();
                 _inventoryFish.fish_Name = data.fishName;
-                _inventoryFish.fish_Gold = (data.gold).ToString();
                 GameManager.instance.inventory_Fishs.Add(_inventoryFish);
 
                 //GameManager.instance.fishs = data.fishName;
@@ -155,11 +154,8 @@ public class FishingManager : MonoBehaviour
 
     void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.save.dateCount + "일차 / 평판 : " + GameManager.instance.save.score;
-        goldTxt.text = "gold : " + GameManager.instance.save.gold;
-
-        /*dateTxt.text = GameManager.instance.save[2].dateCount + "일차 / 평판 : " + GameManager.instance.save[3].score;
-        goldTxt.text = "gold : " + GameManager.instance.save[4].gold;*/
+        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        goldTxt.text = "gold : " + GameManager.instance.data.gold;
     }
 
     public void ViewInventory()

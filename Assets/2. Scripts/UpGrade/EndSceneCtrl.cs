@@ -47,8 +47,8 @@ public class EndSceneCtrl : MonoBehaviour
     {
         GameManager.instance.nextStage = true;
         SceneManager.LoadScene(0);
-        int _date = int.Parse(GameManager.instance.save.dateCount) + 1;
-        GameManager.instance.save.dateCount = _date.ToString();
+        int _date = int.Parse(GameManager.instance.data.dateCount) + 1;
+        GameManager.instance.data.dateCount = _date.ToString();
         GameManager.instance.Save("s");
     }
 
@@ -57,10 +57,10 @@ public class EndSceneCtrl : MonoBehaviour
         UIUpdate();
     }
 
-    void UIUpdate()
+    public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.save.dateCount + "일차 / 평판 : " + GameManager.instance.save.score;
-        goldTxt.text = "gold : " + GameManager.instance.save.gold;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        goldTxt.text = "gold : " + GameManager.instance.data.gold;
     }
 
     public void ViewInventory()

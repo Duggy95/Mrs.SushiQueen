@@ -35,7 +35,7 @@ public class Fish : MonoBehaviour
     {
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         transform.SetParent(fm.canvas.transform);
-        _atk = int.Parse(GameManager.instance.save.atk);
+        _atk = int.Parse(GameManager.instance.data.atk);
     }
 
     void OnEnable()
