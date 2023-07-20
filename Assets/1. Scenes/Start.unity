@@ -2761,6 +2761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a66ebb4fff89a4397a638d32637a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialPrefab: {fileID: 0}
   mainCam: {fileID: 519420031}
   storyCam: {fileID: 1506683885}
   modeCam: {fileID: 584574782}
@@ -2770,6 +2771,8 @@ MonoBehaviour:
   dateTxt: {fileID: 1011198123}
   goldTxt: {fileID: 90514012}
   inventoryImg: {fileID: 0}
+  backGround: {fileID: 0}
+  sprites: []
 --- !u!1 &1182484503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,7 +4107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory_Items: []
   inventory_Fishs: []
-  datas: []
   data:
     itemCount: 3
     fishCount: 3
@@ -4112,12 +4114,6 @@ MonoBehaviour:
     score: 500
     gold: 0
     atk: 1
-  inventoryFish:
-    fish_Name: 
-    fish_Gold: 
-  inventoryItem:
-    item_Name: 
-    item_Count: 
   nextStage: 0
 --- !u!1 &1823626459
 GameObject:
