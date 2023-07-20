@@ -64,8 +64,8 @@ public class StartSceneManager : MonoBehaviour
 
     void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.save.dateCount + "일차 / 평판 : " + GameManager.instance.save.score;
-        goldTxt.text = "gold : " + GameManager.instance.save.gold;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        goldTxt.text = "gold : " + GameManager.instance.data.gold;
     }
 
     public void ViewInventory()

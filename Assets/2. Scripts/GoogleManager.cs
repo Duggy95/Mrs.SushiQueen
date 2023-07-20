@@ -119,12 +119,12 @@ public class GoogleManager : MonoBehaviour
     }
 
     // 외부에서 함수 호출 시 string으로 정보 저장
-    public void SaveToCloud_Save(string _data)
+    public void SaveToCloud_Dave(string _data)
     {
-        StartCoroutine(Save_Save(_data));
+        StartCoroutine(Save_Dave(_data));
     }
 
-    IEnumerator Save_Save(string _data)
+    IEnumerator Save_Dave(string _data)
     {
         Debug.Log("Try to save data");
         // 로그인이 완료될때까지 기다림
@@ -148,11 +148,15 @@ public class GoogleManager : MonoBehaviour
 
         if (_saved == true)
             savedClient.OpenWithAutomaticConflictResolution(_fileName, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpenedToSave);
+        else
+        {
+            savedClient.OpenWithAutomaticConflictResolution(_fileName, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpenedToRead);
+        }
     }
 
     void OnSavedGameOpenedToSave(SavedGameRequestStatus _status, ISavedGameMetadata _data)
     {
-        if(_status == SavedGameRequestStatus.Success)
+        if (_status == SavedGameRequestStatus.Success)
         {
             byte[] b = Encoding.UTF8.GetBytes(string.Format(saveData));
             SaveGame(_data, b, DateTime.Now.TimeOfDay);
@@ -177,8 +181,8 @@ public class GoogleManager : MonoBehaviour
     void OnSavedGameWritten(SavedGameRequestStatus _status, ISavedGameMetadata _data)
     {
         onSaving = false;
-        
-        if(_status == SavedGameRequestStatus.Success)
+
+        if (_status == SavedGameRequestStatus.Success)
         {
             Debug.Log("Save Complete");
         }
@@ -236,12 +240,12 @@ public class GoogleManager : MonoBehaviour
         OpenSavedGame(fileName, false);
     }
 
-    public void LoadFromCloud_Save()
+    public void LoadFromCloud_Dave()
     {
-        StartCoroutine(Load_Save());
+        StartCoroutine(Load_Dave());
     }
 
-    IEnumerator Load_Save()
+    IEnumerator Load_Dave()
     {
         onLoading = true;
         while (CheckLogin() == false)
@@ -260,14 +264,14 @@ public class GoogleManager : MonoBehaviour
 
     void OnSavedGameOpenedToRead(SavedGameRequestStatus _status, ISavedGameMetadata _data)
     {
-        if(_status == SavedGameRequestStatus.Success)
+        if (_status == SavedGameRequestStatus.Success)
         {
             LoadGameData(_data);
         }
         else
         {
             Debug.Log("Fail");
-        }    
+        }
     }
 
     void LoadGameData(ISavedGameMetadata _data)
@@ -278,14 +282,17 @@ public class GoogleManager : MonoBehaviour
 
     void OnSavedGameDataRead(SavedGameRequestStatus _status, byte[] _byte)
     {
-        if(_status == SavedGameRequestStatus.Success)
+        if (_status == SavedGameRequestStatus.Success)
         {
             string data = Encoding.UTF8.GetString(_byte);
+            GameManager.instance.SetData(data);
         }
         else
         {
             Debug.Log("Load Fail");
         }
+
+        onLoading = false;
     }
 
     #endregion

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using Newtonsoft.Json;
+using System.Data;
+using System.IO;
 
 [System.Serializable]
-public class Serialization<T>
+public class Serialization<T> 
 {
     public Serialization(List<T> _target) => target = _target;
     public List<T> target;
@@ -15,34 +16,38 @@ public class Serialization<T>
 [System.Serializable]
 public class InventoryItem
 {
-    /*public InventoryItem(string _item_Name, string _item_Count)
+   /* public InventoryItem(string _item_Name, string _item_Count)
     { item_Name = _item_Name; item_Count = _item_Count; }*/
 
     public string item_Name;
     public string item_Count;
 }
 
+/*public class InventoryItemList
+{
+    public List<InventoryItem> _Data;
+}*/
+
 [System.Serializable]
 public class InventoryFish
 {
-    /*public InventoryFish(string _fish_Name, string _fish_Gold)
+   /* public InventoryFish(string _fish_Name, string _fish_Gold)
     { fish_Name = _fish_Name; fish_Gold = _fish_Gold; }*/
 
     public string fish_Name;
-    public string fish_Gold;
 }
 
 [System.Serializable]
-public class Save
+public class Data
 {
-    /*public Save(string _itemCount, string _fishCount, string _dateCount, string _score, string _gold, string _atk)
+    /*public Data(string _itemCount, string _fishCount, string _dateCount, string _score, string _gold, string _atk)
     { itemCount = _itemCount; fishCount = _fishCount; dateCount = _dateCount; score = _score; gold = _gold; atk = _atk; }*/
 
     public string itemCount = "3";
     public string fishCount = "3";
     public string dateCount = "1";  //  날짜
     public string score = "500";  // 점수
-    public string gold = "0";  // 골드
+    public string gold = "10000";  // 골드
     public string atk = "1";
 }
 
@@ -61,27 +66,9 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    //public TextAsset inventory_Item;
     public List<InventoryItem> inventory_Items = new List<InventoryItem>();
-    //public TextAsset inventory_Fish;
     public List<InventoryFish> inventory_Fishs = new List<InventoryFish>();
-    //public TextAsset save;
-    public List<Save> saves = new List<Save>();
-
-    public Save save = new Save();
-    public InventoryFish inventoryFish = new InventoryFish();
-    public InventoryItem inventoryItem = new InventoryItem();
-
-   /* public List<string> items = new List<string>();
-    public List<string> fishs = new List<string>();*/
-
-    /*public string itemCount;
-    public string fishCount;
-
-    public string dateCount;  //  날짜
-    public string score;  // 점수
-    public string gold;  // 골드
-    public string atk;*/
+    public Data data = new Data();
 
     public bool nextStage;
 
@@ -99,112 +86,64 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Load();
+        Debug.Log("load");
     }
 
     public void Save(string type)
     {
+        // 타입에 따라 해당 정보를 json화 해서 문자열로 바꾸고 전달
         if (type == "i")
         {
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(inventory_Items));
             GoogleManager.instance.SaveToCloud_Item(item_Json);
+            Debug.Log("Data_Item" + item_Json);
         }
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(inventory_Fishs));
             GoogleManager.instance.SaveToCloud_Fish(fish_Json);
+            Debug.Log("Data_Fish" + fish_Json);
         }
         else if (type == "s")
         {
-            string save_Json = JsonUtility.ToJson(new Serialization<Save>(saves));
-            GoogleManager.instance.SaveToCloud_Save(save_Json);
+            string data_Json = JsonUtility.ToJson(data);
+            GoogleManager.instance.SaveToCloud_Dave(data_Json);
+            Debug.Log("Data_Data" + data_Json);
         }
     }
 
-    public void Load()
+    void Load()
     {
+        Debug.Log("load_cloud");
+
         GoogleManager.instance.LoadFromCloud_Fish();
         GoogleManager.instance.LoadFromCloud_Item();
-        GoogleManager.instance.LoadFromCloud_Save();
+        GoogleManager.instance.LoadFromCloud_Dave();
     }
 
-    private void OnEnable()
+    public void SetData(string _data)
     {
-        /*if (PlayerPrefs.HasKey("GOLD"))
+        string i = "item_Name";
+        string f = "fish_Name";
+        string d = "score";
+
+        Debug.Log("loadData" + _data);
+
+        // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
+        if (_data.Contains(i))
         {
-            gold = PlayerPrefs.GetInt("GOLD");
+            List<InventoryItem> load_Item = JsonUtility.FromJson<List<InventoryItem>>(_data);
+            inventory_Items = load_Item;
         }
-        else
-            SetGold();
-
-        if (PlayerPrefs.HasKey("DATE"))
+        else if (_data.Contains(f))
         {
-            dateCount = PlayerPrefs.GetInt("DATE");
+            List<InventoryFish> load_Fish = JsonUtility.FromJson<List<InventoryFish>>(_data);
+            inventory_Fishs = load_Fish;
         }
-        else
-            SetDate();
-
-        if (PlayerPrefs.HasKey("SCORE"))
+        else if (_data.Contains(d))
         {
-            score = PlayerPrefs.GetInt("SCORE");
+            Data load_Data = JsonUtility.FromJson<Data>(_data);
+            data = load_Data;
         }
-        else
-            SetScore();
-
-        if (PlayerPrefs.HasKey("ITEM"))
-        {
-            itemCount = PlayerPrefs.GetInt("ITEM");
-        }
-        else
-            SetItem();
-
-        if (PlayerPrefs.HasKey("FISH"))
-        {
-            fishCount = PlayerPrefs.GetInt("FISH");
-        }
-        else
-            SetFish();
-
-        if (PlayerPrefs.HasKey("ATK"))
-        {
-            atk = PlayerPrefs.GetInt("ATK");
-        }
-        else
-            SetAtk();*/
-
-    }
-
-    /*public void SetGold()
-    {
-        PlayerPrefs.SetInt("GOLD", gold);
-    }
-
-    public void SetDate()
-    {
-        PlayerPrefs.SetInt("DATE", dateCount);
-    }
-
-    public void SetScore()
-    {
-        PlayerPrefs.SetInt("SCORE", score);
-    }
-
-    public void SetItem()
-    {
-        PlayerPrefs.SetInt("ITEM", itemCount);
-    }
-
-    public void SetFish()
-    {
-        PlayerPrefs.SetInt("FISH", fishCount);
-    }
-
-    public void SetAtk()
-    {
-        PlayerPrefs.SetInt("ATK", atk);
-    }*/
-
-    private void OnDisable()
-    { 
-        //PlayerPrefs.Save();
     }
 }
