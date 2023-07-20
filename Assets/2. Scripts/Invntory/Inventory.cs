@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour
             {
                 string _item = GameManager.instance.inventory_Items[i].item_Name;
                 item_Slot.GetComponentInChildren<Text>().text = _item + "   " + GameManager.instance.inventory_Items[i].item_Count + "°³";
+                item_Slot.isEmpty = true;
 
                 if (_item == "Áö··ÀÌ")
                     item_Slot.GetComponent<Image>().sprite = Resources.Load("White", typeof(Sprite)) as Sprite;
@@ -47,6 +48,7 @@ public class Inventory : MonoBehaviour
             {
                 string _fish = GameManager.instance.inventory_Fishs[i].fish_Name;
                 fish_Slot.GetComponentInChildren<Text>().text = _fish;
+                fish_Slot.isEmpty = true;
 
                 if (_fish == "±¤¾î")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;

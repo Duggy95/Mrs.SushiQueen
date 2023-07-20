@@ -47,7 +47,7 @@ public class Data
     public string fishCount = "3";
     public string dateCount = "1";  //  ³¯Â¥
     public string score = "500";  // Á¡¼ö
-    public string gold = "10000";  // °ñµå
+    public string gold = "0";  // °ñµå
     public string atk = "1";
 }
 
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     public Data data = new Data();
 
     public bool nextStage;
+    public bool onLogin = false;
 
     private void Awake()
     {
@@ -81,10 +82,7 @@ public class GameManager : MonoBehaviour
 
         else
             DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
         Load();
         Debug.Log("load");
     }
@@ -107,7 +105,7 @@ public class GameManager : MonoBehaviour
         else if (type == "s")
         {
             string data_Json = JsonUtility.ToJson(data);
-            GoogleManager.instance.SaveToCloud_Dave(data_Json);
+            GoogleManager.instance.SaveToCloud_Data(data_Json);
             Debug.Log("Data_Data" + data_Json);
         }
     }
@@ -118,7 +116,7 @@ public class GameManager : MonoBehaviour
 
         GoogleManager.instance.LoadFromCloud_Fish();
         GoogleManager.instance.LoadFromCloud_Item();
-        GoogleManager.instance.LoadFromCloud_Dave();
+        GoogleManager.instance.LoadFromCloud_Data();
     }
 
     public void SetData(string _data)

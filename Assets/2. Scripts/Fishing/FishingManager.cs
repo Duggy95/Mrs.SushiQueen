@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class FishingManager : MonoBehaviour
 {
@@ -83,6 +82,7 @@ public class FishingManager : MonoBehaviour
         int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
         GameManager.instance.data.gold = _gold.ToString();
         GameManager.instance.Save("s");
+        Debug.Log("°ñµå " + _gold);
         // °ñµå ++
         UIUpdate();
         isFishing = false;
