@@ -7,7 +7,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneManager : MonoBehaviour
 {
-    public GameObject tutorialPrefab;
     public Camera mainCam;  //타이틀화면
     public Camera storyCam;  //스토리화면
     public Camera modeCam;  //선택화면
@@ -91,7 +90,6 @@ public class StartSceneManager : MonoBehaviour
         mainCam.gameObject.SetActive(false);
         storyCam.gameObject.SetActive(false);
         modeCam.gameObject.SetActive(true);
-        GameObject tutorial = Instantiate(tutorialPrefab, this.transform.position, this.transform.rotation);
     }
 
     public void GoFishing()
