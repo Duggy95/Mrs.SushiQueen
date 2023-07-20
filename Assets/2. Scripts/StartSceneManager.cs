@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneManager : MonoBehaviour
 {
+    public GameObject tutorialPrefab;
     public Camera mainCam;  //타이틀화면
     public Camera storyCam;  //스토리화면
     public Camera modeCam;  //선택화면
@@ -16,6 +17,9 @@ public class StartSceneManager : MonoBehaviour
     public Text dateTxt;  //날짜 + 평판 텍스트
     public Text goldTxt;  //골드 텍스트
     public GameObject inventoryImg; //인벤토리 이미지
+    public Image backGround;  //스토리 배경 그림
+    public Sprite[] sprites;
+    int storyCount = 0;
 
     bool isStart;
 
@@ -38,6 +42,11 @@ public class StartSceneManager : MonoBehaviour
                 modeCam.gameObject.SetActive(true);
             }
         }
+    }
+
+    private void Start()
+    {
+
     }
 
     private void Update()
@@ -82,6 +91,7 @@ public class StartSceneManager : MonoBehaviour
         mainCam.gameObject.SetActive(false);
         storyCam.gameObject.SetActive(false);
         modeCam.gameObject.SetActive(true);
+        GameObject tutorial = Instantiate(tutorialPrefab, this.transform.position, this.transform.rotation);
     }
 
     public void GoFishing()
@@ -102,5 +112,17 @@ public class StartSceneManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Story()
+    {
+        storyTxt.text = story[storyCount];
+        backGround.sprite = sprites[storyCount];
+        storyCount++;
+        if (storyCount == story.Length)
+        {
+            storyCam.gameObject.SetActive(false);
+            modeCam.gameObject.SetActive(true);
+        }
     }
 }

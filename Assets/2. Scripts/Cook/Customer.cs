@@ -218,12 +218,12 @@ public class Customer : MonoBehaviour
                 if (sushiCounts.ContainsKey(sushiKey))  //주문한 초밥 키와 일치하는게 접시 딕셔너리에 있는가?
                 {
                     int sushiCount = sushiCounts[sushiKey];  //있다면 그 초밥 키의 갯수를 주문 갯수와 비교.
-                    if (!(sushiCount == order.count))  //주문갯수와 초밥 갯수가 일치한다면
+                    if (!(sushiCount == order.count))  //주문갯수와 초밥 갯수가 불일치한다면
                     {
                         orderMatch = false;  //불일치
                         Debug.Log($"주문과 초밥 정보 일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
                     }
-                    else
+                    else  //일치한다면
                     {
                         //접시 리스트 안에 주문과 일치하는 초밥있는지 확인
                         Sushi sushi = null;
@@ -236,7 +236,18 @@ public class Customer : MonoBehaviour
                             }
                         }
 
-                        totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
+                        if(currTimePercent > 0.5f)  //남은 시간이 반 이상일 때는
+                        {
+                            totalPrice += sushi.gold * order.count * 3;  //생선가격 * 주문갯수 * 3
+                            print("골드 3배 : " + totalPrice);
+                        }
+                        else if(currTimePercent > 0)
+                        {
+                            totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
+                            print("골드 2배 : " + totalPrice);
+                            print(totalPrice);
+                        }
+
                         int _gold = int.Parse(GameManager.instance.save.gold) + totalPrice;
                         GameManager.instance.save.gold = _gold.ToString();
                         GameManager.instance.Save("s");
@@ -252,8 +263,20 @@ public class Customer : MonoBehaviour
 
             if (orderMatch)  //일치 시
             {
-                int _score = int.Parse(GameManager.instance.save.score) - 20;  //평판 감소
-                GameManager.instance.save.score = _score.ToString();
+                if (currTimePercent > 0.5f)
+                {
+                    int _score = int.Parse(GameManager.instance.save.score) + 40;  //평판 증가
+                    print("평판증가 :" + _score);
+                    GameManager.instance.save.score = _score.ToString();
+                }
+                else if (currTimePercent > 0)
+                {
+                    int _score = int.Parse(GameManager.instance.save.score) + 20;
+                    print("평판증가 :" + _score);
+                    GameManager.instance.save.score = _score.ToString();
+                }
+                
+                
                 GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();
                 orderTxt.text = success[Random.Range(0, success.Length)];
