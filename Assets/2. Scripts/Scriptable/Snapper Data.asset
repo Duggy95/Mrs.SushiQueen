@@ -15,9 +15,9 @@ MonoBehaviour:
   fishName: "\uB3C4\uBBF8"
   grade: 1
   color: 0
-  hp: 50
+  hp: 5
   heal: 4
-  gold: 5000
+  gold: 50000
   probability: 0.1
   fishImg: {fileID: 21300000, guid: d1dce19184f08ba408290ef1616a9f5c, type: 3}
   netaImg: {fileID: 21300000, guid: b79354d16c1d70a488772f15db973c7d, type: 3}

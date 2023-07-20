@@ -7,9 +7,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneManager : MonoBehaviour
 {
-    public Camera mainCam;  //타이틀화면
-    public Camera storyCam;  //스토리화면
-    public Camera modeCam;  //선택화면
+    public GameObject mainObj;
+    public GameObject storyObj;
+    public GameObject modeObj;
     public Text startTxt;  //터치해서 게임시작 텍스트
     public Text storyTxt;  //스토리 텍스트
     public string[] story;  //스토리 내용
@@ -18,6 +18,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject inventoryImg; //인벤토리 이미지
     public Image backGround;  //스토리 배경 그림
     public Sprite[] sprites;
+    //public GameObject loginObj;
     int storyCount = 0;
 
     bool isStart;
@@ -28,34 +29,41 @@ public class StartSceneManager : MonoBehaviour
         {
             if (!GameManager.instance.nextStage) //
             {
-                mainCam.gameObject.SetActive(true);
-                storyCam.gameObject.SetActive(false);
-                modeCam.gameObject.SetActive(false);
+                mainObj.gameObject.SetActive(true);
+                storyObj.gameObject.SetActive(false);
+                modeObj.gameObject.SetActive(false);
                 isStart = true;
             }
 
             else //
             {
-                mainCam.gameObject.SetActive(false);
-                storyCam.gameObject.SetActive(false);
-                modeCam.gameObject.SetActive(true);
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(false);
+                modeObj.gameObject.SetActive(true);
             }
         }
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
-        if (isStart && Input.GetMouseButtonDown(0))
+        /*if(GameManager.instance.onLogin == false)
+        {
+            loginObj.gameObject.SetActive(true);
+            startTxt.gameObject.SetActive(false);
+        }
+
+        else if(GameManager.instance.onLogin)
+        {
+            loginObj.gameObject.SetActive(false);
+            startTxt.gameObject.SetActive(true);
+        }*/
+
+        if (GameManager.instance.onLogin && isStart && Input.GetMouseButtonDown(0))
         {
             isStart = false;
-            mainCam.gameObject.SetActive(false);
-            storyCam.gameObject.SetActive(true);
-            modeCam.gameObject.SetActive(false);
+            mainObj.gameObject.SetActive(false);
+            storyObj.gameObject.SetActive(true);
+            modeObj.gameObject.SetActive(false);
         }
 
         UIUpdate();
@@ -78,18 +86,11 @@ public class StartSceneManager : MonoBehaviour
         inventoryImg.gameObject.SetActive(false);
     }
 
- /*   public void GoHome()
-    {
-        SceneManager.LoadScene(0);
-    }*/
-
-    // 터치해서 게임 시작하는 함수 구현할 것
-
     public void OnClickSkip()
     {
-        mainCam.gameObject.SetActive(false);
-        storyCam.gameObject.SetActive(false);
-        modeCam.gameObject.SetActive(true);
+        mainObj.gameObject.SetActive(false);
+        storyObj.gameObject.SetActive(false);
+        modeObj.gameObject.SetActive(true);
     }
 
     public void GoFishing()
@@ -119,8 +120,8 @@ public class StartSceneManager : MonoBehaviour
         storyCount++;
         if (storyCount == story.Length)
         {
-            storyCam.gameObject.SetActive(false);
-            modeCam.gameObject.SetActive(true);
+            storyObj.gameObject.SetActive(false);
+            modeObj.gameObject.SetActive(true);
         }
     }
 }

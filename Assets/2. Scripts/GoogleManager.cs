@@ -47,20 +47,40 @@ public class GoogleManager : MonoBehaviour
     }
 
     // 로그인
-    public void Login()
+    /*public void Login()
     {
         Init();
+        GameManager.instance.onLogin = true;
         Social.localUser.Authenticate((bool _login) =>
         {
             if (_login == true)
             {
                 Debug.Log("Google Login Complete");
+                GameManager.instance.onLogin = true;
             }
             else
             {
                 Debug.Log("Google Login Fail");
             }
         });
+    }*/
+
+    public void Login(Action<bool, UnityEngine.SocialPlatforms.ILocalUser> onLoginSuccess = null)
+    {
+        Init();
+        PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (success) =>
+        {
+            onLoginSuccess?.Invoke(success == SignInStatus.Success, Social.localUser);
+        });
+
+        GameManager.instance.Save("i");
+        GameManager.instance.Save("f");
+        GameManager.instance.Save("s");
+    }
+
+    public void Logout()
+    {
+        PlayGamesPlatform.Instance.SignOut();
     }
 
     public bool CheckLogin()
@@ -73,18 +93,21 @@ public class GoogleManager : MonoBehaviour
     // 외부에서 함수 호출 시 string으로 정보 저장
     public void SaveToCloud_Item(string _data)
     {
-        StartCoroutine(Save_Item(_data));
+        if (CheckLogin() == false)
+            return;
+
+        Save_Item(_data);
     }
 
-    IEnumerator Save_Item(string _data)
+    void Save_Item(string _data)
     {
         Debug.Log("Try to save data");
         // 로그인이 완료될때까지 기다림
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
         onSaving = true;
 
         string id = Social.localUser.id;
@@ -97,18 +120,21 @@ public class GoogleManager : MonoBehaviour
     // 외부에서 함수 호출 시 string으로 정보 저장
     public void SaveToCloud_Fish(string _data)
     {
-        StartCoroutine(Save_Fish(_data));
+        if (CheckLogin() == false)
+            return;
+
+        Save_Fish(_data);
     }
 
-    IEnumerator Save_Fish(string _data)
+    void Save_Fish(string _data)
     {
         Debug.Log("Try to save data");
         // 로그인이 완료될때까지 기다림
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
         onSaving = true;
 
         string id = Social.localUser.id;
@@ -119,20 +145,23 @@ public class GoogleManager : MonoBehaviour
     }
 
     // 외부에서 함수 호출 시 string으로 정보 저장
-    public void SaveToCloud_Dave(string _data)
+    public void SaveToCloud_Data(string _data)
     {
-        StartCoroutine(Save_Dave(_data));
+        if (CheckLogin() == false)
+            return;
+
+        Save_Data(_data);
     }
 
-    IEnumerator Save_Dave(string _data)
+    void Save_Data(string _data)
     {
         Debug.Log("Try to save data");
         // 로그인이 완료될때까지 기다림
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
         onSaving = true;
 
         string id = Social.localUser.id;
@@ -198,17 +227,20 @@ public class GoogleManager : MonoBehaviour
 
     public void LoadFromCloud_Item()
     {
-        StartCoroutine(Load_Item());
+        if (CheckLogin() == false)
+            return;
+
+        Load_Item();
     }
 
-    IEnumerator Load_Item()
+    void Load_Item()
     {
         onLoading = true;
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
 
         Debug.Log("Try to load data");
 
@@ -220,17 +252,20 @@ public class GoogleManager : MonoBehaviour
 
     public void LoadFromCloud_Fish()
     {
-        StartCoroutine(Load_Fish());
+        if (CheckLogin() == false)
+            return;
+
+        Load_Fish();
     }
 
-    IEnumerator Load_Fish()
+    void Load_Fish()
     {
         onLoading = true;
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
 
         Debug.Log("Try to load data");
 
@@ -240,19 +275,22 @@ public class GoogleManager : MonoBehaviour
         OpenSavedGame(fileName, false);
     }
 
-    public void LoadFromCloud_Dave()
+    public void LoadFromCloud_Data()
     {
-        StartCoroutine(Load_Dave());
+        if (CheckLogin() == false)
+            return;
+
+        Load_Data();
     }
 
-    IEnumerator Load_Dave()
+    void Load_Data()
     {
         onLoading = true;
-        while (CheckLogin() == false)
+        /*while (CheckLogin() == false)
         {
             Login();
             yield return new WaitForSeconds(2f);
-        }
+        }*/
 
         Debug.Log("Try to load data");
 
