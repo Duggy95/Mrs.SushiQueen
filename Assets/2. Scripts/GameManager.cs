@@ -62,11 +62,15 @@ public class GameManager : MonoBehaviour
     static GameManager m_instance;
 
     //public TextAsset inventory_Item;
-    public List<InventoryItem> inventory_Items;
+    public List<InventoryItem> inventory_Items = new List<InventoryItem>();
     //public TextAsset inventory_Fish;
-    public List<InventoryFish> inventory_Fishs;
+    public List<InventoryFish> inventory_Fishs = new List<InventoryFish>();
     //public TextAsset save;
-    public List<Save> save;
+    public List<Save> saves = new List<Save>();
+
+    public Save save = new Save();
+    public InventoryFish inventoryFish = new InventoryFish();
+    public InventoryItem inventoryItem = new InventoryItem();
 
    /* public List<string> items = new List<string>();
     public List<string> fishs = new List<string>();*/
@@ -111,7 +115,7 @@ public class GameManager : MonoBehaviour
         }
         else if (type == "s")
         {
-            string save_Json = JsonUtility.ToJson(new Serialization<Save>(save));
+            string save_Json = JsonUtility.ToJson(new Serialization<Save>(saves));
             GoogleManager.instance.SaveToCloud_Save(save_Json);
         }
     }

@@ -80,8 +80,8 @@ public class FishingManager : MonoBehaviour
         fishInfo.gameObject.SetActive(false);
         //GameManager.instance.gold += data.gold;
         //GameManager.instance.SetGold();
-        int _gold = int.Parse(GameManager.instance.save[4].gold) + data.gold;
-        GameManager.instance.save[4].gold = _gold.ToString();
+        int _gold = int.Parse(GameManager.instance.save.gold) + data.gold;
+        GameManager.instance.save.gold = _gold.ToString();
         GameManager.instance.Save("s");
         // 골드 ++
         UIUpdate();
@@ -155,8 +155,11 @@ public class FishingManager : MonoBehaviour
 
     void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.save[2].dateCount + "일차 / 평판 : " + GameManager.instance.save[3].score;
-        goldTxt.text = "gold : " + GameManager.instance.save[4].gold;
+        dateTxt.text = GameManager.instance.save.dateCount + "일차 / 평판 : " + GameManager.instance.save.score;
+        goldTxt.text = "gold : " + GameManager.instance.save.gold;
+
+        /*dateTxt.text = GameManager.instance.save[2].dateCount + "일차 / 평판 : " + GameManager.instance.save[3].score;
+        goldTxt.text = "gold : " + GameManager.instance.save[4].gold;*/
     }
 
     public void ViewInventory()
