@@ -20,8 +20,6 @@ public class DialogSystem : MonoBehaviour
     private GameObject[] objectArrows;                  // 대사가 완료되었을 때 출력되는 커서 오브젝트
     [SerializeField]
     private float typingSpeed;                  // 텍스트 타이핑 효과의 재생 속도
-    [SerializeField]
-    private KeyCode keyCodeSkip = KeyCode.Space;    // 타이핑 효과를 스킵하는 키
 
     private int currentIndex = -1;
     private bool isTypingEffect = false;            // 텍스트 타이핑 효과를 재생중인지
@@ -40,7 +38,7 @@ public class DialogSystem : MonoBehaviour
 
     public bool UpdateDialog()
     {
-        if (Input.GetKeyDown(keyCodeSkip) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             // 텍스트 타이핑 효과를 재생중일때 마우스 왼쪽 클릭하면 타이핑 효과 종료
             if (isTypingEffect == true)

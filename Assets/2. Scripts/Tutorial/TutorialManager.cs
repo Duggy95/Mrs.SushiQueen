@@ -71,6 +71,16 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    public void ShowFishScene()
+    {
+        fishCanvas.SetActive(true);
+    }
+
+    public void ShowOrderView()
+    {
+        cookCanvas.SetActive(true);
+    }
+
     public void ExitGame()
     {
         Application.Quit();
