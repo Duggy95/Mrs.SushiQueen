@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting.FullSerializer;
 using GooglePlayGames;
 
 public class FishingManager : MonoBehaviour
@@ -37,6 +36,7 @@ public class FishingManager : MonoBehaviour
         GameManager.instance.GetLog();
         InventoryImg.gameObject.SetActive(false);
         UIUpdate();
+        GameManager.instance.Load();
     }
 
     public void Fishing()
