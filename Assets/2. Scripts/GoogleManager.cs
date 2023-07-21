@@ -47,36 +47,63 @@ public class GoogleManager : MonoBehaviour
     }
 
     // 로그인
-    /*public void Login()
+    public void Login()
     {
         Init();
-        GameManager.instance.onLogin = true;
         Social.localUser.Authenticate((bool _login) =>
         {
             if (_login == true)
             {
                 Debug.Log("Google Login Complete");
                 GameManager.instance.onLogin = true;
+                GameManager.instance.Save("i");
+                GameManager.instance.Save("f");
+                GameManager.instance.Save("s");
             }
             else
             {
                 Debug.Log("Google Login Fail");
             }
         });
-    }*/
-
-    public void Login(Action<bool, UnityEngine.SocialPlatforms.ILocalUser> onLoginSuccess = null)
-    {
-        Init();
-        PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (success) =>
-        {
-            onLoginSuccess?.Invoke(success == SignInStatus.Success, Social.localUser);
-        });
-
-        GameManager.instance.Save("i");
-        GameManager.instance.Save("f");
-        GameManager.instance.Save("s");
     }
+
+    /* public void Login()
+     {
+         if (CheckLogin())
+         {
+             Debug.Log("Already Logged In");
+             // 이미 로그인된 상태라면, 로그인 성공 처리를 진행합니다.
+             OnLoginSuccess();
+         }
+         else
+         {
+             // 로그인이 완료될 때까지 Social API를 사용하여 로그인을 시도합니다.
+             Social.localUser.Authenticate(OnLoginComplete);
+         }
+     }
+
+     private void OnLoginComplete(bool success)
+     {
+         if (success)
+         {
+             Debug.Log("Google Login Complete");
+             // 로그인이 성공적으로 완료된 경우, 로그인 성공 처리를 진행합니다.
+             OnLoginSuccess();
+         }
+         else
+         {
+             Debug.Log("Google Login Fail");
+         }
+     }
+
+     private void OnLoginSuccess()
+     {
+         // 로그인 성공 처리를 진행합니다.
+         GameManager.instance.onLogin = true;
+         GameManager.instance.Save("i");
+         GameManager.instance.Save("f");
+         GameManager.instance.Save("s");
+     }*/
 
     public void Logout()
     {
