@@ -54,64 +54,34 @@ public class GoogleManager : MonoBehaviour
         {
             if (_login == true)
             {
+                Debug.Log("Google id :" + Social.localUser.id);
                 Debug.Log("Google Login Complete");
+                GameManager.instance.idTxt.text = "Google Login Complete : " + Social.localUser.id;  //-----------------------
                 GameManager.instance.onLogin = true;
-                GameManager.instance.Save("i");
+                GameManager.instance.Load();
+                /*GameManager.instance.Save("i");
                 GameManager.instance.Save("f");
-                GameManager.instance.Save("s");
+                GameManager.instance.Save("s");*/
             }
             else
             {
                 Debug.Log("Google Login Fail");
+                GameManager.instance.idTxt.text = "Google Login Fail";  //-----------------------
             }
         });
     }
 
-    /* public void Login()
-     {
-         if (CheckLogin())
-         {
-             Debug.Log("Already Logged In");
-             // 이미 로그인된 상태라면, 로그인 성공 처리를 진행합니다.
-             OnLoginSuccess();
-         }
-         else
-         {
-             // 로그인이 완료될 때까지 Social API를 사용하여 로그인을 시도합니다.
-             Social.localUser.Authenticate(OnLoginComplete);
-         }
-     }
-
-     private void OnLoginComplete(bool success)
-     {
-         if (success)
-         {
-             Debug.Log("Google Login Complete");
-             // 로그인이 성공적으로 완료된 경우, 로그인 성공 처리를 진행합니다.
-             OnLoginSuccess();
-         }
-         else
-         {
-             Debug.Log("Google Login Fail");
-         }
-     }
-
-     private void OnLoginSuccess()
-     {
-         // 로그인 성공 처리를 진행합니다.
-         GameManager.instance.onLogin = true;
-         GameManager.instance.Save("i");
-         GameManager.instance.Save("f");
-         GameManager.instance.Save("s");
-     }*/
-
     public void Logout()
     {
+        GameManager.instance.Save("i");
+        GameManager.instance.Save("f");
+        GameManager.instance.Save("s");
         PlayGamesPlatform.Instance.SignOut();
     }
 
     public bool CheckLogin()
     {
+        GameManager.instance.logTxt.text = "CheckLogin" + Social.localUser.authenticated;
         return Social.localUser.authenticated;
     }
 
@@ -129,6 +99,8 @@ public class GoogleManager : MonoBehaviour
     void Save_Item(string _data)
     {
         Debug.Log("Try to save data");
+        GameManager.instance.logTxt.text = "Try to save data";
+        GameManager.instance.idTxt.text = "data : " + _data;
         // 로그인이 완료될때까지 기다림
         /*while (CheckLogin() == false)
         {
@@ -156,6 +128,9 @@ public class GoogleManager : MonoBehaviour
     void Save_Fish(string _data)
     {
         Debug.Log("Try to save data");
+        GameManager.instance.logTxt.text = "Try to save data";
+        GameManager.instance.idTxt.text = "data : " + _data;
+
         // 로그인이 완료될때까지 기다림
         /*while (CheckLogin() == false)
         {
@@ -183,6 +158,9 @@ public class GoogleManager : MonoBehaviour
     void Save_Data(string _data)
     {
         Debug.Log("Try to save data");
+        GameManager.instance.logTxt.text = "Try to save data";
+        GameManager.instance.idTxt.text = "data : " + _data;
+
         // 로그인이 완료될때까지 기다림
         /*while (CheckLogin() == false)
         {
@@ -216,6 +194,8 @@ public class GoogleManager : MonoBehaviour
         {
             byte[] b = Encoding.UTF8.GetBytes(string.Format(saveData));
             SaveGame(_data, b, DateTime.Now.TimeOfDay);
+            GameManager.instance.logTxt.text = "byte : " + b;
+
         }
         else
         {
@@ -232,6 +212,7 @@ public class GoogleManager : MonoBehaviour
 
         SavedGameMetadataUpdate updateData = builder.Build();
         savedClient.CommitUpdate(_data, updateData, _byte, OnSavedGameWritten);
+        GameManager.instance.logTxt.text = "saving";
     }
 
     void OnSavedGameWritten(SavedGameRequestStatus _status, ISavedGameMetadata _data)
@@ -241,10 +222,12 @@ public class GoogleManager : MonoBehaviour
         if (_status == SavedGameRequestStatus.Success)
         {
             Debug.Log("Save Complete");
+            GameManager.instance.logTxt.text = "Save Complete";
         }
         else
         {
             Debug.Log("Save Fail");
+            GameManager.instance.logTxt.text = "Save Fail";
         }
     }
 
@@ -270,7 +253,7 @@ public class GoogleManager : MonoBehaviour
         }*/
 
         Debug.Log("Try to load data");
-
+        GameManager.instance.logTxt.text = "Try to load data";
         string id = Social.localUser.id;
         string fileName = string.Format("{0}_ITEM", id);
 
@@ -295,6 +278,7 @@ public class GoogleManager : MonoBehaviour
         }*/
 
         Debug.Log("Try to load data");
+        GameManager.instance.logTxt.text = "Try to load data";
 
         string id = Social.localUser.id;
         string fileName = string.Format("{0}_FISH", id);
@@ -320,6 +304,7 @@ public class GoogleManager : MonoBehaviour
         }*/
 
         Debug.Log("Try to load data");
+        GameManager.instance.logTxt.text = "Try to load data";
 
         string id = Social.localUser.id;
         string fileName = string.Format("{0}_DATA", id);
@@ -335,6 +320,8 @@ public class GoogleManager : MonoBehaviour
         }
         else
         {
+            GameManager.instance.logTxt.text = "load data Fail";
+
             Debug.Log("Fail");
         }
     }
@@ -351,10 +338,12 @@ public class GoogleManager : MonoBehaviour
         {
             string data = Encoding.UTF8.GetString(_byte);
             GameManager.instance.SetData(data);
+            GameManager.instance.logTxt.text = "load data : " + data;
         }
         else
         {
             Debug.Log("Load Fail");
+            GameManager.instance.logTxt.text = "Load Fail";
         }
 
         onLoading = false;

@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
     public List<InventoryItem> inventory_Items = new List<InventoryItem>();
     public List<InventoryFish> inventory_Fishs = new List<InventoryFish>();
     public Data data = new Data();
+    public Text logTxt;  //-----------------------
+    public Text idTxt;  //-----------------------
+    public Text saveTxt;  //-----------------------
 
     public bool nextStage;
     public bool onLogin = false;
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
         else
             DontDestroyOnLoad(gameObject);
 
-        Load();
+        //Load();
         Debug.Log("load");
     }
 
@@ -95,22 +98,33 @@ public class GameManager : MonoBehaviour
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(inventory_Items));
             GoogleManager.instance.SaveToCloud_Item(item_Json);
             Debug.Log("Data_Item" + item_Json);
+            saveTxt.text = "Data_Item : " + item_Json;  //-----------------------
         }
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(inventory_Fishs));
             GoogleManager.instance.SaveToCloud_Fish(fish_Json);
             Debug.Log("Data_Fish" + fish_Json);
+            saveTxt.text = "Data_Fish : " + fish_Json;  //-----------------------
+
         }
         else if (type == "s")
         {
             string data_Json = JsonUtility.ToJson(data);
             GoogleManager.instance.SaveToCloud_Data(data_Json);
             Debug.Log("Data_Data" + data_Json);
+            saveTxt.text = "Data_Data : " + data_Json;  //-----------------------
         }
     }
 
-    void Load()
+    public void GetLog()
+    {
+        logTxt = GameObject.FindGameObjectWithTag("LOG").GetComponent<Text>();
+        idTxt = GameObject.FindGameObjectWithTag("ID").GetComponent<Text>();
+        saveTxt = GameObject.FindGameObjectWithTag("SAVE").GetComponent<Text>();
+    }
+
+    public void Load()
     {
         Debug.Log("load_cloud");
 
@@ -126,22 +140,29 @@ public class GameManager : MonoBehaviour
         string d = "score";
 
         Debug.Log("loadData" + _data);
+        logTxt.text = "loadData : " + _data;  //-----------------------
 
         // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
         if (_data.Contains(i))
         {
-            List<InventoryItem> load_Item = JsonUtility.FromJson<List<InventoryItem>>(_data);
-            inventory_Items = load_Item;
+            inventory_Items = JsonUtility.FromJson<List<InventoryItem>>(_data);
+            saveTxt.text = "inventory_Items : " + inventory_Items;  //-----------------------
         }
         else if (_data.Contains(f))
         {
-            List<InventoryFish> load_Fish = JsonUtility.FromJson<List<InventoryFish>>(_data);
-            inventory_Fishs = load_Fish;
+            inventory_Fishs = JsonUtility.FromJson<List<InventoryFish>>(_data);
+            saveTxt.text = "inventory_Fishs : " + inventory_Fishs;  //-----------------------
         }
         else if (_data.Contains(d))
         {
-            Data load_Data = JsonUtility.FromJson<Data>(_data);
-            data = load_Data;
+            data = JsonUtility.FromJson<Data>(_data);
+            saveTxt.text = "data : " + data;  //-----------------------
+        }
+        else
+        {
+            saveTxt.text = "inventory_Items : " + inventory_Items;
+            saveTxt.text += "\ninventory_Fishs : " + inventory_Fishs;  //-----------------------
+            saveTxt.text += "\ndata : " + data;  //-----------------------
         }
     }
 }
