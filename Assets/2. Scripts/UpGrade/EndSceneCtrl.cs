@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneCtrl : MonoBehaviour
 {
+    public GameObject configPanel;
     public GameObject fishingSV;
     public GameObject ShopSV;
     public GameObject SkillSV;
@@ -13,6 +14,7 @@ public class EndSceneCtrl : MonoBehaviour
     public Text goldTxt;
     public GameObject InventoryImg;
     public GameObject noMoneyTxt;
+    bool config;
 
     private void Awake()
     {
@@ -74,8 +76,22 @@ public class EndSceneCtrl : MonoBehaviour
         InventoryImg.gameObject.SetActive(false);
     }
 
-    public void GoHome()
+    public void ConfigBtn() //설정보여주기
     {
-        SceneManager.LoadScene(0);
+        if (!config)
+        {
+            configPanel.SetActive(true);
+            config = true;
+        }
+        else
+        {
+            configPanel.SetActive(false);
+            config = false;
+        }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

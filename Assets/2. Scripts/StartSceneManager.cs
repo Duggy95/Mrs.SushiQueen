@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneManager : MonoBehaviour
 {
+    public GameObject configPanel;
     public GameObject mainObj;
     public GameObject storyObj;
     public GameObject modeObj;
@@ -20,7 +21,7 @@ public class StartSceneManager : MonoBehaviour
     public Sprite[] sprites;
     //public GameObject loginObj;
     int storyCount = 0;
-
+    bool config;
     bool isStart;
 
     private void Awake()
@@ -106,6 +107,20 @@ public class StartSceneManager : MonoBehaviour
     public void GoUpgrade()
     {
         SceneManager.LoadScene(3);
+    }
+
+    public void ConfigBtn()
+    {
+        if (!config)
+        {
+            configPanel.SetActive(true);
+            config = true;
+        }
+        else
+        {
+            configPanel.SetActive(false);
+            config = false;
+        }
     }
 
     public void ExitGame()

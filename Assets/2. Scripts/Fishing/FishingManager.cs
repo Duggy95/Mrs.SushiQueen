@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.FullSerializer;
 
 public class FishingManager : MonoBehaviour
 {
     public Canvas canvas;
     public Text dateTxt;
     public Text goldTxt;
+    public GameObject configPanel;
     public GameObject InventoryImg;  // 인벤토리 이미지
     public GameObject FishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
@@ -25,6 +27,7 @@ public class FishingManager : MonoBehaviour
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
     public bool useItem_rare = false;   // 레어 생선 확률 증가 아이템 사용
+    bool config;
 
     FishData data;
 
@@ -171,13 +174,27 @@ public class FishingManager : MonoBehaviour
         InventoryImg.gameObject.SetActive(false);
     }
 
-    public void GoHome()
+    public void ConfigBtn()
     {
-        SceneManager.LoadScene(0);
+        if (!config)
+        {
+            configPanel.SetActive(true);
+            config = true;
+        }
+        else
+        {
+            configPanel.SetActive(false);
+            config = false;
+        }
     }
 
     public void GoCook()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class CookManager : MonoBehaviour
 {
-    public Canvas canvas;  //Order Canvas 주문 캔버스
     public GameObject customerPrefab;  //손님 프리팹
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
+    public GameObject configPanel;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public GameObject InventoryImg;  //인벤토리
     public Image[] fishImg;  //생선이미지
     public bool canMake = false;
+    bool config = false;
 
     WaitForSeconds ws;
 
@@ -61,9 +62,18 @@ public class CookManager : MonoBehaviour
         InventoryImg.gameObject.SetActive(false);
     }
 
-    public void GoHome() //홈으로
+    public void ConfigBtn() //설정보여주기
     {
-        SceneManager.LoadScene(0);
+        if(!config)
+        {
+            configPanel.SetActive(true);
+            config = true;
+        }
+        else
+        {
+            configPanel.SetActive(false);
+            config = false;
+        }
     }
 
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
@@ -97,8 +107,13 @@ public class CookManager : MonoBehaviour
         //2초 후 손님 생성.
         yield return ws;
         GameObject customer = Instantiate(customerPrefab, customerTr,
-                                                                Quaternion.identity, canvas.transform);
+                                                                Quaternion.identity, orderView.transform);
         customer.transform.localPosition = new Vector2(-400, -100);  //손님 위치
         customer.transform.SetSiblingIndex(1);  //2번째 자식.
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
