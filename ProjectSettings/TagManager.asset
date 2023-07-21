@@ -11,6 +11,10 @@ TagManager:
   - DISH
   - FISH
   - INVENTORY
+  - ID
+  - SAVE
+  - Undefined
+  - LOG
   layers:
   - Default
   - TransparentFX

@@ -48,10 +48,11 @@ public class EndSceneCtrl : MonoBehaviour
     public void NextStage()
     {
         GameManager.instance.nextStage = true;
-        SceneManager.LoadScene(0);
         int _date = int.Parse(GameManager.instance.data.dateCount) + 1;
         GameManager.instance.data.dateCount = _date.ToString();
-        GameManager.instance.Save("s");
+        //GameManager.instance.Save("s");
+
+        SceneManager.LoadScene(0);
     }
 
     private void Start()

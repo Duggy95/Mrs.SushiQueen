@@ -19,7 +19,8 @@ public class StartSceneManager : MonoBehaviour
     public GameObject inventoryImg; //인벤토리 이미지
     public Image backGround;  //스토리 배경 그림
     public Sprite[] sprites;
-    //public GameObject loginObj;
+    public GameObject loginObj;
+
     int storyCount = 0;
     bool config;
     bool isStart;
@@ -28,6 +29,8 @@ public class StartSceneManager : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
+            GameManager.instance.GetLog();
+
             if (!GameManager.instance.nextStage) //
             {
                 mainObj.gameObject.SetActive(true);
@@ -41,6 +44,9 @@ public class StartSceneManager : MonoBehaviour
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
+                UIUpdate();
+                GameManager.instance.Load();
+                GameManager.instance.Save("s");
             }
         }
     }
@@ -65,9 +71,7 @@ public class StartSceneManager : MonoBehaviour
             mainObj.gameObject.SetActive(false);
             storyObj.gameObject.SetActive(true);
             modeObj.gameObject.SetActive(false);
-        }
-
-        UIUpdate();
+        }        
     }
 
     void UIUpdate()
@@ -92,6 +96,7 @@ public class StartSceneManager : MonoBehaviour
         mainObj.gameObject.SetActive(false);
         storyObj.gameObject.SetActive(false);
         modeObj.gameObject.SetActive(true);
+        UIUpdate();
     }
 
     public void GoFishing()
