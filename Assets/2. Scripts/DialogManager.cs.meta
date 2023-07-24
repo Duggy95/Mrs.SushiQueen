@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/2. Scripts/DialogManager.cs.meta
 guid: 1b2c6a4734462654da2227b1500f6e1e
+========
+guid: 436fcea53520d454585ae1046067e585
+>>>>>>>> e662c909b94b4f7c20e48adf55a0241acf20c3b5:Assets/2. Scripts/GPGSBinder.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
