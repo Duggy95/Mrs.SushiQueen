@@ -3,37 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[RequireComponent(typeof(DialogSystem))]
-[RequireComponent(typeof(DialogManager))]
-public class TutorialDialog : TutorialBase
+public class TutorialMove : TutorialBase
 {
-    public CanvasGroup blockPanel;
     public Image image;
-    public string[] dialogs;
-    //DialogManager dialogManager = DialogManager.instance;
-    DialogManager dialogManager;
-    
+    public bool isShow;
+    bool isComplete = false;
+
     public override void Enter()
     {
-        StartCoroutine(ShowImage());
-        dialogManager = GetComponent<DialogManager>();
-        dialogManager.Ondialog(dialogs);
-        blockPanel.blocksRaycasts = true;
+        if(!isShow)
+        {
+            StartCoroutine(ShowImage());
+        }
+        else
+        {
+            StartCoroutine(FadeImage());
+        }
     }
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        dialogManager.Next();
-        if(this.dialogManager.complete == true)
+        if(isComplete)
         {
             tutorialManager.SetNextTutorial();
+            isComplete = false;
         }
     }
 
     public override void Exit()
     {
-        StartCoroutine(FadeImage());
-        blockPanel.blocksRaycasts = false;
     }
 
     IEnumerator ShowImage()
@@ -53,6 +51,8 @@ public class TutorialDialog : TutorialBase
             image.transform.position = Vector2.Lerp(initPos, targetPos, t);
             yield return null;
         }
+        isShow = true;
+        isComplete = true;
     }
 
     IEnumerator FadeImage()
@@ -74,5 +74,7 @@ public class TutorialDialog : TutorialBase
             image.transform.position = Vector2.Lerp(initPos, targetPos, t);
             yield return null;
         }
+        isShow = false;
+        isComplete = true;
     }
 }
