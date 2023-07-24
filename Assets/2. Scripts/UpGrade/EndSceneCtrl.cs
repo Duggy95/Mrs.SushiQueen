@@ -50,10 +50,9 @@ public class EndSceneCtrl : MonoBehaviour
         GameManager.instance.nextStage = true;
         int _date = int.Parse(GameManager.instance.data.dateCount) + 1;
         GameManager.instance.data.dateCount = _date.ToString();
-        //GameManager.instance.Save("s");
-
         SceneManager.LoadScene(0);
     }
+
 
     private void Start()
     {
@@ -95,4 +94,9 @@ public class EndSceneCtrl : MonoBehaviour
     {
         Application.Quit();
     }
+
+    /*public void LogOut()
+    {
+        GPGSBinder.Inst.Logout();
+    }*/
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -47,6 +47,7 @@ public class GPGSBinder
     public void Logout()
     {
         PlayGamesPlatform.Instance.SignOut();
+        GameManager.instance.idTxt.text = "Google Logout Complete";
     }
 
 
@@ -114,8 +115,10 @@ public class GPGSBinder
             {
                 if (status == SavedGameRequestStatus.Success)
                 {
+                    GameManager.instance.idTxt.text = "Delete Data Complete";
                     SavedGame.Delete(game);
                     onCloudDeleted?.Invoke(true);
+                    GameManager.instance.ExitGame();
                 }
                 else
                     onCloudDeleted?.Invoke(false);
@@ -178,3 +181,4 @@ public class GPGSBinder
 
 }
 
+*/

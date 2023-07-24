@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using GooglePlayGames;
 
 public class FishingManager : MonoBehaviour
 {
@@ -33,19 +31,15 @@ public class FishingManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.GetLog();
+        //GameManager.instance.GetLog();
         InventoryImg.gameObject.SetActive(false);
         UIUpdate();
-        GameManager.instance.Load();
     }
 
     public void Fishing()
     {
         if (isFishing == false)
         {
-            Debug.Log("낚시 시작");
-            Debug.Log("위치" + Input.mousePosition);
-
             // 물고기 잡는 중으로 변경
             isFishing = true;
             // 물고기 도망 텍스트 비활성화
@@ -67,8 +61,6 @@ public class FishingManager : MonoBehaviour
     // 잡은 경우에 물고기 정보창 띄움
     public void Fish(FishData fishData)
     {
-        Debug.Log("낚시 성공");
-        Debug.Log(fishData);
         data = fishData;
         fishInfo.gameObject.SetActive(true);
         fishInfo_Txt.text = fishData.info.text;
@@ -78,12 +70,8 @@ public class FishingManager : MonoBehaviour
     // 팔기 버튼을 누르면 정보창 닫고 다시 낚시 준비
     public void Sell()
     {
-        Debug.Log("판매");
-
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        //GameManager.instance.gold += data.gold;
-        //GameManager.instance.SetGold();
         int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
         GameManager.instance.data.gold = _gold.ToString();
         GameManager.instance.Save("s");
@@ -96,13 +84,10 @@ public class FishingManager : MonoBehaviour
     // 수족관으로 버튼 누르면 정보창 닫고 다시 낚시 준비
     public void Get()
     {
-        Debug.Log("수족관으로");
-
         // 수족관에 이미지 추가
         Image[] _fishs = FishContent.gameObject.GetComponentsInChildren<Image>();
-        Debug.Log("수족관 칸 수 : " + _fishs.Length);
 
-        bool isFull = false;
+        bool isFull = true;
         // 수족관의 스롯을 검사하여 비었으면 해당 정보 전달
         for (int i = 0; i < _fishs.Length; i++)
         {
@@ -114,20 +99,16 @@ public class FishingManager : MonoBehaviour
                 _slot.fish_GradeNum = data.grade;
                 _slot.fish_Name = data.fishName;
 
-                InventoryFish _inventoryFish = new InventoryFish();
-                _inventoryFish.fish_Name = data.fishName;
-                GameManager.instance.inventory_Fishs.Add(_inventoryFish);
-
-                //GameManager.instance.fishs = data.fishName;
+                GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName));
                 GameManager.instance.Save("f");
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
-                isFull = true;
+                isFull = false;
                 break;
             }
         }
         // 수족관이 가득 찬 경우 텍스트 띄움
-        if (!isFull)
+        if (isFull)
         {
             full_Txt.gameObject.SetActive(true);
         }
@@ -147,13 +128,10 @@ public class FishingManager : MonoBehaviour
     // 물고기가 도망간 경우 도망 텍스트 띄우고 다시 낚시 준비
     IEnumerator FishRun()
     {
-        Debug.Log("낚시 실패");
-
         fishRun.gameObject.SetActive(true);
         isFishing = false;
         // 화면 누르면 텍스트 비활성화
         yield return new WaitForSeconds(2f);
-        Debug.Log("다시");
         fishRun.gameObject.SetActive(false);
     }
 
@@ -199,4 +177,9 @@ public class FishingManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    /*public void LogOut()
+    {
+        GPGSBinder.Inst.Logout();
+    }*/
 }

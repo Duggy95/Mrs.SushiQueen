@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Data;
-using System.IO;
 
 [System.Serializable]
-public class Serialization<T> 
+public class Serialization<T>
 {
     public Serialization(List<T> _target) => target = _target;
     public List<T> target;
@@ -16,23 +13,18 @@ public class Serialization<T>
 [System.Serializable]
 public class InventoryItem
 {
-   /* public InventoryItem(string _item_Name, string _item_Count)
-    { item_Name = _item_Name; item_Count = _item_Count; }*/
+    public InventoryItem(string _item_Name, string _item_Count)
+    { item_Name = _item_Name; item_Count = _item_Count; }
 
     public string item_Name;
     public string item_Count;
 }
 
-/*public class InventoryItemList
-{
-    public List<InventoryItem> _Data;
-}*/
-
 [System.Serializable]
 public class InventoryFish
 {
-   /* public InventoryFish(string _fish_Name, string _fish_Gold)
-    { fish_Name = _fish_Name; fish_Gold = _fish_Gold; }*/
+    public InventoryFish(string _fish_Name)
+    { fish_Name = _fish_Name; }
 
     public string fish_Name;
 }
@@ -49,6 +41,8 @@ public class Data
     public string score = "500";  // 점수
     public string gold = "0";  // 골드
     public string atk = "1";
+    public string getMiddleRod = "FALSE";
+    public string getHighRod = "FALSE";
 }
 
 public class GameManager : MonoBehaviour
@@ -66,12 +60,15 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    public List<InventoryItem> inventory_Items = new List<InventoryItem>();
+    /*public List<InventoryItem> inventory_Items = new List<InventoryItem>();
     public List<InventoryFish> inventory_Fishs = new List<InventoryFish>();
-    public Data data = new Data();
-    public Text logTxt;  //-----------------------
+    public Data data = new Data();*/
+    public List<InventoryItem> inventory_Items;
+    public List<InventoryFish> inventory_Fishs;
+    public Data data;
+    /*public Text logTxt;  //-----------------------
     public Text idTxt;  //-----------------------
-    public Text saveTxt;  //-----------------------
+    public Text saveTxt;  //-----------------------*/
 
     public bool nextStage;
     //public bool onLogin = false;
@@ -86,14 +83,13 @@ public class GameManager : MonoBehaviour
         else
             DontDestroyOnLoad(gameObject);
 
-        //Load();
-        Debug.Log("load");
+        Load();
     }
 
-    public void LogIn()
+    /*public void LogIn()
     {
         GPGSBinder.Inst.Login();
-    }
+    }*/
 
     public void Save(string type)
     {
@@ -101,51 +97,62 @@ public class GameManager : MonoBehaviour
         if (type == "i")
         {
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(inventory_Items));
-            string fileName = string.Format("ITEM");
+            /*string fileName = string.Format("ITEM");
             GPGSBinder.Inst.SaveCloud(fileName, item_Json);
-            // GoogleManager.instance.SaveToCloud_Item(item_Json);
-            Debug.Log("Data_Item" + item_Json);
-            saveTxt.text = "Data_Item : " + item_Json;  //-----------------------
+            Debug.Log("Data_Item" + item_Json);*/
+            PlayerPrefs.SetString("ITEM", item_Json);
         }
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(inventory_Fishs));
-            string fileName = string.Format("FISH");
+            /*string fileName = string.Format("FISH");
             GPGSBinder.Inst.SaveCloud(fileName, fish_Json);
-            //GoogleManager.instance.SaveToCloud_Fish(fish_Json);
-            Debug.Log("Data_Fish" + fish_Json);
-            saveTxt.text = "Data_Fish : " + fish_Json;  //-----------------------
-
+            Debug.Log("Data_Fish" + fish_Json);*/
+            PlayerPrefs.SetString("FISH", fish_Json);
         }
         else if (type == "s")
         {
             string data_Json = JsonUtility.ToJson(data);
-            string fileName = string.Format("DATA");
+            /*string fileName = string.Format("DATA");
             GPGSBinder.Inst.SaveCloud(fileName, data_Json);
-            //GoogleManager.instance.SaveToCloud_Data(data_Json);
-            Debug.Log("Data_Data" + data_Json);
-            saveTxt.text = "Data_Data : " + data_Json;  //-----------------------
+            Debug.Log("Data_Data" + data_Json);*/
+            PlayerPrefs.SetString("DATA", data_Json);
         }
     }
 
-    public void GetLog()
+    /*public void GetLog()
     {
         logTxt = GameObject.FindGameObjectWithTag("LOG").GetComponent<Text>();
         idTxt = GameObject.FindGameObjectWithTag("ID").GetComponent<Text>();
         saveTxt = GameObject.FindGameObjectWithTag("SAVE").GetComponent<Text>();
-    }
+    }*/
 
     public void Load()
     {
-        Debug.Log("load_cloud");
+        /*Debug.Log("load_cloud");
 
         GPGSBinder.Inst.LoadCloud("ITEM");
         GPGSBinder.Inst.LoadCloud("FISH");
-        GPGSBinder.Inst.LoadCloud("DATA");
+        GPGSBinder.Inst.LoadCloud("DATA");*/
 
-        //GoogleManager.instance.LoadFromCloud_Fish();
-        //GoogleManager.instance.LoadFromCloud_Item();
-        //GoogleManager.instance.LoadFromCloud_Data();
+        if (PlayerPrefs.HasKey("ITEM"))
+        {
+            string item_Data = PlayerPrefs.GetString("ITEM");
+            inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(item_Data).target;
+            Debug.Log("inventory_Items : " + item_Data);
+        }
+        if (PlayerPrefs.HasKey("FISH"))
+        {
+            string fish_Data = PlayerPrefs.GetString("FISH");
+            inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(fish_Data).target;
+            Debug.Log("inventory_Fishs : " + fish_Data);
+        }
+        if (PlayerPrefs.HasKey("DATA"))
+        {
+            string data_Data = PlayerPrefs.GetString("DATA");
+            data = JsonUtility.FromJson<Data>(data_Data);
+            Debug.Log("inventory_Items : " + data_Data);
+        }  
     }
 
     public void SetData(string _data)
@@ -154,30 +161,32 @@ public class GameManager : MonoBehaviour
         string f = "fish_Name";
         string d = "score";
 
-        Debug.Log("loadData" + _data);
-        idTxt.text = "loadData : " + _data;  //-----------------------
-
         // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
         if (_data.Contains(i))
         {
-            inventory_Items = JsonUtility.FromJson<List<InventoryItem>>(_data);
-            saveTxt.text = "inventory_Items : " + inventory_Items;  //-----------------------
+            inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(_data).target;
         }
         else if (_data.Contains(f))
         {
-            inventory_Fishs = JsonUtility.FromJson<List<InventoryFish>>(_data);
-            saveTxt.text = "inventory_Fishs : " + inventory_Fishs;  //-----------------------
+            inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(_data).target;
         }
         else if (_data.Contains(d))
         {
             data = JsonUtility.FromJson<Data>(_data);
-            saveTxt.text = "data : " + data;  //-----------------------
         }
-        else
-        {
-            saveTxt.text = "inventory_Items : " + inventory_Items;
-            saveTxt.text += "\ninventory_Fishs : " + inventory_Fishs;  //-----------------------
-            saveTxt.text += "\ndata : " + data;  //-----------------------
-        }
+    }
+
+    public void DeleteData()
+    {
+        /*GPGSBinder.Inst.DeleteCloud("ITEM");
+        GPGSBinder.Inst.DeleteCloud("FISH");
+        GPGSBinder.Inst.DeleteCloud("DATA");*/
+
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

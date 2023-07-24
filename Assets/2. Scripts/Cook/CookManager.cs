@@ -47,9 +47,6 @@ public class CookManager : MonoBehaviour
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
-
-        /*dateTxt.text = GameManager.instance.save[2].dateCount + "일차 / 평판 : " + GameManager.instance.save[3].score;
-        goldTxt.text = "gold : " + GameManager.instance.save[4].gold;*/
     }
 
     public void ViewInventory() //인벤토리 활성화
@@ -85,19 +82,10 @@ public class CookManager : MonoBehaviour
             {
                 cookView.SetActive(false);
                 count = 0;
-
-                /*for (int i = 0; i < fishImg.Length; i++)
-                {
-                    Destroy(fishImg[i].GetComponent<DragItem>());
-                }*/
             }
             else
             {
                 cookView.SetActive(true);
-                /*for (int i = 0; i < fishImg.Length; i++)
-                {
-                    fishImg[i].AddComponent<DragItem>();
-                }*/
             }
         }
     }
@@ -116,4 +104,9 @@ public class CookManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    /*public void LogOut()
+    {
+        GPGSBinder.Inst.Logout();
+    }*/
 }

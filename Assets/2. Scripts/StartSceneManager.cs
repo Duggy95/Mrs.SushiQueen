@@ -28,10 +28,10 @@ public class StartSceneManager : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.GetLog();
+            //GameManager.instance.GetLog();
 
-            if(GPGSBinder.Inst.LoginS())
-                loginObj.gameObject.SetActive(false);
+            /*if(GPGSBinder.Inst.LoginS())
+                loginObj.gameObject.SetActive(false);*/
 
             if (!GameManager.instance.nextStage) //
             {
@@ -47,15 +47,13 @@ public class StartSceneManager : MonoBehaviour
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 UIUpdate();
-                GameManager.instance.Load();
-                //GameManager.instance.Save("s");
             }
         }
     }
 
     private void Update()
     {
-        if (GPGSBinder.Inst.LoginS())
+        /*if (GPGSBinder.Inst.LoginS())
             loginObj.gameObject.SetActive(false);
 
         if (GPGSBinder.Inst.LoginS() && isStart && Input.GetMouseButtonDown(0))
@@ -64,7 +62,15 @@ public class StartSceneManager : MonoBehaviour
             mainObj.gameObject.SetActive(false);
             storyObj.gameObject.SetActive(true);
             modeObj.gameObject.SetActive(false);
-        }        
+        }        */
+
+        if (isStart && Input.GetMouseButtonDown(0))
+        {
+            isStart = false;
+            mainObj.gameObject.SetActive(false);
+            storyObj.gameObject.SetActive(true);
+            modeObj.gameObject.SetActive(false);
+        }
     }
 
     void UIUpdate()
@@ -124,6 +130,16 @@ public class StartSceneManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+   /* public void LogOut()
+    {
+        GPGSBinder.Inst.Logout();
+    }*/
+
+    public void Delete()
+    {
+        GameManager.instance.DeleteData();
     }
 
     public void Story()

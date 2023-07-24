@@ -577,7 +577,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 504227835}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -616,9 +617,9 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 400}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -860, y: -140}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &62979538
@@ -908,10 +909,10 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 209.40002, y: -122.05}
-  m_SizeDelta: {x: -600, y: -384}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 209.40002, y: -122.04999}
+  m_SizeDelta: {x: 1320, y: 696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109085277
 MonoBehaviour:
@@ -1250,7 +1251,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 504227835}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1732,9 +1733,9 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 250}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -860, y: -290}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &357705086
@@ -1914,8 +1915,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 18635622}
   m_HandleRect: {fileID: 18635621}
   m_Direction: 0
-  m_Value: 0.00000012715654
-  m_Size: 0.7333333
+  m_Value: 0
+  m_Size: 0.7333334
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1989,7 +1990,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 504227835}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2258,7 +2259,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495212778
 GameObject:
@@ -2393,7 +2394,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2440,14 +2441,14 @@ RectTransform:
   - {fileID: 357705085}
   - {fileID: 62979537}
   - {fileID: 2086567959}
-  - {fileID: 1192257024}
   - {fileID: 699560816}
   - {fileID: 1844171243}
   - {fileID: 378748622}
   - {fileID: 181453422}
   - {fileID: 1120273210}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  - {fileID: 1192257024}
+  m_Father: {fileID: 59095465}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2813,10 +2814,10 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 209.40002, y: -122.05}
-  m_SizeDelta: {x: -600, y: -384}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 209.40002, y: -122.04999}
+  m_SizeDelta: {x: 1320, y: 696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540600172
 MonoBehaviour:
@@ -3374,7 +3375,7 @@ RectTransform:
   m_Children:
   - {fileID: 1976132143}
   m_Father: {fileID: 504227835}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3771,7 +3772,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 892000138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1050191753}
+        m_TargetAssemblyTypeName: EndSceneCtrl, Assembly-CSharp
+        m_MethodName: LogOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &892000138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3821,10 +3834,9 @@ GameObject:
   - component: {fileID: 962123514}
   - component: {fileID: 962123516}
   - component: {fileID: 962123517}
-  - component: {fileID: 962123518}
   - component: {fileID: 962123519}
   m_Layer: 5
-  m_Name: RawImage (2)
+  m_Name: White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3903,7 +3915,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 962123518}
+      - m_Target: {fileID: 1099168919}
         m_TargetAssemblyTypeName: UpGrade_Fishing, Assembly-CSharp
         m_MethodName: Buy_Item
         m_Mode: 1
@@ -3915,20 +3927,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &962123518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962123513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noMoneyTxt: {fileID: 699560813}
-  ItemContent: {fileID: 2027063615}
 --- !u!114 &962123519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4131,11 +4129,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1012771440}
   - component: {fileID: 1012771442}
-  - component: {fileID: 1012771445}
   - component: {fileID: 1012771444}
   - component: {fileID: 1012771446}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: MiddleRod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4214,7 +4211,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012771445}
+      - m_Target: {fileID: 1099168919}
         m_TargetAssemblyTypeName: UpGrade_Fishing, Assembly-CSharp
         m_MethodName: MiddleRod
         m_Mode: 1
@@ -4226,20 +4223,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1012771445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012771439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noMoneyTxt: {fileID: 699560813}
-  ItemContent: {fileID: 2027063615}
 --- !u!114 &1012771446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4300,7 +4283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1050191753
 MonoBehaviour:
@@ -4318,8 +4301,8 @@ MonoBehaviour:
   fishingSV: {fileID: 540600170}
   ShopSV: {fileID: 1820523937}
   SkillSV: {fileID: 109085275}
-  dateTxt: {fileID: 0}
-  goldTxt: {fileID: 0}
+  dateTxt: {fileID: 378748623}
+  goldTxt: {fileID: 181453423}
   InventoryImg: {fileID: 1405311110}
   noMoneyTxt: {fileID: 699560813}
 --- !u!1 &1089166119
@@ -4490,6 +4473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1099168916}
   - component: {fileID: 1099168918}
+  - component: {fileID: 1099168919}
   - component: {fileID: 1099168917}
   m_Layer: 5
   m_Name: Content
@@ -4563,6 +4547,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1099168919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099168915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noMoneyTxt: {fileID: 699560813}
+  ItemContent: {fileID: 2027063615}
+  middleRod: {fileID: 1012771439}
+  highRod: {fileID: 1845744455}
 --- !u!1 &1120273209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,7 +4596,7 @@ RectTransform:
   m_Children:
   - {fileID: 1098173747}
   m_Father: {fileID: 504227835}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4855,7 +4855,7 @@ RectTransform:
   m_Children:
   - {fileID: 1405311111}
   m_Father: {fileID: 504227835}
-  m_RootOrder: 8
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4966,10 +4966,9 @@ GameObject:
   - component: {fileID: 1237273854}
   - component: {fileID: 1237273856}
   - component: {fileID: 1237273857}
-  - component: {fileID: 1237273858}
   - component: {fileID: 1237273859}
   m_Layer: 5
-  m_Name: RawImage (4)
+  m_Name: Rare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5048,7 +5047,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237273858}
+      - m_Target: {fileID: 1099168919}
         m_TargetAssemblyTypeName: UpGrade_Fishing, Assembly-CSharp
         m_MethodName: Buy_Item
         m_Mode: 1
@@ -5060,20 +5059,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1237273858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237273853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noMoneyTxt: {fileID: 699560813}
-  ItemContent: {fileID: 2027063615}
 --- !u!114 &1237273859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5639,9 +5624,9 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -860, y: -440}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1471576990
@@ -6410,10 +6395,10 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 209.40002, y: -122.05}
-  m_SizeDelta: {x: -600, y: -384}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 209.40002, y: -122.04999}
+  m_SizeDelta: {x: 1320, y: 696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820523939
 MonoBehaviour:
@@ -6517,7 +6502,7 @@ RectTransform:
   - {fileID: 705688666}
   - {fileID: 191660710}
   m_Father: {fileID: 504227835}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6629,10 +6614,9 @@ GameObject:
   - component: {fileID: 1845744456}
   - component: {fileID: 1845744458}
   - component: {fileID: 1845744459}
-  - component: {fileID: 1845744460}
   - component: {fileID: 1845744461}
   m_Layer: 5
-  m_Name: RawImage (1)
+  m_Name: HighRod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6711,7 +6695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1845744460}
+      - m_Target: {fileID: 1099168919}
         m_TargetAssemblyTypeName: UpGrade_Fishing, Assembly-CSharp
         m_MethodName: HighRod
         m_Mode: 1
@@ -6723,20 +6707,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1845744460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845744455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noMoneyTxt: {fileID: 699560813}
-  ItemContent: {fileID: 2027063615}
 --- !u!114 &1845744461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7421,9 +7391,9 @@ RectTransform:
   m_Father: {fileID: 504227835}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 550}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -860, y: 10}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2086567960
@@ -7531,10 +7501,9 @@ GameObject:
   - component: {fileID: 2131478245}
   - component: {fileID: 2131478247}
   - component: {fileID: 2131478248}
-  - component: {fileID: 2131478249}
   - component: {fileID: 2131478250}
   m_Layer: 5
-  m_Name: RawImage (3)
+  m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7613,7 +7582,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2131478249}
+      - m_Target: {fileID: 1099168919}
         m_TargetAssemblyTypeName: UpGrade_Fishing, Assembly-CSharp
         m_MethodName: Buy_Item
         m_Mode: 1
@@ -7625,20 +7594,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2131478249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131478244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6598a54f89ccc324baec350d8a237d78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noMoneyTxt: {fileID: 699560813}
-  ItemContent: {fileID: 2027063615}
 --- !u!114 &2131478250
 MonoBehaviour:
   m_ObjectHideFlags: 0

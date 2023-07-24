@@ -17,6 +17,9 @@ public class ItemSlot : MonoBehaviour
         button = GetComponent<Button>(); //버튼 component 가져오기
         button.onClick.AddListener(() => UseItem()); //인자가 없을 때 함수 호출
         _text = GetComponentInChildren<Text>();
+
+        if(_text.text != null)
+            isEmpty = true;
     }
 
     public void UseItem()
