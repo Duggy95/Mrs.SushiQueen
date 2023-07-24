@@ -109,12 +109,13 @@ public class TutorialFishing : TutorialBase
                 _slot.fish_GradeNum = data.grade;
                 _slot.fish_Name = data.fishName;
 
-                InventoryFish _inventoryFish = new InventoryFish();
-                _inventoryFish.fish_Name = data.fishName;
+                /*InventoryFish _inventoryFish = new InventoryFish();
+                _inventoryFish.fish_Name = data.fishName;*/
                 //GameManager.instance.inventory_Fishs.Add(_inventoryFish);
 
                 //GameManager.instance.fishs = data.fishName;
                 //GameManager.instance.Save("f");
+
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = true;
