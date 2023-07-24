@@ -113,9 +113,7 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.data.gold = _gold.ToString();
                     GameManager.instance.Save("i");
                     endSceneCtrl.UIUpdate();*/
-                    SetItem(i, "지렁이", "1");
-
-                    _slot.isEmpty = true;
+                    SetItem(i, "지렁이", "1", _slot);
                 }
                 else if (int.Parse(GameManager.instance.data.gold) >= 10000 && text.gameObject.name == "Red")
                 {
@@ -131,9 +129,8 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.data.gold = _gold.ToString();
                     GameManager.instance.Save("i");
                     endSceneCtrl.UIUpdate();*/
-                    SetItem(i, "새우", "1");
+                    SetItem(i, "새우", "1", _slot);
 
-                    _slot.isEmpty = true;
                 }
                 else if (int.Parse(GameManager.instance.data.gold) >= 50000 && text.gameObject.name == "Rare")
                 {
@@ -149,9 +146,7 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.data.gold = _gold.ToString();
                     GameManager.instance.Save("i");*/
 
-                    SetItem(i, "생선살", "1");
-
-                    _slot.isEmpty = true;
+                    SetItem(i, "생선살", "1", _slot);
                 }
                 else
                 {
@@ -162,14 +157,15 @@ public class UpGrade_Fishing : MonoBehaviour
         }
     }
 
-    void SetItem(int i, string name, string num)
+    void SetItem(int i, string name, string count, ItemSlot slot)
     {
         _items[i].sprite = gameObject.GetComponent<Image>().sprite;
-        _items[i].GetComponentInChildren<Text>().text = name;
-        GameManager.instance.inventory_Items.Add(new InventoryItem(name, num));
+        _items[i].GetComponentInChildren<Text>().text = name + "    " + count + "개";
+        GameManager.instance.inventory_Items.Add(new InventoryItem(name, count));
         int _gold = int.Parse(GameManager.instance.data.gold) - 10000;
         GameManager.instance.data.gold = _gold.ToString();
         GameManager.instance.Save("i");
+        slot.isEmpty = true;
 
         endSceneCtrl.UIUpdate();
     }

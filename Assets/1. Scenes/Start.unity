@@ -419,7 +419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1182263661}
         m_TargetAssemblyTypeName: StartSceneManager, Assembly-CSharp
-        m_MethodName: DeleteData
+        m_MethodName: Delete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3882,7 +3882,7 @@ MonoBehaviour:
   story: []
   dateTxt: {fileID: 1011198123}
   goldTxt: {fileID: 90514012}
-  inventoryImg: {fileID: 1449622379}
+  inventoryImg: {fileID: 469822147}
   backGround: {fileID: 1530157990}
   sprites: []
   loginObj: {fileID: 1322251700}
@@ -5564,9 +5564,6 @@ MonoBehaviour:
     atk: 1
     getMiddleRod: FALSE
     getHighRod: FALSE
-  logTxt: {fileID: 0}
-  idTxt: {fileID: 0}
-  saveTxt: {fileID: 0}
   nextStage: 0
 --- !u!1 &1823626459
 GameObject:

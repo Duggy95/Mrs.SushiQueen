@@ -1818,7 +1818,7 @@ GameObject:
   - component: {fileID: 695894561}
   - component: {fileID: 695894560}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: FishingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4523,6 +4523,7 @@ MonoBehaviour:
   full_Txt: {fileID: 1692461091}
   fishObj: {fileID: 4445985424681281884, guid: 2773b65e969ebee4dbb452d0c1f68bb1, type: 3}
   fishRun: {fileID: 1238647980}
+  FishingBtn: {fileID: 695894560}
   isFishing: 0
   useItem_white: 0
   useItem_red: 0
