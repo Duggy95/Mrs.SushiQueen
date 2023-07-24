@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class StartSceneManager : MonoBehaviour
 {
@@ -31,6 +30,9 @@ public class StartSceneManager : MonoBehaviour
         {
             GameManager.instance.GetLog();
 
+            if(GPGSBinder.Inst.LoginS())
+                loginObj.gameObject.SetActive(false);
+
             if (!GameManager.instance.nextStage) //
             {
                 mainObj.gameObject.SetActive(true);
@@ -45,27 +47,18 @@ public class StartSceneManager : MonoBehaviour
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 UIUpdate();
-                GameManager.instance.Load();
-                GameManager.instance.Save("s");
+                //GameManager.instance.Load();
+                //GameManager.instance.Save("s");
             }
         }
     }
 
     private void Update()
     {
-        /*if(GameManager.instance.onLogin == false)
-        {
-            loginObj.gameObject.SetActive(true);
-            startTxt.gameObject.SetActive(false);
-        }
-
-        else if(GameManager.instance.onLogin)
-        {
+        if (GPGSBinder.Inst.LoginS())
             loginObj.gameObject.SetActive(false);
-            startTxt.gameObject.SetActive(true);
-        }*/
 
-        if (GameManager.instance.onLogin && isStart && Input.GetMouseButtonDown(0))
+        if (GPGSBinder.Inst.LoginS() && isStart && Input.GetMouseButtonDown(0))
         {
             isStart = false;
             mainObj.gameObject.SetActive(false);

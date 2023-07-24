@@ -15,6 +15,7 @@ TagManager:
   - SAVE
   - Undefined
   - LOG
+  - TUTORIAL
   layers:
   - Default
   - TransparentFX

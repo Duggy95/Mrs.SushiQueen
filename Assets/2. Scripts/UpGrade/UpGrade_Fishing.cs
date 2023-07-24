@@ -16,31 +16,12 @@ public class UpGrade_Fishing : MonoBehaviour
 
     public void MiddleRod()
     {
-        /*if (int.Parse(GameManager.instance.save[5].atk) < 2 && int.Parse(GameManager.instance.save[4].gold) >= 500000)
-        {
-            int _gold = int.Parse(GameManager.instance.save[4].gold) - 500000;
-            GameManager.instance.save[4].gold = _gold.ToString();
-            GameManager.instance.save[5].atk = 2.ToString();
-
-            GameManager.instance.Save("s");
-
-            Text text = GetComponentInChildren<Text>();
-            text.text = "구매한 제품입니다";
-
-            Destroy(this);
-        }
-
-        else
-        {
-            StartCoroutine(NoMoney());
-        }*/
-
         if (int.Parse(GameManager.instance.data.atk) < 2 && int.Parse(GameManager.instance.data.gold) >= 500000)
         {
             int _gold = int.Parse(GameManager.instance.data.gold) - 500000;
             GameManager.instance.data.gold = _gold.ToString();
             GameManager.instance.data.atk = 2.ToString();
-            GameManager.instance.Save("s");
+            //GameManager.instance.Save("s");
 
             Text text = GetComponentInChildren<Text>();
             text.text = "구매한 제품입니다";
@@ -56,27 +37,13 @@ public class UpGrade_Fishing : MonoBehaviour
 
     public void HighRod()
     {
-        /*if (int.Parse(GameManager.instance.save[5].atk) < 4 && int.Parse(GameManager.instance.save[4].gold) >= 1000000)
-        {
-            int _gold = int.Parse(GameManager.instance.save[4].gold) - 1000000;
-            GameManager.instance.save[4].gold = _gold.ToString();
-            GameManager.instance.save[5].atk = 4.ToString();
-
-            GameManager.instance.Save("s");
-
-            Text text = GetComponentInChildren<Text>();
-            text.text = "구매한 제품입니다";
-
-            Destroy(this);
-        }*/
-
         if (int.Parse(GameManager.instance.data.atk) < 4 && int.Parse(GameManager.instance.data.gold) >= 1000000)
         {
             int _gold = int.Parse(GameManager.instance.data.gold) - 1000000;
             GameManager.instance.data.gold = _gold.ToString();
             GameManager.instance.data.atk = 4.ToString();
 
-            GameManager.instance.Save("s");
+            //GameManager.instance.Save("s");
 
             Text text = GetComponentInChildren<Text>();
             text.text = "구매한 제품입니다";
@@ -102,38 +69,6 @@ public class UpGrade_Fishing : MonoBehaviour
             ItemSlot _slot = _items[i].GetComponent<ItemSlot>();
             if (_slot.isEmpty == false)
             {
-                /* if (int.Parse(GameManager.instance.save[4].gold) > 10000 && text.name == "White")
-                 {
-                     _items[i].GetComponentInChildren<Text>().text = "지렁이";
-                     InventoryItem _inventoryItem = new InventoryItem();
-                     _inventoryItem.item_Name = "지렁이";
-                     _inventoryItem.item_Count = "1";
-                     GameManager.instance.inventory_Items.Add(_inventoryItem);
-                     GameManager.instance.Save("i");
-                     _slot.isEmpty = true;
-                 }
-                 else if (int.Parse(GameManager.instance.save[4].gold) > 10000 && text.name == "Red")
-                 {
-                     _items[i].GetComponentInChildren<Text>().text = "새우";
-                     InventoryItem _inventoryItem = new InventoryItem();
-                     _inventoryItem.item_Name = "새우";
-                     _inventoryItem.item_Count = "1";
-                     GameManager.instance.inventory_Items.Add(_inventoryItem);
-                     GameManager.instance.Save("i");
-                     _slot.isEmpty = true;
-                 }
-                 else if (int.Parse(GameManager.instance.save[4].gold) > 50000 && text.name == "Rare")
-                 {
-                     _items[i].GetComponentInChildren<Text>().text = "생선살";
-                     _items[i].GetComponentInChildren<Text>().text = "생선살";
-                     InventoryItem _inventoryItem = new InventoryItem();
-                     _inventoryItem.item_Name = "생선살";
-                     _inventoryItem.item_Count = "1";
-                     GameManager.instance.inventory_Items.Add(_inventoryItem);
-                     GameManager.instance.Save("i");
-                     _slot.isEmpty = true;
-                 }*/
-
                 if (int.Parse(GameManager.instance.data.gold) >= 10000 && text.name == "White")
                 {
                     _items[i].sprite = gameObject.GetComponent<Image>().sprite;
@@ -144,7 +79,7 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.inventory_Items.Add(_inventoryItem);
                     int _gold = int.Parse(GameManager.instance.data.gold) - 10000;
                     GameManager.instance.data.gold = _gold.ToString();
-                    GameManager.instance.Save("i");
+                    //GameManager.instance.Save("i");
                     _slot.isEmpty = true;
 
                     endSceneCtrl.UIUpdate();
@@ -159,7 +94,7 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.inventory_Items.Add(_inventoryItem);
                     int _gold = int.Parse(GameManager.instance.data.gold) - 10000;
                     GameManager.instance.data.gold = _gold.ToString();
-                    GameManager.instance.Save("i");
+                    //GameManager.instance.Save("i");
                     _slot.isEmpty = true;
 
                     endSceneCtrl.UIUpdate();
@@ -175,7 +110,7 @@ public class UpGrade_Fishing : MonoBehaviour
                     GameManager.instance.inventory_Items.Add(_inventoryItem);
                     int _gold = int.Parse(GameManager.instance.data.gold) - 50000;
                     GameManager.instance.data.gold = _gold.ToString();
-                    GameManager.instance.Save("i");
+                    //GameManager.instance.Save("i");
                     _slot.isEmpty = true;
 
                     endSceneCtrl.UIUpdate();

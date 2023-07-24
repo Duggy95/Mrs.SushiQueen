@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting.FullSerializer;
 using GooglePlayGames;
 
 public class FishingManager : MonoBehaviour
@@ -37,6 +36,7 @@ public class FishingManager : MonoBehaviour
         GameManager.instance.GetLog();
         InventoryImg.gameObject.SetActive(false);
         UIUpdate();
+        //GameManager.instance.Load();
     }
 
     public void Fishing()
@@ -85,8 +85,8 @@ public class FishingManager : MonoBehaviour
         //GameManager.instance.gold += data.gold;
         //GameManager.instance.SetGold();
         int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
-        GameManager.instance.data.gold = _gold.ToString();
-        GameManager.instance.Save("s");
+        /*GameManager.instance.data.gold = _gold.ToString();
+        GameManager.instance.Save("s");*/
         Debug.Log("°ñµå " + _gold);
         // °ñµå ++
         UIUpdate();
@@ -116,10 +116,10 @@ public class FishingManager : MonoBehaviour
 
                 InventoryFish _inventoryFish = new InventoryFish();
                 _inventoryFish.fish_Name = data.fishName;
-                GameManager.instance.inventory_Fishs.Add(_inventoryFish);
+                //GameManager.instance.inventory_Fishs.Add(_inventoryFish);
 
                 //GameManager.instance.fishs = data.fishName;
-                GameManager.instance.Save("f");
+                //GameManager.instance.Save("f");
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = true;

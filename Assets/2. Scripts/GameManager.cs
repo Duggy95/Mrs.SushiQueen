@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     public Text saveTxt;  //-----------------------
 
     public bool nextStage;
-    public bool onLogin = false;
+    //public bool onLogin = false;
 
     private void Awake()
     {
@@ -90,20 +90,29 @@ public class GameManager : MonoBehaviour
         Debug.Log("load");
     }
 
-    public void Save(string type)
+    /*public void LogIn()
+    {
+        GPGSBinder.Inst.Login();
+    }*/
+
+    /*public void Save(string type)
     {
         // 타입에 따라 해당 정보를 json화 해서 문자열로 바꾸고 전달
         if (type == "i")
         {
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(inventory_Items));
-            GoogleManager.instance.SaveToCloud_Item(item_Json);
+            string fileName = string.Format("ITEM");
+            GPGSBinder.Inst.SaveCloud(fileName, item_Json);
+            // GoogleManager.instance.SaveToCloud_Item(item_Json);
             Debug.Log("Data_Item" + item_Json);
             saveTxt.text = "Data_Item : " + item_Json;  //-----------------------
         }
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(inventory_Fishs));
-            GoogleManager.instance.SaveToCloud_Fish(fish_Json);
+            string fileName = string.Format("FISH");
+            GPGSBinder.Inst.SaveCloud(fileName, fish_Json);
+            //GoogleManager.instance.SaveToCloud_Fish(fish_Json);
             Debug.Log("Data_Fish" + fish_Json);
             saveTxt.text = "Data_Fish : " + fish_Json;  //-----------------------
 
@@ -111,11 +120,13 @@ public class GameManager : MonoBehaviour
         else if (type == "s")
         {
             string data_Json = JsonUtility.ToJson(data);
-            GoogleManager.instance.SaveToCloud_Data(data_Json);
+            string fileName = string.Format("DATA");
+            GPGSBinder.Inst.SaveCloud(fileName, data_Json);
+            //GoogleManager.instance.SaveToCloud_Data(data_Json);
             Debug.Log("Data_Data" + data_Json);
             saveTxt.text = "Data_Data : " + data_Json;  //-----------------------
         }
-    }
+    }*/
 
     public void GetLog()
     {
@@ -124,14 +135,18 @@ public class GameManager : MonoBehaviour
         saveTxt = GameObject.FindGameObjectWithTag("SAVE").GetComponent<Text>();
     }
 
-    public void Load()
+    /*public void Load()
     {
         Debug.Log("load_cloud");
 
-        GoogleManager.instance.LoadFromCloud_Fish();
-        GoogleManager.instance.LoadFromCloud_Item();
-        GoogleManager.instance.LoadFromCloud_Data();
-    }
+        GPGSBinder.Inst.LoadCloud("ITEM");
+        GPGSBinder.Inst.LoadCloud("FISH");
+        GPGSBinder.Inst.LoadCloud("DATA");
+
+        //GoogleManager.instance.LoadFromCloud_Fish();
+        //GoogleManager.instance.LoadFromCloud_Item();
+        //GoogleManager.instance.LoadFromCloud_Data();
+    }*/
 
     public void SetData(string _data)
     {
@@ -140,7 +155,7 @@ public class GameManager : MonoBehaviour
         string d = "score";
 
         Debug.Log("loadData" + _data);
-        logTxt.text = "loadData : " + _data;  //-----------------------
+        idTxt.text = "loadData : " + _data;  //-----------------------
 
         // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
         if (_data.Contains(i))

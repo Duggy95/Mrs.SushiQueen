@@ -145,8 +145,8 @@ public class Customer : MonoBehaviour
             {
                 print("님 평판 깎임.");
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
-                GameManager.instance.data.score = _score.ToString();
-                GameManager.instance.Save("s");  //평판 저장
+                //GameManager.instance.data.score = _score.ToString();
+                //GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();  //UI 최신화
                 cookManager.ViewOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
@@ -182,7 +182,7 @@ public class Customer : MonoBehaviour
     {
         int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
-        GameManager.instance.Save("s");  //평판 저장
+        //GameManager.instance.Save("s");  //평판 저장
         //cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         Destroy(gameObject, 3f);  //손님 삭제
@@ -237,7 +237,7 @@ public class Customer : MonoBehaviour
                         totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
                         int _gold = int.Parse(GameManager.instance.data.gold) + totalPrice;
                         GameManager.instance.data.gold = _gold.ToString();
-                        GameManager.instance.Save("s");
+                        //GameManager.instance.Save("s");
                         //cookManager.UIUpdate();
                     }
                 }
@@ -252,7 +252,7 @@ public class Customer : MonoBehaviour
             {
                 int _score = int.Parse(GameManager.instance.data.score) + 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
-                GameManager.instance.Save("s");  //평판 저장
+                //GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();
                 orderTxt.text = success[Random.Range(0, success.Length)];
                 Debug.Log("총 가격: " + totalPrice);
@@ -268,7 +268,7 @@ public class Customer : MonoBehaviour
             {
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
-                GameManager.instance.Save("s");  //평판 저장
+                //GameManager.instance.Save("s");  //평판 저장
                 //cookManager.UIUpdate();
                 orderTxt.text = fail[Random.Range(0, fail.Length)];
                 orders.Clear();  //주문 리스트 클리어.

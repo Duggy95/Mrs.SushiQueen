@@ -27,6 +27,9 @@ public class Inventory : MonoBehaviour
             if (GameManager.instance.inventory_Items.Count > i)
             {
                 string _item = GameManager.instance.inventory_Items[i].item_Name;
+                GameManager.instance.logTxt.text = "_item : " + _item;
+                GameManager.instance.saveTxt.text = "itemDataCount : " + GameManager.instance.inventory_Items.Count;
+
                 item_Slot.GetComponentInChildren<Text>().text = _item + "   " + GameManager.instance.inventory_Items[i].item_Count + "°³";
                 item_Slot.isEmpty = true;
 
@@ -47,6 +50,9 @@ public class Inventory : MonoBehaviour
             if (GameManager.instance.inventory_Fishs.Count > i)
             {
                 string _fish = GameManager.instance.inventory_Fishs[i].fish_Name;
+                GameManager.instance.logTxt.text = "_fish : " + _fish;
+                GameManager.instance.saveTxt.text = "fishDataCount : " + GameManager.instance.inventory_Fishs.Count;
+
                 fish_Slot.GetComponentInChildren<Text>().text = _fish;
                 fish_Slot.isEmpty = true;
 

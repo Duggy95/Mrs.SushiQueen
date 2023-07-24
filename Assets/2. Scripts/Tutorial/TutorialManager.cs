@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,9 +14,15 @@ public class TutorialManager : MonoBehaviour
     private TutorialBase currentTutorial = null;
     private int currentIndex = -1;
 
+    public GameObject inventoryImg;
+    public GameObject configPanel;
     public GameObject modeCanvas;
     public GameObject fishCanvas;
     public GameObject cookCanvas;
+    public GameObject endCanvas;
+
+    bool config;
+    public bool fishScene;
 
     void Start()
     {
@@ -74,11 +81,36 @@ public class TutorialManager : MonoBehaviour
     public void ShowFishScene()
     {
         fishCanvas.SetActive(true);
+        fishScene = true;
     }
 
     public void ShowOrderView()
     {
         cookCanvas.SetActive(true);
+    }
+
+    public void ShowEndScene()
+    {
+        endCanvas.SetActive(true);
+    }
+
+    public void ConfigBtn() //설정보여주기
+    {
+        if (!config)
+        {
+            configPanel.SetActive(true);
+            config = true;
+        }
+        else
+        {
+            configPanel.SetActive(false);
+            config = false;
+        }
+    }
+
+    public void ViewInventory() //인벤토리 활성화
+    {
+        inventoryImg.gameObject.SetActive(true);
     }
 
     public void ExitGame()
