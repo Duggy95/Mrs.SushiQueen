@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject cookCanvas;
     public GameObject endCanvas;
 
+    bool isInventory = false;
     bool config;
     public bool fishScene;
 
@@ -108,9 +109,18 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void ViewInventory() //인벤토리 활성화
+    public void InventoryBtn() //인벤토리 활성화, 비활성화
     {
-        inventoryImg.gameObject.SetActive(true);
+        if(!isInventory)
+        {
+            inventoryImg.gameObject.SetActive(true);
+            isInventory = true;
+        }
+        else
+        {
+            inventoryImg.gameObject.SetActive(false);
+            isInventory = false;
+        }
     }
 
     public void ExitGame()

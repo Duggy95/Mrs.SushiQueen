@@ -17,8 +17,10 @@ public class TutorialFishing : TutorialBase
     public Image fish_Img;
     FishData data;
 
+    public int count = 0;
     bool isFishing;
     public bool fishCome;
+    public bool fishFull;
 
     public override void Enter()
     {
@@ -97,7 +99,7 @@ public class TutorialFishing : TutorialBase
         Image[] _fishs = fishContent.gameObject.GetComponentsInChildren<Image>();
         Debug.Log("수족관 칸 수 : " + _fishs.Length);
 
-        bool isFull = false;
+        bool isFull = true;
         // 수족관의 스롯을 검사하여 비었으면 해당 정보 전달
         for (int i = 0; i < _fishs.Length; i++)
         {
@@ -118,14 +120,16 @@ public class TutorialFishing : TutorialBase
 
                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
-                isFull = true;
+                isFull = false;
                 break;
             }
         }
+
         // 수족관이 가득 찬 경우 텍스트 띄움
-        if (!isFull)
+        if (isFull)
         {
             full_Txt.gameObject.SetActive(true);
+            //fishFull = true;
         }
         // 아닌 경우 정보 패널 비활성화
         else

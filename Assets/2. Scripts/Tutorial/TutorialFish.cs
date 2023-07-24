@@ -147,13 +147,13 @@ public class TutorialFish : MonoBehaviour
         }
 
         Debug.Log(fish_Data.Count);
-
-        int fishNum = Random.Range(0, fish_Data.Count);
-
-        fishData = fish_Data[fishNum]; // 확률에 따른 물고기 종류 지정
+        print("카운트1 : " + tf.count);
+        fishData = fishDatas[tf.count]; // 확률에 따른 물고기 종류 지정
         Setup(fishData);  // 물고기 체력 및 회복력 셋업
         currHP = maxHP;   // 현재 체력을 맥스 체력으로
         fishing = true;   // 낚시 시작
+        tf.count++;
+        //print("카운트2 : " + count);
 
         Debug.Log("물장구 시작");
 

@@ -32,6 +32,8 @@ public class TutorialPulse : TutorialBase
 
     public override void Exit()
     {
+        StopAllCoroutines();
+        pulse.transform.localScale = new Vector2(1, 1);
         canvas.blocksRaycasts = false;
     }
 
@@ -44,8 +46,8 @@ public class TutorialPulse : TutorialBase
 
     IEnumerator ScaleUp()
     {
-        Vector3 initialScale = new Vector3(1, 1, 1);
-        Vector3 targetScale = new Vector3(1.08f, 1.08f, 1.08f);
+        Vector2 initialScale = new Vector2(1, 1);
+        Vector2 targetScale = new Vector2(1.08f, 1.08f);
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -62,8 +64,8 @@ public class TutorialPulse : TutorialBase
 
     IEnumerator ScaleDown()
     {
-        Vector3 initialScale = new Vector3(1.08f, 1.08f, 1.08f);
-        Vector3 targetScale = new Vector3(1, 1, 1);
+        Vector2 initialScale = new Vector2(1.08f, 1.08f);
+        Vector2 targetScale = new Vector2(1, 1);
         float duration = 1f; // 크기 변화에 걸리는 시간
 
         float elapsedTime = 0f;
