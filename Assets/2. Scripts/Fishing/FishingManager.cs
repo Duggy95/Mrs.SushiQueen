@@ -20,6 +20,7 @@ public class FishingManager : MonoBehaviour
     public Text full_Txt;
     public GameObject fishObj;
     public Text fishRun;
+    public Button FishingBtn;
 
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
@@ -55,6 +56,9 @@ public class FishingManager : MonoBehaviour
             Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
             //transform.position = Input.mousePosition;
         }
+
+        else
+            return;
     }
 
 
@@ -94,19 +98,107 @@ public class FishingManager : MonoBehaviour
             FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
             if (_slot.isEmpty == false)
             {
-                _fishs[i].sprite = data.fishImg;
-                _slot.fish_ColorNum = data.color;
-                _slot.fish_GradeNum = data.grade;
-                _slot.fish_Name = data.fishName;
+                string valueToFind = data.fishName;
+                int newValue = 1;
 
-                GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName));
+                // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
+                int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
+
+                if (index != -1)
+                {
+                    newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+
+                    // 해당 인덱스(index)의 값 변경
+                    GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "개";
+                    Debug.Log("안찼고 같은 종류 " + index + " changed to " + newValue);
+                    GameManager.instance.Save("f");
+                }
+                else
+                {
+                    _fishs[i].sprite = data.fishImg;
+                    _slot.fish_ColorNum = data.color;
+                    _slot.fish_GradeNum = data.grade;
+                    _slot.fish_Name = data.fishName;
+
+                    GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1개";
+                    Debug.Log("안찼고 다른 종류");
+                    GameManager.instance.Save("f");
+                }
+
                 GameManager.instance.Save("f");
-                _fishs[i].GetComponentInChildren<Text>().text = data.fishName;
                 _slot.isEmpty = true;
                 isFull = false;
                 break;
+                /* bool isChange = false;
+                 for (int j = 0; j < GameManager.instance.inventory_Fishs.Count; j++)
+                 {
+                     if (GameManager.instance.inventory_Fishs[j].fish_Name == data.fishName)
+                     {
+                         int count = int.Parse(GameManager.instance.inventory_Fishs[j].fish_Count);
+                         count++;
+                         isChange = true;
+                         GameManager.instance.inventory_Fishs[j].fish_Count = count.ToString();
+                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + count.ToString() + "개";
+
+                         break;
+                     }
+                 }
+
+                 if (isChange == false)
+                 {
+                     GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
+                     _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1개";
+                 }
+                 GameManager.instance.Save("f");
+                 _slot.isEmpty = true;
+                 isFull = false;
+                 break;*/
+            }
+            else
+            {
+                for (int x = 0; x < _fishs.Length; x++)
+                {
+                    if (_fishs[x].GetComponentInChildren<Text>().text == data.fishName)
+                    {
+                        string valueToFind = data.fishName;
+                        int newValue = 1;
+
+                        // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
+                        int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
+
+                        if (index != -1)
+                        {
+                            newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+
+                            // 해당 인덱스(index)의 값 변경
+                            GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
+                            _fishs[x].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "개";
+                            Debug.Log("다 찼고 같은 종류 " + index + " changed to " + newValue);
+                            GameManager.instance.Save("f");
+                            isFull = false;
+                            break;
+                        }
+                    }
+                    /*
+
+                                    for (int j = 0; j < GameManager.instance.inventory_Fishs.Count; j++)
+                                    {
+                                        if (GameManager.instance.inventory_Fishs[j].fish_Name == data.fishName)
+                                        {
+                                            int count = int.Parse(GameManager.instance.inventory_Fishs[j].fish_Count);
+                                            count++;
+                                            GameManager.instance.inventory_Fishs[j].fish_Count = count.ToString();
+                                            _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + count.ToString() + "개";
+
+                                            break;
+                                        }
+                                    }*/
+                }
             }
         }
+
         // 수족관이 가득 찬 경우 텍스트 띄움
         if (isFull)
         {

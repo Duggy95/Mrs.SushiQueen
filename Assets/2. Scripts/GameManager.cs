@@ -23,18 +23,16 @@ public class InventoryItem
 [System.Serializable]
 public class InventoryFish
 {
-    public InventoryFish(string _fish_Name)
-    { fish_Name = _fish_Name; }
+    public InventoryFish(string _fish_Name, string _fish_Count)
+    { fish_Name = _fish_Name; fish_Count = _fish_Count; }
 
     public string fish_Name;
+    public string fish_Count;
 }
 
 [System.Serializable]
 public class Data
 {
-    /*public Data(string _itemCount, string _fishCount, string _dateCount, string _score, string _gold, string _atk)
-    { itemCount = _itemCount; fishCount = _fishCount; dateCount = _dateCount; score = _score; gold = _gold; atk = _atk; }*/
-
     public string itemCount = "3";
     public string fishCount = "3";
     public string dateCount = "1";  //  날짜
@@ -183,6 +181,7 @@ public class GameManager : MonoBehaviour
         GPGSBinder.Inst.DeleteCloud("DATA");*/
 
         PlayerPrefs.DeleteAll();
+        Debug.Log("데이터 삭제");
     }
 
     public void ExitGame()

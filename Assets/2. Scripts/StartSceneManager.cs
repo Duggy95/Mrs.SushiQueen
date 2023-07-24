@@ -83,6 +83,8 @@ public class StartSceneManager : MonoBehaviour
     {
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
+
+        print("인벤토리 열려라");
     }
 
     public void EscInventory()

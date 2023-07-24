@@ -34,6 +34,8 @@ public class Fish : MonoBehaviour
     {
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         transform.SetParent(fm.canvas.transform);
+        transform.SetSiblingIndex(1);  //2번째 자식.
+
         _atk = int.Parse(GameManager.instance.data.atk);
     }
 
@@ -72,7 +74,7 @@ public class Fish : MonoBehaviour
         // HP가 널이 아니고 현재 HP가 0보다 많으면
         // 한 번 터치할 때마다 공격력만큼 체력 깎고
         // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
-        if (hp != null && currHP > 0)
+        if (fm.isFishing && hp != null && currHP > 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -91,6 +93,7 @@ public class Fish : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator FishingEff(Vector3 pos)
     {
