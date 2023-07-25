@@ -143,6 +143,7 @@ public class StartSceneManager : MonoBehaviour
     public void Delete()
     {
         GameManager.instance.DeleteData();
+        UIUpdate();
     }
 
     public void Story()

@@ -9,6 +9,8 @@ public class Fish : MonoBehaviour
     public GameObject bobber;   // 찌 이미지
     public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
     public FishData[] fishDatas;
+    public GameObject directionObj; // 방향 오브젝트
+    public float fish_Probability;
 
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
@@ -20,9 +22,12 @@ public class Fish : MonoBehaviour
     int heal;  // 회복력
     int _atk;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
+    int randomIndex;
     float maxTime = 15f;  // 최대 타임
     float currTime;    // 현재 타임
     bool fishing = false;  // 낚시중인지
+    bool rightClick = false;
+    bool leftClick = false;
 
     public void Setup(FishData fishData)
     {
@@ -48,7 +53,7 @@ public class Fish : MonoBehaviour
         _bobber = Instantiate(bobber, bobberPos, Quaternion.identity);
         _bobber.transform.SetParent(transform);
         // 낚싯대부터 찌까지 라인렌더러 그리기
-        Vector3 pos = bobberPos - new Vector3(0, 25, 0);
+        Vector3 pos = bobberPos - new Vector3(0, 30, 0);
         delayTime = Random.Range(1, 4);
         // 코루틴 함수 호출
         StartCoroutine(FishingEff(pos));
@@ -76,19 +81,41 @@ public class Fish : MonoBehaviour
         // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
         if (fm.isFishing && hp != null && currHP > 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && leftClick)
             {
-                currHP -= _atk;
-                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                if (currHP <= 0)
+                if (Input.mousePosition.x > 0)
                 {
-                    Debug.Log(fishData.fishImg);
-                    Debug.Log(fishData.info);
+                    currHP -= _atk;
+                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
 
-                    fm.Fish(fishData);
+                    if (currHP <= 0)
+                    {
+                        Debug.Log(fishData.fishImg);
+                        Debug.Log(fishData.info);
 
-                    Destroy(gameObject);
+                        fm.Fish(fishData);
+
+                        Destroy(gameObject);
+                    }
+                }
+            }
+
+            else if(Input.GetMouseButtonDown(0) && rightClick)
+            {
+                if (Input.mousePosition.x < 0)
+                {
+                    currHP -= _atk;
+                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+
+                    if (currHP <= 0)
+                    {
+                        Debug.Log(fishData.fishImg);
+                        Debug.Log(fishData.info);
+
+                        fm.Fish(fishData);
+
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
@@ -99,12 +126,13 @@ public class Fish : MonoBehaviour
     {
         // 물고기의 체력바는 터치한 부분보다 위에,
         // 물장구 이미지는 터치한 부분보다 아래에 위치
-        Vector3 hpPos = pos + new Vector3(0, 70, 0);
+        Vector3 hpPos = pos + new Vector3(0, 100, 0);
+        Vector3 dirPos = pos - new Vector3(0, 100, 0);
+
         yield return new WaitForSeconds(delayTime);
 
         // 확률에 따라 나오도록
         List<FishData> fish_Data = new List<FishData>();
-        float fish_Probability;
 
         for (int i = 0; i < fishDatas.Length; i++)
         {
@@ -163,11 +191,21 @@ public class Fish : MonoBehaviour
         hp.fillAmount = 1f;
         Debug.Log("체력바 : " + hp.fillAmount);
 
+        GameObject directionObjClone = Instantiate(directionObj, dirPos, Quaternion.identity);
+        GameObject leftObj = directionObjClone.transform.GetChild(0).gameObject;
+        GameObject rightObj = directionObjClone.transform.GetChild(1).gameObject;
+        leftObj.transform.SetParent(transform);
+        rightObj.transform.SetParent(transform);
+
+        GameObject[] dirObj = { leftObj, rightObj };
+
         // 이미지 생성하여 번갈아가며 띄움
         GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
         _water.transform.SetParent(transform);
+
+        StartCoroutine(Dir(dirObj));
 
         while (fishing)
         {
@@ -176,10 +214,64 @@ public class Fish : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
 
+            /*randomIndex = Random.Range(0, dirObj.Length); // 배열에서 랜덤 인덱스 선택
+            for (int i = 0; i < dirObj.Length; i++)
+            {
+                if (i == randomIndex)
+                {
+                    dirObj[i].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+
+                    if (i == 0)
+                    {
+                        leftClick = true;
+                        rightClick = false;
+                    }
+                    else
+                    {
+                        leftClick = false;
+                        rightClick = true;
+                    }
+                }
+                else
+                {
+                    dirObj[i].SetActive(false); // 나머지 오브젝트들은 비활성화
+                }
+            }*/
             water_.gameObject.SetActive(false);
             _water.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    IEnumerator Dir(GameObject[] dirObj)
+    {
+        while (fishing)
+        {
+            randomIndex = Random.Range(0, dirObj.Length); // 배열에서 랜덤 인덱스 선택
+            for (int i = 0; i < dirObj.Length; i++)
+            {
+                if (i == randomIndex)
+                {
+                    dirObj[i].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+
+                    if (i == 0)
+                    {
+                        leftClick = true;
+                        rightClick = false;
+                    }
+                    else
+                    {
+                        leftClick = false;
+                        rightClick = true;
+                    }
+                }
+                else
+                {
+                    dirObj[i].SetActive(false); // 나머지 오브젝트들은 비활성화
+                }
+            }
+            yield return new WaitForSeconds(1f);
         }
     }
 

@@ -8,14 +8,4 @@ public class FishSlot : MonoBehaviour
     public int fish_GradeNum;
     public int fish_ColorNum;
     public string fish_Name;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

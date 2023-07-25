@@ -43,6 +43,13 @@ public class CookManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void Delete()
+    {
+        GameManager.instance.DeleteData();
+        UIUpdate();
+    }
+
+
     public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
