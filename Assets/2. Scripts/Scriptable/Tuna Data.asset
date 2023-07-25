@@ -16,9 +16,9 @@ MonoBehaviour:
   grade: 1
   color: 1
   hp: 50
-  heal: 4
-  gold: 50000
-  probability: 0.1
+  heal: 5
+  gold: 5000
+  probability: 3
   fishImg: {fileID: 21300000, guid: d4cfa27075c8ff34383296d74366c6a7, type: 3}
   netaImg: {fileID: 21300000, guid: 9083fd61cb60a904c8897c273ac9ce15, type: 3}
   info: {fileID: 7040561584231261383, guid: ae3053a6583225943845fbeb1c42fe68, type: 3}

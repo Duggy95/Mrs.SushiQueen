@@ -140,26 +140,6 @@ public class UpGradeFishing : MonoBehaviour
                     break;
                 }
             }
-            /*else if (_items[i].GetComponentInChildren<Text>().text.Contains("새우"))
-            {
-                
-                else
-                {
-                    Debug.Log("새우, 중복, 노머니");
-                    StartCoroutine(NoMoney());
-                    break;
-                }
-            }
-            else if (_items[i].GetComponentInChildren<Text>().text.Contains("생선살"))
-            {
-                
-                else
-                {
-                    Debug.Log("생선살, 중복, 노머니");
-                    StartCoroutine(NoMoney());
-                    break;
-                }
-            }*/
         }
         if (isChange == false)
         {
