@@ -71,10 +71,10 @@ public class ItemSlot : MonoBehaviour
             GameManager.instance.Save("i");
             if (count <= 0)
             {
-                GameManager.instance.inventory_Fishs.RemoveAt(index);
+                GameManager.instance.inventory_Items.RemoveAt(index);
                 gameObject.GetComponentInChildren<Image>().sprite = null;
                 GetComponentInChildren<Text>().text = "ºó °ø°£";
-                GameManager.instance.Save("f");
+                GameManager.instance.Save("i");
             }
         }
     }
