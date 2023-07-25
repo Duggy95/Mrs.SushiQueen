@@ -16,6 +16,7 @@ TagManager:
   - Undefined
   - LOG
   - TUTORIAL
+  - TC
   layers:
   - Default
   - TransparentFX

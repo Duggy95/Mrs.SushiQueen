@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[RequireComponent(typeof(DialogSystem))]
 [RequireComponent(typeof(DialogManager))]
 public class TutorialDialog : TutorialBase
 {
     public CanvasGroup blockPanel;
     public Image image;
     public string[] dialogs;
-    //DialogManager dialogManager = DialogManager.instance;
     DialogManager dialogManager;
     
     public override void Enter()
@@ -23,15 +21,18 @@ public class TutorialDialog : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
+        print("호출중");
         dialogManager.Next();
         if(this.dialogManager.complete == true)
         {
+            //Destroy(this, 2);
             tutorialManager.SetNextTutorial();
         }
     }
 
     public override void Exit()
     {
+        print("시작이요");
         StartCoroutine(FadeImage());
         blockPanel.blocksRaycasts = false;
     }
@@ -53,6 +54,7 @@ public class TutorialDialog : TutorialBase
             image.transform.position = Vector2.Lerp(initPos, targetPos, t);
             yield return null;
         }
+        print("나타났다");
     }
 
     IEnumerator FadeImage()

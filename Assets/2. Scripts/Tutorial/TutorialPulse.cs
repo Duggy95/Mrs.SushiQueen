@@ -32,7 +32,7 @@ public class TutorialPulse : TutorialBase
 
     public override void Exit()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         pulse.transform.localScale = new Vector2(1, 1);
         Destroy(this);
         //canvas.blocksRaycasts = false;

@@ -14,25 +14,10 @@ public class DialogManager : MonoBehaviour
     public Queue<string> sentences;
     WaitForSeconds ws;
     
-
-    /*[SerializeField]
-    public string[] dialogs;*/
     public string currSentence;
     public float typingSpeed = 0.05f;
     public bool isTyping = false;
     public bool complete = false;
-
-    /*void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else if(instance != this)
-        {
-            Destroy(instance.gameObject);
-        }
-    }*/
 
     void Start()
     {
@@ -57,7 +42,7 @@ public class DialogManager : MonoBehaviour
     {
         if (sentences.Count != 0)
         {
-            print(sentences.Count);
+            //print(sentences.Count);
             currSentence = sentences.Dequeue();
             isTyping = true;
             nextTxt.SetActive(false);
@@ -92,6 +77,7 @@ public class DialogManager : MonoBehaviour
 
     public void Next()
     {
+        print("호출이요");
         if(!isTyping && Input.GetMouseButtonDown(0))
         {
             NextSentence();

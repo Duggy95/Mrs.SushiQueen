@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class TutorialCook : TutorialBase
 {
-    public GameObject customerPrefab;
+    public GameObject[] customer;
     public GameObject orderView;
     public GameObject cookView;
 
     WaitForSeconds ws;
 
     bool isCustomer;
-    bool canMake;
-    int count;
+    public bool canMake;
+    public int count = 0;
     Vector2 customerTr = Vector2.zero;
+
     public override void Enter()
     {
         ws = new WaitForSeconds(2f);
-
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
         cookView.SetActive(false);
-        Create();
+        StartCoroutine(Create(0));
     }
 
     public override void Execute(TutorialManager tutorialManager)
@@ -54,14 +54,14 @@ public class TutorialCook : TutorialBase
         }
     }
 
-    public IEnumerator Create()
+    public IEnumerator Create(int num)
     {
         //2초 후 손님 생성.
         yield return ws;
-        GameObject customer = Instantiate(customerPrefab, customerTr,
-                                                                Quaternion.identity, orderView.transform);
-        customer.transform.localPosition = new Vector2(-400, -100);  //손님 위치
-        customer.transform.SetSiblingIndex(1);  //2번째 자식.
+        /*GameObject customer = Instantiate(customerPrefab, customerTr,
+                                                                Quaternion.identity, orderView.transform);*/
+        customer[num].transform.localPosition = new Vector2(-400, -100);  //손님 위치
+        //customer.transform.SetSiblingIndex(1);  //2번째 자식.
         isCustomer = true;
     }
 }
