@@ -43,7 +43,7 @@ public class CookManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
-    void UIUpdate()
+    public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
