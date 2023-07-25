@@ -6,6 +6,7 @@ public class NetaButton : MonoBehaviour
 {
     public GameObject netaPrefab; //회 프리팹
     public GameObject board;  //도마
+
     public FishData fishData;  //생선 데이터
 
     public void FishBtn()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -17,6 +18,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     float left;
     float top;
     float bottom;
+    int nextChildIndex;
     CanvasGroup canvasGroup;
     CanvasGroup inventoryCanvasGroup;
     Transform itemTr;
@@ -25,9 +27,19 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     private void Awake()
     {
-        inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
-        fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
-        cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
+        string currentScene = SceneManager.GetActiveScene().name;  //현재 씬
+
+        //요리 씬일때만 동작하도록 함.
+        if (currentScene == "Cook")
+        {
+            inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
+            fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
+            cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
+        }
+        else
+        {
+            Destroy(this);  //스크립트 삭제.
+        }
     }
 
     void Start()
@@ -73,24 +85,22 @@ public class DragItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             Input.mousePosition.x < right && Input.mousePosition.y < top &&
             Input.mousePosition.y > bottom)
         {
-            for (int i = 0; i < cookChildTr.Length; i++)
+            if (nextChildIndex < cookChildTr.Length)
             {
-                if (cookChildTr[i].childCount == 1)
+                Transform childTr = cookChildTr[nextChildIndex];
+                if (childTr.childCount == 1)
                 {
-                    //itemTr.SetParent(cookChildTr[i].transform);
-                    cookChildTr[i].gameObject.GetComponent<Image>().sprite = itemTr.gameObject.GetComponent<Image>().sprite;
-                    //itemTr.position = cookChildTr[i].position;
+                    childTr.gameObject.GetComponent<Image>().sprite = itemTr.gameObject.GetComponent<Image>().sprite;
                     Destroy(gameObject);
-                    break;
                 }
+                nextChildIndex++;
             }
 
-            if(itemTr.parent == inventoryTr)
+            if (itemTr.parent == inventoryTr)
             {
                 itemTr.SetParent(fishListTr.transform);
             }
         }
-
         else
         {
             itemTr.SetParent(fishListTr.transform);

@@ -69,6 +69,13 @@ public class ItemSlot : MonoBehaviour
             GameManager.instance.inventory_Items[index].item_Count = count.ToString();
             _text.text = itemName + "   " + count + "°³";
             GameManager.instance.Save("i");
+            if (count <= 0)
+            {
+                GameManager.instance.inventory_Fishs.RemoveAt(index);
+                gameObject.GetComponentInChildren<Image>().sprite = null;
+                GetComponentInChildren<Text>().text = "ºó °ø°£";
+                GameManager.instance.Save("f");
+            }
         }
     }
 }

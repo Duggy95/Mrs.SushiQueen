@@ -16,6 +16,7 @@ public class CookManager : MonoBehaviour
     public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     bool config = false;
+    //Transform fishContent;
 
     WaitForSeconds ws;
 
@@ -26,9 +27,21 @@ public class CookManager : MonoBehaviour
     {
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
-        cookView.SetActive(false);
+        //cookView.SetActive(false);
+        cookView.SetActive(true);
         ws = new WaitForSeconds(2f);
         UIUpdate();
+        /*fishContent = GameObject.FindWithTag("FISHCONTENT").GetComponent<Transform>();
+        for(int i = 0; i < fishContent.childCount; i++)
+        {
+            Transform childContent = fishContent.GetChild(i);
+
+            if(childContent != null)
+            {
+                childContent.gameObject.AddComponent<DragItem>();
+            }
+        }*/
+
 
         StartCoroutine(Create());
     }
