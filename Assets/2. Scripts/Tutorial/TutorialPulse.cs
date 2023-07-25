@@ -34,7 +34,8 @@ public class TutorialPulse : TutorialBase
     {
         StopAllCoroutines();
         pulse.transform.localScale = new Vector2(1, 1);
-        canvas.blocksRaycasts = false;
+        Destroy(this);
+        //canvas.blocksRaycasts = false;
     }
 
     void OnPulseButtonClick()
