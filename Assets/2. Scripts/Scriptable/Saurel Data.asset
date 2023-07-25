@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b3d820df750364ca03235c9bff8e86, type: 3}
-  m_Name: Snapper Data
+  m_Name: Saurel Data
   m_EditorClassIdentifier: 
-  fishName: "\uB3C4\uBBF8"
-  grade: 1
+  fishName: "\uC804\uAC31\uC5B4"
+  grade: 0
   color: 0
-  hp: 50
-  heal: 5
-  gold: 5000
-  probability: 3
-  fishImg: {fileID: 21300000, guid: d1dce19184f08ba408290ef1616a9f5c, type: 3}
-  netaImg: {fileID: 21300000, guid: b79354d16c1d70a488772f15db973c7d, type: 3}
-  info: {fileID: 7040561584231261383, guid: bc9fe0c67c388e24abf5c1bc7344567e, type: 3}
+  hp: 30
+  heal: 3
+  gold: 3000
+  probability: 10
+  fishImg: {fileID: 21300000, guid: 05afd58773e2bad4182c06441f4c2898, type: 3}
+  netaImg: {fileID: 21300000, guid: cb04e3b4c344366409a2b85423b33c7a, type: 3}
+  info: {fileID: 7040561584231261383, guid: cba5ae5bd0ef6304d83baa74694c23ac, type: 3}

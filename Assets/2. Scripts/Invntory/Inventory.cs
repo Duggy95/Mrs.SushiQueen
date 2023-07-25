@@ -15,8 +15,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        //itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
-        //fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
+        itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
+        fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
 
         for (int i = 0; i < itemSlotCount; i++)
         {
@@ -27,9 +27,7 @@ public class Inventory : MonoBehaviour
             {
                 string _itemName = GameManager.instance.inventory_Items[i].item_Name;
                 string _itemCount = GameManager.instance.inventory_Items[i].item_Count;
-                /*GameManager.instance.logTxt.text = "_item : " + _itemName;
-                GameManager.instance.saveTxt.text = "itemDataCount : " + GameManager.instance.inventory_Items.Count;*/
-
+                
                 item_Slot.GetComponentInChildren<Text>().text = _itemName + "   " + _itemCount + "개";
                 item_Slot.isEmpty = true;
 
@@ -51,7 +49,6 @@ public class Inventory : MonoBehaviour
             {
                 string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
                 string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
-                // GameManager.instance.logTxt.text = "_fish : " + _fishName;
 
                 fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + "마리";
                 fish_Slot.isEmpty = true;
@@ -64,6 +61,19 @@ public class Inventory : MonoBehaviour
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Snapper", typeof(Sprite)) as Sprite;
                 else if (_fishName == "참치")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
+                else if (_fishName == "오징어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
+                else if (_fishName == "전갱어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Saurel", typeof(Sprite)) as Sprite;
+                else if (_fishName == "농어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
+                else if (_fishName == "방어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
+                else if (_fishName == "문어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Octopus", typeof(Sprite)) as Sprite;
+                else if (_fishName == "고등어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
+
             }
         }
     }

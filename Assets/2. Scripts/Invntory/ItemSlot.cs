@@ -33,29 +33,30 @@ public class ItemSlot : MonoBehaviour
         {
             fm.useItem_white = true;
             print("지렁이 사용");
+            UpdateData();
         }
 
         else if(_text.text.Contains("새우"))
         {
             fm.useItem_red = true;
             print("새우 사용");
+            UpdateData();
         }
 
         else if(_text.text.Contains("생선살"))
         {
             fm.useItem_rare = true;
             print("생선살 사용");
+            UpdateData();
         }
-
-        UpdateData();
     }
 
     void UpdateData()
     {
-        string[] slotInfo = _text.text.Split(" ");
-        string itemName = slotInfo[0];
+        string[] slotInfo = _text.text.Split(" "); // 문자열에서 띄어쓰기 기준으로 문자분할
+        string itemName = slotInfo[0];  // 0번째 문자 할당
         print(itemName);
-        string valueToFind = _text.text;
+        string valueToFind = itemName; 
 
         int newValue = 1;
         // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
@@ -64,11 +65,18 @@ public class ItemSlot : MonoBehaviour
         if (index != -1)
         {
             int count = int.Parse(GameManager.instance.inventory_Items[index].item_Count) - newValue;
-
+            print(itemName + "아이템 개수 : " + count);
             // 해당 인덱스(index)의 값 변경
             GameManager.instance.inventory_Items[index].item_Count = count.ToString();
             _text.text = itemName + "   " + count + "개";
             GameManager.instance.Save("i");
+            if (count <= 0)
+            {
+                GameManager.instance.inventory_Items.RemoveAt(index);
+                gameObject.GetComponentInChildren<Image>().sprite = null;
+                GetComponentInChildren<Text>().text = "빈 공간";
+                GameManager.instance.Save("i");
+            }
         }
     }
 }

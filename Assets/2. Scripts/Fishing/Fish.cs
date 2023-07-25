@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Fish : MonoBehaviour
 {
@@ -10,12 +11,12 @@ public class Fish : MonoBehaviour
     public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
     public FishData[] fishDatas;
     public GameObject directionObj; // 방향 오브젝트
-    public float fish_Probability;
 
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
     GameObject _bobber;
     FishData fishData;
+    List<GameObject> dirObj = new List<GameObject>();
 
     int maxHP; //최대체력
     int currHP;  //현재체력
@@ -25,6 +26,7 @@ public class Fish : MonoBehaviour
     int randomIndex;
     float maxTime = 15f;  // 최대 타임
     float currTime;    // 현재 타임
+    float fish_Probability;
     bool fishing = false;  // 낚시중인지
     bool rightClick = false;
     bool leftClick = false;
@@ -72,18 +74,18 @@ public class Fish : MonoBehaviour
             if (currTime <= 0)
             {
                 fm.Run();
+                dirObj.Clear();
                 Destroy(gameObject);
             }
         }
-
         // HP가 널이 아니고 현재 HP가 0보다 많으면
         // 한 번 터치할 때마다 공격력만큼 체력 깎고
         // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
-        if (fm.isFishing && hp != null && currHP > 0)
+        /*if (fm.isFishing && hp != null && currHP > 0)
         {
-            if (Input.GetMouseButtonDown(0) && leftClick)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x > 0)
+                if (leftClick && Input.mousePosition.x > 0)
                 {
                     currHP -= _atk;
                     hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
@@ -92,35 +94,72 @@ public class Fish : MonoBehaviour
                     {
                         Debug.Log(fishData.fishImg);
                         Debug.Log(fishData.info);
-
                         fm.Fish(fishData);
+                        dirObj.Clear();
+                        Destroy(gameObject);
+                    }
+                }
+                else if (rightClick && Input.mousePosition.x < 0)
+                {
+                    currHP -= _atk;
+                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
 
+                    if (currHP <= 0)
+                    {
+                        Debug.Log(fishData.fishImg);
+                        Debug.Log(fishData.info);
+                        fm.Fish(fishData);
+                        dirObj.Clear();
                         Destroy(gameObject);
                     }
                 }
             }
+        }*/
+    }
 
-            else if(Input.GetMouseButtonDown(0) && rightClick)
+    public void LeftClick()
+    {
+        if (fm.isFishing && hp != null && currHP > 0)
+        {
+
+            if (leftClick)
             {
-                if (Input.mousePosition.x < 0)
+                currHP -= _atk;
+                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+
+                if (currHP <= 0)
                 {
-                    currHP -= _atk;
-                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                    if (currHP <= 0)
-                    {
-                        Debug.Log(fishData.fishImg);
-                        Debug.Log(fishData.info);
-
-                        fm.Fish(fishData);
-
-                        Destroy(gameObject);
-                    }
+                    Debug.Log(fishData.fishImg);
+                    Debug.Log(fishData.info);
+                    fm.Fish(fishData);
+                    dirObj.Clear();
+                    Destroy(gameObject);
                 }
             }
         }
     }
 
+    public void RightClick()
+    {
+        if (fm.isFishing && hp != null && currHP > 0)
+        {
+
+            if (rightClick)
+            {
+                currHP -= _atk;
+                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+
+                if (currHP <= 0)
+                {
+                    Debug.Log(fishData.fishImg);
+                    Debug.Log(fishData.info);
+                    fm.Fish(fishData);
+                    dirObj.Clear();
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
 
     IEnumerator FishingEff(Vector3 pos)
     {
@@ -136,8 +175,7 @@ public class Fish : MonoBehaviour
 
         for (int i = 0; i < fishDatas.Length; i++)
         {
-            fish_Probability = fishDatas[i].probability * 100;
-
+            fish_Probability = fishDatas[i].probability;
             // 아이템 썼을 때 확률 조정
             if (fm.useItem_white)
             {
@@ -160,18 +198,21 @@ public class Fish : MonoBehaviour
             else if (fm.useItem_rare)
             {
                 if (fishDatas[i].grade == 0)
-                    fish_Probability *= 0.75f;
+                    fish_Probability *= 0.5f;
 
                 else if (fishDatas[i].grade == 1)
                     fish_Probability *= 2f;
             }
-
             // 확률만큼 리스트 저장
             for (int j = 0; j < fish_Probability; j++)
             {
                 fish_Data.Add(fishDatas[i]);
             }
         }
+
+        fm.useItem_rare = false;
+        fm.useItem_red = false;
+        fm.useItem_white = false;
 
         Debug.Log(fish_Data.Count);
 
@@ -182,6 +223,11 @@ public class Fish : MonoBehaviour
         currHP = maxHP;   // 현재 체력을 맥스 체력으로
         fishing = true;   // 낚시 시작
 
+        string targetValue = fishData.fishName; // 찾고자 하는 값
+        int count = fish_Data.Count(x => x.fishName == targetValue);
+
+        Debug.Log("물고기 확률 : " + count);
+
         Debug.Log("물장구 시작");
 
         // 물고기 체력바 생성 후 자신의 자식으로 넣음
@@ -189,23 +235,22 @@ public class Fish : MonoBehaviour
         fishHP.transform.SetParent(transform);
         hp = fishHP.GetComponent<Image>();
         hp.fillAmount = 1f;
-        Debug.Log("체력바 : " + hp.fillAmount);
 
         GameObject directionObjClone = Instantiate(directionObj, dirPos, Quaternion.identity);
         GameObject leftObj = directionObjClone.transform.GetChild(0).gameObject;
         GameObject rightObj = directionObjClone.transform.GetChild(1).gameObject;
-        leftObj.transform.SetParent(transform);
-        rightObj.transform.SetParent(transform);
+        directionObjClone.transform.SetParent(transform);
 
-        GameObject[] dirObj = { leftObj, rightObj };
+        dirObj.Add(leftObj);
+        dirObj.Add(rightObj);
+        StartCoroutine(Dir(dirObj));
+        //StartCoroutine(Click());
 
         // 이미지 생성하여 번갈아가며 띄움
         GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
         _water.transform.SetParent(transform);
-
-        StartCoroutine(Dir(dirObj));
 
         while (fishing)
         {
@@ -244,53 +289,49 @@ public class Fish : MonoBehaviour
         }
     }
 
-    IEnumerator Dir(GameObject[] dirObj)
+    IEnumerator Dir(List<GameObject> dirObj)
     {
         while (fishing)
         {
-            randomIndex = Random.Range(0, dirObj.Length); // 배열에서 랜덤 인덱스 선택
-            for (int i = 0; i < dirObj.Length; i++)
-            {
-                if (i == randomIndex)
-                {
-                    dirObj[i].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+            randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
 
-                    if (i == 0)
-                    {
-                        leftClick = true;
-                        rightClick = false;
-                    }
-                    else
-                    {
-                        leftClick = false;
-                        rightClick = true;
-                    }
-                }
-                else
-                {
-                    dirObj[i].SetActive(false); // 나머지 오브젝트들은 비활성화
-                }
+            if (randomIndex - 0 > 0)
+            {
+                dirObj[1].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+                dirObj[0].SetActive(false); // 나머지 오브젝트들은 비활성화
+                leftClick = false;
+                rightClick = true;
             }
-            yield return new WaitForSeconds(1f);
+            else
+            {
+                dirObj[0].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+                dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
+                leftClick = true;
+                rightClick = false;
+
+            }
+
         }
+        yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator Heal()
+
+IEnumerator Heal()
+{
+    yield return new WaitForSeconds(delayTime);
+
+    while (fishing)
     {
-        yield return new WaitForSeconds(delayTime);
+        // 현재 체력 + 회복력이 최대 체력보다 적다면
+        // 1초마다 힐량 만큼 체력 회복
+        yield return new WaitForSeconds(1f);
 
-        while (fishing)
+        if (currHP + heal <= maxHP)
         {
-            // 현재 체력 + 회복력이 최대 체력보다 적다면
-            // 1초마다 힐량 만큼 체력 회복
-            yield return new WaitForSeconds(1f);
-
-            if (currHP + heal <= maxHP)
-            {
-                currHP += heal;
-                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
-            }
-            Debug.Log("현재 체력 " + currHP);
+            currHP += heal;
+            hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
         }
+        Debug.Log("현재 체력 " + currHP);
     }
+}
 }
