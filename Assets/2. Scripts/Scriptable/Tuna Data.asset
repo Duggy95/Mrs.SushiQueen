@@ -15,7 +15,7 @@ MonoBehaviour:
   fishName: "\uCC38\uCE58"
   grade: 1
   color: 1
-  hp: 5
+  hp: 50
   heal: 4
   gold: 50000
   probability: 0.1

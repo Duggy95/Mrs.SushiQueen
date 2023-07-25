@@ -11,21 +11,22 @@ public class FishingManager : MonoBehaviour
     public Text goldTxt;
     public GameObject configPanel;
     public GameObject InventoryImg;  // 인벤토리 이미지
-    public GameObject FishContent; // 수족관
+    public GameObject fishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
-    public GameObject FishingRod; // 낚싯대 이미지
+    public GameObject fishingRod; // 낚싯대 이미지
     public GameObject lineStartPos;
     public Image fish_Img;
     public Text fishInfo_Txt;
     public Text full_Txt;
     public GameObject fishObj;
     public Text fishRun;
-    public Button FishingBtn;
+    public Button fishingBtn;
 
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
     public bool useItem_rare = false;   // 레어 생선 확률 증가 아이템 사용
+
     bool config;
 
     FishData data;
@@ -37,6 +38,13 @@ public class FishingManager : MonoBehaviour
         UIUpdate();
     }
 
+    public void Delete()
+    {
+        GameManager.instance.DeleteData();
+        UIUpdate();
+    }
+
+
     public void Fishing()
     {
         if (isFishing == false)
@@ -45,7 +53,7 @@ public class FishingManager : MonoBehaviour
             isFishing = true;
             // 물고기 도망 텍스트 비활성화
             fishRun.gameObject.SetActive(false);
-            LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
+            LineRenderer fishLine = fishingRod.GetComponent<LineRenderer>();
 
             Vector3 startPos = lineStartPos.transform.position; // 시작 지점
             Vector3 endPos = Input.mousePosition; // 끝 지점
@@ -89,7 +97,7 @@ public class FishingManager : MonoBehaviour
     public void Get()
     {
         // 수족관에 이미지 추가
-        Image[] _fishs = FishContent.gameObject.GetComponentsInChildren<Image>();
+        Image[] _fishs = fishContent.gameObject.GetComponentsInChildren<Image>();
 
         bool isFull = true;
         bool isChange = false;
@@ -110,7 +118,7 @@ public class FishingManager : MonoBehaviour
 
                     // 해당 인덱스(index)의 값 변경
                     GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "개";
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "마리";
                     Debug.Log("중복 종류 " + index + " changed to " + newValue);
                     GameManager.instance.Save("f");
                     isChange = true;
@@ -133,7 +141,7 @@ public class FishingManager : MonoBehaviour
                     _slot.fish_Name = data.fishName;
 
                     GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1개";
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1마리";
                     Debug.Log("안찼고 다른 종류");
                     GameManager.instance.Save("f");
                     _slot.isEmpty = true;

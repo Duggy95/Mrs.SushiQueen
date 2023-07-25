@@ -54,6 +54,13 @@ public class EndSceneCtrl : MonoBehaviour
     }
 
 
+    public void Delete()
+    {
+        GameManager.instance.DeleteData();
+        UIUpdate();
+    }
+
+
     private void Start()
     {
         UIUpdate();

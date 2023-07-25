@@ -35,6 +35,7 @@ public class Data
 {
     public string itemCount = "3";
     public string fishCount = "3";
+    public string cookCount = "3";
     public string dateCount = "1";  //  날짜
     public string score = "500";  // 점수
     public string gold = "0";  // 골드
