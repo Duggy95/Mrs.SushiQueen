@@ -101,18 +101,6 @@ public class UpGrade_Fishing : MonoBehaviour
             {
                 if (int.Parse(GameManager.instance.data.gold) >= 10000 && text.gameObject.name == "White")
                 {
-                    /*_items[i].sprite = gameObject.GetComponent<Image>().sprite;
-                    _items[i].GetComponentInChildren<Text>().text = "Áö··ÀÌ";
-                    InventoryItem _inventoryItem = new InventoryItem();
-                    _inventoryItem.item_Name = "Áö··ÀÌ";
-                    _inventoryItem.item_Count = "1";
-                    GameManager.instance.inventory_Items.Add(_inventoryItem);
-                    GameManager.instance.inventory_Items.Add(new InventoryItem("Áö··ÀÌ", "1"));
-
-                    int _gold = int.Parse(GameManager.instance.data.gold) - 10000;
-                    GameManager.instance.data.gold = _gold.ToString();
-                    GameManager.instance.Save("i");
-                    endSceneCtrl.UIUpdate();*/
                     SetItem(i, "Áö··ÀÌ", "1", _slot);
                 }
                 else if (int.Parse(GameManager.instance.data.gold) >= 10000 && text.gameObject.name == "Red")
