@@ -14,12 +14,22 @@ public class FishSlot : MonoBehaviour
     public int fish_GradeNum;
     public int fish_ColorNum;
     public string fish_Name;
+    public int fish_Count;
 
     private void Start()
     {
         _text = GetComponentInChildren<Text>();
         fish_Name = _text.text.Split(" ")[0];
+        if(fish_Name != "빈")
+        {
+            fish_Count = int.Parse(_text.text.Split(" ")[3]);
+        }
+        else
+        {
+            fish_Count = 0;
+        }
 
+        print("생선카운트 :" + fish_Count);
         print(fish_Name);
         // 배열을 순회하면서 이름이 같은 요소를 찾기 위한 루프
         for (int i = 0; i < fishDatas.Length; i++)

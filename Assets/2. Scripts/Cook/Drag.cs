@@ -13,6 +13,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     CanvasGroup canvasGroup;
     CanvasGroup inventoryCanvasGroup;
+    GameObject copiedSlot;
     Transform itemTr;
 
     public static GameObject draggingItem = null;
@@ -44,26 +45,40 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        this.transform.SetParent(inventoryTr);
-        draggingItem = this.gameObject;
-        canvasGroup.blocksRaycasts = false;
+        if(fishSlot.fish_Count >= 2)
+        {
+            copiedSlot = Instantiate(this.gameObject);
+            copiedSlot.transform.SetParent(inventoryTr);
+            draggingItem = copiedSlot.gameObject;
+            canvasGroup.blocksRaycasts = false;
+        }
+        else
+        {
+
+        }
+        
 
         fishSlot.UpdateData();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        itemTr.position = Input.mousePosition;
+        //itemTr.position = Input.mousePosition;
+        copiedSlot.transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         draggingItem = null;
         canvasGroup.blocksRaycasts = true;
-        if (itemTr.parent == inventoryTr)
+        /*if (itemTr.parent == inventoryTr)
         {
             itemTr.SetParent(fishListTr.transform);
+        }*/
 
+        if(copiedSlot.transform.parent == inventoryTr)
+        {
+            Destroy(copiedSlot.gameObject);
         }
     }
 }
