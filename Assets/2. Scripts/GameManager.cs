@@ -140,11 +140,19 @@ public class GameManager : MonoBehaviour
             inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(item_Data).target;
             Debug.Log("inventory_Items : " + item_Data);
         }
+        else
+        {
+            Save("i");
+        }
         if (PlayerPrefs.HasKey("FISH"))
         {
             string fish_Data = PlayerPrefs.GetString("FISH");
             inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(fish_Data).target;
             Debug.Log("inventory_Fishs : " + fish_Data);
+        }
+        else
+        {
+            Save("f");
         }
         if (PlayerPrefs.HasKey("DATA"))
         {
@@ -152,6 +160,10 @@ public class GameManager : MonoBehaviour
             data = JsonUtility.FromJson<Data>(data_Data);
             Debug.Log("inventory_Items : " + data_Data);
         }  
+        else
+        {
+            Save("s");
+        }
     }
 
     public void SetData(string _data)

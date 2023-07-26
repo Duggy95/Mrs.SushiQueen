@@ -64,8 +64,8 @@ public class Fish : MonoBehaviour
 
     private void Update()
     {
-        // HP가 널이 아니고 현재 HP가 0보다 많으면
-        // 한 번 터치할 때마다 공격력만큼 체력 깎고
+        // HP가 널이 아니고 현재 HP가 0보다 많으면서
+        // 각 방향에 맞게 터치하면 공격함수 호출
         // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
         if (fishing && hp != null && currHP > 0)
         {
@@ -116,6 +116,9 @@ public class Fish : MonoBehaviour
 
     void Die()
     {
+        // 아이템 사용 텍스트 비활성화
+        // 방향 리스트 초기화
+        // 오브젝트 삭제
         fm.useWhiteItemTxt.gameObject.SetActive(false);
         fm.useRedItemTxt.gameObject.SetActive(false);
         fm.useRareItemTxt.gameObject.SetActive(false);
@@ -173,12 +176,14 @@ public class Fish : MonoBehaviour
             }
         }
 
+        // 아이템 사용 초기화
         fm.useItem_rare = false;
         fm.useItem_red = false;
         fm.useItem_white = false;
 
         Debug.Log(fish_Data.Count);
 
+        // 랜덤한 인덱스 추출
         int fishNum = Random.Range(0, fish_Data.Count);
 
         fishData = fish_Data[fishNum]; // 확률에 따른 물고기 종류 지정
@@ -187,7 +192,7 @@ public class Fish : MonoBehaviour
         fishing = true;   // 낚시 시작
 
         string targetValue = fishData.fishName; // 찾고자 하는 값
-        int count = fish_Data.Count(x => x.fishName == targetValue);
+        int count = fish_Data.Count(x => x.fishName == targetValue); // 물고기 확률
 
         Debug.Log("물고기 확률 : " + count);
 
@@ -199,22 +204,25 @@ public class Fish : MonoBehaviour
         hp = fishHP.GetComponent<Image>();
         hp.fillAmount = 1f;
 
+        // 방향 오브젝트 생성하여 각 방향을 리스트에 추가
         GameObject directionObjClone = Instantiate(directionObj, dirPos, Quaternion.identity);
         GameObject leftObj = directionObjClone.transform.GetChild(0).gameObject;
         GameObject rightObj = directionObjClone.transform.GetChild(1).gameObject;
         directionObjClone.transform.SetParent(transform);
+        Vector3 dirObjScale = rightObj.transform.localScale;
         leftObj.gameObject.SetActive(false);
         rightObj.gameObject.SetActive(false);
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
         //StartCoroutine(Dir(dirObj));
 
-        // 이미지 생성하여 번갈아가며 띄움
         GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
         _water.transform.SetParent(transform);
 
+        // 이미지 생성하여 번갈아가며 띄움
+        // 한바퀴 돌 때마다 방향 랜덤 설정
         while (fishing)
         {
             water_.gameObject.SetActive(true);
@@ -228,6 +236,7 @@ public class Fish : MonoBehaviour
                 dirObj[1].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
                 rightClick = true;
                 leftClick = false;
+                StartCoroutine(DirEff(dirObj[1], dirObjScale));
             }
             else
             {
@@ -235,6 +244,7 @@ public class Fish : MonoBehaviour
                 dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
                 rightClick = false;
                 leftClick = true;
+                StartCoroutine(DirEff(dirObj[0], dirObjScale));
             }
 
             yield return new WaitForSeconds(0.5f);
@@ -246,30 +256,17 @@ public class Fish : MonoBehaviour
         }
     }
 
-   /* IEnumerator Dir(List<GameObject> dirObj)
+    IEnumerator DirEff(GameObject dirObj, Vector3 dirScale)
     {
-        while (fishing)
+        // 기존 스케일의 1.5배 해주고 작아지게
+        dirObj.gameObject.transform.localScale = dirScale * 1.5f; 
+
+        for (int i = 0; i < 10; i++) 
         {
-            randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
-
-            if (randomIndex - 0 > 0)
-            {
-                dirObj[1].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
-                rightClick = true;
-            }
-            else
-            {
-                dirObj[0].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
-                leftClick = true;
-            }
-            yield return new WaitForSeconds(1f);
-
-            dirObj[0].SetActive(false); // 나머지 오브젝트들은 비활성화
-            dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
-            leftClick = false;
-            rightClick = false;
+            dirObj.gameObject.transform.localScale *= 0.95f;
+            yield return new WaitForSeconds(0.1f);
         }
-    }*/
+    }
 
     IEnumerator Heal()
     {
