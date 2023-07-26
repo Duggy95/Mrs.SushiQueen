@@ -21,7 +21,10 @@ public class FishingManager : MonoBehaviour
     public GameObject fishObj;
     public Text fishRun;
     public Button fishingBtn;
-
+    public GameObject useItemPanel;
+    public Text useWhiteItemTxt;
+    public Text useRedItemTxt;
+    public Text useRareItemTxt;
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
@@ -33,6 +36,10 @@ public class FishingManager : MonoBehaviour
 
     void Start()
     {
+        useItemPanel.gameObject.SetActive(false);
+        useRareItemTxt.gameObject.SetActive(false);
+        useRedItemTxt.gameObject.SetActive(false);
+        useWhiteItemTxt.gameObject.SetActive(false);
         //GameManager.instance.GetLog();
         InventoryImg.gameObject.SetActive(false);
         UIUpdate();
