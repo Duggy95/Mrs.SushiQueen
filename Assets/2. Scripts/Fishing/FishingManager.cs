@@ -124,7 +124,7 @@ public class FishingManager : MonoBehaviour
 
                     // 해당 인덱스(index)의 값 변경
                     GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "마리";
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
                     Debug.Log("중복 종류 " + index + " changed to " + newValue);
                     GameManager.instance.Save("f");
                     isChange = true;
@@ -147,7 +147,7 @@ public class FishingManager : MonoBehaviour
                     _slot.fish_Name = data.fishName;
 
                     GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1마리";
+                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
                     Debug.Log("안찼고 다른 종류");
                     GameManager.instance.Save("f");
                     _slot.isEmpty = true;

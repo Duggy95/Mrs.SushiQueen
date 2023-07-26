@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
                 string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
                 string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
 
-                fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + "마리";
+                fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
                 fish_Slot.isEmpty = true;
 
                 if (_fishName == "광어")
