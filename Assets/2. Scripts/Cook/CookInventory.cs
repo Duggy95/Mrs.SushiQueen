@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class CookInventory : MonoBehaviour
 {
     public GameObject fishContent;
+    public GameObject sushiContent;
+    public GameObject sushiPrefab;
     public GameObject fishSlotPrefab;
 
     int fishSlotCount;
+    int sushiCount;
 
     void Start()
     {
         fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
+        sushiCount = int.Parse(GameManager.instance.data.cookCount);
 
         for (int i = 0; i < fishSlotCount; i++)
         {
@@ -24,7 +28,7 @@ public class CookInventory : MonoBehaviour
                 string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
                 string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
 
-                fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " +"마리";
+                fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
                 fish_Slot.isEmpty = true;
 
                 if (_fishName == "광어")
@@ -37,5 +41,18 @@ public class CookInventory : MonoBehaviour
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
             }
         }
+
+        for(int i = 0; i < sushiCount; i++)
+        {
+            GameObject sushiBtn = Instantiate(sushiPrefab, sushiContent.transform);
+        }
+    }
+
+    public void UpdateUI(GameObject gameObj)
+    {
+        FishSlot fishSlot = gameObj.GetComponent<FishSlot>();
+        Text text = gameObj.GetComponentInChildren<Text>();
+        text.text = fishSlot.fish_Name + "   " + fishSlot.fish_Count + " " + "마리";
+
     }
 }

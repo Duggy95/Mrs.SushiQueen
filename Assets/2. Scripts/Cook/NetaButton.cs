@@ -10,10 +10,13 @@ public class NetaButton : MonoBehaviour
     public FishData fishData;  //생선 데이터
 
     public void FishBtn()
-    {   
+    {
+        if (fishData == null)
+            return;
+
         if(board == null)
         {
-            GameObject board = GameObject.Find("Board_RawImage");  //보드 오브젝트 찾기.
+            board = GameObject.Find("Board_RawImage");  //보드 오브젝트 찾기.
         }
 
         Transform riceTr = board.transform.Find("Rice(Clone)").transform;  //보드 오브젝트의 자식으로 있는 Rice 찾기.

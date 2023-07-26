@@ -6,25 +6,36 @@ using UnityEngine.EventSystems;
 
 public class Drop : MonoBehaviour, IDropHandler
 {
+    Text text;
+    int count = 0;
     NetaButton netaBtn;
 
     void Start()
     {
+        text = GetComponentInChildren<Text>();
         netaBtn = GetComponent<NetaButton>();
     }
 
     void Update()
     {
-        
+
     }
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (Drag.draggingItem == null)
+            return;
+
+        print("µå¶ø");
         if (transform.childCount == 1)
         {
             Drag.draggingItem.transform.SetParent(this.transform);
-            this.gameObject.GetComponent<Image>().sprite = Drag.draggingItem.GetComponent<Image>().sprite;
-            netaBtn.fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
+            FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
+            this.gameObject.GetComponent<Image>().sprite = fishData.netaImg;
+            Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
+            count += 5;
+            text.text = fishData.fishName + "     " + count.ToString();
+            netaBtn.fishData = fishData;
             Destroy(Drag.draggingItem.gameObject);
         }
     }

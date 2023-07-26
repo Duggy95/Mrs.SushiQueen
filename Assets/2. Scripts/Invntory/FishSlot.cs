@@ -29,8 +29,6 @@ public class FishSlot : MonoBehaviour
             fish_Count = 0;
         }
 
-        print("생선카운트 :" + fish_Count);
-        print(fish_Name);
         // 배열을 순회하면서 이름이 같은 요소를 찾기 위한 루프
         for (int i = 0; i < fishDatas.Length; i++)
         {
@@ -44,12 +42,29 @@ public class FishSlot : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        print("생선카운트 :" + fish_Count);
+    }
+
+    /*public void UpdateSlot()
+    {
+        _text.text.Split(" ")[3] = fish_Count.ToString();
+    }*/
+
+    public void ClearSlot()
+    {
+        gameObject.GetComponent<Image>().sprite = null;
+        GetComponentInChildren<Text>().text = "빈 공간";
+        fish_Count = 0;
+    }
+
     public void UpdateData()
     {
         string[] slotInfo = _text.text.Split(" ");
         string fishName = slotInfo[0];
         print(fishName);
-        string valueToFind = _text.text;
+        string valueToFind = fishName;
 
         int newValue = 1;
         // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
