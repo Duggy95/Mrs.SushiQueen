@@ -24,7 +24,7 @@ public class Fish : MonoBehaviour
     int _atk;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
     int randomIndex;
-    float maxTime = 15f;  // 최대 타임
+    float maxTime = 60f;  // 최대 타임
     float currTime;    // 현재 타임
     float fish_Probability;
     bool fishing = false;  // 낚시중인지
@@ -64,6 +64,27 @@ public class Fish : MonoBehaviour
 
     private void Update()
     {
+        // HP가 널이 아니고 현재 HP가 0보다 많으면
+        // 한 번 터치할 때마다 공격력만큼 체력 깎고
+        // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
+        if (fishing && hp != null && currHP > 0)
+        {
+            if (leftClick && Input.GetMouseButtonDown(0))
+            {
+                if (Input.mousePosition.x > fm.fishingRod.transform.position.x)
+                {
+                    Atk();
+                }
+            }
+            else if (rightClick && Input.GetMouseButtonDown(0))
+            {
+                if (Input.mousePosition.x < fm.fishingRod.transform.position.x)
+                {
+                    Atk();
+                }
+            }
+        }
+
         // 낚시 중이고 현재 시간이 0보다 많다면
         // 카운트 다운 시작
         // 카운트 다운이 끝났다면 fm의 물고기 도망 함수 호출
@@ -74,91 +95,33 @@ public class Fish : MonoBehaviour
             if (currTime <= 0)
             {
                 fm.Run();
-                dirObj.Clear();
-                Destroy(gameObject);
-            }
-        }
-        // HP가 널이 아니고 현재 HP가 0보다 많으면
-        // 한 번 터치할 때마다 공격력만큼 체력 깎고
-        // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
-        /*if (fm.isFishing && hp != null && currHP > 0)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (leftClick && Input.mousePosition.x > 0)
-                {
-                    currHP -= _atk;
-                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                    if (currHP <= 0)
-                    {
-                        Debug.Log(fishData.fishImg);
-                        Debug.Log(fishData.info);
-                        fm.Fish(fishData);
-                        dirObj.Clear();
-                        Destroy(gameObject);
-                    }
-                }
-                else if (rightClick && Input.mousePosition.x < 0)
-                {
-                    currHP -= _atk;
-                    hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                    if (currHP <= 0)
-                    {
-                        Debug.Log(fishData.fishImg);
-                        Debug.Log(fishData.info);
-                        fm.Fish(fishData);
-                        dirObj.Clear();
-                        Destroy(gameObject);
-                    }
-                }
-            }
-        }*/
-    }
-
-    public void LeftClick()
-    {
-        if (fm.isFishing && hp != null && currHP > 0)
-        {
-
-            if (leftClick)
-            {
-                currHP -= _atk;
-                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                if (currHP <= 0)
-                {
-                    Debug.Log(fishData.fishImg);
-                    Debug.Log(fishData.info);
-                    fm.Fish(fishData);
-                    dirObj.Clear();
-                    Destroy(gameObject);
-                }
+                Die();
             }
         }
     }
 
-    public void RightClick()
+    void Atk()
     {
-        if (fm.isFishing && hp != null && currHP > 0)
+        currHP -= _atk;
+        hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+
+        if (currHP <= 0)
         {
-
-            if (rightClick)
-            {
-                currHP -= _atk;
-                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-
-                if (currHP <= 0)
-                {
-                    Debug.Log(fishData.fishImg);
-                    Debug.Log(fishData.info);
-                    fm.Fish(fishData);
-                    dirObj.Clear();
-                    Destroy(gameObject);
-                }
-            }
+            Debug.Log(fishData.fishImg);
+            Debug.Log(fishData.info);
+            fm.Fish(fishData);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        fm.useWhiteItemTxt.gameObject.SetActive(false);
+        fm.useRedItemTxt.gameObject.SetActive(false);
+        fm.useRareItemTxt.gameObject.SetActive(false);
+        fm.useItemPanel.gameObject.SetActive(false);
+        dirObj.Clear();
+        Destroy(gameObject);
     }
 
     IEnumerator FishingEff(Vector3 pos)
@@ -240,11 +203,11 @@ public class Fish : MonoBehaviour
         GameObject leftObj = directionObjClone.transform.GetChild(0).gameObject;
         GameObject rightObj = directionObjClone.transform.GetChild(1).gameObject;
         directionObjClone.transform.SetParent(transform);
-
+        leftObj.gameObject.SetActive(false);
+        rightObj.gameObject.SetActive(false);
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
-        StartCoroutine(Dir(dirObj));
-        //StartCoroutine(Click());
+        //StartCoroutine(Dir(dirObj));
 
         // 이미지 생성하여 번갈아가며 띄움
         GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
@@ -257,31 +220,25 @@ public class Fish : MonoBehaviour
             water_.gameObject.SetActive(true);
             _water.gameObject.SetActive(false);
 
+            randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
+
+            if (randomIndex - 0 > 0)
+            {
+                dirObj[0].SetActive(false); // 나머지 오브젝트들은 비활성화
+                dirObj[1].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+                rightClick = true;
+                leftClick = false;
+            }
+            else
+            {
+                dirObj[0].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
+                dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
+                rightClick = false;
+                leftClick = true;
+            }
+
             yield return new WaitForSeconds(0.5f);
 
-            /*randomIndex = Random.Range(0, dirObj.Length); // 배열에서 랜덤 인덱스 선택
-            for (int i = 0; i < dirObj.Length; i++)
-            {
-                if (i == randomIndex)
-                {
-                    dirObj[i].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
-
-                    if (i == 0)
-                    {
-                        leftClick = true;
-                        rightClick = false;
-                    }
-                    else
-                    {
-                        leftClick = false;
-                        rightClick = true;
-                    }
-                }
-                else
-                {
-                    dirObj[i].SetActive(false); // 나머지 오브젝트들은 비활성화
-                }
-            }*/
             water_.gameObject.SetActive(false);
             _water.gameObject.SetActive(true);
 
@@ -289,7 +246,7 @@ public class Fish : MonoBehaviour
         }
     }
 
-    IEnumerator Dir(List<GameObject> dirObj)
+   /* IEnumerator Dir(List<GameObject> dirObj)
     {
         while (fishing)
         {
@@ -298,40 +255,38 @@ public class Fish : MonoBehaviour
             if (randomIndex - 0 > 0)
             {
                 dirObj[1].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
-                dirObj[0].SetActive(false); // 나머지 오브젝트들은 비활성화
-                leftClick = false;
                 rightClick = true;
             }
             else
             {
                 dirObj[0].SetActive(true); // 랜덤으로 선택된 오브젝트를 활성화
-                dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
                 leftClick = true;
-                rightClick = false;
-
             }
+            yield return new WaitForSeconds(1f);
 
+            dirObj[0].SetActive(false); // 나머지 오브젝트들은 비활성화
+            dirObj[1].SetActive(false); // 나머지 오브젝트들은 비활성화
+            leftClick = false;
+            rightClick = false;
         }
-        yield return new WaitForSeconds(1f);
-    }
+    }*/
 
-
-IEnumerator Heal()
-{
-    yield return new WaitForSeconds(delayTime);
-
-    while (fishing)
+    IEnumerator Heal()
     {
-        // 현재 체력 + 회복력이 최대 체력보다 적다면
-        // 1초마다 힐량 만큼 체력 회복
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(delayTime);
 
-        if (currHP + heal <= maxHP)
+        while (fishing)
         {
-            currHP += heal;
-            hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
+            // 현재 체력 + 회복력이 최대 체력보다 적다면
+            // 1초마다 힐량 만큼 체력 회복
+            yield return new WaitForSeconds(1f);
+
+            if (currHP + heal <= maxHP)
+            {
+                currHP += heal;
+                hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
+            }
+            Debug.Log("현재 체력 " + currHP);
         }
-        Debug.Log("현재 체력 " + currHP);
     }
-}
 }

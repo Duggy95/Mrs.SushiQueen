@@ -29,21 +29,30 @@ public class ItemSlot : MonoBehaviour
 
     public void UseItem()
     {
+        if (fm.useItem_white || fm.useItem_red || fm.useItem_rare || fm.isFishing)
+            return;
+
         if(_text.text.Contains("지렁이"))
         {
             fm.useItem_white = true;
+            fm.useItemPanel.gameObject.SetActive(true);
+            fm.useWhiteItemTxt.gameObject.SetActive(true);
             print("지렁이 사용");
         }
 
         else if(_text.text.Contains("새우"))
         {
             fm.useItem_red = true;
+            fm.useItemPanel.gameObject.SetActive(true);
+            fm.useRedItemTxt.gameObject.SetActive(true);
             print("새우 사용");
         }
 
         else if(_text.text.Contains("생선살"))
         {
             fm.useItem_rare = true;
+            fm.useItemPanel.gameObject.SetActive(true);
+            fm.useRareItemTxt.gameObject.SetActive(true);
             print("생선살 사용");
         }
 
@@ -54,8 +63,7 @@ public class ItemSlot : MonoBehaviour
     {
         string[] slotInfo = _text.text.Split(" ");
         string itemName = slotInfo[0];
-        print(itemName);
-        string valueToFind = _text.text;
+        string valueToFind = itemName;
 
         int newValue = 1;
         // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
