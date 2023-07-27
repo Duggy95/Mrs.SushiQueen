@@ -52,6 +52,23 @@ public class Data
     //public string visitLV = "1";
 }
 
+[System.Serializable]
+public class TodayFishInfo
+{
+    public TodayFishInfo(string _fish_Name, int _fish_Count)
+    { fish_NameT = _fish_Name; fish_CountT = _fish_Count; }
+
+    public string fish_NameT;
+    public int fish_CountT;
+}
+
+[System.Serializable]
+public class TodayData
+{
+    public int score = 0;  // Á¡¼ö
+    public int gold = 0;  // °ñµå
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance
@@ -67,15 +84,13 @@ public class GameManager : MonoBehaviour
     }
     static GameManager m_instance;
 
-    /*public List<InventoryItem> inventory_Items = new List<InventoryItem>();
-    public List<InventoryFish> inventory_Fishs = new List<InventoryFish>();
-    public Data data = new Data();*/
+
     public List<InventoryItem> inventory_Items;
     public List<InventoryFish> inventory_Fishs;
     public Data data;
-    /*public Text logTxt;  //-----------------------
-    public Text idTxt;  //-----------------------
-    public Text saveTxt;  //-----------------------*/
+    public TodayData todayData = new TodayData();
+    public List<TodayFishInfo> todayFishInfos = new List<TodayFishInfo>();
+
 
     public bool nextStage;
     //public bool onLogin = false;

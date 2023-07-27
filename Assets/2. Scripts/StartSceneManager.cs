@@ -50,7 +50,8 @@ public class StartSceneManager : MonoBehaviour
                 GameManager.instance.Save("d");
                 GameManager.instance.Save("i");
                 GameManager.instance.Save("f");
-
+                GameManager.instance.todayData = new TodayData();
+                GameManager.instance.todayFishInfos.Clear();
                 UIUpdate();
             }
         }
