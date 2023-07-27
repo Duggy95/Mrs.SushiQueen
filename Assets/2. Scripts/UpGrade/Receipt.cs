@@ -54,6 +54,11 @@ public class Receipt : MonoBehaviour
             }
         }
 
+        if(fishInfoTxt == null)
+        {
+            fishInfoTxt = "오늘 잡은 물고기가 없습니다.";
+        }
+
         receiptTxt.text = "오늘 수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " + GameManager.instance.todayData.score + "점" +
                         "\n\n오늘 잡은 물고기\n\n" + fishInfoTxt;
 
