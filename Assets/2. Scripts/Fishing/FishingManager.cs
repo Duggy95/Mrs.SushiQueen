@@ -9,22 +9,24 @@ public class FishingManager : MonoBehaviour
     public Canvas canvas;
     public Text dateTxt;
     public Text goldTxt;
+    public Text atkTxt;
+    public Text fishInfo_Txt;
+    public Text full_Txt;
+    public Text fishRun;
+    public Text useWhiteItemTxt;
+    public Text useRedItemTxt;
+    public Text useRareItemTxt;
     public GameObject configPanel;
     public GameObject InventoryImg;  // 인벤토리 이미지
     public GameObject fishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
     public GameObject fishingRod; // 낚싯대 이미지
     public GameObject lineStartPos;
-    public Image fish_Img;
-    public Text fishInfo_Txt;
-    public Text full_Txt;
-    public GameObject fishObj;
-    public Text fishRun;
-    public Button fishingBtn;
     public GameObject useItemPanel;
-    public Text useWhiteItemTxt;
-    public Text useRedItemTxt;
-    public Text useRareItemTxt;
+    public GameObject fishObj;
+    public Button fishingBtn;
+    public Image fish_Img;
+
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
@@ -110,26 +112,29 @@ public class FishingManager : MonoBehaviour
 
         for (int i = 0; i < _fishs.Length; i++)
         {
-            if (_fishs[i].GetComponentInChildren<Text>().text.Contains(data.fishName))
+            if (_fishs[i].gameObject.name.Contains("Img"))
             {
-                string valueToFind = data.fishName;
-                int newValue = 1;
-
-                // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
-                int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
-
-                if (index != -1)
+                if (_fishs[i].GetComponentInChildren<Text>().text.Contains(data.fishName))
                 {
-                    newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+                    string valueToFind = data.fishName;
+                    int newValue = 1;
 
-                    // 해당 인덱스(index)의 값 변경
-                    GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
-                    Debug.Log("중복 종류 " + index + " changed to " + newValue);
-                    //GameManager.instance.Save("f");
-                    isChange = true;
-                    isFull = false;
-                    break;
+                    // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
+                    int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
+
+                    if (index != -1)
+                    {
+                        newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+
+                        // 해당 인덱스(index)의 값 변경
+                        GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
+                        _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
+                        Debug.Log("중복 종류 " + index + " changed to " + newValue);
+                        //GameManager.instance.Save("f");
+                        isChange = true;
+                        isFull = false;
+                        break;
+                    }
                 }
             }
         }
@@ -137,22 +142,25 @@ public class FishingManager : MonoBehaviour
         {
             for (int i = 0; i < _fishs.Length; i++)
             {
-                FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
-
-                if (_slot.isEmpty == false)
+                if (_fishs[i].gameObject.name.Contains("Img"))
                 {
-                    _fishs[i].sprite = data.fishImg;
-                    _slot.fish_ColorNum = data.color;
-                    _slot.fish_GradeNum = data.grade;
-                    _slot.fish_Name = data.fishName;
+                    FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
 
-                    GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
-                    Debug.Log("안찼고 다른 종류");
-                    //GameManager.instance.Save("f");
-                    _slot.isEmpty = true;
-                    isFull = false;
-                    break;
+                    if (_slot.isEmpty == false)
+                    {
+                        _fishs[i].sprite = data.fishImg;
+                        _slot.fish_ColorNum = data.color;
+                        _slot.fish_GradeNum = data.grade;
+                        _slot.fish_Name = data.fishName;
+
+                        GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
+                        _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
+                        Debug.Log("안찼고 다른 종류");
+                        //GameManager.instance.Save("f");
+                        _slot.isEmpty = true;
+                        isFull = false;
+                        break;
+                    }
                 }
             }
         }
@@ -182,10 +190,11 @@ public class FishingManager : MonoBehaviour
         fishRun.gameObject.SetActive(false);
     }
 
-    void UIUpdate()
+    public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
+        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
 
     public void ViewInventory()

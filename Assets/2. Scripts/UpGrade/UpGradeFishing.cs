@@ -111,35 +111,38 @@ public class UpGradeFishing : MonoBehaviour
 
         for (int i = 0; i < _items.Length; i++)
         {
-            if (_items[i].GetComponentInChildren<Text>().text.Contains(itemName))
+            if (_items[i].gameObject.name.Contains("Img"))
             {
-                if (_text.text.Contains("지렁이") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
+                if (_items[i].GetComponentInChildren<Text>().text.Contains(itemName))
                 {
-                    Debug.Log("지렁이, 중복");
-                    isFull = FindIndexItem("지렁이", i, normalItemPrice);
-                    isChange = true;
-                    break;
-                }
-                else if (_text.text.Contains("새우") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
-                {
-                    Debug.Log("새우, 중복");
-                    isFull = FindIndexItem("새우", i, normalItemPrice);
-                    isChange = true;
-                    break;
-                }
-                else if (_text.text.Contains("생선살") && int.Parse(GameManager.instance.data.gold) >= rareItemPrice)
-                {
-                    Debug.Log("생선살, 중복");
-                    isFull = FindIndexItem("생선살", i, rareItemPrice);
-                    isChange = true;
-                    break;
-                }
-                else
-                {
-                    Debug.Log("중복, 노머니");
-                    StartCoroutine(NoMoney());
-                    isFull = false;
-                    break;
+                    if (_text.text.Contains("지렁이") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
+                    {
+                        Debug.Log("지렁이, 중복");
+                        isFull = FindIndexItem("지렁이", i, normalItemPrice);
+                        isChange = true;
+                        break;
+                    }
+                    else if (_text.text.Contains("새우") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
+                    {
+                        Debug.Log("새우, 중복");
+                        isFull = FindIndexItem("새우", i, normalItemPrice);
+                        isChange = true;
+                        break;
+                    }
+                    else if (_text.text.Contains("생선살") && int.Parse(GameManager.instance.data.gold) >= rareItemPrice)
+                    {
+                        Debug.Log("생선살, 중복");
+                        isFull = FindIndexItem("생선살", i, rareItemPrice);
+                        isChange = true;
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("중복, 노머니");
+                        StartCoroutine(NoMoney());
+                        isFull = false;
+                        break;
+                    }
                 }
             }
         }
@@ -147,34 +150,37 @@ public class UpGradeFishing : MonoBehaviour
         {
             for (int i = 0; i < _items.Length; i++)
             {
-                ItemSlot _slot = _items[i].GetComponent<ItemSlot>();
-
-                if (_slot.isEmpty == false)
+                if (_items[i].gameObject.name.Contains("Img"))
                 {
-                    if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("지렁이"))
+                    ItemSlot _slot = _items[i].GetComponentInChildren<ItemSlot>();
+
+                    if (_slot.isEmpty == false)
                     {
-                        Debug.Log("지렁이, 처음");
-                        isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice);
-                        break;
-                    }
-                    else if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("새우"))
-                    {
-                        Debug.Log("새우, 처음");
-                        isFull = SetItem(i, "새우", "1", _slot, normalItemPrice);
-                        break;
-                    }
-                    else if (int.Parse(GameManager.instance.data.gold) >= rareItemPrice && _text.text.Contains("생선살"))
-                    {
-                        Debug.Log("생선살, 처음");
-                        isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice);
-                        break;
-                    }
-                    else
-                    {
-                        Debug.Log("처음, 노머니");
-                        StartCoroutine(NoMoney());
-                        isFull = false;
-                        break;
+                        if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("지렁이"))
+                        {
+                            Debug.Log("지렁이, 처음");
+                            isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice);
+                            break;
+                        }
+                        else if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("새우"))
+                        {
+                            Debug.Log("새우, 처음");
+                            isFull = SetItem(i, "새우", "1", _slot, normalItemPrice);
+                            break;
+                        }
+                        else if (int.Parse(GameManager.instance.data.gold) >= rareItemPrice && _text.text.Contains("생선살"))
+                        {
+                            Debug.Log("생선살, 처음");
+                            isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice);
+                            break;
+                        }
+                        else
+                        {
+                            Debug.Log("처음, 노머니");
+                            StartCoroutine(NoMoney());
+                            isFull = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -203,8 +209,8 @@ public class UpGradeFishing : MonoBehaviour
             int _gold = int.Parse(GameManager.instance.data.gold) - price;
             GameManager.instance.data.gold = _gold.ToString();
             Debug.Log("중복 종류 " + index + " changed to " + newValue);
-           /* GameManager.instance.Save("i");
-            GameManager.instance.Save("d");*/
+            /* GameManager.instance.Save("i");
+             GameManager.instance.Save("d");*/
             endSceneCtrl.UIUpdate();
         }
 
@@ -218,8 +224,8 @@ public class UpGradeFishing : MonoBehaviour
         GameManager.instance.inventory_Items.Add(new InventoryItem(name, count));
         int _gold = int.Parse(GameManager.instance.data.gold) - price;
         GameManager.instance.data.gold = _gold.ToString();
-       /* GameManager.instance.Save("i");
-        GameManager.instance.Save("d");*/
+        /* GameManager.instance.Save("i");
+         GameManager.instance.Save("d");*/
         slot.isEmpty = true;
 
         endSceneCtrl.UIUpdate();

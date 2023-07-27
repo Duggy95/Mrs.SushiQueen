@@ -42,6 +42,14 @@ public class Data
     public string atk = "1";
     public string getMiddleRod = "FALSE";
     public string getHighRod = "FALSE";
+    public string fishTime = "180";
+    public string fishHPLV = "1";
+    public string cookTime = "180";
+    public string cookHPLV = "1";
+    public string customerTime = "20";
+    public string customerHPLV = "1";
+    //public string visitTime = "0.5";
+    //public string visitLV = "1";
 }
 
 public class GameManager : MonoBehaviour
