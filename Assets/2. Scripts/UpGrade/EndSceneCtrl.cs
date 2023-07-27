@@ -17,10 +17,12 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject noMoneyTxt;
     public GameObject maxLevelTxt;
     public GameObject fullTxt;
+    public GameObject receipt;
     bool config;
 
     private void Awake()
     {
+        receipt.gameObject.SetActive(false);
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(false);
@@ -85,6 +87,16 @@ public class EndSceneCtrl : MonoBehaviour
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+    }
+
+    public void ViewReceipt()
+    {
+        receipt.gameObject.SetActive(true);
+    }
+
+    public void EscReceipt()
+    {
+        receipt.gameObject.SetActive(false);
     }
 
     public void ViewInventory()

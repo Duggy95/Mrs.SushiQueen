@@ -92,8 +92,10 @@ public class FishingManager : MonoBehaviour
     {
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold * 1000;
+        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
         GameManager.instance.data.gold = _gold.ToString();
+
+        GameManager.instance.todayData.gold += data.gold;
         //GameManager.instance.Save("d");
         Debug.Log("골드 " + _gold);
         // 골드 ++
@@ -125,6 +127,8 @@ public class FishingManager : MonoBehaviour
                     if (index != -1)
                     {
                         newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+
+                        GameManager.instance.todayFishInfos.Add(new TodayFishInfo(data.fishName, 1));
 
                         // 해당 인덱스(index)의 값 변경
                         GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
@@ -162,6 +166,9 @@ public class FishingManager : MonoBehaviour
                         _slot.fish_Name = data.fishName;
 
                         GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
+
+                        GameManager.instance.todayFishInfos.Add(new TodayFishInfo(data.fishName, 1));
+
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
                         Debug.Log("안찼고 다른 종류");
                         //GameManager.instance.Save("f");
