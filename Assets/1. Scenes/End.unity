@@ -4381,6 +4381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   receiptTxt: {fileID: 2037019775}
+  headTxt: {fileID: 1922429805}
 --- !u!1 &986208961
 GameObject:
   m_ObjectHideFlags: 0
@@ -8450,7 +8451,7 @@ GameObject:
   - component: {fileID: 1922429806}
   - component: {fileID: 1922429805}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Head_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8987,7 +8988,7 @@ GameObject:
   - component: {fileID: 2037019776}
   - component: {fileID: 2037019775}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
