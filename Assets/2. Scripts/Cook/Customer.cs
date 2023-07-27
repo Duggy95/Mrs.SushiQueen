@@ -64,6 +64,7 @@ public class Customer : MonoBehaviour
         if (int.Parse(GameManager.instance.data.score) <= 600)
         {
             RandomChance(80, 17, 3);
+            print(randomOrder);
             print("첫번째");
         }
         else if (int.Parse(GameManager.instance.data.score) <= 900)
@@ -202,6 +203,7 @@ public class Customer : MonoBehaviour
         //GameManager.instance.Save("d");   //평판 저장
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
+        isOrdered = false;
         Destroy(gameObject, 3f);  //손님 삭제
         StartCoroutine(Move());  //안보이는 곳으로 옮기기
         StartCoroutine(cookManager.Create());  //손님생성
@@ -277,6 +279,7 @@ public class Customer : MonoBehaviour
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
+                isOrdered = false;
                 Destroy(gameObject, 3f);  //손님 삭제
                 StartCoroutine(Move());
                 StartCoroutine(cookManager.Create());  //손님생성
@@ -292,6 +295,7 @@ public class Customer : MonoBehaviour
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
+                isOrdered = false;
                 Destroy(gameObject, 3f);  //손님 삭제
                 StartCoroutine(Move());
                 StartCoroutine(cookManager.Create());  //손님생성
@@ -311,14 +315,17 @@ public class Customer : MonoBehaviour
 
         if (randomNum <= num1)
         {
+            print(randomNum);
             randomOrder = 0;
         }
         else if (randomNum <= num2)
         {
+            print(randomNum);
             randomOrder = 1;
         }
         else
         {
+            print(randomNum);
             randomOrder = 2;
         }
     }

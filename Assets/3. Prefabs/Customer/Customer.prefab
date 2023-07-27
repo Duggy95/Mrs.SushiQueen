@@ -759,8 +759,9 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 2c8092adc945c4a4bac7f0ac1d04eedf, type: 3}
   - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
-  - {fileID: 21300000, guid: 2c8092adc945c4a4bac7f0ac1d04eedf, type: 3}
-  - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
+  - {fileID: 21300000, guid: 6c0b4eb141cc1464f96611415d65cc02, type: 3}
+  - {fileID: 21300000, guid: 3b86b3ede297267488b0e493fee4c386, type: 3}
+  - {fileID: 21300000, guid: e4e718dcebcfd204cb1d5a547b09fe8e, type: 3}
   sushis:
   - "\uB3C4\uBBF8"
   - "\uAD11\uC5B4"
