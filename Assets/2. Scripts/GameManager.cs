@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Data_Fish" + fish_Json);*/
             PlayerPrefs.SetString("FISH", fish_Json);
         }
-        else if (type == "s")
+        else if (type == "d")
         {
             string data_Json = JsonUtility.ToJson(data);
             /*string fileName = string.Format("DATA");
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         }  
         else
         {
-            Save("s");
+            Save("d");
         }
     }
 
@@ -189,6 +189,9 @@ public class GameManager : MonoBehaviour
 
     public void DeleteData()
     {
+        inventory_Items.Clear();
+        inventory_Fishs.Clear();
+        data = new Data();
         /*GPGSBinder.Inst.DeleteCloud("ITEM");
         GPGSBinder.Inst.DeleteCloud("FISH");
         GPGSBinder.Inst.DeleteCloud("DATA");*/

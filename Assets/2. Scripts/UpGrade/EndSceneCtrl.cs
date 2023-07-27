@@ -14,6 +14,8 @@ public class EndSceneCtrl : MonoBehaviour
     public Text goldTxt;
     public GameObject InventoryImg;
     public GameObject noMoneyTxt;
+    public GameObject maxLevelTxt;
+    public GameObject fullTxt;
     bool config;
 
     private void Awake()
@@ -21,7 +23,9 @@ public class EndSceneCtrl : MonoBehaviour
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(false);
+        maxLevelTxt.gameObject.SetActive(false);
         noMoneyTxt.gameObject.SetActive(false);
+        fullTxt.gameObject.SetActive(false);
     }
 
     public void OnclickSkill()
@@ -29,6 +33,9 @@ public class EndSceneCtrl : MonoBehaviour
         fishingSV.gameObject.SetActive(false);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(true);
+        maxLevelTxt.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
+        fullTxt.gameObject.SetActive(false);
     }
 
     public void OnclickShop()
@@ -36,6 +43,9 @@ public class EndSceneCtrl : MonoBehaviour
         fishingSV.gameObject.SetActive(false);
         ShopSV.gameObject.SetActive(true);
         SkillSV.gameObject.SetActive(false);
+        maxLevelTxt.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
+        fullTxt.gameObject.SetActive(false);
     }
 
     public void OnclickFishing()
@@ -43,6 +53,9 @@ public class EndSceneCtrl : MonoBehaviour
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(false);
+        maxLevelTxt.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
+        fullTxt.gameObject.SetActive(false);
     }
 
     public void NextStage()

@@ -64,16 +64,15 @@ public class Inventory : MonoBehaviour
                 else if (_fishName == "오징어")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
                 else if (_fishName == "전갱어")
-                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Saurel", typeof(Sprite)) as Sprite;
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Bigeye Trevally", typeof(Sprite)) as Sprite;
                 else if (_fishName == "농어")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
                 else if (_fishName == "방어")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
-                else if (_fishName == "문어")
-                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Octopus", typeof(Sprite)) as Sprite;
+                else if (_fishName == "청어")
+                    fish_Slot.GetComponent<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
                 else if (_fishName == "고등어")
                     fish_Slot.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
-
             }
         }
     }

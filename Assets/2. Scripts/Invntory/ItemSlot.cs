@@ -76,13 +76,13 @@ public class ItemSlot : MonoBehaviour
             // 해당 인덱스(index)의 값 변경
             GameManager.instance.inventory_Items[index].item_Count = count.ToString();
             _text.text = itemName + "   " + count + "개";
-            GameManager.instance.Save("i");
+            //GameManager.instance.Save("i");
             if (count <= 0)
             {
                 GameManager.instance.inventory_Items.RemoveAt(index);
                 gameObject.GetComponentInChildren<Image>().sprite = null;
                 GetComponentInChildren<Text>().text = "빈 공간";
-                GameManager.instance.Save("i");
+                //GameManager.instance.Save("i");
             }
         }
     }
