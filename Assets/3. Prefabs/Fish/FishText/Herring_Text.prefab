@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8262879695775656014}
   - component: {fileID: 7040561584231261383}
   m_Layer: 5
-  m_Name: Octopus_Text
+  m_Name: Herring_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,4 +79,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBB38\uC5B4 (\uBD89\uC740\uC0B4 \uC0DD\uC120)\n\uAC00\uACA9 4000\uC6D0"
+  m_Text: "\uCCAD\uC5B4 (\uBD89\uC740\uC0B4 \uC0DD\uC120)\n\uAC00\uACA9 3000\uC6D0"

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b3d820df750364ca03235c9bff8e86, type: 3}
-  m_Name: Saurel Data
+  m_Name: Bigeye Trevally Data
   m_EditorClassIdentifier: 
   fishName: "\uC804\uAC31\uC5B4"
   grade: 0
@@ -19,6 +19,6 @@ MonoBehaviour:
   heal: 3
   gold: 3000
   probability: 10
-  fishImg: {fileID: 21300000, guid: 05afd58773e2bad4182c06441f4c2898, type: 3}
+  fishImg: {fileID: 21300000, guid: 85d36742311985e4faebaa74761124a9, type: 3}
   netaImg: {fileID: 21300000, guid: cb04e3b4c344366409a2b85423b33c7a, type: 3}
   info: {fileID: 7040561584231261383, guid: cba5ae5bd0ef6304d83baa74694c23ac, type: 3}

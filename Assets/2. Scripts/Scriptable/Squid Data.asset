@@ -19,6 +19,6 @@ MonoBehaviour:
   heal: 4
   gold: 4000
   probability: 18
-  fishImg: {fileID: 21300000, guid: 05afd58773e2bad4182c06441f4c2898, type: 3}
-  netaImg: {fileID: 21300000, guid: cb04e3b4c344366409a2b85423b33c7a, type: 3}
+  fishImg: {fileID: 21300000, guid: f29f3fa93d2b38c458f63ef434f7061a, type: 3}
+  netaImg: {fileID: 21300000, guid: c8cb40e6cf4d99148abc85343e3a29af, type: 3}
   info: {fileID: 7040561584231261383, guid: ccfb5d120825b214b80506015a6edefa, type: 3}
