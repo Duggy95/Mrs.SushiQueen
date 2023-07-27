@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class CookManager : MonoBehaviour
 {
+    public CanvasGroup inventoryCanvas;
     public GameObject customerPrefab;  //손님 프리팹
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
     public GameObject configPanel;
     public GameObject readyBtn;
+    public GameObject InventoryImg;  //인벤토리
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
-    public GameObject InventoryImg;  //인벤토리
-    public CanvasGroup inventoryCanvas;
+    public Text atkTxt;  //골드
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     public bool isReady = false;

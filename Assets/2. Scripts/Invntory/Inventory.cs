@@ -17,20 +17,6 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        /*Image[] itemImgPrefabs = itemSlotPrefab.GetComponentsInChildren<Image>();
-        foreach (Image itemImg in itemImgPrefabs)
-        {
-            if (itemImg.name.Contains("Img"))
-                itemImgPrefab = itemImg;
-        }
-
-        Image[] fishSlotPrefabs = fishSlotPrefab.GetComponentsInChildren<Image>();
-        foreach (Image fishImg in fishSlotPrefabs)
-        {
-            if (fishImg.name.Contains("Img"))
-                fishImgPrefab = fishImg;
-        }
-*/
         itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
         fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
 
@@ -38,6 +24,12 @@ public class Inventory : MonoBehaviour
         {
             GameObject itemPrefab = Instantiate(itemSlotPrefab, itemContent.transform);
             ItemSlot item_Slot = itemPrefab.GetComponent<ItemSlot>();
+            Image[] itemImgPrefabs = itemPrefab.GetComponentsInChildren<Image>();
+            foreach (Image itemImg in itemImgPrefabs)
+            {
+                if (itemImg.name.Contains("Img"))
+                    itemImgPrefab = itemImg;
+            }
 
             if (GameManager.instance.inventory_Items.Count > i)
             {
@@ -60,6 +52,12 @@ public class Inventory : MonoBehaviour
         {
             GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
             FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
+            Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
+            foreach (Image fishImg in fishSlotPrefabs)
+            {
+                if (fishImg.name.Contains("Img"))
+                    fishImgPrefab = fishImg;
+            }
 
             if (GameManager.instance.inventory_Fishs.Count > i)
             {
@@ -70,25 +68,25 @@ public class Inventory : MonoBehaviour
                 fish_Slot.isEmpty = true;
 
                 if (_fishName == "광어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
                 else if (_fishName == "연어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Salmon", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Salmon", typeof(Sprite)) as Sprite;
                 else if (_fishName == "도미")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Snapper", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Snapper", typeof(Sprite)) as Sprite;
                 else if (_fishName == "참치")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
                 else if (_fishName == "오징어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
                 else if (_fishName == "전갱이")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Bigeye Trevally", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bigeye Trevally", typeof(Sprite)) as Sprite;
                 else if (_fishName == "농어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
                 else if (_fishName == "방어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
                 else if (_fishName == "청어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
                 else if (_fishName == "고등어")
-                    fishImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
+                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
             }
         }
     }

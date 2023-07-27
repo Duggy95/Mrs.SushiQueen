@@ -48,6 +48,9 @@ public class StartSceneManager : MonoBehaviour
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 GameManager.instance.Save("d");
+                GameManager.instance.Save("i");
+                GameManager.instance.Save("f");
+
                 UIUpdate();
             }
         }

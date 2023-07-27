@@ -12,10 +12,12 @@ public class ItemSlot : MonoBehaviour
     Button button;
     Text _text;
 
+    bool isReturn = false;
+
     void Awake()
     {
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
-        if(fm != null )
+        if (fm != null)
         {
             button = GetComponent<Button>(); //버튼 component 가져오기
             button.onClick.AddListener(() => UseItem()); //인자가 없을 때 함수 호출
@@ -23,16 +25,19 @@ public class ItemSlot : MonoBehaviour
         }
         else
         {
-            return;
+            isReturn = true;
         }
     }
 
     public void UseItem()
     {
+        if (isReturn)
+            return;
+
         if (fm.useItem_white || fm.useItem_red || fm.useItem_rare || fm.isFishing)
             return;
 
-        if(_text.text.Contains("지렁이"))
+        if (_text.text.Contains("지렁이"))
         {
             fm.useItem_white = true;
             fm.useItemPanel.gameObject.SetActive(true);
@@ -40,7 +45,7 @@ public class ItemSlot : MonoBehaviour
             print("지렁이 사용");
         }
 
-        else if(_text.text.Contains("새우"))
+        else if (_text.text.Contains("새우"))
         {
             fm.useItem_red = true;
             fm.useItemPanel.gameObject.SetActive(true);
@@ -48,7 +53,7 @@ public class ItemSlot : MonoBehaviour
             print("새우 사용");
         }
 
-        else if(_text.text.Contains("생선살"))
+        else if (_text.text.Contains("생선살"))
         {
             fm.useItem_rare = true;
             fm.useItemPanel.gameObject.SetActive(true);
@@ -80,8 +85,17 @@ public class ItemSlot : MonoBehaviour
             if (count <= 0)
             {
                 GameManager.instance.inventory_Items.RemoveAt(index);
-                gameObject.GetComponentInChildren<Image>().sprite = null;
-                GetComponentInChildren<Text>().text = "빈 공간";
+                Image[] nullImg = gameObject.GetComponentsInChildren<Image>();
+                foreach (Image image in nullImg)
+                {
+                    if (image.gameObject.GetComponentInChildren<Text>().text.Contains("빈"))
+                    {
+                        gameObject.GetComponentInChildren<Image>().sprite = null;
+                        GetComponentInChildren<Text>().text = "빈 공간";
+                    }
+                }
+                /*gameObject.GetComponentInChildren<Image>().sprite = null;
+                GetComponentInChildren<Text>().text = "빈 공간";*/
                 //GameManager.instance.Save("i");
             }
         }

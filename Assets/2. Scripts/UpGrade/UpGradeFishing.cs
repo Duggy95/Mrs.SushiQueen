@@ -111,7 +111,7 @@ public class UpGradeFishing : MonoBehaviour
 
         for (int i = 0; i < _items.Length; i++)
         {
-            if (_items[i].gameObject.name.Contains("Img"))
+            if (_items[i].gameObject.name.Contains("Slot"))
             {
                 if (_items[i].GetComponentInChildren<Text>().text.Contains(itemName))
                 {
@@ -150,28 +150,34 @@ public class UpGradeFishing : MonoBehaviour
         {
             for (int i = 0; i < _items.Length; i++)
             {
-                if (_items[i].gameObject.name.Contains("Img"))
+                if (_items[i].gameObject.name.Contains("Slot"))
                 {
-                    ItemSlot _slot = _items[i].GetComponentInChildren<ItemSlot>();
-
+                    ItemSlot _slot = _items[i].GetComponent<ItemSlot>();
+                    Image Img = null;
+                    Image[] itemImgs = _items[i].GetComponentsInChildren<Image>();
+                    foreach (Image itemImg in itemImgs)
+                    {
+                        if (itemImg.name.Contains("Img"))
+                            Img = itemImg;
+                    }
                     if (_slot.isEmpty == false)
                     {
                         if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("지렁이"))
                         {
                             Debug.Log("지렁이, 처음");
-                            isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice);
+                            isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice, Img);
                             break;
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("새우"))
                         {
                             Debug.Log("새우, 처음");
-                            isFull = SetItem(i, "새우", "1", _slot, normalItemPrice);
+                            isFull = SetItem(i, "새우", "1", _slot, normalItemPrice, Img);
                             break;
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= rareItemPrice && _text.text.Contains("생선살"))
                         {
                             Debug.Log("생선살, 처음");
-                            isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice);
+                            isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice, Img);
                             break;
                         }
                         else
@@ -217,9 +223,9 @@ public class UpGradeFishing : MonoBehaviour
         return false;
     }
 
-    bool SetItem(int i, string name, string count, ItemSlot slot, int price)
+    bool SetItem(int i, string name, string count, ItemSlot slot, int price, Image Img)
     {
-        _items[i].sprite = gameObject.GetComponent<Image>().sprite;
+        Img.sprite = gameObject.GetComponent<Image>().sprite;
         _items[i].GetComponentInChildren<Text>().text = name + "    " + count + "개";
         GameManager.instance.inventory_Items.Add(new InventoryItem(name, count));
         int _gold = int.Parse(GameManager.instance.data.gold) - price;
