@@ -17,7 +17,9 @@ public class FishingManager : MonoBehaviour
     public Text useRedItemTxt;
     public Text useRareItemTxt;
     public GameObject configPanel;
-    public GameObject InventoryImg;  // 인벤토리 이미지
+    public GameObject inventoryImg;  // 인벤토리 이미지
+    public GameObject inventoryBtn;
+    public GameObject fishInfoImg;
     public GameObject fishContent; // 수족관
     public GameObject fishInfo; // 생선 정보 판넬
     public GameObject fishingRod; // 낚싯대 이미지
@@ -32,18 +34,21 @@ public class FishingManager : MonoBehaviour
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
     public bool useItem_rare = false;   // 레어 생선 확률 증가 아이템 사용
 
+    Vector3 fishInfoOriginPos;
+    Vector3 fishInfoOriginScale;
     bool config;
-
     FishData data;
 
     void Start()
     {
+        fishInfoOriginScale = Vector3.one;
+        fishInfoOriginPos = fishInfoImg.transform.position;
         useItemPanel.gameObject.SetActive(false);
         useRareItemTxt.gameObject.SetActive(false);
         useRedItemTxt.gameObject.SetActive(false);
         useWhiteItemTxt.gameObject.SetActive(false);
         //GameManager.instance.GetLog();
-        InventoryImg.gameObject.SetActive(false);
+        inventoryImg.gameObject.SetActive(false);
         UIUpdate();
     }
 
@@ -83,6 +88,11 @@ public class FishingManager : MonoBehaviour
     {
         data = fishData;
         fishInfo.gameObject.SetActive(true);
+        fishInfoImg.gameObject.SetActive(true);
+        fishInfoImg.transform.parent = fishInfo.transform;
+        fishInfoImg.transform.position = fishInfoOriginPos;
+        fishInfoImg.transform.localScale = fishInfoOriginScale;
+        fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
     }
@@ -134,6 +144,9 @@ public class FishingManager : MonoBehaviour
                         GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
                         Debug.Log("중복 종류 " + index + " changed to " + newValue);
+                        fishInfoImg.transform.parent = inventoryBtn.transform;
+                        StartCoroutine(Eff());
+                        StartCoroutine(EffMove());
                         //GameManager.instance.Save("f");
                         isChange = true;
                         isFull = false;
@@ -172,6 +185,9 @@ public class FishingManager : MonoBehaviour
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
                         Debug.Log("안찼고 다른 종류");
                         //GameManager.instance.Save("f");
+                        fishInfoImg.transform.parent = inventoryBtn.transform;
+                        StartCoroutine(Eff());
+                        StartCoroutine(EffMove());
                         _slot.isEmpty = true;
                         isFull = false;
                         break;
@@ -187,6 +203,41 @@ public class FishingManager : MonoBehaviour
         {
             isFishing = false;
             fishInfo.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator Eff()
+    {
+        Vector3 initialScale = new Vector3(1.1f, 1.1f, 1.1f);
+        Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f);
+        float duration = 1f; // 크기 변화에 걸리는 시간
+
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
+            fishInfoImg.transform.localScale = Vector3.Lerp(initialScale, targetScale, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator EffMove()
+    {
+        float elapsedTime = 0f;
+        float duration = 1f; // 이동 시간 (초)
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            fishInfoImg.transform.position = Vector3.Lerp(fishInfoImg.transform.position, inventoryBtn.transform.position, elapsedTime / duration);
+
+            if(elapsedTime / duration >= 1)
+            {
+                fishInfoImg.transform.position = inventoryBtn.transform.position;
+                fishInfoImg.gameObject.SetActive(false);
+            }
+            yield return null;
         }
     }
 
@@ -215,14 +266,14 @@ public class FishingManager : MonoBehaviour
     public void ViewInventory()
     {
         // 인벤토리 활성화
-        InventoryImg.gameObject.SetActive(true);
+        inventoryImg.gameObject.SetActive(true);
         // 인벤토리 순서를 제일 마지막으로
-        InventoryImg.transform.SetAsLastSibling();
+        inventoryImg.transform.SetAsLastSibling();
     }
 
     public void EscInventory()
     {
-        InventoryImg.gameObject.SetActive(false);
+        inventoryImg.gameObject.SetActive(false);
     }
 
     public void ConfigBtn()
@@ -248,6 +299,8 @@ public class FishingManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+
 
     /*public void LogOut()
     {

@@ -5031,7 +5031,9 @@ MonoBehaviour:
   useRedItemTxt: {fileID: 1485418983}
   useRareItemTxt: {fileID: 955178630}
   configPanel: {fileID: 1407006647}
-  InventoryImg: {fileID: 1328963840}
+  inventoryImg: {fileID: 1328963840}
+  inventoryBtn: {fileID: 164077849}
+  fishInfoImg: {fileID: 1762376954}
   fishContent: {fileID: 1492199568}
   fishInfo: {fileID: 635353780}
   fishingRod: {fileID: 1210664431}

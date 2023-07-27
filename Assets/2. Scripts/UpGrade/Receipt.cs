@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Receipt : MonoBehaviour
 {
     public Text receiptTxt;
+    public Text headTxt;
 
     List<TodayFishInfo> info = new List<TodayFishInfo>();
 
@@ -55,5 +56,7 @@ public class Receipt : MonoBehaviour
 
         receiptTxt.text = "오늘 수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " + GameManager.instance.todayData.score + "점" +
                         "\n\n오늘 잡은 물고기\n\n" + fishInfoTxt;
+
+        headTxt.text = GameManager.instance.data.dateCount + "일차 영수증";
     }
 }
