@@ -450,15 +450,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87d839d0c9f4db4aab7ea1db9d83045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryCanvas: {fileID: 217375989}
   customerPrefab: {fileID: 7557381976995690044, guid: 5162a222040728649b98cda1de18dd2a, type: 3}
   orderView: {fileID: 1438526882}
   cookView: {fileID: 549975429}
   configPanel: {fileID: 1616064821}
   readyBtn: {fileID: 113995223}
+  InventoryImg: {fileID: 739183799}
   dateTxt: {fileID: 1054107877}
   goldTxt: {fileID: 327991149}
-  InventoryImg: {fileID: 739183799}
-  inventoryCanvas: {fileID: 217375989}
+  atkTxt: {fileID: 0}
   canMake: 0
   isReady: 0
 --- !u!4 &155169518
@@ -529,7 +530,7 @@ MonoBehaviour:
   fishContent: {fileID: 397253718}
   sushiContent: {fileID: 1498260600}
   sushiPrefab: {fileID: 8932197181619172528, guid: f2762f8529bb8664c9b3b499e12f1991, type: 3}
-  fishSlotPrefab: {fileID: 3690603837381575173, guid: 1ff14852d0b2a0d44a0787ac6b22982e, type: 3}
+  fishSlotPrefab: {fileID: 5427897022582422916, guid: 225a6565f163c2e43b56487c240c27fb, type: 3}
 --- !u!1 &217375984
 GameObject:
   m_ObjectHideFlags: 0
@@ -4619,8 +4620,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartSceneManager, Assembly-CSharp
+      - m_Target: {fileID: 155169517}
+        m_TargetAssemblyTypeName: CookManager, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
