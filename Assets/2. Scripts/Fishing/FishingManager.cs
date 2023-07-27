@@ -112,7 +112,7 @@ public class FishingManager : MonoBehaviour
 
         for (int i = 0; i < _fishs.Length; i++)
         {
-            if (_fishs[i].gameObject.name.Contains("Img"))
+            if (_fishs[i].gameObject.name.Contains("Slot"))
             {
                 if (_fishs[i].GetComponentInChildren<Text>().text.Contains(data.fishName))
                 {
@@ -138,17 +138,25 @@ public class FishingManager : MonoBehaviour
                 }
             }
         }
+
         if (isChange == false)
         {
             for (int i = 0; i < _fishs.Length; i++)
             {
-                if (_fishs[i].gameObject.name.Contains("Img"))
+                if (_fishs[i].gameObject.name.Contains("Slot"))
                 {
                     FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
+                    Image Img = null;
+                    Image[] fishImgs = _fishs[i].GetComponentsInChildren<Image>();
+                    foreach (Image fishImg in fishImgs)
+                    {
+                        if (fishImg.name.Contains("Img"))
+                            Img = fishImg;
+                    }
 
                     if (_slot.isEmpty == false)
                     {
-                        _fishs[i].sprite = data.fishImg;
+                        Img.sprite = data.fishImg;
                         _slot.fish_ColorNum = data.color;
                         _slot.fish_GradeNum = data.grade;
                         _slot.fish_Name = data.fishName;

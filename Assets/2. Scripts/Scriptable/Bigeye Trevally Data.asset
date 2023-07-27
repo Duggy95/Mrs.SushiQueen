@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b3d820df750364ca03235c9bff8e86, type: 3}
   m_Name: Bigeye Trevally Data
   m_EditorClassIdentifier: 
-  fishName: "\uC804\uAC31\uC5B4"
+  fishName: "\uC804\uAC31\uC774"
   grade: 0
   color: 0
   hp: 30

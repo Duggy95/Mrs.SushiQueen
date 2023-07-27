@@ -31,10 +31,6 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
             //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
         }
-        else
-        {
-            Destroy(this);  //스크립트 삭제.
-        }
     }
 
     void Start()
@@ -43,11 +39,10 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
-        if(fishSlot.fish_Count == 0)
+        /*if(fishSlot.fish_Count == 0)
         {
             Destroy(this);
-        }
-
+        }*/
     }
 
     public void OnBeginDrag(PointerEventData eventData)
