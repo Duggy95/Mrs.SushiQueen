@@ -54,7 +54,7 @@ public class FishSlot : MonoBehaviour
 
     public void ClearSlot()
     {
-        gameObject.GetComponent<Image>().sprite = null;
+        gameObject.GetComponentInChildren<Image>().sprite = null;
         GetComponentInChildren<Text>().text = "ºó °ø°£";
         fish_Count = 0;
     }

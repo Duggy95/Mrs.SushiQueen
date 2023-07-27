@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class EndSceneCtrl : MonoBehaviour
 {
+    public Text dateTxt;
+    public Text goldTxt;
+    public Text atkTxt;
     public GameObject configPanel;
     public GameObject fishingSV;
     public GameObject ShopSV;
     public GameObject SkillSV;
-    public Text dateTxt;
-    public Text goldTxt;
     public GameObject InventoryImg;
     public GameObject noMoneyTxt;
     public GameObject maxLevelTxt;
@@ -83,6 +84,7 @@ public class EndSceneCtrl : MonoBehaviour
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
+        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
 
     public void ViewInventory()

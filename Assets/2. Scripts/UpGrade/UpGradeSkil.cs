@@ -21,45 +21,49 @@ public class UpGradeSkil : MonoBehaviour
         string[] info = text.text.Split(" ");
         string _name = info[0];
 
-        if (_name == "요리")
+        if (_name == "낚시체력")
         {
-            SetCookingAbility();
+            SetFishingTimer();
         }
-
-        else if (_name == "홍보")
+        else if(_name == "요리체력")
         {
-
+            SetCookingTimer();
+        }
+        else if(_name == "응대")
+        {
+            SetCustomerTimer();
         }
     }
 
-    public void SetCookingAbility()
+    public void SetCookingTimer()
     {
-        count = int.Parse(GameManager.instance.data.cookCount);
-        level = count - 2;
-        _gold = count * 100000;
+        count = int.Parse(GameManager.instance.data.cookTime);
+        level = int.Parse(GameManager.instance.data.cookHPLV);
+        _gold = level * 100000;
 
         Text text = GetComponentInChildren<Text>();
-        text.text = "요리 LV." + level + "\n가격 : " + _gold + "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
+        text.text = "요리체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 요리할 수 있는\n시간 " + count + "초";
     }
 
-    public void GrowthCookingAbility()
+    public void GrowthCookingTimer()
     {
-        if (int.Parse(GameManager.instance.data.cookCount) < 7)
+        if (int.Parse(GameManager.instance.data.cookHPLV) < 5)
         {
-            int countA = int.Parse(GameManager.instance.data.cookCount) + 1;
-            int levelA = int.Parse(GameManager.instance.data.cookCount) - 1;
-            int _goldA = int.Parse(GameManager.instance.data.cookCount) * 100000;
+            int countA = int.Parse(GameManager.instance.data.cookTime) + 10;
+            int levelA = int.Parse(GameManager.instance.data.cookHPLV);
+            int _goldA = levelA * 100000;
 
             if (int.Parse(GameManager.instance.data.gold) >= _goldA)
             {
                 count = countA;
-                level = levelA;
-                _gold = _goldA + 100000;
+                level = levelA + 1;
+                _gold = level * 100000;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
-                GameManager.instance.data.cookCount = count.ToString();
+                GameManager.instance.data.cookTime = count.ToString();
+                GameManager.instance.data.cookHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
-                text.text = "요리 LV." + level + "\n가격 : " + _gold + "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
+                text.text = "요리체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 요리할 수 있는\n시간 " + count + "초";
                 //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
@@ -74,9 +78,90 @@ public class UpGradeSkil : MonoBehaviour
         }
     }
 
-    public void PromotionUpgrade()
+    public void SetFishingTimer()
     {
+        count = int.Parse(GameManager.instance.data.fishTime);
+        level = int.Parse(GameManager.instance.data.fishHPLV);
+        _gold = level * 100000;
 
+        Text text = GetComponentInChildren<Text>();
+        text.text = "낚시체력 LV." + level + "\n가격 : " + _gold + "\n현재 낚시할 수 있는\n시간 " + count + "초";
+    }
+
+    public void GrowthFishingTimer()
+    {
+        if (int.Parse(GameManager.instance.data.fishHPLV) < 5)
+        {
+            int countA = int.Parse(GameManager.instance.data.fishTime) + 10;
+            int levelA = int.Parse(GameManager.instance.data.fishHPLV);
+            int _goldA = levelA * 100000;
+
+            if (int.Parse(GameManager.instance.data.gold) >= _goldA)
+            {
+                count = countA;
+                level = levelA + 1;
+                _gold = level * 100000;
+                int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
+                GameManager.instance.data.gold = gold_.ToString();
+                GameManager.instance.data.fishTime = count.ToString();
+                GameManager.instance.data.fishHPLV = level.ToString();
+                Text text = GetComponentInChildren<Text>();
+                text.text = "낚시체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 낚시할 수 있는\n시간 " + count + "초";
+                //GameManager.instance.Save("d");
+                endSceneCtrl.UIUpdate();
+            }
+            else
+            {
+                StartCoroutine(NoMoney());
+            }
+        }
+        else
+        {
+            StartCoroutine(MaxLevel());
+        }
+    }
+
+    public void SetCustomerTimer()
+    {
+        count = int.Parse(GameManager.instance.data.customerTime);
+        level = int.Parse(GameManager.instance.data.customerHPLV);
+        _gold = level * 100000;
+
+        Text text = GetComponentInChildren<Text>();
+        text.text = "응대 LV." + level + "\n가격 : " + _gold + "\n현재 손님 대기시간 \n시간 " + count + "초";
+    }
+
+    public void GrowthCustomerTimer()
+    {
+        if (int.Parse(GameManager.instance.data.customerHPLV) < 5)
+        {
+            int countA = int.Parse(GameManager.instance.data.customerTime) + 2;
+            int levelA = int.Parse(GameManager.instance.data.customerHPLV);
+            int _goldA = levelA * 100000;
+
+            if (int.Parse(GameManager.instance.data.gold) >= _goldA)
+            {
+                count = countA;
+                level = levelA + 1;
+                _gold = level * 100000;
+                int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
+                GameManager.instance.data.gold = gold_.ToString();
+                GameManager.instance.data.customerTime = count.ToString();
+                GameManager.instance.data.customerHPLV = level.ToString();
+                Text text = GetComponentInChildren<Text>();
+                text.text = "응대 LV." + level + "\n가격 : " + _gold + "\n현재 손님 대기시간 \n시간 " + count + "초";
+                //GameManager.instance.Save("d");
+                endSceneCtrl.UIUpdate();
+            }
+            else
+            {
+                StartCoroutine(NoMoney());
+            }
+        }
+        else
+        {
+            StartCoroutine(MaxLevel());
+        }
     }
 
     IEnumerator NoMoney()

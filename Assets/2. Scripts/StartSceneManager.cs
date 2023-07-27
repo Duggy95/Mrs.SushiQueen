@@ -15,6 +15,7 @@ public class StartSceneManager : MonoBehaviour
     public string[] story;  //스토리 내용
     public Text dateTxt;  //날짜 + 평판 텍스트
     public Text goldTxt;  //골드 텍스트
+    public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
     public Image backGround;  //스토리 배경 그림
     public Sprite[] sprites;
@@ -74,10 +75,11 @@ public class StartSceneManager : MonoBehaviour
         }
     }
 
-    void UIUpdate()
+    public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
+        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
 
     public void ViewInventory()
@@ -111,10 +113,10 @@ public class StartSceneManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public void GoUpgrade()
+    /*public void GoUpgrade()
     {
         SceneManager.LoadScene(3);
-    }
+    }*/
 
     public void ConfigBtn()
     {

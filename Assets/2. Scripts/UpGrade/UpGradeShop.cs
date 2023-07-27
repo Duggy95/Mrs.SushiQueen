@@ -25,10 +25,9 @@ public class UpGradeShop : MonoBehaviour
         {
             SetAquarium();
         }
-
-        else if(_name == "인테리어")
+        else if (_name == "요리공간")
         {
-
+            SetCookingAbility();
         }
     }
 
@@ -39,7 +38,7 @@ public class UpGradeShop : MonoBehaviour
         _gold = int.Parse(GameManager.instance.data.fishCount) * 100000;
 
         Text text = GetComponentInChildren<Text>();
-        text.text = "수족관 LV." + level + "\n가격 : " + _gold + "\n효과 : 물고기 공간\n최대 " + count + "마리";
+        text.text = "수족관 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 물고기 공간\n최대 " + count + "마리";
     }
 
     public void GrowthAquarium()
@@ -59,7 +58,7 @@ public class UpGradeShop : MonoBehaviour
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.fishCount = count.ToString();
                 Text text = GetComponentInChildren<Text>();
-                text.text = "수족관 LV." + level + "\n가격 : " + _gold + "\n효과 : 물고기 공간\n최대 " + count + "마리";
+                text.text = "수족관 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 물고기 공간\n최대 " + count + "마리";
                 //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
@@ -74,9 +73,47 @@ public class UpGradeShop : MonoBehaviour
         }
     }
 
-    public void InteriorUpgrade()
-    {
 
+    public void SetCookingAbility()
+    {
+        count = int.Parse(GameManager.instance.data.cookCount);
+        level = count - 2;
+        _gold = count * 100000;
+
+        Text text = GetComponentInChildren<Text>();
+        text.text = "요리공간 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
+    }
+
+    public void GrowthCookingAbility()
+    {
+        if (int.Parse(GameManager.instance.data.cookCount) < 7)
+        {
+            int countA = int.Parse(GameManager.instance.data.cookCount) + 1;
+            int levelA = int.Parse(GameManager.instance.data.cookCount) - 1;
+            int _goldA = int.Parse(GameManager.instance.data.cookCount) * 100000;
+
+            if (int.Parse(GameManager.instance.data.gold) >= _goldA)
+            {
+                count = countA;
+                level = levelA;
+                _gold = _goldA + 100000;
+                int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
+                GameManager.instance.data.gold = gold_.ToString();
+                GameManager.instance.data.cookCount = count.ToString();
+                Text text = GetComponentInChildren<Text>();
+                text.text = "요리공간 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 요리할 수 있는\n물고기 수 " + count + "마리";
+                //GameManager.instance.Save("d");
+                endSceneCtrl.UIUpdate();
+            }
+            else
+            {
+                StartCoroutine(NoMoney());
+            }
+        }
+        else
+        {
+            StartCoroutine(MaxLevel());
+        }
     }
 
     IEnumerator NoMoney()

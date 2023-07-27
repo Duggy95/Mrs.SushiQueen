@@ -10,11 +10,13 @@ public class CookManager : MonoBehaviour
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
     public GameObject configPanel;
+    public GameObject InventoryImg;  //인벤토리
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
-    public GameObject InventoryImg;  //인벤토리
+    public Text atkTxt;
     public Image[] fishImg;  //생선이미지
     public bool canMake = false;
+
     bool config = false;
     //Transform fishContent;
 
@@ -67,6 +69,7 @@ public class CookManager : MonoBehaviour
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
+        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
 
     public void ViewInventory() //인벤토리 활성화

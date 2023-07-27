@@ -11,11 +11,17 @@ public class Timer : MonoBehaviour
     float currTime;  //현재시간
     Color currColor;  //현재색
     Color initColor = new Vector4(0f, 1f, 0f, 1f);  //초기색
+    Scene currentScene;
 
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
+
         timer = GetComponent<Image>();
-        maxTime = 180;
+        if (currentScene.buildIndex == 1)
+            maxTime = int.Parse(GameManager.instance.data.fishTime);
+        else if (currentScene.buildIndex == 2)
+            maxTime = int.Parse(GameManager.instance.data.cookTime); ;
 
         currTime = maxTime;  // 초기값
         timer.color = initColor;  //초기색 초록색으로
@@ -49,7 +55,7 @@ public class Timer : MonoBehaviour
     {
         if (currTime <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(currentScene.buildIndex + 1);
         }
     }
 }
