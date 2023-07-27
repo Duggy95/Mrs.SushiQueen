@@ -47,18 +47,20 @@ public class UpGradeSkil : MonoBehaviour
         if (int.Parse(GameManager.instance.data.cookCount) < 7)
         {
             int countA = int.Parse(GameManager.instance.data.cookCount) + 1;
-            int levelA = countA - 2;
-            int _goldA = countA * 100000;
+            int levelA = int.Parse(GameManager.instance.data.cookCount) - 1;
+            int _goldA = int.Parse(GameManager.instance.data.cookCount) * 100000;
 
             if (int.Parse(GameManager.instance.data.gold) >= _goldA)
             {
                 count = countA;
                 level = levelA;
-                _gold = _goldA;
+                _gold = _goldA + 100000;
+                int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
+                GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.cookCount = count.ToString();
                 Text text = GetComponentInChildren<Text>();
                 text.text = "요리 LV." + level + "\n가격 : " + _gold + "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
-                GameManager.instance.Save("s");
+                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -93,5 +95,11 @@ public class UpGradeSkil : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         maxLevelTxt.gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(MaxLevel());
+        StopCoroutine(NoMoney());
     }
 }

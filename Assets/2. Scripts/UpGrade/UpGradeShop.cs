@@ -46,20 +46,21 @@ public class UpGradeShop : MonoBehaviour
     {
         if (int.Parse(GameManager.instance.data.fishCount) < 7)
         {
-            int countA = int.Parse(GameManager.instance.data.fishCount) + 1;
-            int levelA = countA - 2;
-            int _goldA = countA * 100000;
+            int countA = int.Parse(GameManager.instance.data.fishCount) + 1;  // 4
+            int levelA = int.Parse(GameManager.instance.data.fishCount) - 1;  // 2
+            int _goldA = int.Parse(GameManager.instance.data.fishCount) * 100000;
 
             if (int.Parse(GameManager.instance.data.gold) >= _goldA)
             {
                 count = countA;
                 level = levelA;
-                _gold = _goldA;
+                _gold = _goldA + 100000;
+                int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
+                GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.fishCount = count.ToString();
                 Text text = GetComponentInChildren<Text>();
                 text.text = "수족관 LV." + level + "\n가격 : " + _gold + "\n효과 : 물고기 공간\n최대 " + count + "마리";
-                int gold_ = int.Parse(GameManager.instance.data.gold) - _gold;
-                GameManager.instance.Save("s");
+                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -94,5 +95,11 @@ public class UpGradeShop : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         maxLevelTxt.gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(MaxLevel());
+        StopCoroutine(NoMoney());
     }
 }

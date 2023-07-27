@@ -77,13 +77,13 @@ public class FishSlot : MonoBehaviour
             // 해당 인덱스(index)의 값 변경
             GameManager.instance.inventory_Fishs[index].fish_Count = count.ToString();
             _text.text = fishName + "   " + count + " " + "마리";
-            GameManager.instance.Save("f");
+            //GameManager.instance.Save("f");
             if (count <= 0)
             {
                 GameManager.instance.inventory_Fishs.RemoveAt(index);
                 gameObject.GetComponentInChildren<Image>().sprite = null;
                 GetComponentInChildren<Text>().text = "빈 공간";
-                GameManager.instance.Save("f");
+                //GameManager.instance.Save("f");
             }
         }
     }
