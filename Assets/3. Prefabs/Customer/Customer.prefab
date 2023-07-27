@@ -702,8 +702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -100}
-  m_SizeDelta: {x: 350, y: 800}
+  m_AnchoredPosition: {x: -350, y: -35}
+  m_SizeDelta: {x: 700, y: 950}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7557381976995690047
 CanvasRenderer:
@@ -757,9 +757,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderTxt: {fileID: 2989136088802599298}
   sprites:
+  - {fileID: 21300000, guid: 2c8092adc945c4a4bac7f0ac1d04eedf, type: 3}
   - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
-  - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
-  - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
+  - {fileID: 21300000, guid: 2c8092adc945c4a4bac7f0ac1d04eedf, type: 3}
   - {fileID: 21300000, guid: 9ef196a3cf126e54da6127e6a53fa6ef, type: 3}
   sushis:
   - "\uB3C4\uBBF8"
