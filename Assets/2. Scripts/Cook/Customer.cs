@@ -28,6 +28,7 @@ public class Customer : MonoBehaviour
     float currTimePercent;  //현재시간 비율
     bool isTimer;  //타이머 존재
     bool isOrdered;  //주문수락확인.
+    int randomOrder;
 
     //초밥 종류
     string sushiName1;
@@ -59,7 +60,23 @@ public class Customer : MonoBehaviour
 
     void OnEnable()
     {
-        int randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
+        //randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
+        if (int.Parse(GameManager.instance.data.score) <= 600)
+        {
+            RandomChance(80, 17, 3);
+            print("첫번째");
+        }
+        else if (int.Parse(GameManager.instance.data.score) <= 900)
+        {
+            RandomChance(60, 30, 10);
+            print("두번째");
+        }
+        else
+        {
+            RandomChance(40, 40, 20);
+            print("세번째");
+        }
+
         int randomSprite = Random.Range(0, sprites.Length);  //랜덤하게 그림 결정.
         GetComponent<Image>().sprite = sprites[randomSprite];  //랜덤한 그림 적용.
 
@@ -70,7 +87,7 @@ public class Customer : MonoBehaviour
                 sushiName1 = sushis[Random.Range(0, sushis.Length)];
                 sushiCount1 = Random.Range(1, 4);
                 wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
-                order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " +  message;
+                order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + message;
                 AddOrder(sushiName1, wasabi1, sushiCount1);  //랜덤하게 결정한 요소들을 주문 리스트에 추가
                 orderTxt.text = order;  //주문 텍스트 출력.
                 break;
@@ -92,8 +109,8 @@ public class Customer : MonoBehaviour
                 sushiCount2 = Random.Range(1, 4);
                 wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
                 wasabi2 = wasabis[Random.Range(0, wasabis.Length)];
-                order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " +  "\n" +
-                            sushiName2 + "초밥 " + "와사비 " + wasabi2 + " " + sushiCount2 + "개 " +  message;
+                order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + "\n" +
+                            sushiName2 + "초밥 " + "와사비 " + wasabi2 + " " + sushiCount2 + "개 " + message;
                 //랜덤하게 결정한 요소들 주문 리스트에 추가.
                 AddOrder(sushiName1, wasabi1, sushiCount1);
                 AddOrder(sushiName2, wasabi2, sushiCount2);
@@ -121,8 +138,8 @@ public class Customer : MonoBehaviour
                 wasabi2 = wasabis[Random.Range(0, wasabis.Length)];
                 wasabi3 = wasabis[Random.Range(0, wasabis.Length)];
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + "\n" +
-                            sushiName2 + "초밥 " + "와사비 " + wasabi2 + " " + sushiCount2 + "개 " +  "\n" +
-                            sushiName3 + "초밥 " + "와사비 " + wasabi3 + " " + sushiCount3 + "개 " +  message;
+                            sushiName2 + "초밥 " + "와사비 " + wasabi2 + " " + sushiCount2 + "개 " + "\n" +
+                            sushiName3 + "초밥 " + "와사비 " + wasabi3 + " " + sushiCount3 + "개 " + message;
                 //랜덤하게 결정한 요소들 주문 리스트에 추가
                 AddOrder(sushiName1, wasabi1, sushiCount1);
                 AddOrder(sushiName2, wasabi2, sushiCount2);
@@ -286,6 +303,24 @@ public class Customer : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         tr.position = new Vector3(0, -3000, 0);
+    }
+
+    void RandomChance(int num1, int num2, int num3)
+    {
+        int randomNum = Random.Range(1, 101);
+
+        if (randomNum <= num1)
+        {
+            randomOrder = 0;
+        }
+        else if (randomNum <= num2)
+        {
+            randomOrder = 1;
+        }
+        else
+        {
+            randomOrder = 2;
+        }
     }
 }
 

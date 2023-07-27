@@ -169,8 +169,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: 800, y: 150}
+  m_AnchoredPosition: {x: 0, y: 70}
+  m_SizeDelta: {x: 900, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2989136088802599299
 CanvasRenderer:
@@ -624,7 +624,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 650.00006, y: 199.99998}
-  m_SizeDelta: {x: 900, y: 350}
+  m_SizeDelta: {x: 950, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2989136090562741810
 CanvasRenderer:
@@ -766,6 +766,12 @@ MonoBehaviour:
   - "\uAD11\uC5B4"
   - "\uC5F0\uC5B4"
   - "\uCC38\uCE58"
+  - "\uCCAD\uC5B4"
+  - "\uC624\uC9D5\uC5B4"
+  - "\uBC29\uC5B4"
+  - "\uC804\uAC31\uC774"
+  - "\uACE0\uB4F1\uC5B4"
+  - "\uB18D\uC5B4"
   wasabis:
   - "\uC5C6\uC774"
   - "\uBCF4\uD1B5\uC73C\uB85C"
@@ -783,7 +789,6 @@ MonoBehaviour:
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}
-  board: {fileID: 0}
   timer: {fileID: 2989136090559844706}
 --- !u!114 &1161832505
 MonoBehaviour:

@@ -10,11 +10,14 @@ public class CookManager : MonoBehaviour
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
     public GameObject configPanel;
+    public GameObject readyBtn;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public GameObject InventoryImg;  //인벤토리
-    public Image[] fishImg;  //생선이미지
+    public CanvasGroup inventoryCanvas;
+    //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
+    public bool isReady = false;
     bool config = false;
     //Transform fishContent;
 
@@ -25,25 +28,25 @@ public class CookManager : MonoBehaviour
 
     void Start()
     {
-        //시작 세팅 = 주문화면 보이게
+        //시작 세팅 화면 세팅
         orderView.SetActive(true);
-        //cookView.SetActive(false);
         cookView.SetActive(true);
-        ws = new WaitForSeconds(2f);
-        UIUpdate();
-        /*fishContent = GameObject.FindWithTag("FISHCONTENT").GetComponent<Transform>();
-        for(int i = 0; i < fishContent.childCount; i++)
+
+        /*if(int.Parse(GameManager.instance.data.score) <= 600)
         {
-            Transform childContent = fishContent.GetChild(i);
-
-            if(childContent != null)
-            {
-                childContent.gameObject.AddComponent<DragItem>();
-            }
+            ws = new WaitForSeconds(3f);
+        }
+        else if(int.Parse(GameManager.instance.data.score) <= 900)
+        {
+            ws = new WaitForSeconds(2.5f);
+        }
+        else
+        {
+            ws = new WaitForSeconds(2f);
         }*/
+        ws = new WaitForSeconds(2);
 
-
-        StartCoroutine(Create());
+        UIUpdate();
     }
 
     void Update()
@@ -123,6 +126,17 @@ public class CookManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ReadyBtn()
+    {
+        isReady = true;
+        StartCoroutine(Create());
+        readyBtn.SetActive(false);
+        orderView.SetActive(true);
+        cookView.SetActive(false);
+        InventoryImg.gameObject.SetActive(false);
+        //inventoryCanvas.interactable = false;
     }
 
     /*public void LogOut()

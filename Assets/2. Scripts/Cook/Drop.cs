@@ -27,7 +27,7 @@ public class Drop : MonoBehaviour, IDropHandler
             return;
 
         print("µå¶ø");
-        if (transform.childCount == 1)
+        if (transform.childCount == 1 && netaBtn.isEmpty)
         {
             Drag.draggingItem.transform.SetParent(this.transform);
             FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
@@ -36,7 +36,24 @@ public class Drop : MonoBehaviour, IDropHandler
             count += 5;
             text.text = fishData.fishName + "     " + count.ToString();
             netaBtn.fishData = fishData;
+            netaBtn.count = count;
+            netaBtn.isEmpty = false;
             Destroy(Drag.draggingItem.gameObject);
+        }
+        else if(transform.childCount == 1 && !netaBtn.isEmpty)
+        {
+            FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
+            if (netaBtn.fishData.fishName == fishData.fishName)
+            {
+                Drag.draggingItem.transform.SetParent(this.transform);
+                Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
+                count += 5;
+                netaBtn.count = count;
+                netaBtn.UpdateUI();
+                Destroy(Drag.draggingItem.gameObject);
+            }
+            else
+                return;
         }
     }
 }
