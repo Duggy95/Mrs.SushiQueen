@@ -63,18 +63,21 @@ public class Customer : MonoBehaviour
         //randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
         if (int.Parse(GameManager.instance.data.score) <= 600)
         {
-            RandomChance(80, 17, 3);
+            //80퍼, 17퍼, 3퍼
+            RandomChance(80, 97);
             print(randomOrder);
             print("첫번째");
         }
         else if (int.Parse(GameManager.instance.data.score) <= 900)
         {
-            RandomChance(60, 30, 10);
+            //60퍼, 30퍼, 10퍼
+            RandomChance(60, 90);
             print("두번째");
         }
         else
         {
-            RandomChance(40, 40, 20);
+            //40퍼, 40퍼, 20퍼
+            RandomChance(40, 80);
             print("세번째");
         }
 
@@ -328,7 +331,7 @@ public class Customer : MonoBehaviour
         tr.position = new Vector3(0, -3000, 0);
     }
 
-    void RandomChance(int num1, int num2, int num3)
+    void RandomChance(int num1, int num2)
     {
         int randomNum = Random.Range(1, 101);
 

@@ -762,6 +762,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6c0b4eb141cc1464f96611415d65cc02, type: 3}
   - {fileID: 21300000, guid: 3b86b3ede297267488b0e493fee4c386, type: 3}
   - {fileID: 21300000, guid: e4e718dcebcfd204cb1d5a547b09fe8e, type: 3}
+  - {fileID: 21300000, guid: b6b3402ad7e17c64aabcfe601db6ae0c, type: 3}
   sushis:
   - "\uB3C4\uBBF8"
   - "\uAD11\uC5B4"
