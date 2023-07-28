@@ -72,7 +72,7 @@ public class Receipt : MonoBehaviour
         else
         {
             receiptTxt.text = "수익과 점수\n\n" + string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.gold + "원 / ") +
-                GameManager.instance.todayData.score + string.Format("<color=#8C8C8C>{0}</color>", "점") + "\n\n잡은 물고기\n\n" + string.Format("<color=#8C8C8C>{0}</color>", fishInfoTxt);
+                string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.score + "점") + "\n\n잡은 물고기\n\n" + string.Format("<color=#8C8C8C>{0}</color>", fishInfoTxt);
         }
         headTxt.text = GameManager.instance.data.dateCount + "일차 영수증";
     }

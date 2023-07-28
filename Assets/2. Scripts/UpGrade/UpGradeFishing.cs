@@ -12,8 +12,8 @@ public class UpGradeFishing : MonoBehaviour
     EndSceneCtrl endSceneCtrl;
     Image[] _items;
 
-    int normalItemPrice = 100000;
-    int rareItemPrice = 500000;
+    int normalItemPrice = 1000;
+    int rareItemPrice = 3000;
     int middleRodPrice = 500000;
     int highRodPrice = 1000000;
     int middleRodAtk = 1;
