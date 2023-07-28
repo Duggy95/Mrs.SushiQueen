@@ -13,6 +13,7 @@ public class Customer : MonoBehaviour
     public string[] compliment;  //대성공 문구.
     public string[] success;  //성공 문구.
     public string[] fail;  //실패 문구.
+    public string orderRecipe;
     public GameObject yesBtn;  //수락 버튼
     public GameObject noBtn;  //거절 버튼
     public GameObject timerObj; //타이머 오브젝트
@@ -103,6 +104,8 @@ public class Customer : MonoBehaviour
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + message;
                 AddOrder(sushiName1, wasabi1, sushiCount1);  //랜덤하게 결정한 요소들을 주문 리스트에 추가
                 orderTxt.text = order;  //주문 텍스트 출력.
+                orderRecipe = sushiName1 + ", " + wasabi1 + ", " + sushiCount1;
+                cookManager.Order(orderRecipe);
                 break;
             case 1:
                 //초밥 두 종류.
@@ -128,6 +131,9 @@ public class Customer : MonoBehaviour
                 AddOrder(sushiName1, wasabi1, sushiCount1);
                 AddOrder(sushiName2, wasabi2, sushiCount2);
                 orderTxt.text = order;  //주문 텍스트 출력
+                orderRecipe = sushiName1 + ", " + wasabi1 + ", " + sushiCount1 + "\n" +
+                                       sushiName2 + ", " + wasabi2 + ", " + sushiCount2;
+                cookManager.Order(orderRecipe);
                 break;
             case 2:
                 //초밥 세 종류.
@@ -158,6 +164,10 @@ public class Customer : MonoBehaviour
                 AddOrder(sushiName2, wasabi2, sushiCount2);
                 AddOrder(sushiName3, wasabi3, sushiCount3);
                 orderTxt.text = order;  //주문 텍스트 출력.
+                orderRecipe = sushiName1 + ", " + wasabi1 + ", " + sushiCount1 + "\n" +
+                                       sushiName2 + ", " + wasabi2 + ", " + sushiCount2 + "\n" +
+                                       sushiName3 + ", " + wasabi3 + ", " + sushiCount3;
+                cookManager.Order(orderRecipe);
                 break;
         }
     }
@@ -217,7 +227,7 @@ public class Customer : MonoBehaviour
         int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
 
-        GameManager.instance.todayData.score -= 20;
+        GameManager.instance.todayData.score -= 2;
 
         //GameManager.instance.Save("d");   //평판 저장
         cookManager.UIUpdate();  //UI 최신화
@@ -245,7 +255,7 @@ public class Customer : MonoBehaviour
         {
             List<Order> orders = this.orders;  //주문 리스트
             Dictionary<string, int> sushiCounts = dish.sushiCounts;  //접시 딕셔너리 (초밥의 종류, 갯수)
-            List<Sushi> sushis = dish.sushiList;  //접시 리스트 (초밥의 가격)
+            List<Sushi> sushis = dish.sushiList;  //접시 리스트 (초밥의 가격 불러올려고)
             int totalPrice = 0;
             bool orderMatch = true;  //주문 일치
             cookManager.canMake = false;

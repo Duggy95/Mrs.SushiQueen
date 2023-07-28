@@ -150,6 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netaPrefab: {fileID: 3618461126201247467, guid: a84d9718e582534459e0355ea2174adc, type: 3}
   board: {fileID: 0}
+  count: 0
+  isEmpty: 1
+  text: {fileID: 0}
   fishData: {fileID: 0}
 --- !u!114 &8932197181619172534
 MonoBehaviour:

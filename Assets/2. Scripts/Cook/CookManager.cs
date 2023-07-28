@@ -17,6 +17,7 @@ public class CookManager : MonoBehaviour
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
+    public Text orderTxt;
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     public bool isReady = false;
@@ -142,7 +143,12 @@ public class CookManager : MonoBehaviour
         orderView.SetActive(true);
         cookView.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
-        //inventoryCanvas.interactable = false;
+        inventoryCanvas.interactable = false;
+    }
+
+    public void Order(string txt)
+    {
+        orderTxt.text = txt;
     }
 
     /*public void LogOut()

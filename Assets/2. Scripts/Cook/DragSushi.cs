@@ -81,7 +81,7 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         else
         {
             sushiTr.SetParent(boardTr.transform);
-            sushiTr.position = boardTr.position;
+            sushiTr.position = boardTr.position; 
         }
     }
 }
