@@ -14,6 +14,7 @@ public class StartSceneManager : MonoBehaviour
     public Text storyTxt;  //스토리 텍스트
     public string[] story;  //스토리 내용
     public Text dateTxt;  //날짜 + 평판 텍스트
+    public Text scoreTxt;
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
@@ -81,7 +82,8 @@ public class StartSceneManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차";
+        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }

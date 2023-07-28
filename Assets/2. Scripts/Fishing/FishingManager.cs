@@ -16,6 +16,7 @@ public class FishingManager : MonoBehaviour
     public Text useWhiteItemTxt;
     public Text useRedItemTxt;
     public Text useRareItemTxt;
+    public Text scoreTxt;
     public GameObject configPanel;
     public GameObject inventoryImg;  // 인벤토리 이미지
     public GameObject inventoryBtn;
@@ -28,7 +29,6 @@ public class FishingManager : MonoBehaviour
     public GameObject fishObj;
     public Button fishingBtn;
     public Image fish_Img;
-
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
     public bool useItem_red = false;    // 붉은 살 생선 확률 증가 아이템 사용
@@ -258,7 +258,8 @@ public class FishingManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차";
+        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
