@@ -24,7 +24,7 @@ public class Fish : MonoBehaviour
     int _atk;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
     int randomIndex;
-    float maxTime = 60f;  // 최대 타임
+    float maxTime = 20f;  // 최대 타임
     float currTime;    // 현재 타임
     float fish_Probability;
     bool fishing = false;  // 낚시중인지
