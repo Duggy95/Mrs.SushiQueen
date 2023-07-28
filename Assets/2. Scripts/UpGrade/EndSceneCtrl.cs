@@ -9,6 +9,7 @@ public class EndSceneCtrl : MonoBehaviour
     public Text dateTxt;
     public Text goldTxt;
     public Text atkTxt;
+    public Text scoreTxt;
     public GameObject configPanel;
     public GameObject fishingSV;
     public GameObject ShopSV;
@@ -84,7 +85,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차";
+        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
