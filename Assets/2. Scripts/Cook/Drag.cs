@@ -21,16 +21,13 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void Awake()
     {
-        string currentScene = SceneManager.GetActiveScene().name;  //현재 씬
-
         //요리 씬일때만 동작하도록 함.
-        if (currentScene == "Cook")
-        {
-            inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
-            inventory = inventoryTr.GetComponentInParent<CookInventory>();
-            fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
-            //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
-        }
+
+        inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
+        inventory = inventoryTr.GetComponentInParent<CookInventory>();
+        fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
+        //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
+
     }
 
     void Start()
@@ -59,7 +56,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             //fishSlot.UpdateSlot();
             inventory.UpdateUI(this.gameObject);
         }
-        else if(fishSlot.fish_Count == 1)
+        else if (fishSlot.fish_Count == 1)
         {
             fishSlot.ClearSlot();
         }
@@ -82,15 +79,15 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             itemTr.SetParent(fishListTr.transform);
         }*/
 
-        if(copiedSlot.transform.parent == inventoryTr)
+        if (copiedSlot.transform.parent == inventoryTr)
         {
-            if(fishSlot.fish_Count >= 1)
+            if (fishSlot.fish_Count >= 1)
             {
                 Destroy(copiedSlot.gameObject);
                 fishSlot.fish_Count++;
                 inventory.UpdateUI(this.gameObject);
             }
-            else if(fishSlot.fish_Count == 0)
+            else if (fishSlot.fish_Count == 0)
             {
                 print("빈공간에서 호출");
                 fishSlot.fish_Count = copiedSlot.GetComponent<FishSlot>().fish_Count;
@@ -101,7 +98,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         }
         else
         {
-            if(fishSlot.fish_Count == 0)
+            if (fishSlot.fish_Count == 0)
             {
                 Destroy(this);
             }

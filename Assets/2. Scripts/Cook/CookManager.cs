@@ -13,11 +13,14 @@ public class CookManager : MonoBehaviour
     public GameObject configPanel;
     public GameObject readyBtn;
     public GameObject InventoryImg;  //인벤토리
+    public GameObject fishIconPrefab;
     public GameObject[] customers;
+    public GameObject orderFishContent;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
     public Text orderTxt;
+    public int fishBtnCount = 0;
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     public bool isReady = false;
@@ -144,6 +147,12 @@ public class CookManager : MonoBehaviour
         cookView.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
         inventoryCanvas.interactable = false;
+
+        /*for(int i = 0; i < fishBtnCount; i++)
+        {
+            GameObject fishIcon = Instantiate(fishIconPrefab, orderFishContent.transform);
+            fishIcon.GetComponent<Image>.sprite = 
+        }*/
     }
 
     public void Order(string txt)

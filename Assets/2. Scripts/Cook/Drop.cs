@@ -9,11 +9,16 @@ public class Drop : MonoBehaviour, IDropHandler
     Text text;
     int count = 0;
     NetaButton netaBtn;
+    CookManager cookManager;
+    public GameObject fishIconPrefab;
+    Transform fishIconContent;
 
     void Start()
     {
         text = GetComponentInChildren<Text>();
         netaBtn = GetComponent<NetaButton>();
+        cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
+        fishIconContent = GameObject.FindWithTag("CONTENT").GetComponent<Transform>();
     }
 
     void Update()
@@ -39,6 +44,9 @@ public class Drop : MonoBehaviour, IDropHandler
             netaBtn.count = count;
             netaBtn.isEmpty = false;
             Destroy(Drag.draggingItem.gameObject);
+
+            GameObject fishIcon = Instantiate(fishIconPrefab, fishIconContent.transform);
+            fishIcon.GetComponent<Image>().sprite = fishData.fishImg;
         }
         else if(transform.childCount == 1 && !netaBtn.isEmpty)
         {
@@ -51,6 +59,9 @@ public class Drop : MonoBehaviour, IDropHandler
                 netaBtn.count = count;
                 netaBtn.UpdateUI();
                 Destroy(Drag.draggingItem.gameObject);
+
+                GameObject fishIcon = Instantiate(fishIconPrefab, fishIconContent.transform);
+                fishIcon.GetComponent<Image>().sprite = fishData.fishImg;
             }
             else
                 return;

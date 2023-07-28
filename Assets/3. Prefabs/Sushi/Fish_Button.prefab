@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4114e8a275f6b40939f0a02c699ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishIconPrefab: {fileID: 5732085257538822205, guid: c88d79a9153412840b8aad804f227bd3, type: 3}
 --- !u!1 &8932197182465934618
 GameObject:
   m_ObjectHideFlags: 0
