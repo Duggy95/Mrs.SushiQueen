@@ -21,6 +21,11 @@ public class StartSceneManager : MonoBehaviour
     public Image backGround;  //스토리 배경 그림
     public Sprite[] sprites;
     public GameObject loginObj;
+    public GameObject fishingQuestion;
+    public GameObject cookQuestion;
+    public GameObject logOutQuestion;
+    public GameObject deleteDataQuestion;
+    public GameObject exitGameQuestion;
 
     int storyCount = 0;
     bool config;
@@ -80,12 +85,20 @@ public class StartSceneManager : MonoBehaviour
         }
     }
 
+    /*    public void UIUpdate()
+        {
+            dateTxt.text = GameManager.instance.data.dateCount + "일차";
+            scoreTxt.text = "평판 : " + GameManager.instance.data.score;
+            goldTxt.text = "gold : " + GameManager.instance.data.gold;
+            atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+        }*/
+
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차";
-        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-        goldTxt.text = "gold : " + GameManager.instance.data.gold;
-        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+        dateTxt.text = GameManager.instance.data.dateCount;
+        scoreTxt.text = GameManager.instance.data.score;
+        goldTxt.text = GameManager.instance.data.gold;
+        atkTxt.text = GameManager.instance.data.atk;
     }
 
     public void ViewInventory()
@@ -107,6 +120,56 @@ public class StartSceneManager : MonoBehaviour
         storyObj.gameObject.SetActive(false);
         modeObj.gameObject.SetActive(true);
         UIUpdate();
+    }
+
+    public void FishingQuestionEsc()
+    {
+        fishingQuestion.gameObject.SetActive(false);
+    }
+
+    public void FishingQuestion()
+    {
+        fishingQuestion.gameObject.SetActive(true);
+    }
+
+    public void CookQuestionEsc()
+    {
+        cookQuestion.gameObject.SetActive(false);
+    }
+
+    public void CookQuestion()
+    {
+        cookQuestion.gameObject.SetActive(true);
+    }
+
+    public void ExitGameQuestionEsc()
+    {
+        exitGameQuestion.gameObject.SetActive(false);
+    }
+
+    public void ExitGameQuestion()
+    {
+        exitGameQuestion.gameObject.SetActive(true);
+    }
+
+    public void DeleteDataQuestionEsc()
+    {
+        deleteDataQuestion.gameObject.SetActive(false);
+    }
+
+    public void DeleteDataQuestion()
+    {
+        deleteDataQuestion.gameObject.SetActive(true);
+    }
+
+    public void LogOutQuestionEsc()
+    {
+        logOutQuestion.gameObject.SetActive(false);
+    }
+
+    public void LogOutQuestion()
+    {
+        logOutQuestion.gameObject.SetActive(true);
     }
 
     public void GoFishing()

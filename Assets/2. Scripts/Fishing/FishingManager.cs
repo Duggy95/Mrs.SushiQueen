@@ -27,6 +27,10 @@ public class FishingManager : MonoBehaviour
     public GameObject lineStartPos;
     public GameObject useItemPanel;
     public GameObject fishObj;
+    public GameObject endSceneQuestion;
+    public GameObject logOutQuestion;
+    public GameObject deleteDataQuestion;
+    public GameObject exitGameQuestion;
     public Button fishingBtn;
     public Image fish_Img;
     public bool isFishing = false;
@@ -256,12 +260,20 @@ public class FishingManager : MonoBehaviour
         fishRun.gameObject.SetActive(false);
     }
 
+    /*    public void UIUpdate()
+        {
+            dateTxt.text = GameManager.instance.data.dateCount + "일차";
+            scoreTxt.text = "평판 : " + GameManager.instance.data.score;
+            goldTxt.text = "gold : " + GameManager.instance.data.gold;
+            atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+        }*/
+
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차";
-        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-        goldTxt.text = "gold : " + GameManager.instance.data.gold;
-        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+        dateTxt.text = GameManager.instance.data.dateCount;
+        scoreTxt.text = GameManager.instance.data.score;
+        goldTxt.text = GameManager.instance.data.gold;
+        atkTxt.text = GameManager.instance.data.atk;
     }
 
     public void ViewInventory()
@@ -275,6 +287,46 @@ public class FishingManager : MonoBehaviour
     public void EscInventory()
     {
         inventoryImg.gameObject.SetActive(false);
+    }
+
+    public void EndSceneQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void EndSceneQuestion()
+    {
+        endSceneQuestion.gameObject.SetActive(true);
+    }
+
+    public void ExitGameQuestionEsc()
+    {
+        exitGameQuestion.gameObject.SetActive(false);
+    }
+
+    public void ExitGameQuestion()
+    {
+        exitGameQuestion.gameObject.SetActive(true);
+    }
+
+    public void DeleteDataQuestionEsc()
+    {
+        deleteDataQuestion.gameObject.SetActive(false);
+    }
+
+    public void DeleteDataQuestion()
+    {
+        deleteDataQuestion.gameObject.SetActive(true);
+    }
+
+    public void LogOutQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void LogOutQuestion()
+    {
+        logOutQuestion.gameObject.SetActive(true);
     }
 
     public void ConfigBtn()

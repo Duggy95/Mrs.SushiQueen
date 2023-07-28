@@ -19,6 +19,10 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject maxLevelTxt;
     public GameObject fullTxt;
     public GameObject receipt;
+    public GameObject endSceneQuestion;
+    public GameObject logOutQuestion;
+    public GameObject deleteDataQuestion;
+    public GameObject exitGameQuestion;
     bool config;
 
     private void Awake()
@@ -83,12 +87,60 @@ public class EndSceneCtrl : MonoBehaviour
         UIUpdate();
     }
 
-    public void UIUpdate()
+    /*public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차";
         scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+    }*/
+
+    public void UIUpdate()
+    {
+        dateTxt.text = GameManager.instance.data.dateCount;
+        scoreTxt.text = GameManager.instance.data.score;
+        goldTxt.text = GameManager.instance.data.gold;
+        atkTxt.text = GameManager.instance.data.atk;
+    }
+
+    public void EndSceneQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void EndSceneQuestion()
+    {
+        endSceneQuestion.gameObject.SetActive(true);
+    }
+
+    public void ExitGameQuestionEsc()
+    {
+        exitGameQuestion.gameObject.SetActive(false);
+    }
+
+    public void ExitGameQuestion()
+    {
+        exitGameQuestion.gameObject.SetActive(true);
+    }
+
+    public void DeleteDataQuestionEsc()
+    {
+        deleteDataQuestion.gameObject.SetActive(false);
+    }
+
+    public void DeleteDataQuestion()
+    {
+        deleteDataQuestion.gameObject.SetActive(true);
+    }
+
+    public void LogOutQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void LogOutQuestion()
+    {
+        logOutQuestion.gameObject.SetActive(true);
     }
 
     public void ViewReceipt()

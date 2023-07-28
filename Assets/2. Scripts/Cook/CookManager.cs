@@ -16,6 +16,10 @@ public class CookManager : MonoBehaviour
     public GameObject fishIconPrefab;
     public GameObject[] customers;
     public GameObject orderFishContent;
+    public GameObject endSceneQuestion;
+    public GameObject logOutQuestion;
+    public GameObject deleteDataQuestion;
+    public GameObject exitGameQuestion;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
@@ -76,12 +80,20 @@ public class CookManager : MonoBehaviour
     }
 
 
-    public void UIUpdate()
+    /*public void UIUpdate()
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차";
         scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
+    }*/
+
+    public void UIUpdate()
+    {
+        dateTxt.text = GameManager.instance.data.dateCount;
+        scoreTxt.text = GameManager.instance.data.score;
+        goldTxt.text = GameManager.instance.data.gold;
+        atkTxt.text = GameManager.instance.data.atk;
     }
 
     public void ViewInventory() //인벤토리 활성화
@@ -89,9 +101,49 @@ public class CookManager : MonoBehaviour
         InventoryImg.gameObject.SetActive(true);
     }
 
+    public void EndSceneQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void EndSceneQuestion()
+    {
+        endSceneQuestion.gameObject.SetActive(true);
+    }
+
+    public void ExitGameQuestionEsc()
+    {
+        exitGameQuestion.gameObject.SetActive(false);
+    }
+
+    public void ExitGameQuestion()
+    {
+        exitGameQuestion.gameObject.SetActive(true);
+    }
+
+    public void DeleteDataQuestionEsc()
+    {
+        deleteDataQuestion.gameObject.SetActive(false);
+    }
+
+    public void DeleteDataQuestion()
+    {
+        deleteDataQuestion.gameObject.SetActive(true);
+    }
+
+    public void LogOutQuestionEsc()
+    {
+        endSceneQuestion.gameObject.SetActive(false);
+    }
+
+    public void LogOutQuestion()
+    {
+        logOutQuestion.gameObject.SetActive(true);
+    }
+
     public void EscInventory() //인벤토리 나가기
     {
-        InventoryImg.gameObject.SetActive(false);
+        logOutQuestion.gameObject.SetActive(false);
     }
 
     public void ConfigBtn() //설정보여주기
