@@ -25,11 +25,11 @@ public class UpGradeSkil : MonoBehaviour
         {
             SetFishingTimer();
         }
-        else if(_name == "요리체력")
+        else if (_name == "요리체력")
         {
             SetCookingTimer();
         }
-        else if(_name == "응대")
+        else if (_name == "응대")
         {
             SetCustomerTimer();
         }
@@ -40,9 +40,27 @@ public class UpGradeSkil : MonoBehaviour
         count = int.Parse(GameManager.instance.data.cookTime);
         level = int.Parse(GameManager.instance.data.cookHPLV);
         _gold = level * 100000;
-
+        int nextCount = count + 10;
+        int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        text.text = "요리체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 요리할 수 있는\n시간 " + count + "초";
+        if (level < 4)
+        {
+            text.text = "요리체력 LV." + level + "->" + nextLevel +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+        }
+        else if (level == 4)
+        {
+            text.text = "요리체력 LV." + level + "->" + "Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+        }
+        else
+        {
+            text.text = "요리체력 Lv.Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 요리할 수 있는\n시간 " + count + "초";
+        }
     }
 
     public void GrowthCookingTimer()
@@ -58,12 +76,32 @@ public class UpGradeSkil : MonoBehaviour
                 count = countA;
                 level = levelA + 1;
                 _gold = level * 100000;
+                int nextCount = count + 10;
+                int nextLevel = level + 1;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.cookTime = count.ToString();
                 GameManager.instance.data.cookHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
-                text.text = "요리체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 요리할 수 있는\n시간 " + count + "초";
+
+                if (level < 4)
+                {
+                    text.text = "요리체력 LV." + level + "->" + nextLevel +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                }
+                else if (level == 4)
+                {
+                    text.text = "요리체력 LV." + level + "->" + "Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                }
+                else
+                {
+                    text.text = "요리체력 Lv.Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 요리할 수 있는\n시간 " + count + "초";
+                }
                 //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
@@ -83,9 +121,27 @@ public class UpGradeSkil : MonoBehaviour
         count = int.Parse(GameManager.instance.data.fishTime);
         level = int.Parse(GameManager.instance.data.fishHPLV);
         _gold = level * 100000;
-
+        int nextCount = count + 10;
+        int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        text.text = "낚시체력 LV." + level + "\n가격 : " + _gold + "\n현재 낚시할 수 있는\n시간 " + count + "초";
+        if (level < 4)
+        {
+            text.text = "낚시체력 LV." + level + "->" + nextLevel +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+        }
+        else if (level == 4)
+        {
+            text.text = "낚시체력 LV." + level + "->" + "Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+        }
+        else
+        {
+            text.text = "낚시체력 Lv.Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 낚시할 수 있는\n시간 " + count + "초";
+        }
     }
 
     public void GrowthFishingTimer()
@@ -101,12 +157,33 @@ public class UpGradeSkil : MonoBehaviour
                 count = countA;
                 level = levelA + 1;
                 _gold = level * 100000;
+                int nextCount = count + 10;
+                int nextLevel = level + 1;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.fishTime = count.ToString();
                 GameManager.instance.data.fishHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
-                text.text = "낚시체력 LV." + level + "\n가격 : " + _gold.ToString("N0") + "\n현재 낚시할 수 있는\n시간 " + count + "초";
+
+                if (level < 4)
+                {
+                    text.text = "낚시체력 LV." + level + "->" + nextLevel +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                }
+                else if (level == 4)
+                {
+                    text.text = "낚시체력 LV." + level + "->" + "Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                }
+                else
+                {
+                    text.text = "낚시체력 Lv.Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 낚시할 수 있는\n시간 " + count + "초";
+                }
+
                 //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
@@ -126,9 +203,27 @@ public class UpGradeSkil : MonoBehaviour
         count = int.Parse(GameManager.instance.data.customerTime);
         level = int.Parse(GameManager.instance.data.customerHPLV);
         _gold = level * 100000;
-
+        int nextCount = count + 2;
+        int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        text.text = "응대 LV." + level + "\n가격 : " + _gold + "\n현재 손님 대기시간 \n시간 " + count + "초";
+        if (level < 4)
+        {
+            text.text = "응대 LV." + level + "->" + nextLevel +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 손님 대기시간 \n시간 " + count + "->" + nextCount + "초";
+        }
+        else if (level == 4)
+        {
+            text.text = "응대 LV." + level + "->" + "Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 손님 대기시간\n시간 " + count + "->" + nextCount + "초";
+        }
+        else
+        {
+            text.text = "응대 Lv.Max" +
+                "\n가격 : " + _gold.ToString("N0") +
+                "\n현재 손님 대기시간\n시간 " + count + "초";
+        }
     }
 
     public void GrowthCustomerTimer()
@@ -144,12 +239,33 @@ public class UpGradeSkil : MonoBehaviour
                 count = countA;
                 level = levelA + 1;
                 _gold = level * 100000;
+                int nextCount = count + 2;
+                int nextLevel = level + 1;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.customerTime = count.ToString();
                 GameManager.instance.data.customerHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
-                text.text = "응대 LV." + level + "\n가격 : " + _gold + "\n현재 손님 대기시간 \n시간 " + count + "초";
+
+                if (level < 4)
+                {
+                    text.text = "응대 LV." + level + "->" + nextLevel +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 손님 대기시간 \n시간 " + count + "->" + nextCount + "초";
+                }
+                else if (level == 4)
+                {
+                    text.text = "응대 LV." + level + "->" + "Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 손님 대기시간\n시간 " + count + "->" + nextCount + "초";
+                }
+                else
+                {
+                    text.text = "응대 Lv.Max" +
+                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n현재 손님 대기시간\n시간 " + count + "초";
+                }
+
                 //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }

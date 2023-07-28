@@ -866,8 +866,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC0C8\uC6B0 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 100,000         
-    \n\uD6A8\uACFC : \uBD89\uC740 \uC0DD\uC120\n           \uD655\uB960\uC99D\uAC00"
+  m_Text: "\uC0C8\uC6B0 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 1,000         
+    \n\uD6A8\uACFC : \uBD89\uC740 \uC0DD\uC120\n           \uD655\uB960 1.5\uBC30
+    \uC99D\uAC00"
 --- !u!222 &77552678
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1438,8 +1439,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC9C0\uB801\uC774 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 100,000         
-    \n\uD6A8\uACFC : \uD558\uC580 \uC0DD\uC120\n          \uD655\uB960\uC99D\uAC00"
+  m_Text: "\uC9C0\uB801\uC774 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 1,000         
+    \n\uD6A8\uACFC : \uD558\uC580 \uC0DD\uC120\n          \uD655\uB960 1.5\uBC30
+    \uC99D\uAC00"
 --- !u!222 &171162601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8214,8 +8216,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC0DD\uC120\uC0B4 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 500,000         
-    \n\uD6A8\uACFC : \uB808\uC5B4 \uC0DD\uC120\n           \uD655\uB960\uC99D\uAC00"
+  m_Text: "\uC0DD\uC120\uC0B4 (\uC18C\uBAA8 \uC544\uC774\uD15C)\n\uAC00\uACA9 : 3,000         
+    \n\uD6A8\uACFC : \uB808\uC5B4 \uC0DD\uC120\n           \uD655\uB960 2\uBC30 \uC99D\uAC00"
 --- !u!222 &1865633743
 CanvasRenderer:
   m_ObjectHideFlags: 0
