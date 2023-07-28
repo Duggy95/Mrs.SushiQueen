@@ -20,6 +20,7 @@ public class CookManager : MonoBehaviour
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
     public Text orderTxt;
+    public Text scoreTxt;
     public int fishBtnCount = 0;
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
@@ -77,7 +78,8 @@ public class CookManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
+        dateTxt.text = GameManager.instance.data.dateCount + "일차";
+        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
         atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
