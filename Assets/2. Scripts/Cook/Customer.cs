@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
     public Text orderTxt;  //주문 텍스트
-    public Sprite[] sprites;  //손님 스프라이트 배열
+    //public Sprite[] sprites;  //손님 스프라이트 배열
     public string[] sushis;  //초밥 종류 배열
     public string[] wasabis;  //와사비
     public string[] compliment;  //대성공 문구.
@@ -16,12 +17,15 @@ public class Customer : MonoBehaviour
     public GameObject noBtn;  //거절 버튼
     public GameObject timerObj; //타이머 오브젝트
     public Image timer; //타이머 이미지
+    Image[] images;  //이미지
+    Text[] texts; //텍스트
+    
     List<Order> orders = new List<Order>();  //주문을 담을 리스트
 
     Dish dish;  //초밥 담는 접시
     CookManager cookManager;  //쿡 매니저.
     Transform tr;  //위치
-    string message = "주세요.";
+    public string message;
     string order;  //주문
     float maxTime; //최대시간
     float currTime;  //현재시간
@@ -47,6 +51,8 @@ public class Customer : MonoBehaviour
     {
         //쿡 매니저 찾기
         cookManager = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<CookManager>();
+        images = GetComponentsInChildren<Image>();
+        texts = GetComponentsInChildren<Text>();
     }
 
     private void Start()
@@ -60,6 +66,9 @@ public class Customer : MonoBehaviour
 
     void OnEnable()
     {
+
+        StartCoroutine(FadeIn());
+
         //randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
         if (int.Parse(GameManager.instance.data.score) <= 600)
         {
@@ -81,8 +90,8 @@ public class Customer : MonoBehaviour
             print("세번째");
         }
 
-        int randomSprite = Random.Range(0, sprites.Length);  //랜덤하게 그림 결정.
-        GetComponent<Image>().sprite = sprites[randomSprite];  //랜덤한 그림 적용.
+        //int randomSprite = Random.Range(0, sprites.Length);  //랜덤하게 그림 결정.
+        //GetComponent<Image>().sprite = sprites[randomSprite];  //랜덤한 그림 적용.
 
         switch (randomOrder)  //랜덤한 주문.
         {
@@ -175,9 +184,10 @@ public class Customer : MonoBehaviour
                 cookManager.ViewOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
                 orderTxt.text = fail[0];  //실패 텍스트 출력.
-                Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());  //손님 안 보이는 곳으로 옮기기.
-                StartCoroutine(cookManager.Create());  //손님생성
+                //Destroy(gameObject, 3f);  //손님 삭제
+                StartCoroutine(FadeOut());
+                //StartCoroutine(Move());  //손님 안 보이는 곳으로 옮기기.
+                //StartCoroutine(cookManager.Create());  //손님생성
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
@@ -213,9 +223,10 @@ public class Customer : MonoBehaviour
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;
-        Destroy(gameObject, 3f);  //손님 삭제
-        StartCoroutine(Move());  //안보이는 곳으로 옮기기
-        StartCoroutine(cookManager.Create());  //손님생성
+        //Destroy(gameObject, 3f);  //손님 삭제
+        StartCoroutine(FadeOut());
+        //StartCoroutine(Move());  //안보이는 곳으로 옮기기
+        //StartCoroutine(cookManager.Create());  //손님생성
         yesBtn.SetActive(false);  //버튼 비활성화
         noBtn.SetActive(false);  //버튼 비활성화
         isOrdered = false;
@@ -262,8 +273,15 @@ public class Customer : MonoBehaviour
                                 break;
                             }
                         }
+                        if(currTimePercent >= 0.5)
+                        {
+                            totalPrice += sushi.gold * order.count * 3;  //생선가격 * 주문갯수 * 4
+                        }
+                        else
+                        {
+                            totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
+                        }
 
-                        totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
                         int _gold = int.Parse(GameManager.instance.data.gold) + totalPrice;
                         GameManager.instance.data.gold = _gold.ToString();
 
@@ -296,9 +314,10 @@ public class Customer : MonoBehaviour
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 isOrdered = false;
-                Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());
-                StartCoroutine(cookManager.Create());  //손님생성
+                //Destroy(gameObject, 4f);  //손님 삭제
+                StartCoroutine(FadeOut());
+                //StartCoroutine(Move());
+                //StartCoroutine(cookManager.Create());  //손님생성
                 isOrdered = false;
             }
             else  //불일치 시
@@ -317,18 +336,13 @@ public class Customer : MonoBehaviour
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 isOrdered = false;
-                Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());
-                StartCoroutine(cookManager.Create());  //손님생성
+                //Destroy(gameObject, 4f);  //손님 삭제
+                StartCoroutine(FadeOut());
+                //StartCoroutine(Move());
+                //StartCoroutine(cookManager.Create());  //손님생성
                 isOrdered = false;
             }
         }
-    }
-
-    IEnumerator Move()  //삭제 전 이동 메서드
-    {
-        yield return new WaitForSeconds(1f);
-        tr.position = new Vector3(0, -3000, 0);
     }
 
     void RandomChance(int num1, int num2)
@@ -350,6 +364,75 @@ public class Customer : MonoBehaviour
             print(randomNum);
             randomOrder = 2;
         }
+    }
+
+    IEnumerator FadeIn()
+    {
+        Vector2 initPos = cookManager.customerStartPos;
+        print(initPos);
+        Vector2 targetPos = initPos + new Vector2(30, 0);
+        for(int i=0; i < images.Length; i++)
+        {
+            images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 0);
+        }
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].color = new Color(texts[i].color.r, texts[i].color.g, texts[i].color.b, 0);
+        }
+        float duration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
+            for(int i = 0; i < images.Length; i++)
+            {
+                images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, t);
+            }
+
+            for (int i = 0; i < texts.Length; i++)
+            {
+                texts[i].color = new Color(texts[i].color.r, texts[i].color.g, texts[i].color.b, t);
+            }
+
+            this.transform.localPosition = Vector2.Lerp(initPos, targetPos, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeOut()
+    {
+        timer.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        Vector2 initPos = this.transform.localPosition;
+        Vector2 targetPos = new Vector2(this.transform.localPosition.x - 30, this.transform.localPosition.y);
+        //image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        float duration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
+            float alpha = 1 - t;
+
+            for(int i =0; i< images.Length; i++)
+            {
+                images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, alpha);
+            }
+
+            for (int i = 0; i < texts.Length; i++)
+            {
+                texts[i].color = new Color(texts[i].color.r, texts[i].color.g, texts[i].color.b, alpha);
+            }
+            this.transform.localPosition = Vector2.Lerp(initPos, targetPos, t);
+            yield return null;
+        }
+
+        StartCoroutine(cookManager.Create());
+        Destroy(this.gameObject, 4);
     }
 }
 

@@ -13,6 +13,7 @@ public class CookManager : MonoBehaviour
     public GameObject configPanel;
     public GameObject readyBtn;
     public GameObject InventoryImg;  //인벤토리
+    public GameObject[] customers;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
@@ -20,15 +21,18 @@ public class CookManager : MonoBehaviour
     public bool canMake = false;
     public bool isReady = false;
     bool config = false;
+    public Vector2 customerStartPos;
+
     //Transform fishContent;
 
     WaitForSeconds ws;
-
     Vector2 customerTr = Vector2.zero;
     int count = 0;
 
     void Start()
     {
+        customerStartPos = new Vector2(-450, -100);  //손님 위치
+
         //시작 세팅 화면 세팅
         orderView.SetActive(true);
         cookView.SetActive(true);
@@ -71,6 +75,7 @@ public class CookManager : MonoBehaviour
     {
         dateTxt.text = GameManager.instance.data.dateCount + "일차 / 평판 : " + GameManager.instance.data.score;
         goldTxt.text = "gold : " + GameManager.instance.data.gold;
+        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
     }
 
     public void ViewInventory() //인벤토리 활성화
@@ -116,11 +121,11 @@ public class CookManager : MonoBehaviour
 
     public IEnumerator Create()
     {
+        int random = Random.Range(0, customers.Length);
         //2초 후 손님 생성.
         yield return ws;
-        GameObject customer = Instantiate(customerPrefab, customerTr,
+        GameObject customer = Instantiate(customers[random], customerTr,
                                                                 Quaternion.identity, orderView.transform);
-        customer.transform.localPosition = new Vector2(-400, -100);  //손님 위치
         customer.transform.SetSiblingIndex(1);  //2번째 자식.
     }
 
