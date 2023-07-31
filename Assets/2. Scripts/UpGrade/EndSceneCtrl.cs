@@ -98,9 +98,9 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = GameManager.instance.data.dateCount;
-        scoreTxt.text = GameManager.instance.data.score;
-        goldTxt.text = GameManager.instance.data.gold;
+        dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
+        scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
+        goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
         atkTxt.text = GameManager.instance.data.atk;
     }
 

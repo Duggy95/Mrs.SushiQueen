@@ -55,7 +55,7 @@ public class Fish : MonoBehaviour
         _bobber = Instantiate(bobber, bobberPos, Quaternion.identity);
         _bobber.transform.SetParent(transform);
         // 낚싯대부터 찌까지 라인렌더러 그리기
-        Vector3 pos = bobberPos - new Vector3(0, 30, 0);
+        Vector3 pos = bobberPos - new Vector3(0, 70, 0);
         delayTime = Random.Range(1, 4);
         // 코루틴 함수 호출
         StartCoroutine(FishingEff(pos));
@@ -137,7 +137,7 @@ public class Fish : MonoBehaviour
     {
         // 물고기의 체력바는 터치한 부분보다 위에,
         // 물장구 이미지는 터치한 부분보다 아래에 위치
-        Vector3 hpPos = pos + new Vector3(0, 100, 0);
+        Vector3 hpPos = pos + new Vector3(0, 150, 0);
         Vector3 dirPos = pos - new Vector3(0, 100, 0);
 
         yield return new WaitForSeconds(delayTime);
