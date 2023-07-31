@@ -88,10 +88,10 @@ public class ItemSlot : MonoBehaviour
                 Image[] nullImg = gameObject.GetComponentsInChildren<Image>();
                 foreach (Image image in nullImg)
                 {
-                    if (image.gameObject.GetComponentInChildren<Text>().text.Contains("ºó"))
+                    if (image.gameObject.GetComponentInChildren<Text>().text == "")
                     {
                         gameObject.GetComponentInChildren<Image>().sprite = null;
-                        GetComponentInChildren<Text>().text = "ºó °ø°£";
+                        GetComponentInChildren<Text>().text = "";
                     }
                 }
                 /*gameObject.GetComponentInChildren<Image>().sprite = null;

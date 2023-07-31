@@ -19,15 +19,16 @@ public class FishSlot : MonoBehaviour
     private void Start()
     {
         _text = GetComponentInChildren<Text>();
-        fish_Name = _text.text.Split(" ")[0];
-        if(fish_Name != "빈")
+        //fish_Name = _text.text.Split(" ")[0];
+        if (_text.text != "")
         {
             fish_Count = int.Parse(_text.text.Split(" ")[3]);
         }
         else
         {
             fish_Count = 0;
-            GetComponent<Image>().sprite = null;
+            Image[] slotImgs = GetComponentsInChildren<Image>();
+            slotImgs[1].sprite = null;
         }
 
         // 배열을 순회하면서 이름이 같은 요소를 찾기 위한 루프
@@ -56,7 +57,7 @@ public class FishSlot : MonoBehaviour
             if (image.gameObject.name.Contains("Img"))
             {
                 image.sprite = null;
-                GetComponentInChildren<Text>().text = "빈 공간";
+                GetComponentInChildren<Text>().text = "";
                 fish_Count = 0;
             }
         }
@@ -85,7 +86,7 @@ public class FishSlot : MonoBehaviour
             {
                 GameManager.instance.inventory_Fishs.RemoveAt(index);
                 gameObject.GetComponentInChildren<Image>().sprite = null;
-                GetComponentInChildren<Text>().text = "빈 공간";
+                GetComponentInChildren<Text>().text = "";
                 //GameManager.instance.Save("f");
             }
         }

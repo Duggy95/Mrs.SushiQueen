@@ -13,6 +13,7 @@ public class CookManager : MonoBehaviour
     public GameObject configPanel;
     public GameObject readyBtn;
     public GameObject InventoryImg;  //인벤토리
+    public GameObject inventoryFullImg;
     public GameObject fishIconPrefab;
     public GameObject[] customers;
     public GameObject orderFishContent;
@@ -98,7 +99,14 @@ public class CookManager : MonoBehaviour
 
     public void ViewInventory() //인벤토리 활성화
     {
+        inventoryFullImg.gameObject.SetActive(true);
         InventoryImg.gameObject.SetActive(true);
+    }
+
+    public void EscInventory() //인벤토리 나가기
+    {
+        inventoryFullImg.gameObject.SetActive(false);
+        logOutQuestion.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestionEsc()
@@ -139,11 +147,6 @@ public class CookManager : MonoBehaviour
     public void LogOutQuestion()
     {
         logOutQuestion.gameObject.SetActive(true);
-    }
-
-    public void EscInventory() //인벤토리 나가기
-    {
-        logOutQuestion.gameObject.SetActive(false);
     }
 
     public void ConfigBtn() //설정보여주기

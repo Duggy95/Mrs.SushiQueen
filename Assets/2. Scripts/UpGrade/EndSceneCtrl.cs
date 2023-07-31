@@ -15,6 +15,7 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject ShopSV;
     public GameObject SkillSV;
     public GameObject InventoryImg;
+    public GameObject inventoryFullImg;
     public GameObject noMoneyTxt;
     public GameObject maxLevelTxt;
     public GameObject fullTxt;
@@ -145,22 +146,26 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void ViewReceipt()
     {
+        inventoryFullImg.gameObject.SetActive(true);
         receipt.gameObject.SetActive(true);
     }
 
     public void EscReceipt()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         receipt.gameObject.SetActive(false);
     }
 
     public void ViewInventory()
     {
         // 인벤토리 활성화
+        inventoryFullImg.gameObject.SetActive(true);
         InventoryImg.gameObject.SetActive(true);
     }
 
     public void EscInventory()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
     }
 

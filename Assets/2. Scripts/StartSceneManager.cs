@@ -18,6 +18,7 @@ public class StartSceneManager : MonoBehaviour
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
+    public GameObject inventoryFullImg;
     public Image backGround;  //스토리 배경 그림
     public Sprite[] sprites;
     public GameObject loginObj;
@@ -58,6 +59,8 @@ public class StartSceneManager : MonoBehaviour
                 GameManager.instance.Save("f");
                 GameManager.instance.todayData = new TodayData();
                 GameManager.instance.todayFishInfos.Clear();
+                /*GameManager.instance.viewInventory = false;
+                GameManager.instance.viewReceipt = false;*/
                 UIUpdate();
             }
         }
@@ -105,6 +108,7 @@ public class StartSceneManager : MonoBehaviour
     {
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
 
         print("인벤토리 열려라");
     }
@@ -112,6 +116,7 @@ public class StartSceneManager : MonoBehaviour
     public void EscInventory()
     {
         inventoryImg.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void OnClickSkip()
@@ -129,6 +134,9 @@ public class StartSceneManager : MonoBehaviour
 
     public void FishingQuestion()
     {
+        /*if (GameManager.instance.viewInventory)
+            return;*/
+
         fishingQuestion.gameObject.SetActive(true);
     }
 

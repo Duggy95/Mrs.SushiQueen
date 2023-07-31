@@ -19,6 +19,7 @@ public class FishingManager : MonoBehaviour
     public Text scoreTxt;
     public GameObject configPanel;
     public GameObject inventoryImg;  // 인벤토리 이미지
+    public GameObject inventoryFullImg;
     public GameObject inventoryBtn;
     public GameObject fishInfoImg;
     public GameObject fishContent; // 수족관
@@ -280,12 +281,14 @@ public class FishingManager : MonoBehaviour
     {
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
         // 인벤토리 순서를 제일 마지막으로
         inventoryImg.transform.SetAsLastSibling();
     }
 
     public void EscInventory()
-    {
+    { 
+        inventoryFullImg.gameObject.SetActive(false);
         inventoryImg.gameObject.SetActive(false);
     }
 
