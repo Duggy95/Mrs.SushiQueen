@@ -624,7 +624,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 600, y: 199.99998}
-  m_SizeDelta: {x: 1050, y: 350}
+  m_SizeDelta: {x: 1100, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2989136090562741810
 CanvasRenderer:
@@ -782,6 +782,7 @@ MonoBehaviour:
   - "\uC81C\uAC00 \uC6D0\uD55C \uCD08\uBC25\uC774 \uC544\uB2C8\uC5D0\uC694! \u3161\u3161"
   - "\uC81C\uAC00 \uC774 \uB3D9\uB124 \uB9D8\uCE74\uD398 \uD68C\uC6D0\uC778\uAC70\uB294
     \uC544\uC138\uC694?"
+  orderRecipe: 
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}

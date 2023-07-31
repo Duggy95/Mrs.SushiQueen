@@ -19,7 +19,7 @@ public class FishSlot : MonoBehaviour
     private void Start()
     {
         _text = GetComponentInChildren<Text>();
-        //fish_Name = _text.text.Split(" ")[0];
+        fish_Name = _text.text.Split(" ")[0];
         if (_text.text != "")
         {
             fish_Count = int.Parse(_text.text.Split(" ")[3]);
@@ -90,5 +90,10 @@ public class FishSlot : MonoBehaviour
                 //GameManager.instance.Save("f");
             }
         }
+    }
+
+    private void Update()
+    {
+        print(fish_Name + ":" + fish_Count);
     }
 }

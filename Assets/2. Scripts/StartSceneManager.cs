@@ -18,15 +18,15 @@ public class StartSceneManager : MonoBehaviour
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
-    public GameObject inventoryFullImg;
-    public Image backGround;  //스토리 배경 그림
-    public Sprite[] sprites;
+    //public Image backGround;  //스토리 배경 그림
+    //public Sprite[] sprites;
     public GameObject loginObj;
     public GameObject fishingQuestion;
     public GameObject cookQuestion;
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public StoryManager storyManager;
 
     int storyCount = 0;
     bool config;
@@ -59,8 +59,6 @@ public class StartSceneManager : MonoBehaviour
                 GameManager.instance.Save("f");
                 GameManager.instance.todayData = new TodayData();
                 GameManager.instance.todayFishInfos.Clear();
-                /*GameManager.instance.viewInventory = false;
-                GameManager.instance.viewReceipt = false;*/
                 UIUpdate();
             }
         }
@@ -98,9 +96,9 @@ public class StartSceneManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
-        scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
-        goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
+        dateTxt.text = GameManager.instance.data.dateCount;
+        scoreTxt.text = GameManager.instance.data.score;
+        goldTxt.text = GameManager.instance.data.gold;
         atkTxt.text = GameManager.instance.data.atk;
     }
 
@@ -108,7 +106,6 @@ public class StartSceneManager : MonoBehaviour
     {
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
-        inventoryFullImg.gameObject.SetActive(true);
 
         print("인벤토리 열려라");
     }
@@ -116,7 +113,6 @@ public class StartSceneManager : MonoBehaviour
     public void EscInventory()
     {
         inventoryImg.gameObject.SetActive(false);
-        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void OnClickSkip()
@@ -134,9 +130,6 @@ public class StartSceneManager : MonoBehaviour
 
     public void FishingQuestion()
     {
-        /*if (GameManager.instance.viewInventory)
-            return;*/
-
         fishingQuestion.gameObject.SetActive(true);
     }
 
@@ -223,17 +216,5 @@ public class StartSceneManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-    }
-
-    public void Story()
-    {
-        storyTxt.text = story[storyCount];
-        backGround.sprite = sprites[storyCount];
-        storyCount++;
-        if (storyCount == story.Length)
-        {
-            storyObj.gameObject.SetActive(false);
-            modeObj.gameObject.SetActive(true);
-        }
     }
 }

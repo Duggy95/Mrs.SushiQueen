@@ -224,7 +224,7 @@ public class Customer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
-        int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
+        int _score = int.Parse(GameManager.instance.data.score) - 2;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
 
         GameManager.instance.todayData.score -= 2;
@@ -310,7 +310,7 @@ public class Customer : MonoBehaviour
 
             if (orderMatch)  //일치 시
             {
-                int _score = int.Parse(GameManager.instance.data.score) + 20;  //평판 감소
+                int _score = int.Parse(GameManager.instance.data.score) + 20;  //평판 증가
                 GameManager.instance.data.score = _score.ToString();
 
                 GameManager.instance.todayData.score += 20;

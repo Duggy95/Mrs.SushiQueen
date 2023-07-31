@@ -12,6 +12,7 @@ public class NetaButton : MonoBehaviour
     public bool isEmpty = true;
     public Text text;
     public FishData fishData;  //생선 데이터
+    Text iconTxt;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class NetaButton : MonoBehaviour
         bool hasFish = false;  //생선이 이미 존재하는 지
 
         //중복확인. 현재 회가 씬에 있는지 확인.
-        foreach (Transform child in riceTr)  
+        foreach (Transform child in riceTr)
         {
             if (child.CompareTag("FISH"))
             {
@@ -62,5 +63,11 @@ public class NetaButton : MonoBehaviour
     public void UpdateUI()
     {
         text.text = fishData.fishName + "     " + count;
+        iconTxt.text = fishData.fishName + "     " + count;
+    }
+
+    public void Txt(Text text)
+    {
+        iconTxt = text.GetComponent<Text>(); 
     }
 }

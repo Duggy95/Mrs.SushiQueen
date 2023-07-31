@@ -24,14 +24,11 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void Awake()
     {
-        //요리 씬일때만 동작하도록 함.
-
         inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
         inventory = inventoryTr.GetComponentInParent<CookInventory>();
         fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
         cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
         //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
-
     }
 
     void Start()
@@ -41,7 +38,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
-        /*if(fishSlot.fish_Count == 0)
+        /*if(fishData == null)
         {
             Destroy(this);
         }*/
@@ -76,11 +73,11 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         draggingItem = null;
         canvasGroup.blocksRaycasts = true;
-        if(cookManager.fishList.Contains(fishSlot.fish_Name))
+        /*if(cookManager.fishList.Contains(fishSlot.fish_Name))
         {
             fishSlot.fish_Count++;
             inventory.UpdateUI(this.gameObject);
-        }
+        }*/
 
         if (copiedSlot.transform.parent == inventoryTr)
         {

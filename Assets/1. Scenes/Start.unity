@@ -552,7 +552,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 50
@@ -1365,7 +1365,7 @@ MonoBehaviour:
   nextTxt: {fileID: 43841055}
   canvasGroup: {fileID: 73824454}
   currSentence: 
-  typingSpeed: 0.1
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!1 &148697655
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
-  - "\uC2E0\uB370\uB810\uB77C\uB294"
+  - 
   - "\uC5B4\uB824\uC11C"
   - "\uBD80\uBAA8\uB2D8\uC744 \uC783\uACE0\uC694"
 --- !u!114 &283335319
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   nextTxt: {fileID: 43841055}
   canvasGroup: {fileID: 73824454}
   currSentence: 
-  typingSpeed: 0.1
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!1 &324285361
@@ -5492,7 +5492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1043333715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7092,7 +7092,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
@@ -7699,7 +7699,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
@@ -8672,7 +8672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1697723694
 RectTransform:
   m_ObjectHideFlags: 0

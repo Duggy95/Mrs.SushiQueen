@@ -22,7 +22,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-        ws = new WaitForSeconds(0.025f);
+        ws = new WaitForSeconds(typingSpeed);
     }
 
     public void Ondialog(string[] lines)

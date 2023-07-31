@@ -72,6 +72,5 @@ public class CookInventory : MonoBehaviour
         FishSlot fishSlot = gameObj.GetComponent<FishSlot>();
         Text text = gameObj.GetComponentInChildren<Text>();
         text.text = fishSlot.fish_Name + "   " + fishSlot.fish_Count + " " + "¸¶¸®";
-
     }
 }

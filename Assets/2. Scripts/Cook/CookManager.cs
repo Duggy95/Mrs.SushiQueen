@@ -26,7 +26,7 @@ public class CookManager : MonoBehaviour
     public Text atkTxt;  //골드
     public Text orderTxt;
     public Text scoreTxt;
-    public List<string> fishList;
+    public List<string> fishList = new List<string>();
     public int fishBtnCount = 0;
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
@@ -47,7 +47,7 @@ public class CookManager : MonoBehaviour
         //시작 세팅 화면 세팅
         orderView.SetActive(true);
         cookView.SetActive(true);
-        fishList = new List<string>();
+        fishList.Clear();
 
         /*if(int.Parse(GameManager.instance.data.score) <= 600)
         {
