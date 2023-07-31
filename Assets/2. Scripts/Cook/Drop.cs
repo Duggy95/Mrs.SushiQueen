@@ -47,7 +47,7 @@ public class Drop : MonoBehaviour, IDropHandler
             {
                 cookManager.fishList.Add(fishData.fishName);
 
-                this.gameObject.GetComponent<Image>().sprite = fishData.netaImg;
+                this.gameObject.GetComponentsInChildren<Image>()[1].sprite = fishData.netaImg;
                 Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
                 count += 5;
                 text.text = fishData.fishName + "     " + count.ToString();
