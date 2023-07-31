@@ -18,14 +18,15 @@ public class StartSceneManager : MonoBehaviour
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
-    public Image backGround;  //스토리 배경 그림
-    public Sprite[] sprites;
+    //public Image backGround;  //스토리 배경 그림
+    //public Sprite[] sprites;
     public GameObject loginObj;
     public GameObject fishingQuestion;
     public GameObject cookQuestion;
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public StoryManager storyManager;
 
     int storyCount = 0;
     bool config;
@@ -215,17 +216,5 @@ public class StartSceneManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-    }
-
-    public void Story()
-    {
-        storyTxt.text = story[storyCount];
-        backGround.sprite = sprites[storyCount];
-        storyCount++;
-        if (storyCount == story.Length)
-        {
-            storyObj.gameObject.SetActive(false);
-            modeObj.gameObject.SetActive(true);
-        }
     }
 }

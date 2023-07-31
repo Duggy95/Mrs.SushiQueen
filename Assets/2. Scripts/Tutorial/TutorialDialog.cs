@@ -21,7 +21,6 @@ public class TutorialDialog : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        print("»£√‚¡ﬂ");
         dialogManager.Next();
         if(this.dialogManager.complete == true)
         {

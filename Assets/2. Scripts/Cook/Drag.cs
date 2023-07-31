@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -12,7 +13,9 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public Transform fishListTr;  //수족관 위치
     //public Transform cookListTr;  //회스크롤뷰 위치
     FishSlot fishSlot;
+    FishData fishData;
 
+    CookManager cookManager;
     CanvasGroup canvasGroup;
     GameObject copiedSlot;
     Transform itemTr;
@@ -26,6 +29,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
         inventory = inventoryTr.GetComponentInParent<CookInventory>();
         fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
+        cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
         //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
 
     }
@@ -33,6 +37,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     void Start()
     {
         fishSlot = GetComponent<FishSlot>();
+        fishData = fishSlot.fishData;
         itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
@@ -60,13 +65,10 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         {
             fishSlot.ClearSlot();
         }
-
-        //fishSlot.UpdateData();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //itemTr.position = Input.mousePosition;
         copiedSlot.transform.position = Input.mousePosition;
     }
 
@@ -74,10 +76,11 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         draggingItem = null;
         canvasGroup.blocksRaycasts = true;
-        /*if (itemTr.parent == inventoryTr)
+        if(cookManager.fishList.Contains(fishSlot.fish_Name))
         {
-            itemTr.SetParent(fishListTr.transform);
-        }*/
+            fishSlot.fish_Count++;
+            inventory.UpdateUI(this.gameObject);
+        }
 
         if (copiedSlot.transform.parent == inventoryTr)
         {
@@ -91,7 +94,16 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             {
                 print("빈공간에서 호출");
                 fishSlot.fish_Count = copiedSlot.GetComponent<FishSlot>().fish_Count;
-                fishSlot.gameObject.GetComponent<Image>().sprite = copiedSlot.GetComponent<Image>().sprite;
+                Image[] fishImage = fishSlot.gameObject.GetComponentsInChildren<Image>();
+                Image[] slotImage = copiedSlot.gameObject.GetComponentsInChildren<Image>();
+                foreach(Image image in fishImage)
+                {
+                    if(image.name.Contains("Img"))
+                    {
+                        image.sprite = slotImage[1].sprite;
+                    }
+                }
+                //fishSlot.gameObject.GetComponentInChildren<Image>().sprite = copiedSlot.GetComponent<Image>().sprite;
                 inventory.UpdateUI(this.gameObject);
                 Destroy(copiedSlot.gameObject);
             }

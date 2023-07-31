@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class Drop : MonoBehaviour, IDropHandler
 {
@@ -36,17 +37,28 @@ public class Drop : MonoBehaviour, IDropHandler
         {
             Drag.draggingItem.transform.SetParent(this.transform);
             FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
-            this.gameObject.GetComponent<Image>().sprite = fishData.netaImg;
-            Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
-            count += 5;
-            text.text = fishData.fishName + "     " + count.ToString();
-            netaBtn.fishData = fishData;
-            netaBtn.count = count;
-            netaBtn.isEmpty = false;
-            Destroy(Drag.draggingItem.gameObject);
+            FishSlot fishSlot = Drag.draggingItem.GetComponent<FishSlot>();
+            if (cookManager.fishList.Contains(fishData.fishName))
+            {
+                Destroy(Drag.draggingItem.gameObject);
+                return;
+            }
+            else
+            {
+                cookManager.fishList.Add(fishData.fishName);
 
-            GameObject fishIcon = Instantiate(fishIconPrefab, fishIconContent.transform);
-            fishIcon.GetComponent<Image>().sprite = fishData.fishImg;
+                this.gameObject.GetComponent<Image>().sprite = fishData.netaImg;
+                Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
+                count += 5;
+                text.text = fishData.fishName + "     " + count.ToString();
+                netaBtn.fishData = fishData;
+                netaBtn.count = count;
+                netaBtn.isEmpty = false;
+                Destroy(Drag.draggingItem.gameObject);
+
+                GameObject fishIcon = Instantiate(fishIconPrefab, fishIconContent.transform);
+                fishIcon.GetComponent<Image>().sprite = fishData.fishImg;
+            }
         }
         else if(transform.childCount == 1 && !netaBtn.isEmpty)
         {
@@ -59,9 +71,6 @@ public class Drop : MonoBehaviour, IDropHandler
                 netaBtn.count = count;
                 netaBtn.UpdateUI();
                 Destroy(Drag.draggingItem.gameObject);
-
-                GameObject fishIcon = Instantiate(fishIconPrefab, fishIconContent.transform);
-                fishIcon.GetComponent<Image>().sprite = fishData.fishImg;
             }
             else
                 return;

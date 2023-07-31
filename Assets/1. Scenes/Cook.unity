@@ -980,6 +980,7 @@ MonoBehaviour:
   atkTxt: {fileID: 595351075}
   orderTxt: {fileID: 1911745190}
   scoreTxt: {fileID: 2112548659}
+  fishList: []
   fishBtnCount: 0
   canMake: 0
   isReady: 0
@@ -2125,7 +2126,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300038, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
