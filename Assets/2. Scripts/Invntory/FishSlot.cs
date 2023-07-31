@@ -20,7 +20,7 @@ public class FishSlot : MonoBehaviour
     {
         _text = GetComponentInChildren<Text>();
         //fish_Name = _text.text.Split(" ")[0];
-        if(_text.text != "")
+        if (_text.text != "")
         {
             fish_Count = int.Parse(_text.text.Split(" ")[3]);
         }
@@ -29,7 +29,6 @@ public class FishSlot : MonoBehaviour
             fish_Count = 0;
             Image[] slotImgs = GetComponentsInChildren<Image>();
             slotImgs[1].sprite = null;
-            //GetComponent<Image>().sprite = null;
         }
 
         // 배열을 순회하면서 이름이 같은 요소를 찾기 위한 루프
@@ -58,7 +57,7 @@ public class FishSlot : MonoBehaviour
             if (image.gameObject.name.Contains("Img"))
             {
                 image.sprite = null;
-                GetComponentInChildren<Text>().text = null;
+                GetComponentInChildren<Text>().text = "";
                 fish_Count = 0;
             }
         }

@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public GameObject fishContent;
     public GameObject itemSlotPrefab;
     public GameObject fishSlotPrefab;
+
     Image itemImgPrefab;
     Image fishImgPrefab;
 
@@ -22,6 +23,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < itemSlotCount; i++)
         {
+            List<InventoryItem> itemList = GameManager.instance.inventory_Items;
             GameObject itemPrefab = Instantiate(itemSlotPrefab, itemContent.transform);
             ItemSlot item_Slot = itemPrefab.GetComponent<ItemSlot>();
             Image[] itemImgPrefabs = itemPrefab.GetComponentsInChildren<Image>();
@@ -31,13 +33,15 @@ public class Inventory : MonoBehaviour
                     itemImgPrefab = itemImg;
             }
 
-            if (GameManager.instance.inventory_Items.Count > i)
+            if (itemList.Count > i)
             {
-                string _itemName = GameManager.instance.inventory_Items[i].item_Name;
-                string _itemCount = GameManager.instance.inventory_Items[i].item_Count;
+                string _itemName = itemList[i].item_Name;
+                string _itemCount = itemList[i].item_Count;
 
                 item_Slot.GetComponentInChildren<Text>().text = _itemName + "   " + _itemCount + "개";
                 item_Slot.isEmpty = true;
+                CanvasGroup slotCanvas = itemPrefab.GetComponent<CanvasGroup>();
+                slotCanvas.interactable = true;
 
                 if (_itemName == "지렁이")
                     itemImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("White", typeof(Sprite)) as Sprite;
@@ -50,6 +54,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < fishSlotCount; i++)
         {
+            List<InventoryFish> fishList = GameManager.instance.inventory_Fishs;
             GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
             FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
             Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
@@ -59,10 +64,12 @@ public class Inventory : MonoBehaviour
                     fishImgPrefab = fishImg;
             }
 
-            if (GameManager.instance.inventory_Fishs.Count > i)
+            if (fishList.Count > i)
             {
-                string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
-                string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
+                string _fishName = fishList[i].fish_Name;
+                string _fishCount = fishList[i].fish_Count;
+                CanvasGroup slotCanvas = fishPrefab.GetComponent<CanvasGroup>();
+                slotCanvas.interactable = true;
 
                 fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
                 fish_Slot.isEmpty = true;

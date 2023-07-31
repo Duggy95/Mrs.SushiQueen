@@ -91,7 +91,8 @@ public class GameManager : MonoBehaviour
     public TodayData todayData = new TodayData();
     public List<TodayFishInfo> todayFishInfos = new List<TodayFishInfo>();
 
-
+    public bool viewInventory;
+    public bool viewReceipt;
     public bool nextStage;
     //public bool onLogin = false;
 

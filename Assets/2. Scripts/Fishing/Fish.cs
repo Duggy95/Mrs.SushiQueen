@@ -64,6 +64,9 @@ public class Fish : MonoBehaviour
 
     private void Update()
     {
+        if (fm.inventoryFullImg.activeSelf == true)
+            return;
+
         // HP가 널이 아니고 현재 HP가 0보다 많으면서
         // 각 방향에 맞게 터치하면 공격함수 호출
         // 물고기 체력바 반영, 체력이 0이 되면 함수 호출 후 삭제
@@ -71,14 +74,16 @@ public class Fish : MonoBehaviour
         {
             if (leftClick && Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x > fm.fishingRod.transform.position.x)
+                if (Input.mousePosition.x > fm.fishingRod.transform.position.x &&
+                    Input.mousePosition.y < fm.lineStartPos.transform.position.y)
                 {
                     Atk();
                 }
             }
             else if (rightClick && Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x < fm.fishingRod.transform.position.x)
+                if (Input.mousePosition.x < fm.fishingRod.transform.position.x &&
+                    Input.mousePosition.y < fm.lineStartPos.transform.position.y)
                 {
                     Atk();
                 }
@@ -102,6 +107,7 @@ public class Fish : MonoBehaviour
 
     void Atk()
     {
+
         currHP -= _atk;
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
 
