@@ -225,7 +225,7 @@ public class UpGradeFishing : MonoBehaviour
 
     bool SetItem(int i, string name, string count, ItemSlot slot, int price, Image Img)
     {
-        Img.sprite = gameObject.GetComponent<Image>().sprite;
+        Img.sprite = gameObject.GetComponentsInChildren<Image>()[1].sprite;
         _items[i].GetComponentInChildren<Text>().text = name + "    " + count + "°³";
         GameManager.instance.inventory_Items.Add(new InventoryItem(name, count));
         int _gold = int.Parse(GameManager.instance.data.gold) - price;
