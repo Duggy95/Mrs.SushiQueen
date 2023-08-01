@@ -114,41 +114,50 @@ public class CookManager : MonoBehaviour
     public void EndSceneQuestionEsc()
     {
         endSceneQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
+
     }
 
     public void EndSceneQuestion()
     {
         endSceneQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
         exitGameQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
         exitGameQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
         deleteDataQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
         deleteDataQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
         endSceneQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
         logOutQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ConfigBtn() //설정보여주기
@@ -156,11 +165,13 @@ public class CookManager : MonoBehaviour
         if(!config)
         {
             configPanel.SetActive(true);
+            inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
         else
         {
             configPanel.SetActive(false);
+            inventoryFullImg.gameObject.SetActive(false);
             config = false;
         }
     }
