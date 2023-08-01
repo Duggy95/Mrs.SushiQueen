@@ -100,60 +100,15 @@ public class TutorialFish : MonoBehaviour
     {
         // 물고기의 체력바는 터치한 부분보다 위에,
         // 물장구 이미지는 터치한 부분보다 아래에 위치
-        Vector3 hpPos = pos + new Vector3(0, 70, 0);
+        Vector3 hpPos = pos + new Vector3(0, 150, 0);
+        Vector3 dirPos = pos - new Vector3(0, 100, 0);
         yield return new WaitForSeconds(delayTime);
 
-        // 확률에 따라 나오도록
-        List<FishData> fish_Data = new List<FishData>();
-        float fish_Probability;
-
-        for (int i = 0; i < fishDatas.Length; i++)
-        {
-            fish_Probability = fishDatas[i].probability * 100;
-
-            // 아이템 썼을 때 확률 조정
-            /*if (fm.useItem_white)
-            {
-                if (fishDatas[i].color == 0)
-                    fish_Probability *= 1.5f;
-
-                else if (fishDatas[i].color == 1)
-                    fish_Probability *= 0.5f;
-            }
-
-            else if (fm.useItem_red)
-            {
-                if (fishDatas[i].color == 0)
-                    fish_Probability *= 0.5f;
-
-                else if (fishDatas[i].color == 1)
-                    fish_Probability *= 1.5f;
-            }
-
-            else if (fm.useItem_rare)
-            {
-                if (fishDatas[i].grade == 0)
-                    fish_Probability *= 0.75f;
-
-                else if (fishDatas[i].grade == 1)
-                    fish_Probability *= 2f;
-            }*/
-
-            // 확률만큼 리스트 저장
-            for (int j = 0; j < fish_Probability; j++)
-            {
-                fish_Data.Add(fishDatas[i]);
-            }
-        }
-
-        Debug.Log(fish_Data.Count);
-        print("카운트1 : " + tf.count);
         fishData = fishDatas[tf.count]; // 확률에 따른 물고기 종류 지정
         Setup(fishData);  // 물고기 체력 및 회복력 셋업
         currHP = maxHP;   // 현재 체력을 맥스 체력으로
         fishing = true;   // 낚시 시작
         tf.count++;
-        //print("카운트2 : " + count);
 
         Debug.Log("물장구 시작");
 
@@ -183,6 +138,18 @@ public class TutorialFish : MonoBehaviour
             _water.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    IEnumerator DirEff(GameObject dirObj, Vector3 dirScale)
+    {
+        // 기존 스케일의 1.5배 해주고 작아지게
+        dirObj.gameObject.transform.localScale = dirScale * 1.5f;
+
+        for (int i = 0; i < 10; i++)
+        {
+            dirObj.gameObject.transform.localScale *= 0.95f;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

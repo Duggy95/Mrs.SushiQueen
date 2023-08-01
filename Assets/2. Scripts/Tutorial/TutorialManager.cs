@@ -20,7 +20,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject fishCanvas;
     public GameObject cookCanvas;
     public GameObject endCanvas;
-    public CanvasGroup fishBtn;
+    public GameObject fishingQuestion;
 
     bool isInventory = false;
     bool config;
@@ -61,14 +61,6 @@ public class TutorialManager : MonoBehaviour
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentTutorial = tutorials[currentIndex];
-        if(currentIndex == 7)
-        {
-            fishBtn.blocksRaycasts = false;
-        }
-        else
-        {
-            fishBtn.blocksRaycasts = true;
-        }
 
         //새로 바뀐 튜토리얼의 Enter() 메소드 호출
         currentTutorial.Enter();
@@ -92,6 +84,16 @@ public class TutorialManager : MonoBehaviour
     {
         fishCanvas.SetActive(true);
         fishScene = true;
+    }
+
+    public void FishingQuestion()
+    {
+        fishingQuestion.gameObject.SetActive(true);
+    }
+
+    public void EscFishingQuestion()
+    {
+        fishingQuestion.gameObject.SetActive(false);
     }
 
     public void ShowOrderView()

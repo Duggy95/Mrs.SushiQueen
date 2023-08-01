@@ -225,9 +225,7 @@ public class Customer : MonoBehaviour
     {
         int _score = int.Parse(GameManager.instance.data.score) - 5;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
-
         GameManager.instance.todayData.score -= 5;
-
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;

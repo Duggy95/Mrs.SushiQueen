@@ -24,18 +24,13 @@ public class TutorialPulse : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        /*if(manager.fishScene)
-        {
-            tutorialManager.SetNextTutorial();
-        }*/
+
     }
 
     public override void Exit()
     {
-        //StopAllCoroutines();
         pulse.transform.localScale = new Vector2(1, 1);
         Destroy(this);
-        //canvas.blocksRaycasts = false;
     }
 
     void OnPulseButtonClick()
