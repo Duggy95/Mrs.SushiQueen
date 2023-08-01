@@ -3072,7 +3072,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -6306,7 +6306,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1182263661
 MonoBehaviour:
@@ -6332,15 +6332,13 @@ MonoBehaviour:
   goldTxt: {fileID: 90514012}
   atkTxt: {fileID: 1978385295}
   inventoryImg: {fileID: 469822147}
-  inventoryFullImg: {fileID: 1540625314}
-  backGround: {fileID: 1530157990}
-  sprites: []
   loginObj: {fileID: 1322251700}
   fishingQuestion: {fileID: 659823075}
   cookQuestion: {fileID: 148697655}
   logOutQuestion: {fileID: 996579033}
   deleteDataQuestion: {fileID: 2092804098}
   exitGameQuestion: {fileID: 1605630617}
+  storyManager: {fileID: 1959210913}
 --- !u!1 &1182484503
 GameObject:
   m_ObjectHideFlags: 0

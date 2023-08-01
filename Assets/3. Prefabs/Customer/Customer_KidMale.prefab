@@ -203,7 +203,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 6
     m_MaxSize: 60
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 6
     m_MaxSize: 60
@@ -780,6 +780,7 @@ MonoBehaviour:
   - "\uC7BC\uBBFC\uC774\uB77C\uACE0 \uBB34\uC2DC\uD558\uB294 \uAC70\uC57C?"
   - "\uB204\uB098 \uD639\uC2DC \uC774\uB7F0\uAC78 \uB3C8 \uBC1B\uACE0 \uD30C\uB294\uAC70\uC57C?"
   - "\uB0B4\uAC00 \uC8FC\uBB38\uD55C \uAC8C \uC544\uB2C8\uC796\uC544\u3161\u3161"
+  orderRecipe: 
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}
