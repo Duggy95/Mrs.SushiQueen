@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +17,14 @@ public class Customer : MonoBehaviour
     public GameObject noBtn;  //거절 버튼
     public GameObject timerObj; //타이머 오브젝트
     public Image timer; //타이머 이미지
+
     Image[] images;  //이미지
     Text[] texts; //텍스트
-    
     List<Order> orders = new List<Order>();  //주문을 담을 리스트
-
     Dish dish;  //초밥 담는 접시
     CookManager cookManager;  //쿡 매니저.
     Transform tr;  //위치
+
     public string message;
     string order;  //주문
     float maxTime; //최대시간
@@ -61,18 +60,15 @@ public class Customer : MonoBehaviour
         dish = GameObject.FindGameObjectWithTag("DISH").GetComponent<Dish>();  //접시 오브젝트 Find로 가져오기
         tr = GetComponent<Transform>();
 
-        maxTime = 20;  //최대시간.
+        maxTime = int.Parse(GameManager.instance.data.customerTime);  //최대시간.
         currTime = maxTime;  //타이머 초기값 설정
     }
 
     void OnEnable()
     {
-
         StartCoroutine(FadeIn());
 
-        //randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
-        randomOrder = 2;
-        /*if (int.Parse(GameManager.instance.data.score) <= 600)
+        if (int.Parse(GameManager.instance.data.score) <= 600)
         {
             //80퍼, 17퍼, 3퍼
             RandomChance(80, 97);
@@ -90,10 +86,7 @@ public class Customer : MonoBehaviour
             //40퍼, 40퍼, 20퍼
             RandomChance(40, 80);
             print("세번째");
-        }*/
-
-        //int randomSprite = Random.Range(0, sprites.Length);  //랜덤하게 그림 결정.
-        //GetComponent<Image>().sprite = sprites[randomSprite];  //랜덤한 그림 적용.
+        }
 
         switch (randomOrder)  //랜덤한 주문.
         {
@@ -190,9 +183,7 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score -= 20;
 
-                //GameManager.instance.Save("d");   //평판 저장
                 cookManager.UIUpdate();  //UI 최신화
-                //cookManager.ViewOrder();  //주문 창으로 넘어옴.
                 cookManager.GoOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
                 orderTxt.text = fail[0];  //실패 텍스트 출력.
@@ -331,8 +322,6 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score -= 20;
 
-
-                //GameManager.instance.Save("d");  //평판 저장
                 cookManager.UIUpdate();
                 orderTxt.text = fail[Random.Range(0, fail.Length)];
                 orders.Clear();  //주문 리스트 클리어.

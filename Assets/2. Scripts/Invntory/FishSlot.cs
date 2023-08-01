@@ -8,13 +8,14 @@ public class FishSlot : MonoBehaviour
 {
     public FishData[] fishDatas;
     public FishData fishData;
-    Text _text;
 
     public bool isEmpty = false;
     public int fish_GradeNum;
     public int fish_ColorNum;
     public string fish_Name;
     public int fish_Count;
+
+    Text _text;
 
     private void Start()
     {
@@ -43,11 +44,6 @@ public class FishSlot : MonoBehaviour
             }
         }
     }
-
-    /*public void UpdateSlot()
-    {
-        _text.text.Split(" ")[3] = fish_Count.ToString();
-    }*/
 
     public void ClearSlot()
     {
@@ -81,13 +77,11 @@ public class FishSlot : MonoBehaviour
             // 해당 인덱스(index)의 값 변경
             GameManager.instance.inventory_Fishs[index].fish_Count = count.ToString();
             _text.text = fishName + "   " + count + " " + "마리";
-            //GameManager.instance.Save("f");
             if (count <= 0)
             {
                 GameManager.instance.inventory_Fishs.RemoveAt(index);
                 gameObject.GetComponentInChildren<Image>().sprite = null;
                 GetComponentInChildren<Text>().text = "";
-                //GameManager.instance.Save("f");
             }
         }
     }

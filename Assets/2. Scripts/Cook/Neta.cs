@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Neta : MonoBehaviour
 {
     public FishData fishData;  //생선 데이터
+
     Image image;  //회 이미지
 
     void Start()

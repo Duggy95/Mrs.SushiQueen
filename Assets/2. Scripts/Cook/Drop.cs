@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 
 public class Drop : MonoBehaviour, IDropHandler
 {
@@ -22,23 +21,22 @@ public class Drop : MonoBehaviour, IDropHandler
         fishIconContent = GameObject.FindWithTag("CONTENT").GetComponent<Transform>();
     }
 
-    void Update()
-    {
-
-    }
-
     public void OnDrop(PointerEventData eventData)
     {
         if (Drag.draggingItem == null)
+            return;
+
+        FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
+        FishSlot fishSlot = Drag.draggingItem.GetComponent<FishSlot>();
+
+        if (!text.text.Contains(fishData.fishName) && cookManager.fishList.Contains(fishData.fishName))
             return;
 
         if (transform.childCount == 2 && netaBtn.isEmpty)
         {
             print("µå¶ø");
             Drag.draggingItem.transform.SetParent(this.transform);
-            FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
-            FishSlot fishSlot = Drag.draggingItem.GetComponent<FishSlot>();
-
+            
             this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;
             fishSlot.UpdateData();
             count += 5;
@@ -53,10 +51,11 @@ public class Drop : MonoBehaviour, IDropHandler
             Text iconText = fishIcon.GetComponentInChildren<Text>();
             iconText.text = fishData.fishName + "     " + count;
             netaBtn.Txt(iconText);
+            cookManager.fishList.Add(fishData.fishName);
         }
         else if (transform.childCount == 2 && !netaBtn.isEmpty)
         {
-            FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
+            fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
             if (netaBtn.fishData.fishName == fishData.fishName)
             {
                 Drag.draggingItem.transform.SetParent(this.transform);

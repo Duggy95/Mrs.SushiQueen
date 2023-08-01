@@ -53,10 +53,10 @@ public class UpGradeFishing : MonoBehaviour
             int _atk = int.Parse(GameManager.instance.data.atk) + middleRodAtk;
             GameManager.instance.data.atk = _atk.ToString();
             GameManager.instance.data.getMiddleRod = "TRUE";
-            //GameManager.instance.Save("d");
 
             Text text = GetComponentInChildren<Text>();
             text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
+
             // 사면 같이 갱신이 되도록 고칠 것
             endSceneCtrl.UIUpdate();
         }
@@ -81,7 +81,6 @@ public class UpGradeFishing : MonoBehaviour
             int _atk = int.Parse(GameManager.instance.data.atk) + highRodAtk;
             GameManager.instance.data.atk = _atk.ToString();
             GameManager.instance.data.getHighRod = "TRUE";
-            //GameManager.instance.Save("d");
 
             Text text = GetComponentInChildren<Text>();
             text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
@@ -218,8 +217,7 @@ public class UpGradeFishing : MonoBehaviour
             int _gold = int.Parse(GameManager.instance.data.gold) - price;
             GameManager.instance.data.gold = _gold.ToString();
             Debug.Log("중복 종류 " + index + " changed to " + newValue);
-            /* GameManager.instance.Save("i");
-             GameManager.instance.Save("d");*/
+
             endSceneCtrl.UIUpdate();
         }
 
@@ -233,8 +231,7 @@ public class UpGradeFishing : MonoBehaviour
         GameManager.instance.inventory_Items.Add(new InventoryItem(name, count));
         int _gold = int.Parse(GameManager.instance.data.gold) - price;
         GameManager.instance.data.gold = _gold.ToString();
-        /* GameManager.instance.Save("i");
-         GameManager.instance.Save("d");*/
+
         slot.isEmpty = true;
 
         endSceneCtrl.UIUpdate();

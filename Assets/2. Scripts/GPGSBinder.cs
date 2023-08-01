@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -6,7 +6,6 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using GooglePlayGames.BasicApi.Events;
-
 
 public class GPGSBinder
 {
@@ -38,7 +37,6 @@ public class GPGSBinder
         Init();
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (success) =>
         {
-            GameManager.instance.idTxt.text = "Google Login Complete : " + Social.localUser.id;
             onLoginSuccess?.Invoke(success == SignInStatus.Success, Social.localUser);
             GameManager.instance.Load();
         });
@@ -47,29 +45,20 @@ public class GPGSBinder
     public void Logout()
     {
         PlayGamesPlatform.Instance.SignOut();
-        GameManager.instance.idTxt.text = "Google Logout Complete";
     }
 
 
     public void SaveCloud(string fileName, string saveData, Action<bool> onCloudSaved = null)
     {
-        GameManager.instance.logTxt.text = "Try Save 1";
-
         SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork,
             ConflictResolutionStrategy.UseLastKnownGood, (status, game) =>
             {
-                GameManager.instance.logTxt.text = "Try Save 2";
-
                 if (status == SavedGameRequestStatus.Success)
                 {
-                    GameManager.instance.logTxt.text = "Try Save 3";
-
                     var update = new SavedGameMetadataUpdate.Builder().Build();
                     byte[] bytes = System.Text.Encoding.UTF8.GetBytes(saveData);
                     SavedGame.CommitUpdate(game, update, bytes, (status2, game2) =>
                     {
-                        GameManager.instance.logTxt.text = "Try Save 4";
-
                         onCloudSaved?.Invoke(status2 == SavedGameRequestStatus.Success);
                     });
                 }
@@ -78,25 +67,15 @@ public class GPGSBinder
 
     public void LoadCloud(string fileName, Action<bool, string> onCloudLoaded = null)
     {
-        GameManager.instance.logTxt.text = "Try Load 1";
-
         SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork,
             ConflictResolutionStrategy.UseLastKnownGood, (status, game) =>
             {
-                GameManager.instance.logTxt.text = "Try Load 2";
-
                 if (status == SavedGameRequestStatus.Success)
                 {
-                    GameManager.instance.logTxt.text = "Try Load 3";
-
                     SavedGame.ReadBinaryData(game, (status2, loadedData) =>
                     {
-                        GameManager.instance.logTxt.text = "Try Load 4";
-
                         if (status2 == SavedGameRequestStatus.Success)
                         {
-                            GameManager.instance.logTxt.text = "Try Load 5";
-
                             string data = System.Text.Encoding.UTF8.GetString(loadedData);
                             onCloudLoaded?.Invoke(true, data);
                             GameManager.instance.SetData(data);
@@ -115,7 +94,6 @@ public class GPGSBinder
             {
                 if (status == SavedGameRequestStatus.Success)
                 {
-                    GameManager.instance.idTxt.text = "Delete Data Complete";
                     SavedGame.Delete(game);
                     onCloudDeleted?.Invoke(true);
                     GameManager.instance.ExitGame();
@@ -125,7 +103,6 @@ public class GPGSBinder
             });
     }
 
-
     public void ShowAchievementUI() =>
         Social.ShowAchievementsUI();
 
@@ -134,7 +111,6 @@ public class GPGSBinder
 
     public void IncrementAchievement(string gpgsId, int steps, Action<bool> onUnlocked = null) =>
         PlayGamesPlatform.Instance.IncrementAchievement(gpgsId, steps, success => onUnlocked?.Invoke(success));
-
 
     public void ShowAllLeaderboardUI() =>
         Social.ShowLeaderboardUI();
@@ -157,7 +133,6 @@ public class GPGSBinder
         });
     }
 
-
     public void IncrementEvent(string gpgsId, uint steps)
     {
         Events.IncrementEvent(gpgsId, steps);
@@ -178,7 +153,4 @@ public class GPGSBinder
             onEventsLoaded?.Invoke(status == ResponseStatus.Success, events);
         });
     }
-
 }
-
-*/

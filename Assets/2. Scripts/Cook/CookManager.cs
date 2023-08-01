@@ -30,18 +30,15 @@ public class CookManager : MonoBehaviour
     public Text scoreTxt;
     public List<string> fishList = new List<string>();
     public int fishBtnCount = 0;
-    //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     public bool isReady = false;
     public bool isEnd = false;
-    bool config = false;
     public Vector2 customerStartPos;
-
-    //Transform fishContent;
 
     WaitForSeconds ws;
     Vector2 customerTr = Vector2.zero;
     int count = 0;
+    bool config = false;
 
     void Start()
     {
@@ -50,20 +47,7 @@ public class CookManager : MonoBehaviour
         //시작 세팅 화면 세팅
         orderView.SetActive(true);
         cookView.SetActive(true);
-        fishList.Clear();
-
-        /*if(int.Parse(GameManager.instance.data.score) <= 600)
-        {
-            ws = new WaitForSeconds(3f);
-        }
-        else if(int.Parse(GameManager.instance.data.score) <= 900)
-        {
-            ws = new WaitForSeconds(2.5f);
-        }
-        else
-        {
-            ws = new WaitForSeconds(2f);
-        }*/
+        
         ws = new WaitForSeconds(2);
 
         UIUpdate();
@@ -84,15 +68,6 @@ public class CookManager : MonoBehaviour
         GameManager.instance.DeleteData();
         UIUpdate();
     }
-
-
-    /*public void UIUpdate()
-    {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차";
-        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-        goldTxt.text = "gold : " + GameManager.instance.data.gold;
-        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
-    }*/
 
     public void UIUpdate()
     {
@@ -228,12 +203,6 @@ public class CookManager : MonoBehaviour
         cookView.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
         inventoryCanvas.interactable = false;
-
-        /*for(int i = 0; i < fishBtnCount; i++)
-        {
-            GameObject fishIcon = Instantiate(fishIconPrefab, orderFishContent.transform);
-            fishIcon.GetComponent<Image>.sprite = 
-        }*/
     }
 
     public void Order(string txt)
@@ -245,4 +214,9 @@ public class CookManager : MonoBehaviour
     {
         GPGSBinder.Inst.Logout();
     }*/
+
+    private void OnDisable()
+    {
+        fishList.Clear();
+    }
 }

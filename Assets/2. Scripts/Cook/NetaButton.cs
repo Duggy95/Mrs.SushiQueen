@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class NetaButton : MonoBehaviour
 {
-    CookManager cookManager;
     public GameObject netaPrefab; //회 프리팹
     public GameObject board;  //도마
-    public int count;
-    public bool isEmpty = true;
     public Text text;
     public FishData fishData;  //생선 데이터
+    public int count;
+    public bool isEmpty = true;
+
+    CookManager cookManager;
     Text iconTxt;
 
     private void Awake()

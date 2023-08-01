@@ -96,7 +96,6 @@ public class UpGradeShop : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 물고기 공간\n최대 " + count + "마리";
                 }
-                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -121,15 +120,15 @@ public class UpGradeShop : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "요리공간 LV." + level + "->" + nextCount +
+            text.text = "요리공간 LV." + level + "->" + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextLevel + "마리";
+                "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
         }
         else if (level == 4)
         {
             text.text = "요리공간 LV." + level + "->" + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-               "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextLevel + "마리";
+               "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
         }
         else
         {
@@ -160,15 +159,15 @@ public class UpGradeShop : MonoBehaviour
                 Text text = GetComponentInChildren<Text>();
                 if (level < 4)
                 {
-                    text.text = "요리공간 LV." + level + "->" + nextCount +
+                    text.text = "요리공간 LV." + level + "->" + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextLevel + "마리";
+                        "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
                 }
                 else if (level == 4)
                 {
                     text.text = "요리공간 LV." + level + "->" + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                       "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextLevel + "마리";
+                       "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
                 }
                 else
                 {
@@ -176,7 +175,6 @@ public class UpGradeShop : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
                 }
-                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else

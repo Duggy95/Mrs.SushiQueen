@@ -53,12 +53,10 @@ public class Receipt : MonoBehaviour
                 fishInfoTxt = fishInfoTxt + "\t\t" + info[i].fish_NameT + info[i].fish_CountT + "마리";
             }
         }
-
         if (fishInfoTxt == null)
         {
             fishInfoTxt = "오늘 잡은 물고기가 없습니다.";
         }
-
         if (GameManager.instance.todayData.score > 0)
         {
             receiptTxt.text = "수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " +
@@ -74,22 +72,6 @@ public class Receipt : MonoBehaviour
             receiptTxt.text = "수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " +
                 GameManager.instance.todayData.score + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
         }
-
-        /*if (GameManager.instance.todayData.score > 0)
-        {
-            receiptTxt.text = "수익과 점수\n\n" + string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.gold + "원 / ") +
-                 string.Format("<color=#0000>{0}</color>", GameManager.instance.todayData.score) + string.Format("<color=#8C8C8C>{0}</color>", "점") + "\n\n잡은 물고기\n\n" + string.Format("<color=#8C8C8C>{0}</color>", fishInfoTxt);
-        }
-        else if (GameManager.instance.todayData.score < 0)
-        {
-            receiptTxt.text = "수익과 점수\n\n" + string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.gold + "원 / ") +
-                 string.Format("<color=#0054FF>{0}</color>", GameManager.instance.todayData.score) + string.Format("<color=#8C8C8C>{0}</color>", "점") + "\n\n잡은 물고기\n\n" + string.Format("<color=#8C8C8C>{0}</color>", fishInfoTxt);
-        }
-        else
-        {
-            receiptTxt.text = "수익과 점수\n\n" + string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.gold + "원 / ") +
-                string.Format("<color=#8C8C8C>{0}</color>", GameManager.instance.todayData.score + "점") + "\n\n잡은 물고기\n\n" + string.Format("<color=#8C8C8C>{0}</color>", fishInfoTxt);
-        }*/
         headTxt.text = GameManager.instance.data.dateCount + "일차 영수증";
     }
 }

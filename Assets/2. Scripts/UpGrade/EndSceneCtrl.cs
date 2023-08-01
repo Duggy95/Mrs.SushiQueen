@@ -27,6 +27,7 @@ public class EndSceneCtrl : MonoBehaviour
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
+
     Color initColor = new Color(1, 1, 1, 1);
     Color selColor = new Color(1, 1, 0, 1);
 
@@ -93,7 +94,6 @@ public class EndSceneCtrl : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-
     public void Delete()
     {
         GameManager.instance.DeleteData();
@@ -105,14 +105,6 @@ public class EndSceneCtrl : MonoBehaviour
     {
         UIUpdate();
     }
-
-    /*public void UIUpdate()
-    {
-        dateTxt.text = GameManager.instance.data.dateCount + "일차";
-        scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-        goldTxt.text = "gold : " + GameManager.instance.data.gold;
-        atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
-    }*/
 
     public void UIUpdate()
     {
