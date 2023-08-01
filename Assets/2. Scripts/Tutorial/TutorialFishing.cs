@@ -9,27 +9,35 @@ public class TutorialFishing : TutorialBase
     public GameObject fishObj;
     public GameObject fishCanvas;
     public GameObject fishContent;
+    public GameObject fishingRod;
+    public GameObject lineStartPos;
+    public GameObject fishInfo;
+    public GameObject fishInfoImg;
+    public GameObject inventoryBtn;
     public Text full_Txt;
     public Text fishRun;
     public Text touchTxt;
-    public GameObject fishInfo;
     public Text fishInfo_Txt;
     public Image fish_Img;
     FishData data;
 
     public int count = 0;
-    bool isFishing;
+    public bool isFishing;
     public bool fishCome;
     public bool fishFull;
+    Vector3 fishInfoOriginPos;
+    Vector3 fishInfoOriginScale;
 
     public override void Enter()
     {
         print("fishing tutorial");
+        fishInfoOriginScale = Vector3.one;
+        fishInfoOriginPos = fishInfoImg.transform.position;
     }
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        if(fishCome)
+        if (fishCome)
         {
             tutorialManager.SetNextTutorial();
         }
@@ -51,14 +59,6 @@ public class TutorialFishing : TutorialBase
             isFishing = true;
             // 물고기 도망 텍스트 비활성화
             fishRun.gameObject.SetActive(false);
-            //LineRenderer fishLine = FishingRod.GetComponent<LineRenderer>();
-
-            //Vector3 startPos = lineStartPos.transform.position; // 시작 지점
-            //Vector3 endPos = Input.mousePosition; // 끝 지점
-
-            // Line Renderer 속성 설정
-            //fishLine.SetPosition(0, startPos); // 라인의 점들 설정
-            //fishLine.SetPosition(1, endPos);
             Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
             //transform.position = Input.mousePosition;
         }
@@ -70,16 +70,21 @@ public class TutorialFishing : TutorialBase
         Debug.Log(fishData);
         data = fishData;
         fishInfo.gameObject.SetActive(true);
+        fishInfoImg.gameObject.SetActive(true);
+        fishInfoImg.transform.parent = fishInfo.transform;
+        fishInfoImg.transform.position = fishInfoOriginPos;
+        fishInfoImg.transform.localScale = fishInfoOriginScale;
+        fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
     }
 
-    /*public void Run()
+    public void Run()
     {
         StartCoroutine(FishRun());
-    }*/
+    }
 
-    /*IEnumerator FishRun()
+    IEnumerator FishRun()
     {
         Debug.Log("낚시 실패");
 
@@ -89,7 +94,7 @@ public class TutorialFishing : TutorialBase
         yield return new WaitForSeconds(2f);
         Debug.Log("다시");
         fishRun.gameObject.SetActive(false);
-    }*/
+    }
 
     public void Get()
     {
@@ -101,26 +106,31 @@ public class TutorialFishing : TutorialBase
 
         for (int i = 0; i < _fishs.Length; i++)
         {
-            if (_fishs[i].GetComponentInChildren<Text>().text.Contains(data.fishName))
+            if (_fishs[i].gameObject.name.Contains("Slot"))
             {
-                string valueToFind = data.fishName;
-                int newValue = 1;
-
-                // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
-                int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
-
-                if (index != -1)
+                if (_fishs[i].GetComponentInChildren<Text>().text.Contains(data.fishName))
                 {
-                    newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+                    string valueToFind = data.fishName;
+                    int newValue = 1;
 
-                    // 해당 인덱스(index)의 값 변경
-                    //GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + "개";
-                    Debug.Log("중복 종류 " + index + " changed to " + newValue);
-                    //GameManager.instance.Save("f");
-                    isChange = true;
-                    isFull = false;
-                    break;
+                    // 특정 값(valueToFind)을 만족하는 첫 번째 요소의 인덱스를 찾기
+                    int index = GameManager.instance.inventory_Fishs.FindIndex(fish => fish.fish_Name == valueToFind);
+
+                    if (index != -1)
+                    {
+                        newValue += int.Parse(GameManager.instance.inventory_Fishs[index].fish_Count);
+
+                        // 해당 인덱스(index)의 값 변경
+                        //GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
+                        _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
+                        Debug.Log("중복 종류 " + index + " changed to " + newValue);
+                        fishInfoImg.transform.parent = inventoryBtn.transform;
+                        StartCoroutine(Eff());
+                        StartCoroutine(EffMove());
+                        isChange = true;
+                        isFull = false;
+                        break;
+                    }
                 }
             }
         }
@@ -128,72 +138,87 @@ public class TutorialFishing : TutorialBase
         {
             for (int i = 0; i < _fishs.Length; i++)
             {
-                FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
-
-                if (_slot.isEmpty == false)
+                if(_fishs[i].gameObject.name.Contains("Slot"))
                 {
-                    _fishs[i].sprite = data.fishImg;
-                    _slot.fish_ColorNum = data.color;
-                    _slot.fish_GradeNum = data.grade;
-                    _slot.fish_Name = data.fishName;
+                    FishSlot _slot = _fishs[i].GetComponent<FishSlot>();
+                    Image Img = null;
+                    Image[] fishImgs = _fishs[i].GetComponentsInChildren<Image>();
+                    foreach (Image fishImg in fishImgs)
+                    {
+                        if (fishImg.name.Contains("Img"))
+                            Img = fishImg;
+                    }
 
-                    //GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
-                    _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1개";
-                    Debug.Log("안찼고 다른 종류");
-                    //GameManager.instance.Save("f");
-                    _slot.isEmpty = true;
-                    isFull = false;
-                    break;
+                    if (_slot.isEmpty == false)
+                    {
+                        Img.sprite = data.fishImg;
+                        _slot.fish_ColorNum = data.color;
+                        _slot.fish_GradeNum = data.grade;
+                        _slot.fish_Name = data.fishName;
+
+                        _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
+                        Debug.Log("안찼고 다른 종류");
+                        //GameManager.instance.Save("f");
+                        fishInfoImg.transform.parent = inventoryBtn.transform;
+                        StartCoroutine(Eff());
+                        StartCoroutine(EffMove());
+                        _slot.isEmpty = true;
+                        isFull = false;
+                        break;
+                    }
                 }
             }
         }
         if (isFull)
         {
             full_Txt.gameObject.SetActive(true);
-            fishFull = true;
         }
         else
         {
             isFishing = false;
             fishInfo.gameObject.SetActive(false);
         }
+    }
 
-        /* bool isChange = false;
-         for (int j = 0; j < GameManager.instance.inventory_Fishs.Count; j++)
-         {
-             if (GameManager.instance.inventory_Fishs[j].fish_Name == data.fishName)
-             {
-                 int count = int.Parse(GameManager.instance.inventory_Fishs[j].fish_Count);
-                 count++;
-                 isChange = true;
-                 GameManager.instance.inventory_Fishs[j].fish_Count = count.ToString();
-                 _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + count.ToString() + "개";
+    IEnumerator Eff()
+    {
+        Vector3 initialScale = new Vector3(1.1f, 1.1f, 1.1f);
+        Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f);
+        float duration = 1f; // 크기 변화에 걸리는 시간
 
-                 break;
-             }
-         }
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
+            fishInfoImg.transform.localScale = Vector3.Lerp(initialScale, targetScale, t);
+            yield return null;
+        }
+    }
 
-         if (isChange == false)
-         {
-             GameManager.instance.inventory_Fishs.Add(new InventoryFish(data.fishName, "1"));
-             _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1개";
-         }
-         GameManager.instance.Save("f");
-         _slot.isEmpty = true;
-         isFull = false;
-         break;*/
+    IEnumerator EffMove()
+    {
+        float elapsedTime = 0f;
+        float duration = 1f; // 이동 시간 (초)
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            fishInfoImg.transform.position = Vector3.Lerp(fishInfoImg.transform.position, inventoryBtn.transform.position, elapsedTime / duration);
+
+            if (elapsedTime / duration >= 1)
+            {
+                fishInfoImg.transform.position = inventoryBtn.transform.position;
+                fishInfoImg.gameObject.SetActive(false);
+            }
+            yield return null;
+        }
     }
 
     public void Sell()
     {
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        //int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
-        //GameManager.instance.data.gold = _gold.ToString();
-        //GameManager.instance.Save("s");
-        //Debug.Log("골드 " + _gold);
-        // 골드 ++
-        //UIUpdate();
         isFishing = false;
     }
 }

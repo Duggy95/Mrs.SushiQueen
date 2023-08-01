@@ -83,8 +83,8 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            //40퍼, 40퍼, 20퍼
-            RandomChance(40, 80);
+            //20퍼, 40퍼, 40퍼
+            RandomChance(20, 60);
             print("세번째");
         }
 

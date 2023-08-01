@@ -8,8 +8,8 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField]
     private List<TutorialBase> tutorials;
-    [SerializeField]
-    private string nextSceneName = "";
+    /*[SerializeField]
+    private string nextSceneName = "Start";*/
 
     private TutorialBase currentTutorial = null;
     private int currentIndex = -1;
@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject cookCanvas;
     public GameObject endCanvas;
     public GameObject fishingQuestion;
+    public GameObject skipQuestion;
 
     bool isInventory = false;
     bool config;
@@ -37,7 +38,7 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if(currentTutorial != null)
+        if (currentTutorial != null)
         {
             currentTutorial.Execute(this);
         }
@@ -46,13 +47,13 @@ public class TutorialManager : MonoBehaviour
     public void SetNextTutorial()
     {
         //현재 튜토리얼의 Exit() 메소드 호출
-        if(currentTutorial != null)
+        if (currentTutorial != null)
         {
             currentTutorial.Exit();
         }
 
         //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
-        if(currentIndex >= tutorials.Count-1)
+        if (currentIndex >= tutorials.Count - 1)
         {
             CompletedAllTutorials();
             return;
@@ -74,10 +75,9 @@ public class TutorialManager : MonoBehaviour
         //현재는 씬 전환.
         Debug.Log("Complete All");
 
-        if(!nextSceneName.Equals(""))
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
+        print("씬 이동");
+        SceneManager.LoadScene(0);
+        GameManager.instance.nextStage = true;
     }
 
     public void ShowFishScene()
@@ -112,17 +112,34 @@ public class TutorialManager : MonoBehaviour
         {
             configPanel.SetActive(true);
             config = true;
+            Time.timeScale = 0;
         }
         else
         {
             configPanel.SetActive(false);
             config = false;
+            Time.timeScale = 1;
         }
+    }
+
+    public void SkipBtn()
+    {
+        skipQuestion.SetActive(true);
+    }
+
+    public void CloseSkipBtn()
+    {
+        skipQuestion.SetActive(false);
+    }
+
+    public void GoSkipBtn()
+    {
+        CompletedAllTutorials();
     }
 
     public void InventoryBtn() //인벤토리 활성화, 비활성화
     {
-        if(!isInventory)
+        if (!isInventory)
         {
             inventoryImg.gameObject.SetActive(true);
             isInventory = true;

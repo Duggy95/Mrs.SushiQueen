@@ -57,3 +57,4 @@ MonoBehaviour:
   fishDatas:
   - {fileID: 11400000, guid: ab171565f2413d642bf43cd9f42564cd, type: 2}
   - {fileID: 11400000, guid: e67532ab171f9e0479c8d9ff5c094585, type: 2}
+  directionObj: {fileID: 1442787082074376389, guid: 9818c41004e7abc45b0fa5a1fc74a1cb, type: 3}
