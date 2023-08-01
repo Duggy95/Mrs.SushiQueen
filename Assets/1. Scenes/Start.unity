@@ -2760,7 +2760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ff92fb58861aad94a99378ea17efc288, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2c30554d67de8c944be990d18ba76d62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8146,24 +8146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f064061ecded0d4b8828bd4d553c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory_Items: []
-  inventory_Fishs: []
-  data:
-    itemCount: 3
-    fishCount: 3
-    cookCount: 3
-    dateCount: 1
-    score: 500
-    gold: 0
-    atk: 1
-    getMiddleRod: FALSE
-    getHighRod: FALSE
-    fishTime: 90
-    fishHPLV: 1
-    cookTime: 180
-    cookHPLV: 1
-    customerTime: 20
-    customerHPLV: 1
   todayData:
     score: 0
     gold: 0
