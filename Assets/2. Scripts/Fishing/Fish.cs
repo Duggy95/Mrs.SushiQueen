@@ -41,7 +41,7 @@ public class Fish : MonoBehaviour
     {
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         transform.SetParent(fm.canvas.transform);
-        transform.SetSiblingIndex(3);  //2번째 자식.
+        transform.SetSiblingIndex(1);  //2번째 자식.
 
         _atk = int.Parse(GameManager.instance.data.atk);
     }

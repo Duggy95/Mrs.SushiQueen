@@ -40,7 +40,7 @@ public class UpGradeSkil : MonoBehaviour
         count = int.Parse(GameManager.instance.data.cookTime);
         level = int.Parse(GameManager.instance.data.cookHPLV);
         _gold = level * 100000;
-        int nextCount = count + 10;
+        int nextCount = count + 5;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
@@ -76,7 +76,7 @@ public class UpGradeSkil : MonoBehaviour
                 count = countA;
                 level = levelA + 1;
                 _gold = level * 100000;
-                int nextCount = count + 10;
+                int nextCount = count + 5;
                 int nextLevel = level + 1;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
@@ -120,7 +120,7 @@ public class UpGradeSkil : MonoBehaviour
         count = int.Parse(GameManager.instance.data.fishTime);
         level = int.Parse(GameManager.instance.data.fishHPLV);
         _gold = level * 100000;
-        int nextCount = count + 10;
+        int nextCount = count + 5;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
@@ -156,7 +156,7 @@ public class UpGradeSkil : MonoBehaviour
                 count = countA;
                 level = levelA + 1;
                 _gold = level * 100000;
-                int nextCount = count + 10;
+                int nextCount = count + 5;
                 int nextLevel = level + 1;
                 int gold_ = int.Parse(GameManager.instance.data.gold) - _goldA;
                 GameManager.instance.data.gold = gold_.ToString();
