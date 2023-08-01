@@ -62,6 +62,12 @@ public class Fish : MonoBehaviour
         StartCoroutine(Heal());
     }
 
+    private void Start()
+    {
+        fm.touchTxt.gameObject.SetActive(true);
+        fm.giveupBtn.gameObject.SetActive(true);
+    }
+
     private void Update()
     {
         if (fm.inventoryFullImg.activeSelf == true)
@@ -103,11 +109,13 @@ public class Fish : MonoBehaviour
                 Die();
             }
         }
+
+        if(fm.isFishing == false)
+            Die();
     }
 
     void Atk()
     {
-
         currHP -= _atk;
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
 
@@ -129,6 +137,8 @@ public class Fish : MonoBehaviour
         fm.useRedItemTxt.gameObject.SetActive(false);
         fm.useRareItemTxt.gameObject.SetActive(false);
         fm.useItemPanel.gameObject.SetActive(false);
+        fm.touchTxt.gameObject.SetActive(false);
+        fm.giveupBtn.gameObject.SetActive(false);
         dirObj.Clear();
         Destroy(gameObject);
     }
