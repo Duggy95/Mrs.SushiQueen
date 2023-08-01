@@ -253,8 +253,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: "C:/Users/SAMSUNG/Documents/\uCE74\uCE74\uC624\uD1A1 \uBC1B\uC740
-    \uD30C\uC77C/GPGS/user.keystore"
+  AndroidKeystoreName: C:/Users/SAMSUNG/Desktop/GPGS/user.keystore
   AndroidKeyaliasName: duggy
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

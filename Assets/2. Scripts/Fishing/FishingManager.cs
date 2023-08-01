@@ -17,6 +17,7 @@ public class FishingManager : MonoBehaviour
     public Text useRedItemTxt;
     public Text useRareItemTxt;
     public Text scoreTxt;
+    public Text touchTxt;
     public GameObject configPanel;
     public GameObject inventoryImg;  // 인벤토리 이미지
     public GameObject inventoryFullImg;
@@ -32,7 +33,9 @@ public class FishingManager : MonoBehaviour
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public GameObject giveupQuestion;
     public Button fishingBtn;
+    public Button giveupBtn;
     public Image fish_Img;
     public bool isFishing = false;
     public bool useItem_white = false;  // 하얀 살 생선 확률 증가 아이템 사용
@@ -100,6 +103,21 @@ public class FishingManager : MonoBehaviour
         fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
+    }
+
+    public void GiveUp()
+    {
+        giveupQuestion.gameObject.SetActive(true);
+    }
+
+    public void GiveUpQuestion()
+    {
+        isFishing = false;
+    }
+
+    public void GiveUpQuestionEsc() 
+    {
+        giveupQuestion.gameObject.SetActive(false);
     }
 
     // 팔기 버튼을 누르면 정보창 닫고 다시 낚시 준비
