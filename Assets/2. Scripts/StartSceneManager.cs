@@ -18,6 +18,7 @@ public class StartSceneManager : MonoBehaviour
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
+    public GameObject inventoryFullImg;
     //public Image backGround;  //스토리 배경 그림
     //public Sprite[] sprites;
     public GameObject loginObj;
@@ -106,13 +107,14 @@ public class StartSceneManager : MonoBehaviour
     {
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
-
+        inventoryFullImg.gameObject.SetActive(true);
         print("인벤토리 열려라");
     }
 
     public void EscInventory()
     {
         inventoryImg.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void OnClickSkip()
@@ -126,51 +128,61 @@ public class StartSceneManager : MonoBehaviour
     public void FishingQuestionEsc()
     {
         fishingQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void FishingQuestion()
     {
         fishingQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void CookQuestionEsc()
     {
         cookQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void CookQuestion()
     {
         cookQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
         exitGameQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
         exitGameQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
         deleteDataQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
         deleteDataQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
         logOutQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
         logOutQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void GoFishing()
