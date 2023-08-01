@@ -62,12 +62,6 @@ public class Fish : MonoBehaviour
         StartCoroutine(Heal());
     }
 
-    private void Start()
-    {
-        fm.touchTxt.gameObject.SetActive(true);
-        fm.giveupBtn.gameObject.SetActive(true);
-    }
-
     private void Update()
     {
         if (fm.inventoryFullImg.activeSelf == true)
@@ -236,6 +230,9 @@ public class Fish : MonoBehaviour
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
         _water.transform.SetParent(transform);
+
+        fm.touchTxt.gameObject.SetActive(true);
+        fm.giveupBtn.gameObject.SetActive(true);
 
         // 이미지 생성하여 번갈아가며 띄움
         // 한바퀴 돌 때마다 방향 랜덤 설정
