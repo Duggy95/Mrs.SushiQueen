@@ -532,7 +532,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -1849,7 +1849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &352081150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4874,7 +4874,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 250}
+  m_SizeDelta: {x: 700, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075963573
 MonoBehaviour:
@@ -5483,7 +5483,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -6108,7 +6108,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 80
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -6660,6 +6660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371512681}
   - component: {fileID: 1371512683}
+  - component: {fileID: 1371512684}
   - component: {fileID: 1371512682}
   m_Layer: 5
   m_Name: Touch_Text
@@ -6685,7 +6686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 240}
+  m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1371512682
@@ -6710,7 +6711,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 90
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -6730,6 +6731,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371512680}
   m_CullTransparentMesh: 1
+--- !u!114 &1371512684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371512680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5a1b4881f214140a74ad08e543fd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1423679783
 GameObject:
   m_ObjectHideFlags: 0
@@ -7253,7 +7266,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB85C\uADF8\uC544\uC6C3\uC744 \uD558\uACA0\uC2B5\uB2C8\uB2E4."
+  m_Text: "\uC774 \uBB3C\uACE0\uAE30\uB97C \uD3EC\uAE30\uD558\uACA0\uC2B5\uB2C8\uB2E4."
 --- !u!222 &1543765261
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8625,7 +8638,7 @@ MonoBehaviour:
   logOutQuestion: {fileID: 967650036}
   deleteDataQuestion: {fileID: 164506137}
   exitGameQuestion: {fileID: 925106037}
-  giveupQuestion: {fileID: 0}
+  giveupQuestion: {fileID: 1075963571}
   fishingBtn: {fileID: 695894560}
   giveupBtn: {fileID: 352081151}
   fish_Img: {fileID: 1762376956}
@@ -9447,7 +9460,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40

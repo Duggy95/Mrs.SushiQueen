@@ -205,11 +205,13 @@ public class StartSceneManager : MonoBehaviour
         if (!config)
         {
             configPanel.SetActive(true);
+            inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
         else
         {
             configPanel.SetActive(false);
+            inventoryFullImg.gameObject.SetActive(false);
             config = false;
         }
     }

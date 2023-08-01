@@ -107,12 +107,12 @@ public class FishingManager : MonoBehaviour
 
     public void GiveUp()
     {
-        giveupQuestion.gameObject.SetActive(true);
+        isFishing = false;
     }
 
     public void GiveUpQuestion()
     {
-        isFishing = false;
+        giveupQuestion.gameObject.SetActive(true);
     }
 
     public void GiveUpQuestionEsc() 
@@ -313,41 +313,49 @@ public class FishingManager : MonoBehaviour
     public void EndSceneQuestionEsc()
     {
         endSceneQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestion()
     {
         endSceneQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
         exitGameQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
         exitGameQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
         deleteDataQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
         deleteDataQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
         endSceneQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
         logOutQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ConfigBtn()
@@ -355,11 +363,13 @@ public class FishingManager : MonoBehaviour
         if (!config)
         {
             configPanel.SetActive(true);
+            inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
         else
         {
             configPanel.SetActive(false);
+            inventoryFullImg.gameObject.SetActive(false);
             config = false;
         }
     }
