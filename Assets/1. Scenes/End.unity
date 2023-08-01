@@ -6555,6 +6555,9 @@ MonoBehaviour:
   logOutQuestion: {fileID: 1921722563}
   deleteDataQuestion: {fileID: 1521425838}
   exitGameQuestion: {fileID: 1155111068}
+  fishBtn: {fileID: 2086567961}
+  shopBtn: {fileID: 62979539}
+  skillBtn: {fileID: 357705087}
 --- !u!1 &1089166119
 GameObject:
   m_ObjectHideFlags: 0

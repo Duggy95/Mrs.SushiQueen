@@ -24,10 +24,19 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public Image fishBtn;
+    public Image shopBtn;
+    public Image skillBtn;
+    Color initColor = new Color(1, 1, 1, 1);
+    Color selColor = new Color(1, 1, 0, 1);
+
     bool config;
 
     private void Awake()
     {
+        fishBtn.color = initColor;
+        shopBtn.color = initColor;
+        skillBtn.color = initColor;
         receipt.gameObject.SetActive(false);
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
@@ -39,6 +48,9 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickSkill()
     {
+        fishBtn.color = initColor;
+        shopBtn.color = initColor;
+        skillBtn.color = selColor;
         fishingSV.gameObject.SetActive(false);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(true);
@@ -49,6 +61,9 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickShop()
     {
+        fishBtn.color = initColor;
+        shopBtn.color = selColor;
+        skillBtn.color = initColor;
         fishingSV.gameObject.SetActive(false);
         ShopSV.gameObject.SetActive(true);
         SkillSV.gameObject.SetActive(false);
@@ -59,6 +74,9 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickFishing()
     {
+        fishBtn.color = selColor;
+        shopBtn.color = initColor;
+        skillBtn.color = initColor;
         fishingSV.gameObject.SetActive(true);
         ShopSV.gameObject.SetActive(false);
         SkillSV.gameObject.SetActive(false);
@@ -106,41 +124,49 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void EndSceneQuestionEsc()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         endSceneQuestion.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestion()
     {
+        inventoryFullImg.gameObject.SetActive(true);
         endSceneQuestion.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         exitGameQuestion.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
+        inventoryFullImg.gameObject.SetActive(true);
         exitGameQuestion.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         deleteDataQuestion.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
+        inventoryFullImg.gameObject.SetActive(true);
         deleteDataQuestion.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
+        inventoryFullImg.gameObject.SetActive(false);
         endSceneQuestion.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
+        inventoryFullImg.gameObject.SetActive(true);
         logOutQuestion.gameObject.SetActive(true);
     }
 
@@ -173,11 +199,13 @@ public class EndSceneCtrl : MonoBehaviour
     {
         if (!config)
         {
+            inventoryFullImg.gameObject.SetActive(true);
             configPanel.SetActive(true);
             config = true;
         }
         else
         {
+            inventoryFullImg.gameObject.SetActive(false);
             configPanel.SetActive(false);
             config = false;
         }
