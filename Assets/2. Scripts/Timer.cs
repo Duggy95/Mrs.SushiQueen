@@ -41,11 +41,11 @@ public class Timer : MonoBehaviour
         if(currentScene.buildIndex == 2)
         {
             if(cookManager.isReady)
-                currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+                currTime -= Time.deltaTime;  //시간이 줄어듬
         }
         else
         {
-            currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+            currTime -= Time.deltaTime;  //시간이 줄어듬
         }
 
         float currTimePercent = currTime / maxTime;  //남은시간 비율

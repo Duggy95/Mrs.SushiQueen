@@ -196,6 +196,11 @@ public class CookManager : MonoBehaviour
         }
     }
 
+    public void GoOrder()
+    {
+        cookView.SetActive(false);
+    }
+
     public IEnumerator Create()
     {
         if (!isEnd)

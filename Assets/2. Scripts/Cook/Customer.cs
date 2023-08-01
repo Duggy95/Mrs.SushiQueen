@@ -71,7 +71,8 @@ public class Customer : MonoBehaviour
         StartCoroutine(FadeIn());
 
         //randomOrder = Random.Range(0, 3);  //주문할 종류 랜덤하게 결정.
-        if (int.Parse(GameManager.instance.data.score) <= 600)
+        randomOrder = 2;
+        /*if (int.Parse(GameManager.instance.data.score) <= 600)
         {
             //80퍼, 17퍼, 3퍼
             RandomChance(80, 97);
@@ -89,7 +90,7 @@ public class Customer : MonoBehaviour
             //40퍼, 40퍼, 20퍼
             RandomChance(40, 80);
             print("세번째");
-        }
+        }*/
 
         //int randomSprite = Random.Range(0, sprites.Length);  //랜덤하게 그림 결정.
         //GetComponent<Image>().sprite = sprites[randomSprite];  //랜덤한 그림 적용.
@@ -191,18 +192,16 @@ public class Customer : MonoBehaviour
 
                 //GameManager.instance.Save("d");   //평판 저장
                 cookManager.UIUpdate();  //UI 최신화
-                cookManager.ViewOrder();  //주문 창으로 넘어옴.
+                //cookManager.ViewOrder();  //주문 창으로 넘어옴.
+                cookManager.GoOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
                 orderTxt.text = fail[0];  //실패 텍스트 출력.
-                //Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(FadeOut());
-                //StartCoroutine(Move());  //손님 안 보이는 곳으로 옮기기.
-                //StartCoroutine(cookManager.Create());  //손님생성
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 dish.ClearBoard();  //도마 위 초밥 삭제.
+                StartCoroutine(FadeOut());
                 isTimer = false;  //타이머 비활성화 상태로 판단
                 isOrdered = false;  //주문을 안받았음.
             }
@@ -224,19 +223,15 @@ public class Customer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
-        int _score = int.Parse(GameManager.instance.data.score) - 2;  //평판 감소
+        int _score = int.Parse(GameManager.instance.data.score) - 5;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
 
-        GameManager.instance.todayData.score -= 2;
+        GameManager.instance.todayData.score -= 5;
 
-        //GameManager.instance.Save("d");   //평판 저장
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;
-        //Destroy(gameObject, 3f);  //손님 삭제
         StartCoroutine(FadeOut());
-        //StartCoroutine(Move());  //안보이는 곳으로 옮기기
-        //StartCoroutine(cookManager.Create());  //손님생성
         yesBtn.SetActive(false);  //버튼 비활성화
         noBtn.SetActive(false);  //버튼 비활성화
         isOrdered = false;
@@ -251,6 +246,8 @@ public class Customer : MonoBehaviour
 
     public void CompareOrders()  //주문비교 메서드.
     {
+        isTimer = false;
+
         if (isOrdered)
         {
             List<Order> orders = this.orders;  //주문 리스트
@@ -270,6 +267,7 @@ public class Customer : MonoBehaviour
                     {
                         orderMatch = false;  //불일치
                         Debug.Log($"주문과 초밥 정보 일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
+                        break;
                     }
                     else
                     {
@@ -305,6 +303,7 @@ public class Customer : MonoBehaviour
                 {
                     orderMatch = false;  //불일치
                     Debug.Log($"주문과 초밥 정보 불일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
+                    break;
                 }
             }
 
@@ -315,23 +314,18 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score += 20;
 
-                //GameManager.instance.Save("d");  //평판 저장
                 cookManager.UIUpdate();
                 orderTxt.text = success[Random.Range(0, success.Length)];
-                Debug.Log("총 가격: " + totalPrice);
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
-                isOrdered = false;
-                //Destroy(gameObject, 4f);  //손님 삭제
                 StartCoroutine(FadeOut());
-                //StartCoroutine(Move());
-                //StartCoroutine(cookManager.Create());  //손님생성
                 isOrdered = false;
             }
             else  //불일치 시
             {
+                print("버그 발생!!!");
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
 
@@ -345,11 +339,7 @@ public class Customer : MonoBehaviour
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
-                isOrdered = false;
-                //Destroy(gameObject, 4f);  //손님 삭제
                 StartCoroutine(FadeOut());
-                //StartCoroutine(Move());
-                //StartCoroutine(cookManager.Create());  //손님생성
                 isOrdered = false;
             }
         }
@@ -418,7 +408,6 @@ public class Customer : MonoBehaviour
         yield return new WaitForSeconds(1);
         Vector2 initPos = this.transform.localPosition;
         Vector2 targetPos = new Vector2(this.transform.localPosition.x - 30, this.transform.localPosition.y);
-        //image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -442,7 +431,7 @@ public class Customer : MonoBehaviour
         }
 
         StartCoroutine(cookManager.Create());
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, 2.5f);
     }
 }
 

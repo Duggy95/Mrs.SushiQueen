@@ -29,7 +29,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject exitGameQuestion;
     public StoryManager storyManager;
 
-    int storyCount = 0;
+    //int storyCount = 0;
     bool config;
     bool isStart;
 

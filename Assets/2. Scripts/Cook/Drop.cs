@@ -32,14 +32,14 @@ public class Drop : MonoBehaviour, IDropHandler
         if (Drag.draggingItem == null)
             return;
 
-        print("드랍");
-        if (transform.childCount == 1 && netaBtn.isEmpty)
+        if (transform.childCount == 2 && netaBtn.isEmpty)
         {
+            print("드랍");
             Drag.draggingItem.transform.SetParent(this.transform);
             FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
             FishSlot fishSlot = Drag.draggingItem.GetComponent<FishSlot>();
 
-            this.gameObject.GetComponent<Image>().sprite = fishData.netaImg;
+            this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;
             fishSlot.UpdateData();
             count += 5;
             text.text = fishData.fishName + "     " + count.ToString();
@@ -54,7 +54,7 @@ public class Drop : MonoBehaviour, IDropHandler
             iconText.text = fishData.fishName + "     " + count;
             netaBtn.Txt(iconText);
         }
-        else if (transform.childCount == 1 && !netaBtn.isEmpty)
+        else if (transform.childCount == 2 && !netaBtn.isEmpty)
         {
             FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
             if (netaBtn.fishData.fishName == fishData.fishName)
