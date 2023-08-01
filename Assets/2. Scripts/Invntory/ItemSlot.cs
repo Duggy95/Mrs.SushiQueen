@@ -86,12 +86,14 @@ public class ItemSlot : MonoBehaviour
             {
                 GameManager.instance.inventory_Items.RemoveAt(index);
                 Image[] nullImg = gameObject.GetComponentsInChildren<Image>();
+                gameObject.GetComponent<CanvasGroup>().interactable = false;
+                Text _text = GetComponentInChildren<Text>();
                 foreach (Image image in nullImg)
                 {
-                    if (image.gameObject.GetComponentInChildren<Text>().text == "")
+                    if (image.name.Contains("Img"))
                     {
-                        gameObject.GetComponentInChildren<Image>().sprite = null;
-                        GetComponentInChildren<Text>().text = "";
+                        image.sprite = null;
+                        _text.text = "";
                     }
                 }
                 /*gameObject.GetComponentInChildren<Image>().sprite = null;

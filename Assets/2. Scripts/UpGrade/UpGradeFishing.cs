@@ -165,18 +165,21 @@ public class UpGradeFishing : MonoBehaviour
                         if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("지렁이"))
                         {
                             Debug.Log("지렁이, 처음");
+                            _items[i].GetComponent<CanvasGroup>().interactable = true;
                             isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice, Img);
                             break;
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("새우"))
                         {
                             Debug.Log("새우, 처음");
+                            _items[i].GetComponent<CanvasGroup>().interactable = true;
                             isFull = SetItem(i, "새우", "1", _slot, normalItemPrice, Img);
                             break;
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= rareItemPrice && _text.text.Contains("생선살"))
                         {
                             Debug.Log("생선살, 처음");
+                            _items[i].GetComponent<CanvasGroup>().interactable = true;
                             isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice, Img);
                             break;
                         }

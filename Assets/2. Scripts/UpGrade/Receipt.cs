@@ -62,7 +62,7 @@ public class Receipt : MonoBehaviour
         if (GameManager.instance.todayData.score > 0)
         {
             receiptTxt.text = "수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " +
-                 string.Format("<color=#0000>{0}</color>", GameManager.instance.todayData.score) + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
+                 string.Format("<color=#FF0000>{0}</color>", GameManager.instance.todayData.score) + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
         }
         else if (GameManager.instance.todayData.score < 0)
         {
