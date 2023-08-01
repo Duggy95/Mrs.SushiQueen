@@ -14,6 +14,7 @@ public class CookManager : MonoBehaviour
     public GameObject readyBtn;
     public GameObject InventoryImg;  //인벤토리
     public GameObject inventoryFullImg;
+    public GameObject blockFullImg;
     public GameObject fishIconPrefab;
     public GameObject[] customers;
     public GameObject orderFishContent;
@@ -21,6 +22,7 @@ public class CookManager : MonoBehaviour
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public GameObject endScenePanel;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
@@ -31,6 +33,7 @@ public class CookManager : MonoBehaviour
     //public Image[] fishImg;  //생선이미지
     public bool canMake = false;
     public bool isReady = false;
+    public bool isEnd = false;
     bool config = false;
     public Vector2 customerStartPos;
 
@@ -162,7 +165,7 @@ public class CookManager : MonoBehaviour
 
     public void ConfigBtn() //설정보여주기
     {
-        if(!config)
+        if (!config)
         {
             configPanel.SetActive(true);
             inventoryFullImg.gameObject.SetActive(true);
@@ -178,7 +181,7 @@ public class CookManager : MonoBehaviour
 
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
     {
-        if(canMake)  //만들 수 있을 때
+        if (canMake)  //만들 수 있을 때
         {
             count++;
             if (count % 2 == 0)
@@ -195,12 +198,15 @@ public class CookManager : MonoBehaviour
 
     public IEnumerator Create()
     {
-        int random = Random.Range(0, customers.Length);
-        //2초 후 손님 생성.
-        yield return ws;
-        GameObject customer = Instantiate(customers[random], customerTr,
-                                                                Quaternion.identity, orderView.transform);
-        customer.transform.SetSiblingIndex(1);  //2번째 자식.
+        if (!isEnd)
+        {
+            int random = Random.Range(0, customers.Length);
+            //2초 후 손님 생성.
+            yield return ws;
+            GameObject customer = Instantiate(customers[random], customerTr,
+                                                                    Quaternion.identity, orderView.transform);
+            customer.transform.SetSiblingIndex(1);  //2번째 자식.
+        }
     }
 
     public void ExitGame()

@@ -42,7 +42,7 @@ public class Data
     public string atk = "1";
     public string getMiddleRod = "FALSE";
     public string getHighRod = "FALSE";
-    public string fishTime = "90";
+    public string fishTime = "60";
     public string fishHPLV = "1";
     public string cookTime = "180";
     public string cookHPLV = "1";

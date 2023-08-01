@@ -21,6 +21,7 @@ public class FishingManager : MonoBehaviour
     public GameObject configPanel;
     public GameObject inventoryImg;  // 인벤토리 이미지
     public GameObject inventoryFullImg;
+    public GameObject blockFullImg;
     public GameObject inventoryBtn;
     public GameObject fishInfoImg;
     public GameObject fishContent; // 수족관
@@ -34,6 +35,7 @@ public class FishingManager : MonoBehaviour
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
     public GameObject giveupQuestion;
+    public GameObject endScenePanel;
     public Button fishingBtn;
     public Button giveupBtn;
     public Image fish_Img;
@@ -108,6 +110,7 @@ public class FishingManager : MonoBehaviour
     public void GiveUp()
     {
         isFishing = false;
+        giveupQuestion.gameObject.SetActive(false);
     }
 
     public void GiveUpQuestion()

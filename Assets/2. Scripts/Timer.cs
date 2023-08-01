@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
     Color currColor;  //현재색
     Color initColor = new Vector4(0f, 1f, 0f, 1f);  //초기색
     Scene currentScene;
+    CookManager cookManager;
+    FishingManager fishingManager;
 
     void Start()
     {
@@ -19,10 +21,16 @@ public class Timer : MonoBehaviour
 
         timer = GetComponent<Image>();
         if (currentScene.buildIndex == 1)
+        {
+            fishingManager = GameObject.FindWithTag("MANAGER").GetComponent<FishingManager>();
             maxTime = int.Parse(GameManager.instance.data.fishTime);
+        }
         else if (currentScene.buildIndex == 2)
-            maxTime = int.Parse(GameManager.instance.data.cookTime); ;
-
+        {
+            cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
+            maxTime = int.Parse(GameManager.instance.data.cookTime);
+        }
+        
         currTime = maxTime;  // 초기값
         timer.color = initColor;  //초기색 초록색으로
         currColor = initColor;  //현재색 초록새으로
@@ -30,8 +38,15 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-
-        currTime -= Time.deltaTime;  //시간이 줄어듬
+        if(currentScene.buildIndex == 2)
+        {
+            if(cookManager.isReady)
+                currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+        }
+        else
+        {
+            currTime -= Time.deltaTime * 5;  //시간이 줄어듬
+        }
 
         float currTimePercent = currTime / maxTime;  //남은시간 비율
         if (currTimePercent > 0.5f)  // 반이상 남았을 때
@@ -47,7 +62,19 @@ public class Timer : MonoBehaviour
         timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
         if (currTime <= 0)
         {
-            LoadMainScene();
+            //LoadMainScene();
+            if(currentScene.buildIndex == 1)
+            {
+                fishingManager.endScenePanel.SetActive(true);
+                fishingManager.blockFullImg.SetActive(true);
+            }
+            else
+            {
+                cookManager.endScenePanel.SetActive(true);
+                cookManager.blockFullImg.SetActive(true);
+                cookManager.isEnd = true;
+                Time.timeScale = 0;
+            }
         }
     }
 

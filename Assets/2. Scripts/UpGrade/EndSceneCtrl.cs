@@ -34,7 +34,7 @@ public class EndSceneCtrl : MonoBehaviour
 
     private void Awake()
     {
-        fishBtn.color = initColor;
+        fishBtn.color = selColor;
         shopBtn.color = initColor;
         skillBtn.color = initColor;
         receipt.gameObject.SetActive(false);
