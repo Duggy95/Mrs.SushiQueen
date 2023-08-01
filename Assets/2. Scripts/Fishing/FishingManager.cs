@@ -282,14 +282,6 @@ public class FishingManager : MonoBehaviour
         fishRun.gameObject.SetActive(false);
     }
 
-    /*    public void UIUpdate()
-        {
-            dateTxt.text = GameManager.instance.data.dateCount + "일차";
-            scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-            goldTxt.text = "gold : " + GameManager.instance.data.gold;
-            atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
-        }*/
-
     public void UIUpdate()
     {
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
@@ -386,8 +378,6 @@ public class FishingManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 
     /*public void LogOut()
     {

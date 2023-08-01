@@ -102,7 +102,6 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 요리할 수 있는\n시간 " + count + "초";
                 }
-                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -183,8 +182,6 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 낚시할 수 있는\n시간 " + count + "초";
                 }
-
-                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -265,8 +262,6 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 손님 대기시간\n시간 " + count + "초";
                 }
-
-                //GameManager.instance.Save("d");
                 endSceneCtrl.UIUpdate();
             }
             else

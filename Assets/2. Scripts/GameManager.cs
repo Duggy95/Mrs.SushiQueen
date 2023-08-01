@@ -48,8 +48,6 @@ public class Data
     public string cookHPLV = "1";
     public string customerTime = "20";
     public string customerHPLV = "1";
-    //public string visitTime = "0.5";
-    //public string visitLV = "1";
 }
 
 [System.Serializable]
@@ -85,16 +83,51 @@ public class GameManager : MonoBehaviour
     static GameManager m_instance;
 
 
-    public List<InventoryItem> inventory_Items;
-    public List<InventoryFish> inventory_Fishs;
-    public Data data;
+    List<InventoryItem> _inventory_Items;
+    public List<InventoryItem> inventory_Items
+    {
+        get
+        {
+            return _inventory_Items;
+        }
+        set
+        {
+            _inventory_Items = value;
+        }
+    }
+
+    List<InventoryFish> _inventory_Fishs;
+    public List<InventoryFish> inventory_Fishs
+    {
+        get
+        {
+            return _inventory_Fishs;
+        }
+        set
+        {
+            _inventory_Fishs = value;
+        }
+    }
+
+    Data _data;
+    public Data data
+    {
+        get
+        {
+            return _data;
+        }
+        set
+        {
+            _data = value;
+        }
+    }
+
     public TodayData todayData = new TodayData();
     public List<TodayFishInfo> todayFishInfos = new List<TodayFishInfo>();
 
     public bool viewInventory;
     public bool viewReceipt;
     public bool nextStage;
-    //public bool onLogin = false;
 
     private void Awake()
     {
@@ -143,13 +176,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*public void GetLog()
-    {
-        logTxt = GameObject.FindGameObjectWithTag("LOG").GetComponent<Text>();
-        idTxt = GameObject.FindGameObjectWithTag("ID").GetComponent<Text>();
-        saveTxt = GameObject.FindGameObjectWithTag("SAVE").GetComponent<Text>();
-    }*/
-
     public void Load()
     {
         /*Debug.Log("load_cloud");
@@ -183,7 +209,7 @@ public class GameManager : MonoBehaviour
             string data_Data = PlayerPrefs.GetString("DATA");
             data = JsonUtility.FromJson<Data>(data_Data);
             Debug.Log("inventory_Items : " + data_Data);
-        }  
+        }
         else
         {
             Save("d");

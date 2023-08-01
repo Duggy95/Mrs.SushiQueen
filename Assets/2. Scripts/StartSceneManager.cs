@@ -29,7 +29,6 @@ public class StartSceneManager : MonoBehaviour
     public GameObject exitGameQuestion;
     public StoryManager storyManager;
 
-    //int storyCount = 0;
     bool config;
     bool isStart;
 
@@ -76,7 +75,7 @@ public class StartSceneManager : MonoBehaviour
             mainObj.gameObject.SetActive(false);
             storyObj.gameObject.SetActive(true);
             modeObj.gameObject.SetActive(false);
-        }        */
+        }*/
 
         if (isStart && Input.GetMouseButtonDown(0))
         {
@@ -86,14 +85,6 @@ public class StartSceneManager : MonoBehaviour
             modeObj.gameObject.SetActive(false);
         }
     }
-
-    /*    public void UIUpdate()
-        {
-            dateTxt.text = GameManager.instance.data.dateCount + "일차";
-            scoreTxt.text = "평판 : " + GameManager.instance.data.score;
-            goldTxt.text = "gold : " + GameManager.instance.data.gold;
-            atkTxt.text = "공격력 : " + GameManager.instance.data.atk;
-        }*/
 
     public void UIUpdate()
     {
@@ -194,11 +185,6 @@ public class StartSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
-
-    /*public void GoUpgrade()
-    {
-        SceneManager.LoadScene(3);
-    }*/
 
     public void ConfigBtn()
     {
