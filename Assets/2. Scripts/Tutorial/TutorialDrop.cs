@@ -37,7 +37,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
             Drag.draggingItem.transform.SetParent(this.transform);
 
             this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;
-            fishSlot.UpdateData();
+            //fishSlot.UpdateData();
             count += 5;
             text.text = fishData.fishName + "     " + count.ToString();
             netaBtn.fishData = fishData;
@@ -58,7 +58,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
             if (netaBtn.fishData.fishName == fishData.fishName)
             {
                 Drag.draggingItem.transform.SetParent(this.transform);
-                Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
+                //Drag.draggingItem.GetComponent<FishSlot>().UpdateData();
                 count += 5;
                 netaBtn.count = count;
                 netaBtn.UpdateUI();

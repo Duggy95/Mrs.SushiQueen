@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialCook : TutorialBase
 {
-    public GameObject[] customer;
+    public GameObject customerPrefab;
     public GameObject orderView;
     public GameObject cookView;
+    public GameObject readyBtn;
+    public GameObject InventoryImg;
+    public Text orderTxt;
+    //public CanvasGroup inventoryCanvas;
     public List<string> fishList = new List<string>();
     WaitForSeconds ws;
 
-    bool isCustomer;
+    public bool isCustomer;
     public bool canMake;
     public bool isReady;
-    public int count = 0;
+    int count = 0;
+    public Vector2 customerStartPos;
     Vector2 customerTr = Vector2.zero;
 
     public override void Enter()
     {
         ws = new WaitForSeconds(2f);
+        customerStartPos = new Vector2(-450, -100);  //손님 위치
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
-        cookView.SetActive(false);
-        StartCoroutine(Create(0));
+        cookView.SetActive(true);
+        //StartCoroutine(Create(0));
     }
 
     public override void Execute(TutorialManager tutorialManager)
@@ -55,14 +62,33 @@ public class TutorialCook : TutorialBase
         }
     }
 
-    public IEnumerator Create(int num)
+    public IEnumerator Create()
     {
         //2초 후 손님 생성.
         yield return ws;
-        /*GameObject customer = Instantiate(customerPrefab, customerTr,
-                                                                Quaternion.identity, orderView.transform);*/
-        customer[num].transform.localPosition = new Vector2(-400, -100);  //손님 위치
-        //customer.transform.SetSiblingIndex(1);  //2번째 자식.
-        isCustomer = true;
+        GameObject customer = Instantiate(customerPrefab, customerTr,
+                                                                Quaternion.identity, orderView.transform);
+        customer.transform.SetSiblingIndex(1);  //2번째 자식.
+    }
+
+    public void ReadyBtn()
+    {
+        isReady = true;
+        StartCoroutine(Create());
+        readyBtn.SetActive(false);
+        orderView.SetActive(true);
+        cookView.SetActive(false);
+        InventoryImg.gameObject.SetActive(false);
+        //inventoryCanvas.interactable = false;
+    }
+
+    public void GoOrder()
+    {
+        cookView.SetActive(false);
+    }
+
+    public void Order(string txt)
+    {
+        orderTxt.text = txt;
     }
 }

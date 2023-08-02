@@ -12,6 +12,7 @@ public class TutorialPulse : TutorialBase
 
     private void Start()
     {
+        
         manager = GetComponentInParent<TutorialManager>();
         Button button = pulse.GetComponent<Button>();
         button.onClick.AddListener(OnPulseButtonClick);

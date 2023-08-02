@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using System.Threading;
 
 public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler

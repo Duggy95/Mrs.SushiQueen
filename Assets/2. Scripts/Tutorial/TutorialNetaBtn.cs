@@ -50,7 +50,7 @@ public class TutorialNetaBtn : MonoBehaviour
             Vector3 netaTr = new Vector3(riceTr.position.x, riceTr.position.y + 10, 0);  //밥 조금 위쪽
             GameObject neta = Instantiate(netaPrefab,
                                                             netaTr, Quaternion.identity, riceTr); //밥 조금 위쪽에 회생성하고 밥의 자식으로 넣기.
-            count--;
+            //count--;
             UpdateUI();
             neta.GetComponent<Neta>().fishData = fishData;  //생선데이터 넘겨주기.
             riceTr.gameObject.AddComponent<DragSushi>();  //밥 오브젝트에 DragSushi 스크립트 Add.
