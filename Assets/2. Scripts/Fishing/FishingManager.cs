@@ -307,12 +307,14 @@ public class FishingManager : MonoBehaviour
 
     public void EndSceneQuestionEsc()
     {
+        Time.timeScale = 1;
         endSceneQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestion()
     {
+        Time.timeScale = 0;
         endSceneQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }

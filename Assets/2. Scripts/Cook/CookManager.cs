@@ -42,6 +42,7 @@ public class CookManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         customerStartPos = new Vector2(-450, -100);  //손님 위치
 
         //시작 세팅 화면 세팅
@@ -91,6 +92,7 @@ public class CookManager : MonoBehaviour
 
     public void EndSceneQuestionEsc()
     {
+        Time.timeScale = 1;
         endSceneQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
 
@@ -98,6 +100,7 @@ public class CookManager : MonoBehaviour
 
     public void EndSceneQuestion()
     {
+        Time.timeScale = 0;
         endSceneQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }

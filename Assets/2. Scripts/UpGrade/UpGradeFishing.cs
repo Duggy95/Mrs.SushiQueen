@@ -29,12 +29,12 @@ public class UpGradeFishing : MonoBehaviour
         // 게임매니저에 데이터를 불러와서 초기화
         if (GameManager.instance.data.getMiddleRod == "TRUE" && gameObject.name == ("MiddleRod"))
         {
-            GetComponentInChildren<Text>().text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
+            GetComponentInChildren<Text>().text = "현재 공격력 : " + GameManager.instance.data.atk + "\n\n구매한 제품입니다";
         }
 
         if (GameManager.instance.data.getHighRod == "TRUE" && gameObject.name == ("HighRod"))
         {
-            GetComponentInChildren<Text>().text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
+            GetComponentInChildren<Text>().text = "현재 공격력 : " + GameManager.instance.data.atk + "\n\n구매한 제품입니다";
         }
     }
 
@@ -55,7 +55,7 @@ public class UpGradeFishing : MonoBehaviour
             GameManager.instance.data.getMiddleRod = "TRUE";
 
             Text text = GetComponentInChildren<Text>();
-            text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
+            text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n\n구매한 제품입니다";
 
             // 사면 같이 갱신이 되도록 고칠 것
             endSceneCtrl.UIUpdate();
@@ -83,7 +83,7 @@ public class UpGradeFishing : MonoBehaviour
             GameManager.instance.data.getHighRod = "TRUE";
 
             Text text = GetComponentInChildren<Text>();
-            text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n구매한 제품입니다";
+            text.text = "현재 공격력 : " + GameManager.instance.data.atk + "\n\n구매한 제품입니다";
 
             endSceneCtrl.UIUpdate();
         }

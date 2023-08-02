@@ -29,7 +29,7 @@ public class UpGradeSkil : MonoBehaviour
         {
             SetCookingTimer();
         }
-        else if (_name == "응대")
+        else if (_name == "손님응대")
         {
             SetCustomerTimer();
         }

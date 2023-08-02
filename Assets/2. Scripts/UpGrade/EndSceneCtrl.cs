@@ -35,6 +35,7 @@ public class EndSceneCtrl : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         fishBtn.color = selColor;
         shopBtn.color = initColor;
         skillBtn.color = initColor;
