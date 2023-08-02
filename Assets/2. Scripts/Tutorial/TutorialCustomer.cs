@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class TutorialCustomer : MonoBehaviour
 {
     public Text orderTxt;  //주문 텍스트
-    public Sprite[] sprites;  //손님 스프라이트 배열
     public string[] sushis;  //초밥 종류 배열
     public string[] wasabis;  //와사비
-    public string[] compliment;  //대성공 문구.
     public string[] success;  //성공 문구.
     public string[] fail;  //실패 문구.
     public GameObject yesBtn;  //수락 버튼
@@ -150,7 +148,6 @@ public class TutorialCustomer : MonoBehaviour
                 tc.canMake = false;
                 orderTxt.text = fail[0];  //실패 텍스트 출력.
                 Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());  //손님 안 보이는 곳으로 옮기기.
                 StartCoroutine(tc.Create(num + 1));  //손님생성
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
@@ -184,7 +181,6 @@ public class TutorialCustomer : MonoBehaviour
         //cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         Destroy(gameObject, 3f);  //손님 삭제
-        StartCoroutine(Move());  //안보이는 곳으로 옮기기
         StartCoroutine(tc.Create(num + 1));  //손님생성
         yesBtn.SetActive(false);  //버튼 비활성화
         noBtn.SetActive(false);  //버튼 비활성화
@@ -259,7 +255,6 @@ public class TutorialCustomer : MonoBehaviour
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());
                 StartCoroutine(tc.Create(num + 1));  //손님생성
             }
             else  //불일치 시
@@ -274,15 +269,8 @@ public class TutorialCustomer : MonoBehaviour
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 Destroy(gameObject, 3f);  //손님 삭제
-                StartCoroutine(Move());
                 StartCoroutine(tc.Create(num + 1));  //손님생성
             }
         }
-    }
-
-    IEnumerator Move()  //삭제 전 이동 메서드
-    {
-        yield return new WaitForSeconds(1f);
-        tr.position = new Vector3(0, -3000, 0);
     }
 }

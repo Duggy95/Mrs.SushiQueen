@@ -12,9 +12,8 @@ public class TutorialCheck : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        if(tf.fishFull)
+        if(tf.fishCome)
         {
-            print(tf.fishFull);
             tutorialManager.SetNextTutorial();
         }
     }

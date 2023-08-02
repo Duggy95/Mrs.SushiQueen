@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Drop : MonoBehaviour, IDropHandler
+public class TutorialDrop : MonoBehaviour, IDropHandler
 {
     Text text;
     int count = 0;
-    NetaButton netaBtn;
-    CookManager cookManager;
+    TutorialNetaBtn netaBtn;
+    public TutorialCook tc;
     public GameObject fishIconPrefab;
-    Transform fishIconContent;
+    public Transform fishIconContent;
 
     void Start()
     {
         text = GetComponentInChildren<Text>();
-        netaBtn = GetComponent<NetaButton>();
-        fishIconContent = GameObject.FindWithTag("CONTENT").GetComponent<Transform>();
-        cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
+        netaBtn = GetComponent<TutorialNetaBtn>();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -29,14 +28,14 @@ public class Drop : MonoBehaviour, IDropHandler
         FishData fishData = Drag.draggingItem.GetComponent<FishSlot>().fishData;
         FishSlot fishSlot = Drag.draggingItem.GetComponent<FishSlot>();
 
-        if (!text.text.Contains(fishData.fishName) && cookManager.fishList.Contains(fishData.fishName))
+        if (!text.text.Contains(fishData.fishName) && tc.fishList.Contains(fishData.fishName))
             return;
 
         if (transform.childCount == 2 && netaBtn.isEmpty)
         {
             print("µå¶ø");
             Drag.draggingItem.transform.SetParent(this.transform);
-            
+
             this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;
             fishSlot.UpdateData();
             count += 5;
@@ -51,7 +50,7 @@ public class Drop : MonoBehaviour, IDropHandler
             Text iconText = fishIcon.GetComponentInChildren<Text>();
             iconText.text = fishData.fishName + "     " + count;
             netaBtn.Txt(iconText);
-            cookManager.fishList.Add(fishData.fishName);
+            tc.fishList.Add(fishData.fishName);
         }
         else if (transform.childCount == 2 && !netaBtn.isEmpty)
         {

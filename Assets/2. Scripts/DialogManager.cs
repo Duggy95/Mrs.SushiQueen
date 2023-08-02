@@ -13,7 +13,7 @@ public class DialogManager : MonoBehaviour
     public CanvasGroup canvasGroup;
     public Queue<string> sentences;
     WaitForSeconds ws;
-    
+
     public string currSentence;
     public float typingSpeed = 0.05f;
     public bool isTyping = false;
@@ -28,7 +28,7 @@ public class DialogManager : MonoBehaviour
     public void Ondialog(string[] lines)
     {
         sentences.Clear();
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             sentences.Enqueue(line);
         }
@@ -46,7 +46,24 @@ public class DialogManager : MonoBehaviour
             currSentence = sentences.Dequeue();
             isTyping = true;
             nextTxt.SetActive(false);
+            StopAllCoroutines();
             StartCoroutine(Typing(currSentence));
+        }
+        else
+        {
+            canvasGroup.alpha = 0;
+            canvasGroup.blocksRaycasts = false;
+            complete = true;
+        }
+    }
+
+    public void SkipSentence()
+    {
+        if (sentences.Count != 0)
+        {
+            StopAllCoroutines();
+            dialogTxt.text = "";
+            dialogTxt.text = currSentence;
         }
         else
         {
@@ -59,7 +76,7 @@ public class DialogManager : MonoBehaviour
     IEnumerator Typing(string line)
     {
         dialogTxt.text = "";
-        foreach(char letter in line.ToCharArray())
+        foreach (char letter in line.ToCharArray())
         {
             dialogTxt.text += letter;
             yield return ws;
@@ -68,7 +85,7 @@ public class DialogManager : MonoBehaviour
 
     void Update()
     {
-        if(dialogTxt.text.Equals(currSentence))
+        if (dialogTxt.text.Equals(currSentence))
         {
             nextTxt.SetActive(true);
             isTyping = false;
@@ -78,9 +95,14 @@ public class DialogManager : MonoBehaviour
     public void Next()
     {
         print("호출이요");
-        if(!isTyping && Input.GetMouseButtonDown(0))
+        if (!isTyping && Input.GetMouseButtonDown(0))
         {
             NextSentence();
         }
+        else if (isTyping && Input.GetMouseButtonDown(0))
+        {
+            SkipSentence();
+        }
     }
 }
+

@@ -13,12 +13,12 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public Transform fishListTr;  //수족관 위치
     //public Transform cookListTr;  //회스크롤뷰 위치
     FishSlot fishSlot;
-    FishData fishData;
+    //FishData fishData;
 
-    CookManager cookManager;
+    //CookManager cookManager;
     CanvasGroup canvasGroup;
     GameObject copiedSlot;
-    Transform itemTr;
+    //Transform itemTr;
 
     public static GameObject draggingItem = null;
 
@@ -27,15 +27,15 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
         inventory = inventoryTr.GetComponentInParent<CookInventory>();
         fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
-        cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
+        //cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
         //cookListTr = GameObject.Find("CookContent").GetComponent<Transform>();
     }
 
     void Start()
     {
         fishSlot = GetComponent<FishSlot>();
-        fishData = fishSlot.fishData;
-        itemTr = GetComponent<Transform>();
+        //fishData = fishSlot.fishData;
+        //itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
         /*if(fishData == null)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CookInventory : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CookInventory : MonoBehaviour
     public GameObject sushiContent;
     public GameObject sushiPrefab;
     public GameObject fishSlotPrefab;
+    Scene currentScene;
 
     Image fishImgPrefab;
     int fishSlotCount;
@@ -16,54 +18,59 @@ public class CookInventory : MonoBehaviour
 
     void Start()
     {
-        fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
-        sushiCount = int.Parse(GameManager.instance.data.cookCount);
+        currentScene = SceneManager.GetActiveScene();
 
-        for (int i = 0; i < fishSlotCount; i++)
+        if (currentScene.buildIndex == 2)
         {
-            GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
-            FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
-            Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
-            foreach (Image fishImg in fishSlotPrefabs)
+            fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
+            sushiCount = int.Parse(GameManager.instance.data.cookCount);
+
+            for (int i = 0; i < fishSlotCount; i++)
             {
-                if (fishImg.name.Contains("Img"))
-                    fishImgPrefab = fishImg;
+                GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
+                FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
+                Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
+                foreach (Image fishImg in fishSlotPrefabs)
+                {
+                    if (fishImg.name.Contains("Img"))
+                        fishImgPrefab = fishImg;
+                }
+
+                if (GameManager.instance.inventory_Fishs.Count > i)
+                {
+                    string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
+                    string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
+
+                    fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
+                    fish_Slot.isEmpty = true;
+
+                    if (_fishName == "광어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "연어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Salmon", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "도미")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Snapper", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "참치")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "오징어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "전갱이")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bigeye Trevally", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "농어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "방어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "청어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
+                    else if (_fishName == "고등어")
+                        fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
+                }
             }
 
-            if (GameManager.instance.inventory_Fishs.Count > i)
+            for (int i = 0; i < sushiCount; i++)
             {
-                string _fishName = GameManager.instance.inventory_Fishs[i].fish_Name;
-                string _fishCount = GameManager.instance.inventory_Fishs[i].fish_Count;
-
-                fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
-                fish_Slot.isEmpty = true;
-
-                if (_fishName == "광어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
-                else if (_fishName == "연어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Salmon", typeof(Sprite)) as Sprite;
-                else if (_fishName == "도미")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Snapper", typeof(Sprite)) as Sprite;
-                else if (_fishName == "참치")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Tuna", typeof(Sprite)) as Sprite;
-                else if (_fishName == "오징어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Squid", typeof(Sprite)) as Sprite;
-                else if (_fishName == "전갱이")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bigeye Trevally", typeof(Sprite)) as Sprite;
-                else if (_fishName == "농어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Bass", typeof(Sprite)) as Sprite;
-                else if (_fishName == "방어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Yellowtail", typeof(Sprite)) as Sprite;
-                else if (_fishName == "청어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
-                else if (_fishName == "고등어")
-                    fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
+                GameObject sushiBtn = Instantiate(sushiPrefab, sushiContent.transform);
             }
-        }
-
-        for(int i = 0; i < sushiCount; i++)
-        {
-            GameObject sushiBtn = Instantiate(sushiPrefab, sushiContent.transform);
         }
     }
 

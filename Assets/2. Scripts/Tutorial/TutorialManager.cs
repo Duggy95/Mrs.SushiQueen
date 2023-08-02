@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject cookCanvas;
     public GameObject endCanvas;
     public GameObject fishingQuestion;
+    public GameObject cookingQuestion;
     public GameObject skipQuestion;
 
     bool isInventory = false;
@@ -96,9 +97,19 @@ public class TutorialManager : MonoBehaviour
         fishingQuestion.gameObject.SetActive(false);
     }
 
+    public void CookingQuestion()
+    {
+        cookingQuestion.gameObject.SetActive(true);
+    }
+
     public void ShowOrderView()
     {
         cookCanvas.SetActive(true);
+    }
+
+    public void EscCookingQuestion()
+    {
+        cookingQuestion.gameObject.SetActive(false);
     }
 
     public void ShowEndScene()

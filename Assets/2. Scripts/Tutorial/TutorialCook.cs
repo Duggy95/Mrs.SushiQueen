@@ -7,11 +7,12 @@ public class TutorialCook : TutorialBase
     public GameObject[] customer;
     public GameObject orderView;
     public GameObject cookView;
-
+    public List<string> fishList = new List<string>();
     WaitForSeconds ws;
 
     bool isCustomer;
     public bool canMake;
+    public bool isReady;
     public int count = 0;
     Vector2 customerTr = Vector2.zero;
 

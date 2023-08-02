@@ -40,6 +40,7 @@ public class TutorialFishing : TutorialBase
         if (fishCome)
         {
             tutorialManager.SetNextTutorial();
+            fishCome = false;
         }
     }
 
