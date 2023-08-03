@@ -13,12 +13,13 @@ public class TutorialPulse : TutorialBase
     private void Start()
     {
         
-        manager = GetComponentInParent<TutorialManager>();
-        Button button = pulse.GetComponent<Button>();
-        button.onClick.AddListener(OnPulseButtonClick);
     }
     public override void Enter()
     {
+        print("버튼이요");
+        manager = GetComponentInParent<TutorialManager>();
+        Button button = pulse.GetComponent<Button>();
+        button.onClick.AddListener(OnPulseButtonClick);
         StartCoroutine(ScaleUp());
         canvas.blocksRaycasts = true;
     }
@@ -30,8 +31,7 @@ public class TutorialPulse : TutorialBase
 
     public override void Exit()
     {
-        pulse.transform.localScale = new Vector2(1, 1);
-        Destroy(this);
+
     }
 
     void OnPulseButtonClick()
@@ -39,6 +39,10 @@ public class TutorialPulse : TutorialBase
         // 버튼이 클릭되었을 때 처리할 작업을 여기에 추가
         // 예: tutorialManager.SetNextTutorial();
         manager.SetNextTutorial();
+        //Destroy(this);
+        StopAllCoroutines();
+        pulse.transform.localScale = new Vector2(1, 1);
+        Destroy(this);
     }
 
     IEnumerator ScaleUp()

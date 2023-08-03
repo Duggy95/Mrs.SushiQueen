@@ -5,18 +5,18 @@ using UnityEngine;
 public class TutorialDishCheck : TutorialBase
 {
     public Dish dish;
-    public int count;
+
     public override void Enter()
     {
-        print("µé¾î¿Ôµ¢");
+
     }
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        if(dish.sushiCounts.Count == count)
+        if(dish.sushiCounts.Count == 1)
         {
-            print("³ª°£µ¢");
             tutorialManager.SetNextTutorial();
+            Destroy(this);
         }
     }
 

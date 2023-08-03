@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialCheck : TutorialBase
+public class TutorialSucessCheck : TutorialBase
 {
-    public TutorialFishing tf;
+    public TutorialCook tc;
+
     public override void Enter()
     {
 
@@ -12,14 +13,17 @@ public class TutorialCheck : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        if(tf.fishCome)
+        print("¼º°ø È½¼ö : " + tc.sucessCount);
+
+        if(tc.sucessCount >= 3)
         {
             tutorialManager.SetNextTutorial();
-            //Destroy(this);
+            Destroy(this);
         }
     }
 
     public override void Exit()
     {
+
     }
 }

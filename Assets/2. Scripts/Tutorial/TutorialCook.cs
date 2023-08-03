@@ -7,6 +7,7 @@ public class TutorialCook : TutorialBase
 {
     public GameObject customerPrefab;
     public GameObject orderView;
+    public GameObject customer;
     public GameObject cookView;
     public GameObject readyBtn;
     public GameObject InventoryImg;
@@ -17,8 +18,10 @@ public class TutorialCook : TutorialBase
 
     public bool isCustomer;
     public bool canMake;
+    public bool onReady;
     public bool isReady;
     int count = 0;
+    public int sucessCount = 0;
     public Vector2 customerStartPos;
     Vector2 customerTr = Vector2.zero;
 
@@ -64,22 +67,31 @@ public class TutorialCook : TutorialBase
 
     public IEnumerator Create()
     {
-        //2초 후 손님 생성.
-        yield return ws;
-        GameObject customer = Instantiate(customerPrefab, customerTr,
-                                                                Quaternion.identity, orderView.transform);
-        customer.transform.SetSiblingIndex(1);  //2번째 자식.
+        if(sucessCount <3)
+        {
+            //2초 후 손님 생성.
+            yield return ws;
+            GameObject customer = Instantiate(customerPrefab, customerTr,
+                                                                    Quaternion.identity, orderView.transform);
+            customer.transform.SetSiblingIndex(1);  //2번째 자식.
+        }
     }
 
     public void ReadyBtn()
     {
-        isReady = true;
-        StartCoroutine(Create());
-        readyBtn.SetActive(false);
-        orderView.SetActive(true);
-        cookView.SetActive(false);
-        InventoryImg.gameObject.SetActive(false);
-        //inventoryCanvas.interactable = false;
+        if (onReady)
+        {
+            isReady = true;
+            //StartCoroutine(Create());
+            StartCoroutine(ShowCustomer());
+            readyBtn.SetActive(false);
+            orderView.SetActive(true);
+            cookView.SetActive(false);
+            InventoryImg.gameObject.SetActive(false);
+            //inventoryCanvas.interactable = false;
+        }
+        else
+            return;
     }
 
     public void GoOrder()
@@ -90,5 +102,11 @@ public class TutorialCook : TutorialBase
     public void Order(string txt)
     {
         orderTxt.text = txt;
+    }
+
+    IEnumerator ShowCustomer()
+    {
+        yield return ws;
+        customer.gameObject.SetActive(true);
     }
 }

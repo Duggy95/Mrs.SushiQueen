@@ -22,7 +22,11 @@ public class TutorialManager : MonoBehaviour
     public GameObject endCanvas;
     public GameObject fishingQuestion;
     public GameObject cookingQuestion;
+    public GameObject endingQuestion;
     public GameObject skipQuestion;
+    public GameObject exitQuestion;
+    public GameObject nextDayQuestion;
+    public GameObject noMoneyTxt;
 
     bool isInventory = false;
     bool config;
@@ -31,10 +35,11 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         SetNextTutorial();
-
+        print(tutorials.Count);
         modeCanvas.SetActive(true);
         fishCanvas.SetActive(false);
         cookCanvas.SetActive(false);
+        endCanvas.SetActive(false);
     }
 
     void Update()
@@ -77,8 +82,8 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Complete All");
 
         print("씬 이동");
-        SceneManager.LoadScene(0);
         GameManager.instance.nextStage = true;
+        SceneManager.LoadScene(0);
     }
 
     public void ShowFishScene()
@@ -97,14 +102,14 @@ public class TutorialManager : MonoBehaviour
         fishingQuestion.gameObject.SetActive(false);
     }
 
+    public void ShowCookScene()
+    {
+        cookCanvas.SetActive(true);
+    }
+
     public void CookingQuestion()
     {
         cookingQuestion.gameObject.SetActive(true);
-    }
-
-    public void ShowOrderView()
-    {
-        cookCanvas.SetActive(true);
     }
 
     public void EscCookingQuestion()
@@ -115,6 +120,16 @@ public class TutorialManager : MonoBehaviour
     public void ShowEndScene()
     {
         endCanvas.SetActive(true);
+    }
+
+    public void EndingQuestion()
+    {
+        endingQuestion.gameObject.SetActive(true);
+    }
+
+    public void EscEndingQuestion()
+    {
+        endingQuestion.gameObject.SetActive(false);
     }
 
     public void ConfigBtn() //설정보여주기
@@ -133,6 +148,21 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    public void ExitQuestion()
+    {
+        exitQuestion.gameObject.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void EscExitQuestion()
+    {
+        exitQuestion.gameObject.SetActive(false);
+    }
+
     public void SkipBtn()
     {
         skipQuestion.SetActive(true);
@@ -146,6 +176,21 @@ public class TutorialManager : MonoBehaviour
     public void GoSkipBtn()
     {
         CompletedAllTutorials();
+    }
+
+    public void NextDayBtn()
+    {
+        CompletedAllTutorials();
+    }
+
+    public void NextDayQuestion()
+    {
+        nextDayQuestion.gameObject.SetActive(true);
+    }
+
+    public void EscNextDayQuestion()
+    {
+        nextDayQuestion.gameObject.SetActive(false);
     }
 
     public void InventoryBtn() //인벤토리 활성화, 비활성화
@@ -162,8 +207,17 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    public void NoMoneyBtn()
     {
-        Application.Quit();
+        StartCoroutine(NoMoney());
+    }
+
+    public IEnumerator NoMoney()
+    {
+        noMoneyTxt.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        noMoneyTxt.gameObject.SetActive(false);
     }
 }

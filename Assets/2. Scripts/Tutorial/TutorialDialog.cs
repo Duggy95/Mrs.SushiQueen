@@ -69,6 +69,6 @@ public class TutorialDialog : TutorialBase
             yield return null;
         }
 
-        Destroy(this);
+        //Destroy(this);
     }
 }

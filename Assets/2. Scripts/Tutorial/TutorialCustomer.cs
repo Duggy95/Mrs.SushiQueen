@@ -24,10 +24,10 @@ public class TutorialCustomer : MonoBehaviour
     TutorialCook tc;  //쿡 매니저.
     string message = "주세요.";
     string order;  //주문
-    float maxTime; //최대시간
-    float currTime;  //현재시간
-    float currTimePercent;  //현재시간 비율
-    bool isTimer;  //타이머 존재
+    //float maxTime; //최대시간
+    //float currTime;  //현재시간
+    //float currTimePercent;  //현재시간 비율
+    //bool isTimer;  //타이머 존재
     bool isOrdered;  //주문수락확인.
     int orderIndex;
 
@@ -51,8 +51,8 @@ public class TutorialCustomer : MonoBehaviour
     void Start()
     {
         dish = GameObject.FindGameObjectWithTag("DISH").GetComponent<Dish>();  //접시 오브젝트 Find로 가져오기
-        maxTime = 20;  //최대시간.
-        currTime = maxTime;  //타이머 초기값 설정
+        //maxTime = 20;  //최대시간.
+        //currTime = maxTime;  //타이머 초기값 설정
     }
 
     void OnEnable()
@@ -95,7 +95,7 @@ public class TutorialCustomer : MonoBehaviour
 
     void Update()
     {
-        if (isTimer)
+        /*if (isTimer)
         {
             currTime -= Time.deltaTime;  //시간이 줄어듬
             currTimePercent = currTime / maxTime;  //남은시간 비율
@@ -117,13 +117,13 @@ public class TutorialCustomer : MonoBehaviour
                 isTimer = false;  //타이머 비활성화 상태로 판단
                 isOrdered = false;  //주문을 안받았음.
             }
-        }
+        }*/
     }
 
     public void ShowTimer()  //손님 타이머 활성화
     {
         tc.canMake = true;  //만들기 가능.
-        isTimer = true;  //타이머 활성화 상태로 판단.
+        //isTimer = true;  //타이머 활성화 상태로 판단.
         isOrdered = true;  //주문을 받았음.
         dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
         dish.sushiList.Clear();  //초밥 리스트 클리어.
@@ -203,6 +203,7 @@ public class TutorialCustomer : MonoBehaviour
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 StartCoroutine(FadeOut());
                 isOrdered = false;
+                tc.sucessCount++;
             }
             else  //불일치 시
             {
