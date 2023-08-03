@@ -183,6 +183,11 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score -= 20;
 
+                if(GameManager.instance.todayData.score <= 0)
+                {
+                    EndGameView();
+                }
+
                 cookManager.UIUpdate();  //UI 최신화
                 cookManager.GoOrder();  //주문 창으로 넘어옴.
                 cookManager.canMake = false;
@@ -197,6 +202,11 @@ public class Customer : MonoBehaviour
                 isOrdered = false;  //주문을 안받았음.
             }
         }
+    }
+
+    void EndGameView()
+    {
+        cookManager.endGameView.gameObject.SetActive(true);
     }
 
     public void ShowTimer()  //손님 타이머 활성화
@@ -217,6 +227,12 @@ public class Customer : MonoBehaviour
         int _score = int.Parse(GameManager.instance.data.score) - 5;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
         GameManager.instance.todayData.score -= 5;
+
+        if (GameManager.instance.todayData.score <= 0)
+        {
+            EndGameView();
+        }
+
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;
@@ -319,6 +335,11 @@ public class Customer : MonoBehaviour
                 GameManager.instance.data.score = _score.ToString();
 
                 GameManager.instance.todayData.score -= 20;
+
+                if (GameManager.instance.todayData.score <= 0)
+                {
+                    EndGameView();
+                }
 
                 cookManager.UIUpdate();
                 orderTxt.text = fail[Random.Range(0, fail.Length)];

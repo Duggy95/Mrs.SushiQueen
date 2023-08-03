@@ -9,6 +9,7 @@ public class UpGradeShop : MonoBehaviour
     public GameObject maxLevelTxt;
 
     EndSceneCtrl endSceneCtrl;
+    AudioSource audioSource;
 
     int level;
     int count;
@@ -16,6 +17,7 @@ public class UpGradeShop : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         endSceneCtrl = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<EndSceneCtrl>();
         Text text = GetComponentInChildren<Text>();
         string[] info = text.text.Split(" ");
@@ -96,6 +98,7 @@ public class UpGradeShop : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 물고기 공간\n최대 " + count + "마리";
                 }
+                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1)
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -175,6 +178,7 @@ public class UpGradeShop : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
                 }
+                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
                 endSceneCtrl.UIUpdate();
             }
             else

@@ -23,6 +23,7 @@ public class CookManager : MonoBehaviour
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
     public GameObject endScenePanel;
+    public GameObject endGameView;
     public Text dateTxt;  //³¯Â¥ + ÆòÆÇ
     public Text goldTxt;  //°ñµå
     public Text atkTxt;  //°ñµå
@@ -68,6 +69,12 @@ public class CookManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
+    }
+
+    public void GameOver()
+    {
+        GameManager.instance.DeleteData();
+        SceneManager.LoadScene(0);
     }
 
     public void UIUpdate()

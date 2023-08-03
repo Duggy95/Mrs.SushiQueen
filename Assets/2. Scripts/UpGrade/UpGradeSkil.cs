@@ -9,6 +9,7 @@ public class UpGradeSkil : MonoBehaviour
     public GameObject maxLevelTxt;
 
     EndSceneCtrl endSceneCtrl;
+    AudioSource audioSource;
 
     int level;
     int count;
@@ -16,6 +17,8 @@ public class UpGradeSkil : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         endSceneCtrl = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<EndSceneCtrl>();
         Text text = GetComponentInChildren<Text>();
         string[] info = text.text.Split(" ");
@@ -102,6 +105,7 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 요리할 수 있는\n시간 " + count + "초";
                 }
+                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -182,6 +186,7 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 낚시할 수 있는\n시간 " + count + "초";
                 }
+                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
                 endSceneCtrl.UIUpdate();
             }
             else
@@ -262,6 +267,7 @@ public class UpGradeSkil : MonoBehaviour
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 손님 대기시간\n시간 " + count + "초";
                 }
+                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
                 endSceneCtrl.UIUpdate();
             }
             else

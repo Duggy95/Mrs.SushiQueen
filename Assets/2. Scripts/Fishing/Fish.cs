@@ -12,6 +12,8 @@ public class Fish : MonoBehaviour
     public FishData[] fishDatas;
     public GameObject directionObj; // 방향 오브젝트
 
+    AudioSource audioSource;
+
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
     GameObject _bobber;
@@ -39,6 +41,7 @@ public class Fish : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         transform.SetParent(fm.canvas.transform);
         transform.SetSiblingIndex(1);  //2번째 자식.
@@ -49,7 +52,7 @@ public class Fish : MonoBehaviour
     void OnEnable()
     {
         currTime = maxTime;
-
+        audioSource.PlayOneShot(SoundManager.instance.throwBobber, 1);
         Vector3 bobberPos = transform.position;
         // 찌 이미지를 터치한 곳에 생성
         _bobber = Instantiate(bobber, bobberPos, Quaternion.identity);
@@ -88,6 +91,8 @@ public class Fish : MonoBehaviour
                     Atk();
                 }
             }
+            /*else if(Input.GetMouseButtonUp(0))
+                audioSource.Stop();*/
         }
 
         // 낚시 중이고 현재 시간이 0보다 많다면
@@ -112,6 +117,7 @@ public class Fish : MonoBehaviour
     {
         currHP -= _atk;
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+        audioSource.PlayOneShot(SoundManager.instance.reelIn, 1);
 
         if (currHP <= 0)
         {

@@ -11,13 +11,13 @@ public class FishingManager : MonoBehaviour
     public Text goldTxt;
     public Text atkTxt;
     public Text fishInfo_Txt;
-    public Text full_Txt;
-    public Text fishRun;
     public Text useWhiteItemTxt;
     public Text useRedItemTxt;
     public Text useRareItemTxt;
     public Text scoreTxt;
     public Text touchTxt;
+    public GameObject full_Txt;
+    public GameObject fishRun;
     public GameObject configPanel;
     public GameObject inventoryImg;  // 인벤토리 이미지
     public GameObject inventoryFullImg;
@@ -48,9 +48,11 @@ public class FishingManager : MonoBehaviour
     Vector3 fishInfoOriginScale;
     bool config;
     FishData data;
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         fishInfoOriginScale = Vector3.one;
         fishInfoOriginPos = fishInfoImg.transform.position;
         useItemPanel.gameObject.SetActive(false);
@@ -73,24 +75,31 @@ public class FishingManager : MonoBehaviour
     {
         if (isFishing == false)
         {
-            // 물고기 잡는 중으로 변경
-            isFishing = true;
-            // 물고기 도망 텍스트 비활성화
-            fishRun.gameObject.SetActive(false);
-            LineRenderer fishLine = fishingRod.GetComponent<LineRenderer>();
-
-            Vector3 startPos = lineStartPos.transform.position; // 시작 지점
-            Vector3 endPos = Input.mousePosition; // 끝 지점
-
-            // Line Renderer 속성 설정
-            fishLine.SetPosition(0, startPos); // 라인의 점들 설정
-            fishLine.SetPosition(1, endPos);
-            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
-            //transform.position = Input.mousePosition;
+            audioSource.PlayOneShot(SoundManager.instance.swing, 1);
+            StartCoroutine(ThrowBobber(Input.mousePosition));
         }
 
         else
             return;
+    }
+
+    IEnumerator ThrowBobber(Vector3 mousePos)
+    {
+        yield return new WaitForSeconds(1);
+        // 물고기 잡는 중으로 변경
+        isFishing = true;
+        // 물고기 도망 텍스트 비활성화
+        fishRun.gameObject.SetActive(false);
+        LineRenderer fishLine = fishingRod.GetComponent<LineRenderer>();
+
+        Vector3 startPos = lineStartPos.transform.position; // 시작 지점
+        Vector3 endPos = Input.mousePosition; // 끝 지점
+
+        // Line Renderer 속성 설정
+        fishLine.SetPosition(0, startPos); // 라인의 점들 설정
+        fishLine.SetPosition(1, endPos);
+        Instantiate(fishObj, mousePos, Quaternion.identity);
+        //transform.position = Input.mousePosition;
     }
 
     // 잡은 경우에 물고기 정보창 띄움
@@ -136,6 +145,7 @@ public class FishingManager : MonoBehaviour
         Debug.Log("골드 " + _gold);
         // 골드 ++
         UIUpdate();
+        audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
         isFishing = false;
     }
 
@@ -246,6 +256,7 @@ public class FishingManager : MonoBehaviour
             fishInfoImg.transform.localScale = Vector3.Lerp(initialScale, targetScale, t);
             yield return null;
         }
+        audioSource.PlayOneShot(SoundManager.instance.getFish, 1);
     }
 
     IEnumerator EffMove()
