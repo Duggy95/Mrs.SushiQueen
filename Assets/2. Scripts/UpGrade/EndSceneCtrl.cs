@@ -99,7 +99,9 @@ public class EndSceneCtrl : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-        ExitGame();
+        //ExitGame();
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
     }
 
 
@@ -215,6 +217,7 @@ public class EndSceneCtrl : MonoBehaviour
         GPGSBinder.Inst.Logout();
             logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-            ExitGame();
+            GameManager.instance.nextStage = false;
+    SceneManager.LoadScene(0);
     }*/
 }

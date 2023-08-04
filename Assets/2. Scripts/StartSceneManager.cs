@@ -35,6 +35,7 @@ public class StartSceneManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         if (GameManager.instance != null)
         {
             //GameManager.instance.GetLog();
@@ -228,6 +229,7 @@ public class StartSceneManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
+    GameManager.instance.nextStage = false;
                  SceneManager.LoadScene(0);
 
     }*/
@@ -236,6 +238,7 @@ public class StartSceneManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
+        GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }
 

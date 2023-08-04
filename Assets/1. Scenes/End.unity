@@ -3196,7 +3196,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uC800\uC7A5\uB41C \uC815\uBCF4\uB97C \uC9C0\uC6B0\uACE0\n\uAC8C\uC784\uC744
-    \uC885\uB8CC\uD569\uB2C8\uB2E4."
+    \uC7AC\uC2DC\uC791\uD569\uB2C8\uB2E4."
 --- !u!222 &425595344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4939,7 +4939,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB85C\uADF8\uC544\uC6C3\uC744 \uD558\uACE0\n\uAC8C\uC784\uC744 \uC885\uB8CC\uD569\uB2C8\uB2E4."
+  m_Text: "\uB85C\uADF8\uC544\uC6C3\uC744 \uD558\uACE0\n\uAC8C\uC784\uC744 \uC7AC\uC2DC\uC791\uD569\uB2C8\uB2E4."
 --- !u!222 &718138379
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8737,7 +8737,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1361243356}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -9415,7 +9415,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1464685632}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

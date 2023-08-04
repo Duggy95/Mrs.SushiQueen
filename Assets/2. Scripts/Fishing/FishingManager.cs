@@ -52,6 +52,7 @@ public class FishingManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         audioSource = GetComponent<AudioSource>();
         fishInfoOriginScale = Vector3.one;
         fishInfoOriginPos = fishInfoImg.transform.position;
@@ -68,7 +69,9 @@ public class FishingManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-        ExitGame();
+        //ExitGame();
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
     }
 
 
@@ -399,5 +402,7 @@ public class FishingManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
             logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
+    GameManager.instance.nextStage = false;
+    SceneManager.LoadScene(0);
     }*/
 }

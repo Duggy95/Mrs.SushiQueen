@@ -12,7 +12,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public Transform fishListTr;  //수족관 위치
     //public Transform cookListTr;  //회스크롤뷰 위치
     FishSlot fishSlot;
-    //FishData fishData;
+    FishData fishData;
 
     //CookManager cookManager;
     CanvasGroup canvasGroup;
@@ -37,10 +37,10 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         //itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
-        /*if(fishData == null)
+        if(fishSlot.fish_Name == "")
         {
             Destroy(this);
-        }*/
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -72,11 +72,6 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         draggingItem = null;
         canvasGroup.blocksRaycasts = true;
-        /*if(cookManager.fishList.Contains(fishSlot.fish_Name))
-        {
-            fishSlot.fish_Count++;
-            inventory.UpdateUI(this.gameObject);
-        }*/
 
         if (copiedSlot.transform.parent == inventoryTr)
         {

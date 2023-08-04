@@ -69,12 +69,15 @@ public class CookManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-        ExitGame();
+        //ExitGame();
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
     }
 
     public void GameOver()
     {
         GameManager.instance.DeleteData();
+        GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }
 
@@ -226,7 +229,8 @@ public class CookManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
             logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-            ExitGame();
+    GameManager.instance.nextStage = false;
+    SceneManager.LoadScene(0);
     }*/
 
     private void OnDisable()
