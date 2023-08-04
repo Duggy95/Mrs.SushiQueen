@@ -227,7 +227,8 @@ public class StartSceneManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-            ExitGame();
+                 SceneManager.LoadScene(0);
+
     }*/
 
     public void Delete()
