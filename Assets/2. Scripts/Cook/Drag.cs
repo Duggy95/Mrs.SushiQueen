@@ -13,7 +13,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     //public Transform cookListTr;  //회스크롤뷰 위치
     FishSlot fishSlot;
     FishData fishData;
-
+    AudioSource audioSource;
     //CookManager cookManager;
     CanvasGroup canvasGroup;
     GameObject copiedSlot;
@@ -23,6 +23,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         inventoryTr = GameObject.Find("InventoryImg").GetComponent<Transform>();
         inventory = inventoryTr.GetComponentInParent<CookInventory>();
         fishListTr = GameObject.Find("FishContent").GetComponent<Transform>();
@@ -75,12 +76,15 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
         if (copiedSlot.transform.parent == inventoryTr)
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             if (fishSlot.fish_Count >= 1)
             {
                 Destroy(copiedSlot.gameObject);
                 fishSlot.fish_Count++;
                 inventory.UpdateUI(this.gameObject);
             }
+
             else if (fishSlot.fish_Count == 0)
             {
                 print("빈공간에서 호출");

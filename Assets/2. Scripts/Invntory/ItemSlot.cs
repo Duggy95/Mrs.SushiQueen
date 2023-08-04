@@ -11,11 +11,13 @@ public class ItemSlot : MonoBehaviour
     FishingManager fm;
     Button button;
     Text _text;
+    AudioSource audioSource;
 
     bool isReturn = false;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
         if (fm != null)
         {
@@ -39,6 +41,8 @@ public class ItemSlot : MonoBehaviour
 
         if (_text.text.Contains("지렁이"))
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             fm.useItem_white = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useWhiteItemTxt.gameObject.SetActive(true);
@@ -47,6 +51,8 @@ public class ItemSlot : MonoBehaviour
 
         else if (_text.text.Contains("새우"))
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             fm.useItem_red = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useRedItemTxt.gameObject.SetActive(true);
@@ -55,6 +61,8 @@ public class ItemSlot : MonoBehaviour
 
         else if (_text.text.Contains("생선살"))
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             fm.useItem_rare = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useRareItemTxt.gameObject.SetActive(true);

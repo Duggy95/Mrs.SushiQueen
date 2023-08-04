@@ -28,6 +28,7 @@ public class EndSceneCtrl : MonoBehaviour
     public Image shopBtn;
     public Image skillBtn;
 
+    AudioSource audioSource;
     Color initColor = new Color(1, 1, 1, 1);
     Color selColor = new Color(1, 1, 0, 1);
 
@@ -36,6 +37,7 @@ public class EndSceneCtrl : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
+        audioSource = GetComponent<AudioSource>();
         fishBtn.color = selColor;
         shopBtn.color = initColor;
         skillBtn.color = initColor;
@@ -50,6 +52,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickSkill()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         fishBtn.color = initColor;
         shopBtn.color = initColor;
         skillBtn.color = selColor;
@@ -63,6 +67,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickShop()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         fishBtn.color = initColor;
         shopBtn.color = selColor;
         skillBtn.color = initColor;
@@ -76,6 +82,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void OnclickFishing()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         fishBtn.color = selColor;
         shopBtn.color = initColor;
         skillBtn.color = initColor;
@@ -89,6 +97,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void NextStage()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GameManager.instance.nextStage = true;
         int _date = int.Parse(GameManager.instance.data.dateCount) + 1;
         GameManager.instance.data.dateCount = _date.ToString();
@@ -97,6 +107,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void Delete()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GameManager.instance.DeleteData();
         UIUpdate();
         //ExitGame();
@@ -120,66 +132,89 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void EndSceneQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         endSceneQuestion.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(true);
         endSceneQuestion.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         exitGameQuestion.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(true);
         exitGameQuestion.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         deleteDataQuestion.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(true);
         deleteDataQuestion.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         endSceneQuestion.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(true);
         logOutQuestion.gameObject.SetActive(true);
     }
 
     public void ViewReceipt()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(true);
         receipt.gameObject.SetActive(true);
     }
 
     public void EscReceipt()
     {
+
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         receipt.gameObject.SetActive(false);
     }
 
     public void ViewInventory()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         // 인벤토리 활성화
         inventoryFullImg.gameObject.SetActive(true);
         InventoryImg.gameObject.SetActive(true);
@@ -187,6 +222,8 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void EscInventory()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
     }
@@ -195,12 +232,16 @@ public class EndSceneCtrl : MonoBehaviour
     {
         if (!config)
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             inventoryFullImg.gameObject.SetActive(true);
             configPanel.SetActive(true);
             config = true;
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             inventoryFullImg.gameObject.SetActive(false);
             configPanel.SetActive(false);
             config = false;
@@ -209,11 +250,15 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void ExitGame()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         Application.Quit();
     }
 
     /*public void LogOut()
     {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GPGSBinder.Inst.Logout();
             logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);

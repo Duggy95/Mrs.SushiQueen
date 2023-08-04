@@ -67,6 +67,8 @@ public class FishingManager : MonoBehaviour
 
     public void Delete()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GameManager.instance.DeleteData();
         UIUpdate();
         //ExitGame();
@@ -109,6 +111,7 @@ public class FishingManager : MonoBehaviour
     // 잡은 경우에 물고기 정보창 띄움
     public void Fish(FishData fishData)
     {
+        StartCoroutine(StopTouch());
         data = fishData;
         fishInfo.gameObject.SetActive(true);
         fishInfoImg.gameObject.SetActive(true);
@@ -121,19 +124,34 @@ public class FishingManager : MonoBehaviour
         audioSource.PlayOneShot(SoundManager.instance.fish, 1);
     }
 
+    IEnumerator StopTouch()
+    {
+        inventoryFullImg.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        inventoryFullImg.SetActive(false);
+    }
+
     public void GiveUp()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         isFishing = false;
         giveupQuestion.gameObject.SetActive(false);
     }
 
     public void GiveUpQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         giveupQuestion.gameObject.SetActive(true);
     }
 
     public void GiveUpQuestionEsc() 
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         giveupQuestion.gameObject.SetActive(false);
     }
 
@@ -142,7 +160,7 @@ public class FishingManager : MonoBehaviour
     {
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold * 1000000;
+        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold * 10000;
         GameManager.instance.data.gold = _gold.ToString();
 
         GameManager.instance.todayData.gold += data.gold;
@@ -245,6 +263,7 @@ public class FishingManager : MonoBehaviour
             isFishing = false;
             fishInfo.gameObject.SetActive(false);
         }
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
     }
 
     IEnumerator Eff()
@@ -308,6 +327,8 @@ public class FishingManager : MonoBehaviour
 
     public void ViewInventory()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
@@ -316,7 +337,9 @@ public class FishingManager : MonoBehaviour
     }
 
     public void EscInventory()
-    { 
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryFullImg.gameObject.SetActive(false);
         inventoryImg.gameObject.SetActive(false);
     }
@@ -324,12 +347,16 @@ public class FishingManager : MonoBehaviour
     public void EndSceneQuestionEsc()
     {
         Time.timeScale = 1;
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         endSceneQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void EndSceneQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         Time.timeScale = 0;
         endSceneQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
@@ -337,36 +364,48 @@ public class FishingManager : MonoBehaviour
 
     public void ExitGameQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         exitGameQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         exitGameQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         deleteDataQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         deleteDataQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         endSceneQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         logOutQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
@@ -375,12 +414,16 @@ public class FishingManager : MonoBehaviour
     {
         if (!config)
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             configPanel.SetActive(true);
             inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             configPanel.SetActive(false);
             inventoryFullImg.gameObject.SetActive(false);
             config = false;
@@ -389,16 +432,22 @@ public class FishingManager : MonoBehaviour
 
     public void GoCook()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         SceneManager.LoadScene(2);
     }
 
     public void ExitGame()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         Application.Quit();
     }
 
     /*public void LogOut()
     {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GPGSBinder.Inst.Logout();
             logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);

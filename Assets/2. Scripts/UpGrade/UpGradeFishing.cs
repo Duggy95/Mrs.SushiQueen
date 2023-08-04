@@ -44,6 +44,8 @@ public class UpGradeFishing : MonoBehaviour
     {
         if (GameManager.instance.data.getMiddleRod == "TRUE")
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             return;
         }
 
@@ -66,6 +68,7 @@ public class UpGradeFishing : MonoBehaviour
 
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
             StartCoroutine(NoMoney());
         }
     }
@@ -74,6 +77,8 @@ public class UpGradeFishing : MonoBehaviour
     {
         if (GameManager.instance.data.getHighRod == "TRUE")
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             return;
         }
 
@@ -94,6 +99,8 @@ public class UpGradeFishing : MonoBehaviour
 
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             StartCoroutine(NoMoney());
         }
     }
@@ -144,6 +151,8 @@ public class UpGradeFishing : MonoBehaviour
                     }
                     else
                     {
+                        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
                         Debug.Log("중복, 노머니");
                         StartCoroutine(NoMoney());
                         isFull = false;
@@ -194,6 +203,8 @@ public class UpGradeFishing : MonoBehaviour
                         }
                         else
                         {
+                            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
                             Debug.Log("처음, 노머니");
                             StartCoroutine(NoMoney());
                             isFull = false;

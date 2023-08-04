@@ -12,11 +12,13 @@ public class NetaButton : MonoBehaviour
     public int count;
     public bool isEmpty = true;
 
+    AudioSource audioSource;
     CookManager cookManager;
     Text iconTxt;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         cookManager = GameObject.FindWithTag("MANAGER").GetComponent<CookManager>();
     }
 
@@ -27,6 +29,8 @@ public class NetaButton : MonoBehaviour
 
     public void FishBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         if (fishData == null)
             return;
 

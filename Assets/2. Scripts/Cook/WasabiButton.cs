@@ -8,8 +8,17 @@ public class WasabiButton : MonoBehaviour
     public GameObject wasabi1;  //큰 와사비 프리팹
     public GameObject board;  //도마
 
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void WasabiBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         if (board == null)  //도마가 없으면
         {
             GameObject board = GameObject.Find("Board_RawImage");  //도마 오브젝트 찾기

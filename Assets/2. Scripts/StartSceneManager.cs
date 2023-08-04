@@ -31,12 +31,14 @@ public class StartSceneManager : MonoBehaviour
     public StoryManager storyManager;
     public CanvasGroup blackCanvas;
 
+    AudioSource audioSource;
     bool config;
     bool isStart;
 
     private void Awake()
     {
         Time.timeScale = 1;
+        audioSource = GetComponent<AudioSource>();
         if (GameManager.instance != null)
         {
             //GameManager.instance.GetLog();
@@ -88,6 +90,7 @@ public class StartSceneManager : MonoBehaviour
             if(GameManager.instance.data.dateCount == "1")
             {
                 isStart = false;
+                _storyManager.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(true);
                 modeObj.gameObject.SetActive(false);
@@ -95,6 +98,7 @@ public class StartSceneManager : MonoBehaviour
             else
             {
                 isStart = false;
+                _storyManager.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
@@ -113,6 +117,7 @@ public class StartSceneManager : MonoBehaviour
 
     public void ViewInventory()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
@@ -121,6 +126,8 @@ public class StartSceneManager : MonoBehaviour
 
     public void EscInventory()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         inventoryImg.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
@@ -131,77 +138,102 @@ public class StartSceneManager : MonoBehaviour
         storyObj.gameObject.SetActive(false);
         modeObj.gameObject.SetActive(true);
         UIUpdate();*/
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
         SceneManager.LoadScene(4);
     }
 
     public void FishingQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         fishingQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void FishingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         fishingQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void CookQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         cookQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void CookQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         cookQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void ExitGameQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         exitGameQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ExitGameQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         exitGameQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void DeleteDataQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         deleteDataQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void DeleteDataQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         deleteDataQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void LogOutQuestionEsc()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void LogOutQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         logOutQuestion.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void GoFishing()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         SceneManager.LoadScene(1);
     }
 
     public void GoShop()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         SceneManager.LoadScene(2);
     }
 
@@ -209,12 +241,16 @@ public class StartSceneManager : MonoBehaviour
     {
         if (!config)
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             configPanel.SetActive(true);
             inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             configPanel.SetActive(false);
             inventoryFullImg.gameObject.SetActive(false);
             config = false;
@@ -223,11 +259,15 @@ public class StartSceneManager : MonoBehaviour
 
     public void ExitGame()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         Application.Quit();
     }
 
     /*public void LogOut()
     {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
@@ -238,6 +278,8 @@ public class StartSceneManager : MonoBehaviour
 
     public void Delete()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         GameManager.instance.DeleteData();
         UIUpdate();
         GameManager.instance.nextStage = false;
