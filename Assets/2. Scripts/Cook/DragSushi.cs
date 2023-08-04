@@ -10,6 +10,7 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     Transform dishTr; //접시위치
     Transform sushiTr;  //초밥위치
     Transform boardTr;  //도마위치
+    AudioSource audioSource;
 
     public static GameObject draggingSushi = null;
 
@@ -23,6 +24,7 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         dishTr = GameObject.Find("Dish_RawImage").GetComponent<Transform>();  //접시
         boardTr = GameObject.Find("Board_RawImage").GetComponent<Transform>();  //도마
     }
@@ -77,6 +79,7 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             Dish dish = dishTr.GetComponentInParent<Dish>();  //접시
             Sushi sushi = sushiTr.GetComponent<Sushi>();  //초밥
             dish.AddSushi(sushi.sushiName, sushi.wasabi, sushi.gold);  //초밥 정보 초밥 딕셔너리에 추가.
+            audioSource.PlayOneShot(SoundManager.instance.dropSound, 1);
         }
         else
         {

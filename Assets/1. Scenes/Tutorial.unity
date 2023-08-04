@@ -5541,10 +5541,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM: {fileID: 8300000, guid: 80dd9808f4547ba4c925008227defbbc, type: 3}
-  buttonClick: {fileID: 8300000, guid: fb601ab275c17df408d28672984750ff, type: 3}
+  buttonClick: {fileID: 8300000, guid: 2d7489577f754c24fb4c1e3c17432201, type: 3}
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
+  orderFail: {fileID: 0}
+  dropSound: {fileID: 8300000, guid: 17dc1d5235869b44abc67f234919308b, type: 3}
   reelIn: {fileID: 8300000, guid: 492f7a4a1e863d54389b0e23ed588664, type: 3}
   getFish: {fileID: 8300000, guid: 57f0c349c18d5d84a8fb2cee8dee4406, type: 3}
   swing: {fileID: 8300000, guid: cf8d90a9e614e774c9e3fe2de841ba24, type: 3}

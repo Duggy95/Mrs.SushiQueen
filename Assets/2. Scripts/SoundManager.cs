@@ -27,9 +27,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("Cook")]
     public AudioClip orderSuccess; // 주문받은대로 초밥을 줬을 때
-    // 주문받은대로 초밥을 주지 못했을 때
-    // 거절했을 때
-    // 승락했을 때
+    public AudioClip orderFail; // 주문받은대로 초밥을 주지 못했을 때
+    public AudioClip dropSound;
 
     [Header("Fishing")]
     public AudioClip reelIn; // 릴 감는 소리

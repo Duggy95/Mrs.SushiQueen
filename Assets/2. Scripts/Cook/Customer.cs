@@ -24,6 +24,7 @@ public class Customer : MonoBehaviour
     Dish dish;  //초밥 담는 접시
     CookManager cookManager;  //쿡 매니저.
     Transform tr;  //위치
+    AudioSource audioSource;
 
     public string message;
     string order;  //주문
@@ -49,6 +50,7 @@ public class Customer : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         //쿡 매니저 찾기
         cookManager = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<CookManager>();
         images = GetComponentsInChildren<Image>();
@@ -299,8 +301,7 @@ public class Customer : MonoBehaviour
                         GameManager.instance.data.gold = _gold.ToString();
 
                         GameManager.instance.todayData.gold += totalPrice;
-
-                        //GameManager.instance.Save("d"); 
+                        audioSource.PlayOneShot(SoundManager.instance.orderSuccess, 1);
                         cookManager.UIUpdate();
                     }
                 }
