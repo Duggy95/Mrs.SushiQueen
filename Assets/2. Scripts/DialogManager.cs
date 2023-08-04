@@ -81,7 +81,7 @@ public class DialogManager : MonoBehaviour
         dialogTxt.text = "";
         foreach (char letter in line.ToCharArray())
         {
-            audioSource.PlayOneShot(SoundManager.instance.storyText,1);
+            audioSource.PlayOneShot(SoundManager.instance.storyText,0.25f);
             dialogTxt.text += letter;
             yield return ws;
         }
