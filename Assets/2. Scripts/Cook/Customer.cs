@@ -213,6 +213,8 @@ public class Customer : MonoBehaviour
 
     public void ShowTimer()  //손님 타이머 활성화
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+        
         cookManager.canMake = true;  //만들기 가능.
         isTimer = true;  //타이머 활성화 상태로 판단.
         isOrdered = true;  //주문을 받았음.
@@ -226,6 +228,8 @@ public class Customer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         int _score = int.Parse(GameManager.instance.data.score) - 5;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
         GameManager.instance.todayData.score -= 5;

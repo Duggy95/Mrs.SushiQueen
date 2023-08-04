@@ -110,11 +110,15 @@ public class UpGradeSkil : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
                 StartCoroutine(NoMoney());
             }
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             StartCoroutine(MaxLevel());
         }
     }
@@ -191,11 +195,15 @@ public class UpGradeSkil : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
                 StartCoroutine(NoMoney());
             }
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             StartCoroutine(MaxLevel());
         }
     }
@@ -272,11 +280,15 @@ public class UpGradeSkil : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
                 StartCoroutine(NoMoney());
             }
         }
         else
         {
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
             StartCoroutine(MaxLevel());
         }
     }

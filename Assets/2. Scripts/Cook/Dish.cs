@@ -7,10 +7,13 @@ public class Dish : MonoBehaviour
     public Dictionary<string, int> sushiCounts;  //만든 초밥 저장 딕셔너리
     public List<Sushi> sushiList;  //초밥 리스트
     public Transform boardTr;  //도마 위치
+
+    AudioSource audioSource;
     Transform tr;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         sushiList = new List<Sushi>();  //초밥종류, 와사비, 골드
         sushiCounts = new Dictionary<string, int>();  //초밥종류 + 와사비, 갯수
         tr = GetComponent<Transform>();
@@ -57,6 +60,16 @@ public class Dish : MonoBehaviour
 
     public void ClearBoard()  //도마 위 초밥 삭제 메서드.
     {
+        foreach (Transform child in boardTr)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void Clear()  //도마 위 초밥 삭제 메서드.
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         foreach (Transform child in boardTr)
         {
             Destroy(child.gameObject);
