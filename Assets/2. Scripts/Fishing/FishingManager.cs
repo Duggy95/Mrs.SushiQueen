@@ -75,6 +75,7 @@ public class FishingManager : MonoBehaviour
     {
         if (isFishing == false)
         {
+            isFishing = true;
             audioSource.PlayOneShot(SoundManager.instance.swing, 1);
             StartCoroutine(ThrowBobber(Input.mousePosition));
         }
@@ -87,7 +88,6 @@ public class FishingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         // 물고기 잡는 중으로 변경
-        isFishing = true;
         // 물고기 도망 텍스트 비활성화
         fishRun.gameObject.SetActive(false);
         LineRenderer fishLine = fishingRod.GetComponent<LineRenderer>();

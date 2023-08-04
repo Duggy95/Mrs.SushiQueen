@@ -79,10 +79,21 @@ public class StartSceneManager : MonoBehaviour
 
         if (isStart && Input.GetMouseButtonDown(0))
         {
-            isStart = false;
-            mainObj.gameObject.SetActive(false);
-            storyObj.gameObject.SetActive(true);
-            modeObj.gameObject.SetActive(false);
+            if(GameManager.instance.data.dateCount == "1")
+            {
+                isStart = false;
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(true);
+                modeObj.gameObject.SetActive(false);
+            }
+            else
+            {
+                isStart = false;
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(false);
+                modeObj.gameObject.SetActive(true);
+                UIUpdate();
+            }
         }
     }
 
@@ -110,10 +121,12 @@ public class StartSceneManager : MonoBehaviour
 
     public void OnClickSkip()
     {
-        mainObj.gameObject.SetActive(false);
+        /*mainObj.gameObject.SetActive(false);
         storyObj.gameObject.SetActive(false);
         modeObj.gameObject.SetActive(true);
-        UIUpdate();
+        UIUpdate();*/
+
+        SceneManager.LoadScene(4);
     }
 
     public void FishingQuestionEsc()

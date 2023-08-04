@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     static GameManager m_instance;
 
 
-    List<InventoryItem> _inventory_Items;
+    List<InventoryItem> _inventory_Items = new List<InventoryItem>();
     public List<InventoryItem> inventory_Items
     {
         get
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    List<InventoryFish> _inventory_Fishs;
+    List<InventoryFish> _inventory_Fishs = new List<InventoryFish>();
     public List<InventoryFish> inventory_Fishs
     {
         get
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    Data _data;
+    Data _data = new Data();
     public Data data
     {
         get

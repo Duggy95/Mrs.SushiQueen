@@ -183,7 +183,7 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score -= 20;
 
-                if(GameManager.instance.todayData.score <= 0)
+                if(int.Parse(GameManager.instance.data.score) <= 0)
                 {
                     EndGameView();
                 }
@@ -228,7 +228,7 @@ public class Customer : MonoBehaviour
         GameManager.instance.data.score = _score.ToString();
         GameManager.instance.todayData.score -= 5;
 
-        if (GameManager.instance.todayData.score <= 0)
+        if (int.Parse(GameManager.instance.data.score) <= 0)
         {
             EndGameView();
         }
@@ -336,7 +336,7 @@ public class Customer : MonoBehaviour
 
                 GameManager.instance.todayData.score -= 20;
 
-                if (GameManager.instance.todayData.score <= 0)
+                if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
                     EndGameView();
                 }

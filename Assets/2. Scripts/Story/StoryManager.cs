@@ -62,12 +62,9 @@ public class StoryManager : MonoBehaviour
         //행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         //현재는 씬 전환.
         Debug.Log("Complete All");
+        SceneManager.LoadScene(4);
 
-        /*if (!nextSceneName.Equals(""))
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }*/
-        modeView.SetActive(true);
-        storyView.SetActive(false);
+        //modeView.SetActive(true);
+        //storyView.SetActive(false);
     }
 }
