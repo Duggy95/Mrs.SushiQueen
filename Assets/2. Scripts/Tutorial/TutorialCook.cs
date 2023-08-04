@@ -21,7 +21,7 @@ public class TutorialCook : TutorialBase
     public bool onReady;
     public bool isReady;
     int count = 0;
-    public int sucessCount = 0;
+    public bool sucess;
     public Vector2 customerStartPos;
     Vector2 customerTr = Vector2.zero;
 
@@ -67,7 +67,7 @@ public class TutorialCook : TutorialBase
 
     public IEnumerator Create()
     {
-        if(sucessCount <3)
+        if(!sucess)
         {
             //2초 후 손님 생성.
             yield return ws;

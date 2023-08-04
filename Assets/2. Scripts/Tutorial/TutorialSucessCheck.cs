@@ -13,13 +13,13 @@ public class TutorialSucessCheck : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        print("¼º°ø È½¼ö : " + tc.sucessCount);
+        /*print("¼º°ø È½¼ö : " + tc.sucessCount);
 
         if(tc.sucessCount >= 3)
         {
             tutorialManager.SetNextTutorial();
             Destroy(this);
-        }
+        }*/
     }
 
     public override void Exit()

@@ -203,7 +203,7 @@ public class TutorialCustomer : MonoBehaviour
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 StartCoroutine(FadeOut());
                 isOrdered = false;
-                tc.sucessCount++;
+                tc.sucess = true;
             }
             else  //불일치 시
             {
