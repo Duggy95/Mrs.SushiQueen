@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialCheck : TutorialBase
+public class EraseFishing : TutorialBase
 {
-    public TutorialFishing tf;
+    public GameObject tf;
     public override void Enter()
     {
 
@@ -12,14 +12,14 @@ public class TutorialCheck : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
-        if(tf.fishCome)
+        if(tf.activeSelf == false)
         {
             tutorialManager.SetNextTutorial();
-            //Destroy(this);
         }
     }
 
     public override void Exit()
     {
+        Destroy(this);
     }
 }

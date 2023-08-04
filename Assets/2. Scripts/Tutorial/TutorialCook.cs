@@ -11,10 +11,12 @@ public class TutorialCook : TutorialBase
     public GameObject cookView;
     public GameObject readyBtn;
     public GameObject InventoryImg;
+    public GameObject cookInventoryFullImg;
     public Text orderTxt;
     //public CanvasGroup inventoryCanvas;
     public List<string> fishList = new List<string>();
     WaitForSeconds ws;
+    AudioSource audioSource;
 
     public bool isCustomer;
     public bool canMake;
@@ -29,10 +31,12 @@ public class TutorialCook : TutorialBase
     {
         ws = new WaitForSeconds(2f);
         customerStartPos = new Vector2(-450, -100);  //손님 위치
+
         //시작 세팅 = 주문화면 보이게
         orderView.SetActive(true);
         cookView.SetActive(true);
-        //StartCoroutine(Create(0));
+        audioSource = GetComponent<AudioSource>();
+        cookInventoryFullImg.SetActive(true);
     }
 
     public override void Execute(TutorialManager tutorialManager)
@@ -50,6 +54,7 @@ public class TutorialCook : TutorialBase
 
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         if (canMake)  //만들 수 있을 때
         {
             count++;
@@ -79,9 +84,11 @@ public class TutorialCook : TutorialBase
 
     public void ReadyBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         if (onReady)
         {
             isReady = true;
+            cookInventoryFullImg.SetActive(false);
             //StartCoroutine(Create());
             StartCoroutine(ShowCustomer());
             readyBtn.SetActive(false);

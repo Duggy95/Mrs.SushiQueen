@@ -27,6 +27,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject exitQuestion;
     public GameObject nextDayQuestion;
     public GameObject noMoneyTxt;
+    public GameObject inventoryFullImg;
+    public CanvasGroup inventoryBtn;
+    AudioSource audioSource;
 
     bool isInventory = false;
     bool config;
@@ -40,6 +43,7 @@ public class TutorialManager : MonoBehaviour
         fishCanvas.SetActive(false);
         cookCanvas.SetActive(false);
         endCanvas.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -68,6 +72,14 @@ public class TutorialManager : MonoBehaviour
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentTutorial = tutorials[currentIndex];
+        if(currentIndex >= 13 && currentIndex <= 26)
+        {
+            inventoryBtn.interactable = false;
+        }
+        else if(currentIndex >= 27)
+        {
+            inventoryBtn.interactable= true;
+        }
 
         //새로 바뀐 튜토리얼의 Enter() 메소드 호출
         currentTutorial.Enter();
@@ -89,52 +101,64 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowFishScene()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         fishCanvas.SetActive(true);
         fishScene = true;
     }
 
     public void FishingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         fishingQuestion.gameObject.SetActive(true);
     }
 
     public void EscFishingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         fishingQuestion.gameObject.SetActive(false);
     }
 
     public void ShowCookScene()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         cookCanvas.SetActive(true);
     }
 
     public void CookingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         cookingQuestion.gameObject.SetActive(true);
+        inventoryFullImg.gameObject.SetActive(true);
     }
 
     public void EscCookingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         cookingQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }
 
     public void ShowEndScene()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         endCanvas.SetActive(true);
     }
 
     public void EndingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         endingQuestion.gameObject.SetActive(true);
     }
 
     public void EscEndingQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         endingQuestion.gameObject.SetActive(false);
     }
 
     public void ConfigBtn() //설정보여주기
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         if (!config)
         {
             configPanel.SetActive(true);
@@ -151,65 +175,78 @@ public class TutorialManager : MonoBehaviour
 
     public void ExitQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         exitQuestion.gameObject.SetActive(true);
     }
 
     public void ExitGame()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         Application.Quit();
     }
 
     public void EscExitQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         exitQuestion.gameObject.SetActive(false);
     }
 
     public void SkipBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         skipQuestion.SetActive(true);
     }
 
     public void CloseSkipBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         skipQuestion.SetActive(false);
     }
 
     public void GoSkipBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         CompletedAllTutorials();
     }
 
     public void NextDayBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         CompletedAllTutorials();
     }
 
     public void NextDayQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         nextDayQuestion.gameObject.SetActive(true);
     }
 
     public void EscNextDayQuestion()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         nextDayQuestion.gameObject.SetActive(false);
     }
 
     public void InventoryBtn() //인벤토리 활성화, 비활성화
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         if (!isInventory)
         {
             inventoryImg.gameObject.SetActive(true);
+            inventoryFullImg.gameObject.SetActive(true);
             isInventory = true;
         }
         else
         {
             inventoryImg.gameObject.SetActive(false);
+            inventoryFullImg.gameObject.SetActive(false);
             isInventory = false;
         }
     }
 
     public void NoMoneyBtn()
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         StartCoroutine(NoMoney());
     }
 

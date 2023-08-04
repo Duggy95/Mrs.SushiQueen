@@ -10,6 +10,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
     Text text;
     int count = 0;
     TutorialNetaBtn netaBtn;
+    AudioSource audioSource;
     public TutorialCook tc;
     public GameObject fishIconPrefab;
     public Transform fishIconContent;
@@ -18,6 +19,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
     {
         text = GetComponentInChildren<Text>();
         netaBtn = GetComponent<TutorialNetaBtn>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -51,6 +53,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
             iconText.text = fishData.fishName + "     " + count;
             netaBtn.Txt(iconText);
             tc.fishList.Add(fishData.fishName);
+            audioSource.PlayOneShot(SoundManager.instance.dropSound, 1);
         }
         else if (transform.childCount == 2 && !netaBtn.isEmpty)
         {
@@ -62,6 +65,7 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
                 count += 5;
                 netaBtn.count = count;
                 netaBtn.UpdateUI();
+                audioSource.PlayOneShot(SoundManager.instance.dropSound, 1);
                 Destroy(Drag.draggingItem.gameObject);
             }
             else

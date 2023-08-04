@@ -15,6 +15,7 @@ public class TutorialFish : MonoBehaviour
     TutorialFishing tf;
     GameObject _bobber;
     FishData fishData;
+    AudioSource audioSource;
     List<GameObject> dirObj = new List<GameObject>();
 
     int maxHP; //최대체력
@@ -40,6 +41,7 @@ public class TutorialFish : MonoBehaviour
         tf = GameObject.FindGameObjectWithTag("TUTORIAL").GetComponent<TutorialFishing>();
         transform.SetParent(tf.fishCanvas.transform);
         transform.SetSiblingIndex(1);  //2번째 자식.
+        audioSource = GetComponent<AudioSource>();  
 
         _atk = 1;
     }
@@ -47,7 +49,7 @@ public class TutorialFish : MonoBehaviour
     void OnEnable()
     {
         currTime = maxTime;
-
+        audioSource.PlayOneShot(SoundManager.instance.throwBobber, 1);
         Vector3 bobberPos = transform.position;
         // 찌 이미지를 터치한 곳에 생성
         _bobber = Instantiate(bobber, bobberPos, Quaternion.identity);
@@ -110,6 +112,7 @@ public class TutorialFish : MonoBehaviour
     {
         currHP -= _atk;
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
+        audioSource.PlayOneShot(SoundManager.instance.reelIn, 1);
 
         if (currHP <= 0)
         {

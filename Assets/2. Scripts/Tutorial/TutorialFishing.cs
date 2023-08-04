@@ -20,6 +20,7 @@ public class TutorialFishing : TutorialBase
     public Text fishInfo_Txt;
     public Image fish_Img;
     FishData data;
+    AudioSource audioSource;
 
     public int count = 0;
     public bool isFishing;
@@ -30,6 +31,7 @@ public class TutorialFishing : TutorialBase
 
     public override void Enter()
     {
+        audioSource = GetComponent<AudioSource>();
         print("fishing tutorial");
         fishInfoOriginScale = Vector3.one;
         fishInfoOriginPos = fishInfoImg.transform.position;
@@ -53,22 +55,27 @@ public class TutorialFishing : TutorialBase
     {
         if (isFishing == false)
         {
-            Debug.Log("낚시 시작");
-            Debug.Log("위치" + Input.mousePosition);
-
             // 물고기 잡는 중으로 변경
             isFishing = true;
-            // 물고기 도망 텍스트 비활성화
-            fishRun.gameObject.SetActive(false);
-            Instantiate(fishObj, Input.mousePosition, Quaternion.identity);
-            //transform.position = Input.mousePosition;
+            audioSource.PlayOneShot(SoundManager.instance.swing, 1);
+            StartCoroutine(ThrowBobber(Input.mousePosition));
         }
+        else
+            return;
+    }
+
+    IEnumerator ThrowBobber(Vector3 mousePos)
+    {
+        yield return new WaitForSeconds(1);
+        // 물고기 잡는 중으로 변경
+        // 물고기 도망 텍스트 비활성화
+        fishRun.gameObject.SetActive(false);
+        Instantiate(fishObj, mousePos, Quaternion.identity);
+        //transform.position = Input.mousePosition;
     }
 
     public void Fish(FishData fishData)
     {
-        Debug.Log("낚시 성공");
-        Debug.Log(fishData);
         data = fishData;
         fishInfo.gameObject.SetActive(true);
         fishInfoImg.gameObject.SetActive(true);
@@ -78,6 +85,7 @@ public class TutorialFishing : TutorialBase
         fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
+        audioSource.PlayOneShot(SoundManager.instance.fish, 1);
     }
 
     public void Run()
@@ -87,8 +95,6 @@ public class TutorialFishing : TutorialBase
 
     IEnumerator FishRun()
     {
-        Debug.Log("낚시 실패");
-
         fishRun.gameObject.SetActive(true);
         isFishing = false;
         // 화면 누르면 텍스트 비활성화
@@ -195,6 +201,7 @@ public class TutorialFishing : TutorialBase
             fishInfoImg.transform.localScale = Vector3.Lerp(initialScale, targetScale, t);
             yield return null;
         }
+        audioSource.PlayOneShot(SoundManager.instance.getFish, 1);
     }
 
     IEnumerator EffMove()
@@ -214,12 +221,15 @@ public class TutorialFishing : TutorialBase
             }
             yield return null;
         }
+
+        this.gameObject.SetActive(false);
     }
 
     public void Sell()
     {
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
+        audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
         isFishing = false;
     }
 }

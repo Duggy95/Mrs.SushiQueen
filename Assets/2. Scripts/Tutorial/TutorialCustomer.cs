@@ -22,6 +22,7 @@ public class TutorialCustomer : MonoBehaviour
     List<Order> orders = new List<Order>();  //주문을 담을 리스트
     Dish dish;  //초밥 담는 접시
     TutorialCook tc;  //쿡 매니저.
+    AudioSource audioSource;
     string message = "주세요.";
     string order;  //주문
     //float maxTime; //최대시간
@@ -46,6 +47,7 @@ public class TutorialCustomer : MonoBehaviour
         tc = GameObject.FindGameObjectWithTag("TC").GetComponent<TutorialCook>();
         images = GetComponentsInChildren<Image>();
         texts = GetComponentsInChildren<Text>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -122,6 +124,7 @@ public class TutorialCustomer : MonoBehaviour
 
     public void ShowTimer()  //손님 타이머 활성화
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         tc.canMake = true;  //만들기 가능.
         //isTimer = true;  //타이머 활성화 상태로 판단.
         isOrdered = true;  //주문을 받았음.
@@ -135,6 +138,7 @@ public class TutorialCustomer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;
         StartCoroutine(FadeOut());
@@ -214,6 +218,7 @@ public class TutorialCustomer : MonoBehaviour
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 StartCoroutine(FadeOut());
                 isOrdered = false;
+                tc.sucess = true;
             }
         }
     }

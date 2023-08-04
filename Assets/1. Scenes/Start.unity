@@ -6119,6 +6119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a66ebb4fff89a4397a638d32637a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _storyManager: {fileID: 1959210912}
   configPanel: {fileID: 598186538}
   mainObj: {fileID: 614960217}
   storyObj: {fileID: 1043333714}
