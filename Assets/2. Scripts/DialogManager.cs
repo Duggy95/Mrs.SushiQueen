@@ -62,18 +62,9 @@ public class DialogManager : MonoBehaviour
 
     public void SkipSentence()
     {
-        if (sentences.Count != 0)
-        {
-            StopAllCoroutines();
-            dialogTxt.text = "";
-            dialogTxt.text = currSentence;
-        }
-        else
-        {
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
-            complete = true;
-        }
+        StopAllCoroutines();
+        dialogTxt.text = "";
+        dialogTxt.text = currSentence;
     }
 
     IEnumerator Typing(string line)
@@ -81,7 +72,7 @@ public class DialogManager : MonoBehaviour
         dialogTxt.text = "";
         foreach (char letter in line.ToCharArray())
         {
-            audioSource.PlayOneShot(SoundManager.instance.storyText,0.25f);
+            audioSource.PlayOneShot(SoundManager.instance.storyText, 0.25f);
             dialogTxt.text += letter;
             yield return ws;
         }
@@ -89,6 +80,7 @@ public class DialogManager : MonoBehaviour
 
     void Update()
     {
+        print(sentences.Count);
         if (dialogTxt.text.Equals(currSentence))
         {
             nextTxt.SetActive(true);
@@ -98,7 +90,6 @@ public class DialogManager : MonoBehaviour
 
     public void Next()
     {
-        print("호출이요");
         if (!isTyping && Input.GetMouseButtonDown(0))
         {
             NextSentence();

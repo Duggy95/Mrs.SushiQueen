@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
+    public GameObject _storyManager;
     public GameObject configPanel;
     public GameObject mainObj;
     public GameObject storyObj;
@@ -58,6 +59,7 @@ public class StartSceneManager : MonoBehaviour
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
+                _storyManager.gameObject.SetActive(false);
                 GameManager.instance.Save("d");
                 GameManager.instance.Save("i");
                 GameManager.instance.Save("f");
