@@ -68,6 +68,7 @@ public class FishingManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
+        ExitGame();
     }
 
 
@@ -395,5 +396,7 @@ public class FishingManager : MonoBehaviour
     /*public void LogOut()
     {
         GPGSBinder.Inst.Logout();
+            logOutQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
     }*/
 }

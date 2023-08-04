@@ -220,14 +220,19 @@ public class StartSceneManager : MonoBehaviour
         Application.Quit();
     }
 
-   /* public void LogOut()
+    /*public void LogOut()
     {
         GPGSBinder.Inst.Logout();
+        logOutQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
+            ExitGame();
     }*/
 
     public void Delete()
     {
         GameManager.instance.DeleteData();
         UIUpdate();
+        ExitGame();
     }
+
 }
