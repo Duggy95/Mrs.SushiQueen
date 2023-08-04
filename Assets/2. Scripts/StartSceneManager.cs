@@ -28,6 +28,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
     public StoryManager storyManager;
+    public CanvasGroup blackCanvas;
 
     bool config;
     bool isStart;
@@ -43,6 +44,7 @@ public class StartSceneManager : MonoBehaviour
 
             if (!GameManager.instance.nextStage) //
             {
+                StartCoroutine(FadeAway());
                 mainObj.gameObject.SetActive(true);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(false);
@@ -232,7 +234,27 @@ public class StartSceneManager : MonoBehaviour
     {
         GameManager.instance.DeleteData();
         UIUpdate();
-        ExitGame();
+        SceneManager.LoadScene(0);
     }
 
+    IEnumerator FadeAway()
+    {
+        blackCanvas.alpha = 1;
+        blackCanvas.blocksRaycasts = true;
+
+        yield return new WaitForSeconds(1);
+
+        float duration = 1f;
+        float elapsedTime = 0f;
+        while(elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            float alpha = 1 - t;
+            blackCanvas.alpha = alpha;
+            yield return null;
+        }
+
+        blackCanvas.blocksRaycasts = false;
+    }
 }
