@@ -3918,7 +3918,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &228724054
@@ -7158,7 +7158,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!82 &406800670
@@ -9177,7 +9177,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &506200336
@@ -9869,7 +9869,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &547920565
@@ -10254,7 +10254,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &561291801
@@ -14021,7 +14021,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &807005742
@@ -14301,7 +14301,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &812182642
@@ -14586,7 +14586,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &848477982
@@ -16155,7 +16155,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &901734133
@@ -22294,7 +22294,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &1349874478
@@ -22602,7 +22602,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &1366874820
@@ -26416,7 +26416,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &1591056262
@@ -29464,7 +29464,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &1776560632
@@ -30209,7 +30209,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!4 &1834257325
@@ -31765,7 +31765,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &1982352562
@@ -33618,7 +33618,7 @@ MonoBehaviour:
   nextTxt: {fileID: 875750843}
   canvasGroup: {fileID: 7763626}
   currSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.075
   isTyping: 0
   complete: 0
 --- !u!114 &2068599536

@@ -53,6 +53,7 @@ public class StartSceneManager : MonoBehaviour
 
             else //
             {
+                blackCanvas.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
