@@ -46,7 +46,6 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-
         audioSource.clip = BGM;
         audioSource.mute = false;
         audioSource.loop = true;

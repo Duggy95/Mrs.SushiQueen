@@ -115,6 +115,7 @@ public class FishingManager : MonoBehaviour
         fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
+        audioSource.PlayOneShot(SoundManager.instance.fish, 1);
     }
 
     public void GiveUp()

@@ -19,8 +19,11 @@ public class DialogManager : MonoBehaviour
     public bool isTyping = false;
     public bool complete = false;
 
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         sentences = new Queue<string>();
         ws = new WaitForSeconds(typingSpeed);
     }
@@ -78,6 +81,7 @@ public class DialogManager : MonoBehaviour
         dialogTxt.text = "";
         foreach (char letter in line.ToCharArray())
         {
+            audioSource.PlayOneShot(SoundManager.instance.storyText,1);
             dialogTxt.text += letter;
             yield return ws;
         }
