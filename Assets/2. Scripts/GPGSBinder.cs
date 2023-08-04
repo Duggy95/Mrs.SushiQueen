@@ -81,7 +81,13 @@ public class GPGSBinder
                             GameManager.instance.SetData(data);
                         }
                         else
+                        {
                             onCloudLoaded?.Invoke(false, null);
+                            GameManager.instance.Save("i");
+                            GameManager.instance.Save("f");
+                            GameManager.instance.Save("d");
+                            GameManager.instance.Load();
+                        }
                     });
                 }
             });

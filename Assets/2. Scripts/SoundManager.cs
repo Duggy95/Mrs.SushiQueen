@@ -36,6 +36,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip getFish; // 물고기 잡았을 때
     public AudioClip swing; // 낚싯줄 던지는 소리
     public AudioClip throwBobber; // 찌 떨어지는 소리
+    public AudioClip fish;
 
     [Header("UpGrade")]
     public AudioClip levelUp;  // 레벨업, 구매 등 클릭 사운드
