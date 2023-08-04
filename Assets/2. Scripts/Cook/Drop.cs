@@ -12,9 +12,11 @@ public class Drop : MonoBehaviour, IDropHandler
     CookManager cookManager;
     public GameObject fishIconPrefab;
     Transform fishIconContent;
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         text = GetComponentInChildren<Text>();
         netaBtn = GetComponent<NetaButton>();
         fishIconContent = GameObject.FindWithTag("CONTENT").GetComponent<Transform>();
@@ -52,6 +54,7 @@ public class Drop : MonoBehaviour, IDropHandler
             iconText.text = fishData.fishName + "     " + count;
             netaBtn.Txt(iconText);
             cookManager.fishList.Add(fishData.fishName);
+            audioSource.PlayOneShot(SoundManager.instance.dropSound, 1);
         }
         else if (transform.childCount == 2 && !netaBtn.isEmpty)
         {
@@ -63,6 +66,7 @@ public class Drop : MonoBehaviour, IDropHandler
                 count += 5;
                 netaBtn.count = count;
                 netaBtn.UpdateUI();
+                audioSource.PlayOneShot(SoundManager.instance.dropSound, 1);
                 Destroy(Drag.draggingItem.gameObject);
             }
             else
