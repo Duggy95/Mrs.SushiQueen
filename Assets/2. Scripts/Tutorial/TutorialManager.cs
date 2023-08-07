@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -28,9 +29,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject nextDayQuestion;
     public GameObject noMoneyTxt;
     public GameObject inventoryFullImg;
+    public GameObject bonusQuestion;
     public CanvasGroup inventoryBtn;
+    Text[] bonusTxt;
     AudioSource audioSource;
 
+    bool isSkip;
     bool isInventory = false;
     bool config;
     public bool fishScene;
@@ -44,6 +48,7 @@ public class TutorialManager : MonoBehaviour
         cookCanvas.SetActive(false);
         endCanvas.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        bonusTxt = bonusQuestion.GetComponentsInChildren<Text>();
     }
 
     void Update()
@@ -65,20 +70,20 @@ public class TutorialManager : MonoBehaviour
         //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
         if (currentIndex >= tutorials.Count - 1)
         {
-            CompletedAllTutorials();
+            //CompletedAllTutorials();
             return;
         }
 
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentTutorial = tutorials[currentIndex];
-        if(currentIndex >= 13 && currentIndex <= 26)
+        if (currentIndex >= 13 && currentIndex <= 26)
         {
             inventoryBtn.interactable = false;
         }
-        else if(currentIndex >= 27)
+        else if (currentIndex >= 27)
         {
-            inventoryBtn.interactable= true;
+            inventoryBtn.interactable = true;
         }
 
         //새로 바뀐 튜토리얼의 Enter() 메소드 호출
@@ -93,10 +98,18 @@ public class TutorialManager : MonoBehaviour
         //현재는 씬 전환.
         Debug.Log("Complete All");
 
+        if (isSkip)
+        {
+            GameManager.instance.data.gold = "300000";
+        }
+        else
+        {
+            GameManager.instance.data.gold = "500000";
+        }
+
         print("씬 이동");
         GameManager.instance.nextStage = true;
         SceneManager.LoadScene(0);
-        Destroy(this);
     }
 
     public void ShowFishScene()
@@ -195,6 +208,7 @@ public class TutorialManager : MonoBehaviour
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         skipQuestion.SetActive(true);
+        bonusTxt[0].text = "시작지원금 300,000원이 \n" + "지급되었습니다.";
     }
 
     public void CloseSkipBtn()
@@ -206,13 +220,17 @@ public class TutorialManager : MonoBehaviour
     public void GoSkipBtn()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-        CompletedAllTutorials();
+        //CompletedAllTutorials();
+        bonusQuestion.SetActive(true);
+        isSkip = true;
     }
 
     public void NextDayBtn()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-        CompletedAllTutorials();
+        //CompletedAllTutorials();
+        bonusQuestion.SetActive(true);
+        bonusTxt[0].text = "시작지원금 500,000원이 \n" + "지급되었습니다.";
     }
 
     public void NextDayQuestion()
@@ -225,6 +243,11 @@ public class TutorialManager : MonoBehaviour
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         nextDayQuestion.gameObject.SetActive(false);
+    }
+
+    public void BonusYesBtn()
+    {
+        CompletedAllTutorials();
     }
 
     public void InventoryBtn() //인벤토리 활성화, 비활성화
