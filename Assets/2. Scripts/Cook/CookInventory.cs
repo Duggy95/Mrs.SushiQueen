@@ -30,7 +30,6 @@ public class CookInventory : MonoBehaviour
                 GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
                 FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
                 Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
-                Drag drag = fishPrefab.GetComponent <Drag>();
                 foreach (Image fishImg in fishSlotPrefabs)
                 {
                     if (fishImg.name.Contains("Img"))
@@ -48,7 +47,7 @@ public class CookInventory : MonoBehaviour
                     if(_fishName =="")
                     {
                         print("이거 동작하니?");
-                        Destroy(drag);
+                        Destroy(fishPrefab.GetComponent<Drag>());
                     }
 
                     if (_fishName == "광어")
@@ -71,6 +70,12 @@ public class CookInventory : MonoBehaviour
                         fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Herring", typeof(Sprite)) as Sprite;
                     else if (_fishName == "고등어")
                         fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Mackerel", typeof(Sprite)) as Sprite;
+                }
+
+                if (fish_Slot.GetComponentInChildren<Text>().text.Split(" ")[0] == "")
+                {
+                    print("이거 동작하니?");
+                    Destroy(fishPrefab.GetComponent<Drag>());
                 }
             }
 
