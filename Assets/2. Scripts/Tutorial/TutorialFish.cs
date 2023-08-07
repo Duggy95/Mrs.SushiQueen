@@ -112,7 +112,7 @@ public class TutorialFish : MonoBehaviour
     {
         currHP -= _atk;
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
-        audioSource.PlayOneShot(SoundManager.instance.reelIn, 1);
+        audioSource.PlayOneShot(SoundManager.instance.reelIn, 0.5f);
 
         if (currHP <= 0)
         {

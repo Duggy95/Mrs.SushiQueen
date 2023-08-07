@@ -8,7 +8,6 @@ public class StoryManager : MonoBehaviour
 {
     [SerializeField]
     private List<StoryBase> stories;
-    //private string nextSceneName = "";
     public GameObject modeView;
     public GameObject storyView;
 
@@ -21,6 +20,7 @@ public class StoryManager : MonoBehaviour
     private void Start()
     {
         SetNextStory();
+        print("스토리 시작");
     }
 
     private void Update()
@@ -63,8 +63,5 @@ public class StoryManager : MonoBehaviour
         //현재는 씬 전환.
         Debug.Log("Complete All");
         SceneManager.LoadScene(4);
-
-        //modeView.SetActive(true);
-        //storyView.SetActive(false);
     }
 }

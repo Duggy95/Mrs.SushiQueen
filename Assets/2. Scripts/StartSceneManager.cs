@@ -90,9 +90,9 @@ public class StartSceneManager : MonoBehaviour
             if(GameManager.instance.data.dateCount == "1")
             {
                 isStart = false;
-                _storyManager.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(true);
+                _storyManager.gameObject.SetActive(true);
                 modeObj.gameObject.SetActive(false);
             }
             else

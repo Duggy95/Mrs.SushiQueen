@@ -13,6 +13,7 @@ public class TutorialDialog : TutorialBase
     
     public override void Enter()
     {
+        print("ฟฃลอ");
         StartCoroutine(ShowImage());
         dialogManager = GetComponent<DialogManager>();
         dialogManager.Ondialog(dialogs);
