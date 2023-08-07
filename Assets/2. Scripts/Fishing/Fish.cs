@@ -230,12 +230,11 @@ public class Fish : MonoBehaviour
         rightObj.gameObject.SetActive(false);
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
-        //StartCoroutine(Dir(dirObj));
 
-        GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
+        /*GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
-        _water.transform.SetParent(transform);
+        _water.transform.SetParent(transform);*/
 
         fm.touchTxt.gameObject.SetActive(true);
         fm.giveupBtn.gameObject.SetActive(true);
@@ -244,8 +243,8 @@ public class Fish : MonoBehaviour
         // 한바퀴 돌 때마다 방향 랜덤 설정
         while (fishing)
         {
-            water_.gameObject.SetActive(true);
-            _water.gameObject.SetActive(false);
+            /*water_.gameObject.SetActive(true);
+            _water.gameObject.SetActive(false);*/
 
             randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
 
@@ -268,8 +267,8 @@ public class Fish : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
 
-            water_.gameObject.SetActive(false);
-            _water.gameObject.SetActive(true);
+            /*water_.gameObject.SetActive(false);
+            _water.gameObject.SetActive(true);*/
 
             yield return new WaitForSeconds(0.5f);
         }

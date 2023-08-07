@@ -80,7 +80,6 @@ public class DialogManager : MonoBehaviour
 
     void Update()
     {
-        print(sentences.Count);
         if (dialogTxt.text.Equals(currSentence))
         {
             nextTxt.SetActive(true);

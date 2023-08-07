@@ -111,7 +111,6 @@ public class EndSceneCtrl : MonoBehaviour
 
         GameManager.instance.DeleteData();
         UIUpdate();
-        //ExitGame();
         GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }

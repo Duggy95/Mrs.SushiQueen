@@ -85,9 +85,4 @@ public class FishSlot : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        print(fish_Name + ":" + fish_Count);
-    }
 }
