@@ -23,7 +23,7 @@ public class UpGradeShop : MonoBehaviour
         string[] info = text.text.Split(" ");
         string _name = info[0];
 
-        if(_name == "수족관")
+        if (_name == "수족관")
         {
             SetAquarium();
         }
@@ -43,20 +43,20 @@ public class UpGradeShop : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "수족관 LV." + level + "->" + nextLevel +
+            text.text = "수족관 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 물고기 공간\n최대 " + count + "->" + nextCount + "마리";
+                "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
         }
         else if (level == 4)
         {
-            text.text = "수족관 LV." + level + "->" + "Max" +
+            text.text = "수족관 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 물고기 공간\n최대 " + count + "->" + nextCount + "마리";
+                "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
         }
         else
         {
             text.text = "수족관 Lv.Max" +
-                "\n가격 : " + _gold.ToString("N0") +
+                "\n가격 : ----" +
                 "\n현재 물고기 공간\n최대 " + count + "마리";
         }
     }
@@ -82,20 +82,20 @@ public class UpGradeShop : MonoBehaviour
                 Text text = GetComponentInChildren<Text>();
                 if (level < 4)
                 {
-                    text.text = "수족관 LV." + level + "->" + nextLevel +
+                    text.text = "수족관 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 물고기 공간\n최대 " + count + "->" + nextCount + "마리";
+                        "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
                 }
                 else if (level == 4)
                 {
-                    text.text = "수족관 LV." + level + "->" + "Max" +
+                    text.text = "수족관 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 물고기 공간\n최대 " + count + "->" + nextCount + "마리";
+                        "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
                 }
                 else
                 {
                     text.text = "수족관 Lv.Max" +
-                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n가격 : ----" +
                         "\n현재 물고기 공간\n최대 " + count + "마리";
                 }
                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -127,20 +127,20 @@ public class UpGradeShop : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "요리공간 LV." + level + "->" + nextLevel +
+            text.text = "요리공간 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
+                "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
         }
         else if (level == 4)
         {
-            text.text = "요리공간 LV." + level + "->" + "Max" +
+            text.text = "요리공간 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-               "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
+               "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
         }
         else
         {
             text.text = "요리공간 Lv.Max" +
-                "\n가격 : " + _gold.ToString("N0") +
+                "\n가격 : ----" +
                 "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
         }
     }
@@ -166,20 +166,20 @@ public class UpGradeShop : MonoBehaviour
                 Text text = GetComponentInChildren<Text>();
                 if (level < 4)
                 {
-                    text.text = "요리공간 LV." + level + "->" + nextLevel +
+                    text.text = "요리공간 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
+                        "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
                 }
                 else if (level == 4)
                 {
-                    text.text = "요리공간 LV." + level + "->" + "Max" +
+                    text.text = "요리공간 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                       "\n효과 : 요리할 수 있는\n물고기 수 " + count + "->" + nextCount + "마리";
+                       "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
                 }
                 else
                 {
                     text.text = "요리공간 Lv.Max" +
-                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n가격 : ----" +
                         "\n효과 : 요리할 수 있는\n물고기 수 " + count + "마리";
                 }
                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
