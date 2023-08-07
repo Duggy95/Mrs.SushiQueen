@@ -162,19 +162,19 @@ public class Fish : MonoBehaviour
             if (fm.useItem_white)
             {
                 if (fishDatas[i].color == 0)
-                    fish_Probability *= 1.5f;
+                    fish_Probability *= 2f;
 
                 else if (fishDatas[i].color == 1)
-                    fish_Probability *= 0.5f;
+                    fish_Probability *= 00f;
             }
 
             else if (fm.useItem_red)
             {
                 if (fishDatas[i].color == 0)
-                    fish_Probability *= 0.5f;
+                    fish_Probability *= 0f;
 
                 else if (fishDatas[i].color == 1)
-                    fish_Probability *= 1.5f;
+                    fish_Probability *= 2f;
             }
 
             else if (fm.useItem_rare)

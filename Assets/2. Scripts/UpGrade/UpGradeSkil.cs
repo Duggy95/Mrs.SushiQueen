@@ -48,20 +48,20 @@ public class UpGradeSkil : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "요리체력 LV." + level + "->" + nextLevel +
+            text.text = "요리체력 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
         else if (level == 4)
         {
-            text.text = "요리체력 LV." + level + "->" + "Max" +
+            text.text = "요리체력 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
         else
         {
             text.text = "요리체력 Lv.Max" +
-                "\n가격 : " + _gold.ToString("N0") +
+                "\n가격 : ----" +
                 "\n현재 요리할 수 있는\n시간 " + count + "초";
         }
     }
@@ -89,20 +89,20 @@ public class UpGradeSkil : MonoBehaviour
 
                 if (level < 4)
                 {
-                    text.text = "요리체력 LV." + level + "->" + nextLevel +
+                    text.text = "요리체력 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
                 else if (level == 4)
                 {
-                    text.text = "요리체력 LV." + level + "->" + "Max" +
+                    text.text = "요리체력 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 요리할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
                 else
                 {
                     text.text = "요리체력 Lv.Max" +
-                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n가격 : ----" +
                         "\n현재 요리할 수 있는\n시간 " + count + "초";
                 }
                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -133,20 +133,20 @@ public class UpGradeSkil : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "낚시체력 LV." + level + "->" + nextLevel +
+            text.text = "낚시체력 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
         else if (level == 4)
         {
-            text.text = "낚시체력 LV." + level + "->" + "Max" +
+            text.text = "낚시체력 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
         else
         {
             text.text = "낚시체력 Lv.Max" +
-                "\n가격 : " + _gold.ToString("N0") +
+                "\n가격 : ----" +
                 "\n현재 낚시할 수 있는\n시간 " + count + "초";
         }
     }
@@ -174,20 +174,20 @@ public class UpGradeSkil : MonoBehaviour
 
                 if (level < 4)
                 {
-                    text.text = "낚시체력 LV." + level + "->" + nextLevel +
+                    text.text = "낚시체력 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
                 else if (level == 4)
                 {
-                    text.text = "낚시체력 LV." + level + "->" + "Max" +
+                    text.text = "낚시체력 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 낚시할 수 있는\n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
                 else
                 {
                     text.text = "낚시체력 Lv.Max" +
-                        "\n가격 : " + _gold.ToString("N0") +
+                        "\n가격 : ----" +
                         "\n현재 낚시할 수 있는\n시간 " + count + "초";
                 }
                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -218,20 +218,20 @@ public class UpGradeSkil : MonoBehaviour
         Text text = GetComponentInChildren<Text>();
         if (level < 4)
         {
-            text.text = "응대 LV." + level + "->" + nextLevel +
+            text.text = "응대 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 손님 대기시간 \n시간 " + count + "->" + nextCount + "초";
+                "\n현재 손님 대기시간 \n시간 " + count + " -> " + nextCount + "초";
         }
         else if (level == 4)
         {
-            text.text = "응대 LV." + level + "->" + "Max" +
+            text.text = "응대 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
-                "\n현재 손님 대기시간\n시간 " + count + "->" + nextCount + "초";
+                "\n현재 손님 대기시간\n시간 " + count + " -> " + nextCount + "초";
         }
         else
         {
             text.text = "응대 Lv.Max" +
-                "\n가격 : " + _gold.ToString("N0") +
+               "\n가격 : ----" +
                 "\n현재 손님 대기시간\n시간 " + count + "초";
         }
     }
@@ -259,20 +259,20 @@ public class UpGradeSkil : MonoBehaviour
 
                 if (level < 4)
                 {
-                    text.text = "응대 LV." + level + "->" + nextLevel +
+                    text.text = "응대 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 손님 대기시간 \n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 손님 대기시간 \n시간 " + count + " -> " + nextCount + "초";
                 }
                 else if (level == 4)
                 {
-                    text.text = "응대 LV." + level + "->" + "Max" +
+                    text.text = "응대 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
-                        "\n현재 손님 대기시간\n시간 " + count + "->" + nextCount + "초";
+                        "\n현재 손님 대기시간\n시간 " + count + " -> " + nextCount + "초";
                 }
                 else
                 {
-                    text.text = "응대 Lv.Max" +
-                        "\n가격 : " + _gold.ToString("N0") +
+                    text.text = "응대 Lv.Max" + 
+                        "\n가격 : ----" +
                         "\n현재 손님 대기시간\n시간 " + count + "초";
                 }
                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
