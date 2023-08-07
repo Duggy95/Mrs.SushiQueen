@@ -38,10 +38,10 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         //itemTr = GetComponent<Transform>();
         //canvasGroup = GetComponent<CanvasGroup>();
 
-        if(fishSlot.fish_Name == "")
+        /*if(fishSlot.fish_Name == "")
         {
             Destroy(this);
-        }
+        }*/
     }
 
     public void OnBeginDrag(PointerEventData eventData)

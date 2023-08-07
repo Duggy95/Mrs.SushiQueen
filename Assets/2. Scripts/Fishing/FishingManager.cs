@@ -160,7 +160,7 @@ public class FishingManager : MonoBehaviour
     {
         full_Txt.gameObject.SetActive(false);
         fishInfo.gameObject.SetActive(false);
-        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold * 10000;
+        int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
         GameManager.instance.data.gold = _gold.ToString();
 
         GameManager.instance.todayData.gold += data.gold;

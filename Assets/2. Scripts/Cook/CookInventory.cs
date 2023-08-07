@@ -16,7 +16,7 @@ public class CookInventory : MonoBehaviour
     int fishSlotCount;
     int sushiCount;
 
-    void Start()
+    void Awake()
     {
         currentScene = SceneManager.GetActiveScene();
 
@@ -30,6 +30,7 @@ public class CookInventory : MonoBehaviour
                 GameObject fishPrefab = Instantiate(fishSlotPrefab, fishContent.transform);
                 FishSlot fish_Slot = fishPrefab.GetComponent<FishSlot>();
                 Image[] fishSlotPrefabs = fishPrefab.GetComponentsInChildren<Image>();
+                Drag drag = fishPrefab.GetComponent <Drag>();
                 foreach (Image fishImg in fishSlotPrefabs)
                 {
                     if (fishImg.name.Contains("Img"))
@@ -43,6 +44,12 @@ public class CookInventory : MonoBehaviour
 
                     fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
                     fish_Slot.isEmpty = true;
+
+                    if(_fishName =="")
+                    {
+                        print("이거 동작하니?");
+                        Destroy(drag);
+                    }
 
                     if (_fishName == "광어")
                         fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
