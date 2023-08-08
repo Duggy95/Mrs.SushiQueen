@@ -758,16 +758,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderTxt: {fileID: 2989136088802599298}
   sushis:
-  - "\uB3C4\uBBF8"
   - "\uAD11\uC5B4"
   - "\uC5F0\uC5B4"
-  - "\uCC38\uCE58"
   - "\uCCAD\uC5B4"
   - "\uC624\uC9D5\uC5B4"
   - "\uBC29\uC5B4"
   - "\uC804\uAC31\uC774"
   - "\uACE0\uB4F1\uC5B4"
   - "\uB18D\uC5B4"
+  easySushis:
+  - "\uAD11\uC5B4"
+  - "\uC5F0\uC5B4"
+  - "\uB18D\uC5B4"
+  - "\uACE0\uB4F1\uC5B4"
+  - "\uC804\uAC31\uC774"
+  - "\uCCAD\uC5B4"
   wasabis:
   - "\uC5C6\uC774"
   - "\uBCF4\uD1B5\uC73C\uB85C"

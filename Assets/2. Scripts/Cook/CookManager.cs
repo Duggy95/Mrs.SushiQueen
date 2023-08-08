@@ -24,6 +24,7 @@ public class CookManager : MonoBehaviour
     public GameObject exitGameQuestion;
     public GameObject endScenePanel;
     public GameObject endGameView;
+    public Transform dish;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
@@ -210,6 +211,8 @@ public class CookManager : MonoBehaviour
                 audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
                 cookView.SetActive(false);
+                dish.transform.SetParent(orderView.transform);
+                dish.transform.SetSiblingIndex(2);  //2번째 자식.
                 count = 0;
             }
             else
@@ -217,6 +220,8 @@ public class CookManager : MonoBehaviour
                 audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
                 cookView.SetActive(true);
+                dish.transform.SetParent(cookView.transform);
+                dish.transform.SetSiblingIndex(1);  //2번째 자식.
             }
         }
     }
@@ -224,6 +229,8 @@ public class CookManager : MonoBehaviour
     public void GoOrder()
     {
         cookView.SetActive(false);
+        dish.transform.SetParent(orderView.transform);
+        dish.transform.SetSiblingIndex(2);  //2번째 자식
     }
 
     public IEnumerator Create()
@@ -257,6 +264,8 @@ public class CookManager : MonoBehaviour
         cookView.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
         inventoryCanvas.interactable = false;
+        dish.transform.SetParent(orderView.transform);
+        dish.transform.SetSiblingIndex(2);  //2번째 자식.
     }
 
     public void Order(string txt)
