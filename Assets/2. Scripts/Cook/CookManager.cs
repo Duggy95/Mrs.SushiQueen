@@ -273,16 +273,16 @@ public class CookManager : MonoBehaviour
         orderTxt.text = txt;
     }
 
-    /*public void LogOut()
+    public void LogOut()
     {
-            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
         GPGSBinder.Inst.Logout();
-            logOutQuestion.gameObject.SetActive(false);
+        logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-    GameManager.instance.nextStage = false;
-    SceneManager.LoadScene(0);
-    }*/
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
+    }
 
     private void OnDisable()
     {
