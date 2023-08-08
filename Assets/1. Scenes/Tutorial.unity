@@ -2709,7 +2709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 65}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155261628
@@ -19183,8 +19183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 70}
-  m_SizeDelta: {x: -100, y: -240}
+  m_AnchoredPosition: {x: 0, y: 35}
+  m_SizeDelta: {x: -100, y: -170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098511416
 MonoBehaviour:
@@ -19206,7 +19206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff92fb58861aad94a99378ea17efc288, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a5109affa8acfd44bf96232b4f9336a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27997,7 +27997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 65}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1672447116
@@ -28328,8 +28328,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 70}
-  m_SizeDelta: {x: -100, y: -240}
+  m_AnchoredPosition: {x: 0, y: 35}
+  m_SizeDelta: {x: -100, y: -170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694875319
 MonoBehaviour:
@@ -28351,7 +28351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c30554d67de8c944be990d18ba76d62, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20919bfc616c9df4286bd74482bac949, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30209,8 +30209,7 @@ MonoBehaviour:
   dialogs:
   - "\uC5EC\uAE30\uB294 \uB09A\uC2DC \uD654\uBA74\uC785\uB2C8\uB2E4. \uD654\uBA74\uC744
     \uD130\uCE58\uD574\uC11C \uBB3C\uACE0\uAE30\uB97C \uC7A1\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  - "\uD654\uBA74\uC744 \uD130\uCE58\uD558\uACE0 \uBB3C\uACE0\uAE30\uAC00 \uB098\uD0C0\uB0A0
-    \uB54C\uAE4C\uC9C0 \uAE30\uB2E4\uB9AC\uC138\uC694."
+  - "\uD130\uCE58\uD55C \uC790\uB9AC\uC5D0 \uBB3C\uACE0\uAE30\uAC00 \uCD9C\uD604\uD569\uB2C8\uB2E4."
   - "\uBB3C\uACE0\uAE30\uAC00 \uB098\uD0C0\uB098\uBA74 \uB09A\uC2DC\uB300\uB97C \uAE30\uC900\uC73C\uB85C
     \uC67C\uCABD, \uC624\uB978\uCABD \uD654\uBA74\uC744 \uD130\uCE58\uD558\uB294\uB370"
   - "\uBB3C\uACE0\uAE30\uC758 \uBC29\uD5A5\uACFC \uBC18\uB300\uB85C \uD130\uCE58\uD574\uC57C
