@@ -27,7 +27,7 @@ public class WasabiButton : MonoBehaviour
         Transform riceTr = board.transform.Find("Rice(Clone)").transform;  //도마 오브젝트의 자식 오브젝트 찾기.
         if(riceTr != null)
         {
-            Vector3 wasabiTr = new Vector3(riceTr.position.x, riceTr.position.y + 10, 0);  //밥 조금 위쪽
+            Vector3 wasabiTr = new Vector3(riceTr.position.x, riceTr.position.y + 20, 0);  //밥 조금 위쪽
             Sushi sushi = riceTr.GetComponent<Sushi>();  //초밥 가져오기.
 
             if (sushi.wasabi == "없이" && riceTr.childCount == 0)  //초밥의 와사비가 "없이" 이고 자식이 0일 때
