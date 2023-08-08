@@ -13,7 +13,7 @@ public class ItemSlot : MonoBehaviour
     Text _text;
     AudioSource audioSource;
 
-    bool isReturn = false;
+    bool isReturn = false; // 매니저가 널인지 판단하여 널일 경우 리턴
 
     void Awake()
     {

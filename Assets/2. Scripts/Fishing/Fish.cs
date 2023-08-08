@@ -8,8 +8,8 @@ public class Fish : MonoBehaviour
 {
     public GameObject hpBarPrefab; // 물고기 체력바 프리팹
     public GameObject bobber;   // 찌 이미지
-    public GameObject[] waterEff;  // 물장구 이미지 1, 2 번갈아서
     public FishData[] fishDatas;
+    public FishData[] easyFishDatas;
     public GameObject directionObj; // 방향 오브젝트
 
     AudioSource audioSource;
@@ -155,40 +155,84 @@ public class Fish : MonoBehaviour
         // 확률에 따라 나오도록
         List<FishData> fish_Data = new List<FishData>();
 
-        for (int i = 0; i < fishDatas.Length; i++)
+        // 5일차 이하에는 노말 물고기가 나오도록
+        if (int.Parse(GameManager.instance.data.dateCount) <= 5)
         {
-            fish_Probability = fishDatas[i].probability;
-            // 아이템 썼을 때 확률 조정
-            if (fm.useItem_white)
+            for (int i = 0; i < easyFishDatas.Length; i++)
             {
-                if (fishDatas[i].color == 0)
-                    fish_Probability *= 2f;
+                fish_Probability = easyFishDatas[i].probability;
+                // 아이템 썼을 때 확률 조정
+                if (fm.useItem_white)
+                {
+                    if (easyFishDatas[i].color == 0)
+                        fish_Probability *= 2f;
 
-                else if (fishDatas[i].color == 1)
-                    fish_Probability *= 00f;
+                    else if (easyFishDatas[i].color == 1)
+                        fish_Probability *= 0f;
+                }
+
+                else if (fm.useItem_red)
+                {
+                    if (easyFishDatas[i].color == 0)
+                        fish_Probability *= 0f;
+
+                    else if (easyFishDatas[i].color == 1)
+                        fish_Probability *= 2f;
+                }
+
+                /*else if (fm.useItem_rare)
+                {
+                    if (fishDatas[i].grade == 0)
+                        fish_Probability *= 0.5f;
+
+                    else if (fishDatas[i].grade == 1)
+                        fish_Probability *= 2f;
+                }*/
+
+                // 확률만큼 리스트 저장
+                for (int j = 0; j < fish_Probability; j++)
+                {
+                    fish_Data.Add(easyFishDatas[i]);
+                }
             }
-
-            else if (fm.useItem_red)
+        }
+        else
+        {
+            for (int i = 0; i < fishDatas.Length; i++)
             {
-                if (fishDatas[i].color == 0)
-                    fish_Probability *= 0f;
+                fish_Probability = fishDatas[i].probability;
+                // 아이템 썼을 때 확률 조정
+                if (fm.useItem_white)
+                {
+                    if (fishDatas[i].color == 0)
+                        fish_Probability *= 2f;
 
-                else if (fishDatas[i].color == 1)
-                    fish_Probability *= 2f;
-            }
+                    else if (fishDatas[i].color == 1)
+                        fish_Probability *= 0f;
+                }
 
-            else if (fm.useItem_rare)
-            {
-                if (fishDatas[i].grade == 0)
-                    fish_Probability *= 0.5f;
+                else if (fm.useItem_red)
+                {
+                    if (fishDatas[i].color == 0)
+                        fish_Probability *= 0f;
 
-                else if (fishDatas[i].grade == 1)
-                    fish_Probability *= 2f;
-            }
-            // 확률만큼 리스트 저장
-            for (int j = 0; j < fish_Probability; j++)
-            {
-                fish_Data.Add(fishDatas[i]);
+                    else if (fishDatas[i].color == 1)
+                        fish_Probability *= 2f;
+                }
+
+                else if (fm.useItem_rare)
+                {
+                    if (fishDatas[i].grade == 0)
+                        fish_Probability *= 0.5f;
+
+                    else if (fishDatas[i].grade == 1)
+                        fish_Probability *= 2f;
+                }
+                // 확률만큼 리스트 저장
+                for (int j = 0; j < fish_Probability; j++)
+                {
+                    fish_Data.Add(fishDatas[i]);
+                }
             }
         }
 
@@ -203,6 +247,7 @@ public class Fish : MonoBehaviour
         int fishNum = Random.Range(0, fish_Data.Count);
 
         fishData = fish_Data[fishNum]; // 확률에 따른 물고기 종류 지정
+
         Setup(fishData);  // 물고기 체력 및 회복력 셋업
         currHP = maxHP;   // 현재 체력을 맥스 체력으로
         fishing = true;   // 낚시 시작

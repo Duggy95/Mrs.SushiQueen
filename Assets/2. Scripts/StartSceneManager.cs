@@ -6,30 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
-    public GameObject _storyManager;
-    public GameObject configPanel;
-    public GameObject mainObj;
-    public GameObject storyObj;
-    public GameObject modeObj;
+    public string[] story;  //스토리 내용
     public Text startTxt;  //터치해서 게임시작 텍스트
     public Text storyTxt;  //스토리 텍스트
-    public string[] story;  //스토리 내용
     public Text dateTxt;  //날짜 + 평판 텍스트
     public Text scoreTxt;
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
     public GameObject inventoryImg; //인벤토리 이미지
     public GameObject inventoryFullImg;
-    //public Image backGround;  //스토리 배경 그림
-    //public Sprite[] sprites;
+    public GameObject _storyManager;
+    public GameObject configPanel;
+    public GameObject mainObj;
+    public GameObject storyObj;
+    public GameObject modeObj;
     public GameObject loginObj;
     public GameObject fishingQuestion;
     public GameObject cookQuestion;
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public GameObject impossibleTxt;
     public StoryManager storyManager;
     public CanvasGroup blackCanvas;
+    //public Image backGround;  //스토리 배경 그림
+    //public Sprite[] sprites;
 
     AudioSource audioSource;
     bool config;
@@ -87,7 +88,7 @@ public class StartSceneManager : MonoBehaviour
 
         if (isStart && Input.GetMouseButtonDown(0))
         {
-            if(GameManager.instance.data.dateCount == "1")
+            if (GameManager.instance.data.dateCount == "1")
             {
                 isStart = false;
                 mainObj.gameObject.SetActive(false);
@@ -159,6 +160,13 @@ public class StartSceneManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(true);
     }
 
+    IEnumerator Impossible()
+    {
+        impossibleTxt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        impossibleTxt.gameObject.SetActive(false);
+    }
+
     public void CookQuestionEsc()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
@@ -171,8 +179,15 @@ public class StartSceneManager : MonoBehaviour
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
-        cookQuestion.gameObject.SetActive(true);
-        inventoryFullImg.gameObject.SetActive(true);
+        if (GameManager.instance.inventory_Fishs.Count <= 0)
+        {
+            StartCoroutine(Impossible());
+        }
+        else
+        {
+            cookQuestion.gameObject.SetActive(true);
+            inventoryFullImg.gameObject.SetActive(true);
+        }
     }
 
     public void ExitGameQuestionEsc()
@@ -295,7 +310,7 @@ public class StartSceneManager : MonoBehaviour
 
         float duration = 1f;
         float elapsedTime = 0f;
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);

@@ -52,9 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 7153825917935358477, guid: 9064717253c93a64b9729430a0b3b181, type: 3}
   bobber: {fileID: 7804600497635738840, guid: 1311fbe8a971b0d4f8fdf03fba9a691c, type: 3}
-  waterEff:
-  - {fileID: 2535047295472208810, guid: 375461a7eadc6ee4ab72b56a777ff0f8, type: 3}
-  - {fileID: 5035381807857487921, guid: bc6bdf2a9cba7fd48894c0e1d7e46d9b, type: 3}
   fishDatas:
   - {fileID: 11400000, guid: 7ac95fb7ab7609443b2114cfc1652d5c, type: 2}
   - {fileID: 11400000, guid: ab171565f2413d642bf43cd9f42564cd, type: 2}
@@ -66,6 +63,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b44f39f66688b8444b967e3b5c7dbaec, type: 2}
   - {fileID: 11400000, guid: 4bfc4cd6c49a9f84e907c8ceae235c66, type: 2}
   - {fileID: 11400000, guid: f4e61f22320b7ab4e8e8ca342a6d1265, type: 2}
+  easyFishDatas:
+  - {fileID: 11400000, guid: 79ac3d22c5c7c4f4d93c3cc3744cd5a5, type: 2}
+  - {fileID: 11400000, guid: afa18e7326ed7db47ae41221be28deb0, type: 2}
+  - {fileID: 11400000, guid: 73d880b3c156e8649a1e26383a7d979d, type: 2}
+  - {fileID: 11400000, guid: 3fba2c40293b6894d88bb1cffa77124a, type: 2}
+  - {fileID: 11400000, guid: d3558f09f5b76bb4cbb00dda373c760f, type: 2}
+  - {fileID: 11400000, guid: 7bffeaaa66f96bf4ea8ae4d0588e9c8c, type: 2}
   directionObj: {fileID: 1442787082074376389, guid: 9818c41004e7abc45b0fa5a1fc74a1cb, type: 3}
 --- !u!82 &-4419751746108254464
 AudioSource:
