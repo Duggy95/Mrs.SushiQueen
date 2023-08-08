@@ -30,6 +30,7 @@ public class CookManager : MonoBehaviour
     public Text atkTxt;  //°ñµå
     public Text orderTxt;
     public Text scoreTxt;
+    public Text priceTxt;
     public List<string> fishList = new List<string>();
     public int fishBtnCount = 0;
     public bool canMake = false;
@@ -56,6 +57,7 @@ public class CookManager : MonoBehaviour
         ws = new WaitForSeconds(2);
 
         UIUpdate();
+        priceTxt.text = "0";
     }
 
     void Update()
