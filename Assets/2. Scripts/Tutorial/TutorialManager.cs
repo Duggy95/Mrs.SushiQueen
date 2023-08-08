@@ -30,10 +30,14 @@ public class TutorialManager : MonoBehaviour
     public GameObject fishingSV;
     public GameObject ShopSV;
     public GameObject SkillSV;
+    public GameObject useItemPanel;
     public CanvasGroup inventoryBtn;
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
+    public Image itemSlotImg;
+    public Text itemSlotTxt;
+    public Text useWhiteItemTxt;
     public bool fishScene;
 
     Text[] bonusTxt;
@@ -333,4 +337,13 @@ public class TutorialManager : MonoBehaviour
         noMoneyTxt.gameObject.SetActive(false);
     }
 
+    public void UseItem()
+    {
+        itemSlotImg.sprite = null;
+        itemSlotTxt.text = null;
+        inventoryImg.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
+        useItemPanel.gameObject.SetActive(true);
+        useWhiteItemTxt.gameObject.SetActive(true);
+    }
 }
