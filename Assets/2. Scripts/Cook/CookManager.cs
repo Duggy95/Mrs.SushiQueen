@@ -214,7 +214,6 @@ public class CookManager : MonoBehaviour
 
                 cookView.SetActive(false);
                 dish.transform.SetParent(orderView.transform);
-                dish.transform.SetSiblingIndex(2);  //2번째 자식.
                 count = 0;
             }
             else
@@ -232,7 +231,6 @@ public class CookManager : MonoBehaviour
     {
         cookView.SetActive(false);
         dish.transform.SetParent(orderView.transform);
-        dish.transform.SetSiblingIndex(2);  //2번째 자식
     }
 
     public IEnumerator Create()
