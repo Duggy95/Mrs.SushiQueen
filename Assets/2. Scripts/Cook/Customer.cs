@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,6 +62,7 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         dish = GameObject.FindGameObjectWithTag("DISH").GetComponent<Dish>();  //접시 오브젝트 Find로 가져오기
+
         tr = GetComponent<Transform>();
 
         maxTime = int.Parse(GameManager.instance.data.customerTime);  //최대시간.
@@ -318,8 +320,9 @@ public class Customer : MonoBehaviour
 
                         int _gold = int.Parse(GameManager.instance.data.gold) + totalPrice;
                         GameManager.instance.data.gold = _gold.ToString();
-
                         GameManager.instance.todayData.gold += totalPrice;
+                        cookManager.priceTxt.text = totalPrice.ToString("N0");
+
                         audioSource.PlayOneShot(SoundManager.instance.orderSuccess, 1);
                         cookManager.UIUpdate();
                     }
@@ -459,6 +462,7 @@ public class Customer : MonoBehaviour
         }
 
         StartCoroutine(cookManager.Create());
+        cookManager.priceTxt.text = "0";
         Destroy(this.gameObject, 2.5f);
     }
 }
