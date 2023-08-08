@@ -18,7 +18,7 @@ MonoBehaviour:
   hp: 20
   heal: 2
   gold: 2000
-  probability: 14
+  probability: 16
   fishImg: {fileID: 21300000, guid: dc67354c52f206646ab5c445d7513ba7, type: 3}
   netaImg: {fileID: 21300000, guid: 65b338e6f95d431469a7f6c7f776a0c1, type: 3}
   info: {fileID: 7040561584231261383, guid: f7b1f40caff31c94ab74749b44d8fbda, type: 3}

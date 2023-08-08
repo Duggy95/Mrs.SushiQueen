@@ -144,21 +144,11 @@ public class UpGradeFishing : MonoBehaviour
                     }
                     else if (_text.text.Contains("생선살") && int.Parse(GameManager.instance.data.gold) >= rareItemPrice)
                     {
-                        // 5일차 이하 구매 불가
-                        if (int.Parse(GameManager.instance.data.dateCount) <= 5)
-                        {
-                            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-                            StartCoroutine(Impossible());
-                        }
-
-                        else
-                        {
-                            Debug.Log("생선살, 중복");
-                            isFull = FindIndexItem("생선살", i, rareItemPrice);
-                            isChange = true;
-                            audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
-                            break;
-                        }
+                        Debug.Log("생선살, 중복");
+                        isFull = FindIndexItem("생선살", i, rareItemPrice);
+                        isChange = true;
+                        audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
+                        break;
                     }
                     else
                     {
@@ -206,11 +196,21 @@ public class UpGradeFishing : MonoBehaviour
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= rareItemPrice && _text.text.Contains("생선살"))
                         {
-                            Debug.Log("생선살, 처음");
-                            _items[i].GetComponent<CanvasGroup>().interactable = true;
-                            isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice, Img);
-                            audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
-                            break;
+                            // 5일차 이하 구매 불가
+                            if (int.Parse(GameManager.instance.data.dateCount) <= 5)
+                            {
+                                audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+                                StartCoroutine(Impossible());
+                                break;
+                            }
+                            else
+                            {
+                                Debug.Log("생선살, 처음");
+                                _items[i].GetComponent<CanvasGroup>().interactable = true;
+                                isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice, Img);
+                                audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
+                                break;
+                            }
                         }
                         else
                         {

@@ -105,5 +105,7 @@ public class ItemSlot : MonoBehaviour
                 }
             }
         }
+        fm.inventoryFullImg.gameObject.SetActive(false);
+        fm.inventoryImg.gameObject.SetActive(false);
     }
 }
