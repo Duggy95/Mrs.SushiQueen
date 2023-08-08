@@ -42,9 +42,7 @@ public class StartSceneManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (GameManager.instance != null)
         {
-            //GameManager.instance.GetLog();
-
-            /*if(GPGSBinder.Inst.LoginS())
+            /*if (GPGSBinder.Inst.LoginS())
                 loginObj.gameObject.SetActive(false);*/
 
             if (!GameManager.instance.nextStage) //
@@ -75,18 +73,10 @@ public class StartSceneManager : MonoBehaviour
 
     private void Update()
     {
-        /*if (GPGSBinder.Inst.LoginS())
+        if (GPGSBinder.Inst.LoginS())
             loginObj.gameObject.SetActive(false);
 
         if (GPGSBinder.Inst.LoginS() && isStart && Input.GetMouseButtonDown(0))
-        {
-            isStart = false;
-            mainObj.gameObject.SetActive(false);
-            storyObj.gameObject.SetActive(true);
-            modeObj.gameObject.SetActive(false);
-        }*/
-
-        if (isStart && Input.GetMouseButtonDown(0))
         {
             if (GameManager.instance.data.dateCount == "1")
             {
@@ -106,6 +96,27 @@ public class StartSceneManager : MonoBehaviour
                 UIUpdate();
             }
         }
+
+        /*if (isStart && Input.GetMouseButtonDown(0))
+        {
+            if (GameManager.instance.data.dateCount == "1")
+            {
+                isStart = false;
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(true);
+                _storyManager.gameObject.SetActive(true);
+                modeObj.gameObject.SetActive(false);
+            }
+            else
+            {
+                isStart = false;
+                _storyManager.gameObject.SetActive(false);
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(false);
+                modeObj.gameObject.SetActive(true);
+                UIUpdate();
+            }
+        }*/
     }
 
     public void UIUpdate()
@@ -279,17 +290,15 @@ public class StartSceneManager : MonoBehaviour
         Application.Quit();
     }
 
-    /*public void LogOut()
+    public void LogOut()
     {
-            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-    GameManager.instance.nextStage = false;
-                 SceneManager.LoadScene(0);
-
-    }*/
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
+    }
 
     public void Delete()
     {

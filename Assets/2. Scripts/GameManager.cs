@@ -142,10 +142,10 @@ public class GameManager : MonoBehaviour
         Load();
     }
 
-    /*public void LogIn()
+    public void LogIn()
     {
         GPGSBinder.Inst.Login();
-    }*/
+    }
 
     public void Save(string type)
     {
@@ -153,38 +153,38 @@ public class GameManager : MonoBehaviour
         if (type == "i")
         {
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(inventory_Items));
-            /*string fileName = string.Format("ITEM");
+            string fileName = string.Format("ITEM");
             GPGSBinder.Inst.SaveCloud(fileName, item_Json);
-            Debug.Log("Data_Item" + item_Json);*/
-            PlayerPrefs.SetString("ITEM", item_Json);
+            Debug.Log("Data_Item" + item_Json);
+            //PlayerPrefs.SetString("ITEM", item_Json);
         }
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(inventory_Fishs));
-            /*string fileName = string.Format("FISH");
+            string fileName = string.Format("FISH");
             GPGSBinder.Inst.SaveCloud(fileName, fish_Json);
-            Debug.Log("Data_Fish" + fish_Json);*/
-            PlayerPrefs.SetString("FISH", fish_Json);
+            Debug.Log("Data_Fish" + fish_Json);
+            //PlayerPrefs.SetString("FISH", fish_Json);
         }
         else if (type == "d")
         {
             string data_Json = JsonUtility.ToJson(data);
-            /*string fileName = string.Format("DATA");
+            string fileName = string.Format("DATA");
             GPGSBinder.Inst.SaveCloud(fileName, data_Json);
-            Debug.Log("Data_Data" + data_Json);*/
-            PlayerPrefs.SetString("DATA", data_Json);
+            Debug.Log("Data_Data" + data_Json);
+            //PlayerPrefs.SetString("DATA", data_Json);
         }
     }
 
     public void Load()
     {
-        /*Debug.Log("load_cloud");
+        Debug.Log("load_cloud");
 
         GPGSBinder.Inst.LoadCloud("ITEM");
         GPGSBinder.Inst.LoadCloud("FISH");
-        GPGSBinder.Inst.LoadCloud("DATA");*/
+        GPGSBinder.Inst.LoadCloud("DATA");
 
-        if (PlayerPrefs.HasKey("ITEM"))
+        /*if (PlayerPrefs.HasKey("ITEM"))
         {
             string item_Data = PlayerPrefs.GetString("ITEM");
             inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(item_Data).target;
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Save("d");
-        }
+        }*/
     }
 
     public void SetData(string _data)
@@ -242,12 +242,13 @@ public class GameManager : MonoBehaviour
         inventory_Items.Clear();
         inventory_Fishs.Clear();
         data = new Data();
-        /*GPGSBinder.Inst.DeleteCloud("ITEM");
-        GPGSBinder.Inst.DeleteCloud("FISH");
-        GPGSBinder.Inst.DeleteCloud("DATA");*/
 
-        PlayerPrefs.DeleteAll();
-        Debug.Log("데이터 삭제");
+        GPGSBinder.Inst.DeleteCloud("ITEM");
+        GPGSBinder.Inst.DeleteCloud("FISH");
+        GPGSBinder.Inst.DeleteCloud("DATA");
+
+        /*PlayerPrefs.DeleteAll();
+        Debug.Log("데이터 삭제");*/
     }
 
     public void ExitGame()

@@ -60,7 +60,6 @@ public class FishingManager : MonoBehaviour
         useRareItemTxt.gameObject.SetActive(false);
         useRedItemTxt.gameObject.SetActive(false);
         useWhiteItemTxt.gameObject.SetActive(false);
-        //GameManager.instance.GetLog();
         inventoryImg.gameObject.SetActive(false);
         UIUpdate();
     }
@@ -105,7 +104,6 @@ public class FishingManager : MonoBehaviour
         fishLine.SetPosition(0, startPos); // 라인의 점들 설정
         fishLine.SetPosition(1, endPos);
         Instantiate(fishObj, mousePos, Quaternion.identity);
-        //transform.position = Input.mousePosition;
     }
 
     // 잡은 경우에 물고기 정보창 띄움
@@ -164,7 +162,6 @@ public class FishingManager : MonoBehaviour
         GameManager.instance.data.gold = _gold.ToString();
 
         GameManager.instance.todayData.gold += data.gold;
-        //GameManager.instance.Save("d");
         Debug.Log("골드 " + _gold);
         // 골드 ++
         UIUpdate();
@@ -206,7 +203,6 @@ public class FishingManager : MonoBehaviour
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(Eff());
                         StartCoroutine(EffMove());
-                        //GameManager.instance.Save("f");
                         isChange = true;
                         isFull = false;
                         break;
@@ -243,7 +239,6 @@ public class FishingManager : MonoBehaviour
 
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
                         Debug.Log("안찼고 다른 종류");
-                        //GameManager.instance.Save("f");
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(Eff());
                         StartCoroutine(EffMove());
@@ -444,14 +439,14 @@ public class FishingManager : MonoBehaviour
         Application.Quit();
     }
 
-    /*public void LogOut()
+    public void LogOut()
     {
-            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
         GPGSBinder.Inst.Logout();
-            logOutQuestion.gameObject.SetActive(false);
+        logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
-    GameManager.instance.nextStage = false;
-    SceneManager.LoadScene(0);
-    }*/
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
+    }
 }
