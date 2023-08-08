@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UpGradeFishing : MonoBehaviour
 {
     public GameObject noMoneyTxt;
+    public GameObject impossibleTxt;
     public GameObject ItemContent;
     public Text fullTxt;
 
@@ -143,11 +144,21 @@ public class UpGradeFishing : MonoBehaviour
                     }
                     else if (_text.text.Contains("생선살") && int.Parse(GameManager.instance.data.gold) >= rareItemPrice)
                     {
-                        Debug.Log("생선살, 중복");
-                        isFull = FindIndexItem("생선살", i, rareItemPrice);
-                        isChange = true;
-                        audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
-                        break;
+                        // 5일차 이하 구매 불가
+                        if (int.Parse(GameManager.instance.data.dateCount) <= 5)
+                        {
+                            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+                            StartCoroutine(Impossible());
+                        }
+
+                        else
+                        {
+                            Debug.Log("생선살, 중복");
+                            isFull = FindIndexItem("생선살", i, rareItemPrice);
+                            isChange = true;
+                            audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
+                            break;
+                        }
                     }
                     else
                     {
@@ -218,6 +229,13 @@ public class UpGradeFishing : MonoBehaviour
         {
             StartCoroutine(Full());
         }
+    }
+
+    IEnumerator Impossible()
+    {
+        impossibleTxt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        impossibleTxt.gameObject.SetActive(false);
     }
 
     bool FindIndexItem(string name, int i, int price)
