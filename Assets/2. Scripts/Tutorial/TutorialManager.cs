@@ -12,9 +12,6 @@ public class TutorialManager : MonoBehaviour
     /*[SerializeField]
     private string nextSceneName = "Start";*/
 
-    private TutorialBase currentTutorial = null;
-    private int currentIndex = -1;
-
     public GameObject inventoryImg;
     public GameObject configPanel;
     public GameObject modeCanvas;
@@ -30,17 +27,32 @@ public class TutorialManager : MonoBehaviour
     public GameObject noMoneyTxt;
     public GameObject inventoryFullImg;
     public GameObject bonusQuestion;
+    public GameObject fishingSV;
+    public GameObject ShopSV;
+    public GameObject SkillSV;
     public CanvasGroup inventoryBtn;
+    public Image fishBtn;
+    public Image shopBtn;
+    public Image skillBtn;
+    public bool fishScene;
+
     Text[] bonusTxt;
     AudioSource audioSource;
+    TutorialBase currentTutorial = null;
+    Color initColor = new Color(1, 1, 1, 1);
+    Color selColor = new Color(1, 1, 0, 1);
 
+    int currentIndex = -1;
     bool isSkip;
     bool isInventory = false;
     bool config;
-    public bool fishScene;
 
     void Start()
     {
+        fishBtn.color = selColor;
+        shopBtn.color = initColor;
+        skillBtn.color = initColor;
+
         SetNextTutorial();
         print(tutorials.Count);
         modeCanvas.SetActive(true);
@@ -281,4 +293,44 @@ public class TutorialManager : MonoBehaviour
 
         noMoneyTxt.gameObject.SetActive(false);
     }
+
+    public void OnclickSkill()
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        fishBtn.color = initColor;
+        shopBtn.color = initColor;
+        skillBtn.color = selColor;
+        fishingSV.gameObject.SetActive(false);
+        ShopSV.gameObject.SetActive(false);
+        SkillSV.gameObject.SetActive(true);
+        noMoneyTxt.gameObject.SetActive(false);
+    }
+
+    public void OnclickShop()
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        fishBtn.color = initColor;
+        shopBtn.color = selColor;
+        skillBtn.color = initColor;
+        fishingSV.gameObject.SetActive(false);
+        ShopSV.gameObject.SetActive(true);
+        SkillSV.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
+    }
+
+    public void OnclickFishing()
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        fishBtn.color = selColor;
+        shopBtn.color = initColor;
+        skillBtn.color = initColor;
+        fishingSV.gameObject.SetActive(true);
+        ShopSV.gameObject.SetActive(false);
+        SkillSV.gameObject.SetActive(false);
+        noMoneyTxt.gameObject.SetActive(false);
+    }
+
 }
