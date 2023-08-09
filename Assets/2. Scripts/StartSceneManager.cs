@@ -43,11 +43,16 @@ public class StartSceneManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (GameManager.instance != null)
         {
-            /*if (GPGSBinder.Inst.LoginS())
+              /*if (GPGSBinder.Inst.LoginS())
                 loginObj.gameObject.SetActive(false);*/
 
             if (!GameManager.instance.nextStage) //
             {
+                if (GameManager.instance.loginSuccess)
+                {
+                    loginObj.gameObject.SetActive(false);
+                }
+
                 StartCoroutine(FadeAway());
                 mainObj.gameObject.SetActive(true);
                 storyObj.gameObject.SetActive(false);
@@ -135,11 +140,9 @@ public class StartSceneManager : MonoBehaviour
 
     public void GameReady()
     {
-        if(!GameManager.instance.loginSuccess)
-        {
-            return;
-        }
-        else
+        GameManager.instance.loginSuccess = GPGSBinder.Inst.LoginS();
+
+        if (GameManager.instance.loginSuccess)
         {
             startPanel.gameObject.SetActive(true);
             StartCoroutine(GameStart());
