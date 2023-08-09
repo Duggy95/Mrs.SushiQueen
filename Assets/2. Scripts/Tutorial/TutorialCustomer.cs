@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -186,7 +187,13 @@ public class TutorialCustomer : MonoBehaviour
                                 break;
                             }
                         }
+
+                        totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
+                        tc.priceTxt.text = totalPrice.ToString("N0");
+
+                        audioSource.PlayOneShot(SoundManager.instance.orderSuccess, 1);
                     }
+
                 }
                 else
                 {
@@ -288,6 +295,7 @@ public class TutorialCustomer : MonoBehaviour
         }
 
         StartCoroutine(tc.Create());
+        tc.priceTxt.text = "0";
         Destroy(this.gameObject, 2.5f);
     }
 }
