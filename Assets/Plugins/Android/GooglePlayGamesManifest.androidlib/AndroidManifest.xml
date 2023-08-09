@@ -14,7 +14,7 @@
 
         <!-- The space in these forces it to be interpreted as a string vs. int -->
         <meta-data android:name="com.google.android.gms.games.APP_ID"
-            android:value="\u003698060273577" />
+            android:value="\u003954281906534" />
 
         <!-- Keep track of which plugin is being used -->
         <meta-data android:name="com.google.android.gms.games.unityVersion"
