@@ -24,6 +24,7 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
+    public GameObject admobQuestion;
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
@@ -124,6 +125,11 @@ public class EndSceneCtrl : MonoBehaviour
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
         atkTxt.text = GameManager.instance.data.atk;
+    }
+
+    public void AdmobQuestion()
+    {
+        admobQuestion.gameObject.SetActive(true);
     }
 
     public void EndSceneQuestionEsc()
