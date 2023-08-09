@@ -126,7 +126,7 @@ public class FishingManager : MonoBehaviour
     {
         inventoryFullImg.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         inventoryFullImg.SetActive(false);
     }
@@ -314,9 +314,7 @@ public class FishingManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        Debug.Log("fishingScene data : " + GameManager.instance.data);
-        Debug.Log("fishingScene item : " + GameManager.instance.inventory_Items);
-        Debug.Log("fishingScene fish : " + GameManager.instance.inventory_Fishs);
+        GameManager.instance.LogData();
 
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");

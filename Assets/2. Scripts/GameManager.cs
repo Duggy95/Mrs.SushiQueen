@@ -139,14 +139,16 @@ public class GameManager : MonoBehaviour
 
         else
             DontDestroyOnLoad(gameObject);
-
-        Load();
     }
 
     public void LogIn()
     {
         GPGSBinder.Inst.Login();
         loginSuccess = GPGSBinder.Inst.LoginS();
+        Debug.Log("loginSuccess : " + loginSuccess);
+
+        if (loginSuccess)
+            Load();
     }
 
     public void Save(string type)
@@ -180,9 +182,9 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
+        GPGSBinder.Inst.LoadCloud("DATA");
         GPGSBinder.Inst.LoadCloud("ITEM");
         GPGSBinder.Inst.LoadCloud("FISH");
-        GPGSBinder.Inst.LoadCloud("DATA");
 
         /*if (PlayerPrefs.HasKey("ITEM"))
         {
@@ -226,33 +228,44 @@ public class GameManager : MonoBehaviour
         if (loadData.Contains(i))
         {
             _inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(loadData).target;
-            Debug.Log("loadItemData : " + _inventory_Items);
+            Debug.Log("loadItemData : " + loadData);
         }
         else if (loadData.Contains(f))
         {
             _inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(loadData).target;
-            Debug.Log("loadFishData : " + _inventory_Fishs);
+            Debug.Log("loadFishData : " + loadData);
         }
         else if (loadData.Contains(d))
         {
             _data = JsonUtility.FromJson<Data>(loadData);
-            Debug.Log("loadData : " + _data);
+            Debug.Log("loadData : " + loadData);
         }
+    }
+
+    public void LogData()
+    {
+        string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(_inventory_Items));
+        Debug.Log("logItemData : " + item_Json);
+        string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(_inventory_Fishs));
+        Debug.Log("logFishData : " + fish_Json);
+        string data_Json = JsonUtility.ToJson(_data);
+        Debug.Log("logData : " + data_Json);
     }
 
     public void DeleteData()
     {
-        inventory_Items.Clear();
-        inventory_Fishs.Clear();
         data = new Data();
+        Save("d");
+
+        inventory_Items.Clear();
+        Save("i");
+
+        inventory_Fishs.Clear();
+        Save("f");
 
         Debug.Log("deleteItemData : " + inventory_Items.Count);
         Debug.Log("deleteFishData : " + inventory_Fishs.Count);
-        Debug.Log("deleteData : " +  data);
-
-        Save("i");
-        Save("d");
-        Save("f");
+        Debug.Log("deleteData : " + data);
 
         /*GPGSBinder.Inst.DeleteCloud("ITEM");
         GPGSBinder.Inst.DeleteCloud("FISH");

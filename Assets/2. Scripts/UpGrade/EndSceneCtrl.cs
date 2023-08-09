@@ -118,9 +118,7 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void UIUpdate()
     {
-        Debug.Log("endScene data : " + GameManager.instance.data);
-        Debug.Log("endScene item : " + GameManager.instance.inventory_Items);
-        Debug.Log("endScene fish : " + GameManager.instance.inventory_Fishs);
+        GameManager.instance.LogData();
 
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");

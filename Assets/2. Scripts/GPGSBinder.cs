@@ -38,7 +38,6 @@ public class GPGSBinder
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (success) =>
         {
             onLoginSuccess?.Invoke(success == SignInStatus.Success, Social.localUser);
-            GameManager.instance.Load();
         });
     }
 
@@ -83,9 +82,9 @@ public class GPGSBinder
                         else
                         {
                             onCloudLoaded?.Invoke(false, null);
-                            GameManager.instance.Save("i");
+                            /*GameManager.instance.Save("i");
                             GameManager.instance.Save("f");
-                            GameManager.instance.Save("d");
+                            GameManager.instance.Save("d");*/
                         }
                     });
                 }

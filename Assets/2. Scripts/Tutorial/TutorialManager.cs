@@ -53,6 +53,8 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.LogData();
+
         fishBtn.color = selColor;
         shopBtn.color = initColor;
         skillBtn.color = initColor;
@@ -65,10 +67,6 @@ public class TutorialManager : MonoBehaviour
         endCanvas.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         bonusTxt = bonusQuestion.GetComponentsInChildren<Text>();
-
-        Debug.Log("tutorialScene data : " + GameManager.instance.data);
-        Debug.Log("tutorialScene item : " + GameManager.instance.inventory_Items);
-        Debug.Log("tutorialScene fish : " + GameManager.instance.inventory_Fishs);
     }
 
     void Update()

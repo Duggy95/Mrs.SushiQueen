@@ -27,6 +27,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
     public GameObject impossibleTxt;
+    public GameObject startPanel;
     public StoryManager storyManager;
     public CanvasGroup blackCanvas;
     //public Image backGround;  //스토리 배경 그림
@@ -52,7 +53,6 @@ public class StartSceneManager : MonoBehaviour
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(false);
                 _storyManager.gameObject.SetActive(false);
-                UIUpdate();
                 /*GameManager.instance.Save("d");
                 GameManager.instance.Save("i");
                 GameManager.instance.Save("f");*/
@@ -127,7 +127,13 @@ public class StartSceneManager : MonoBehaviour
         }*/
     }
 
-    public void GameStart()
+    public void LoginBtn()
+    {
+        GameManager.instance.LogIn();
+        loginObj.gameObject.SetActive(false);
+    }
+
+    public void GameReady()
     {
         if(!GameManager.instance.loginSuccess)
         {
@@ -135,30 +141,35 @@ public class StartSceneManager : MonoBehaviour
         }
         else
         {
-            if (GameManager.instance.data.dateCount == "0")
-            {
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(true);
-                _storyManager.gameObject.SetActive(true);
-                modeObj.gameObject.SetActive(false);
-            }
+            startPanel.gameObject.SetActive(true);
+            StartCoroutine(GameStart());
+        }
+    }
 
-            else
-            {
-                _storyManager.gameObject.SetActive(false);
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(false);
-                modeObj.gameObject.SetActive(true);
-                UIUpdate();
-            }
+    IEnumerator GameStart()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (int.Parse(GameManager.instance.data.dateCount) <= 0)
+        {
+            mainObj.gameObject.SetActive(false);
+            storyObj.gameObject.SetActive(true);
+            _storyManager.gameObject.SetActive(true);
+            modeObj.gameObject.SetActive(false);
+        }
+        else
+        {
+            _storyManager.gameObject.SetActive(false);
+            mainObj.gameObject.SetActive(false);
+            storyObj.gameObject.SetActive(false);
+            modeObj.gameObject.SetActive(true);
+            UIUpdate();
         }
     }
 
     public void UIUpdate()
     {
-        Debug.Log("startScene data : " + GameManager.instance.data);
-        Debug.Log("startScene item : " + GameManager.instance.inventory_Items);
-        Debug.Log("startScene fish : " + GameManager.instance.inventory_Fishs);
+        GameManager.instance.LogData();
 
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
