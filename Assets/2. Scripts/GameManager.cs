@@ -144,11 +144,10 @@ public class GameManager : MonoBehaviour
     public void LogIn()
     {
         GPGSBinder.Inst.Login();
-        loginSuccess = GPGSBinder.Inst.LoginS();
+        /*loginSuccess = GPGSBinder.Inst.LoginS();
         Debug.Log("loginSuccess : " + loginSuccess);
 
-        if (loginSuccess)
-            Load();
+        if (loginSuccess)*/
     }
 
     public void Save(string type)
@@ -183,9 +182,11 @@ public class GameManager : MonoBehaviour
     public void Load()
     {
         GPGSBinder.Inst.LoadCloud("DATA");
+        print("loadData");
         GPGSBinder.Inst.LoadCloud("ITEM");
+        print("loadItem");
         GPGSBinder.Inst.LoadCloud("FISH");
-
+        print("loadfish");
         /*if (PlayerPrefs.HasKey("ITEM"))
         {
             string item_Data = PlayerPrefs.GetString("ITEM");
