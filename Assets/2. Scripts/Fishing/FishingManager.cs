@@ -314,6 +314,10 @@ public class FishingManager : MonoBehaviour
 
     public void UIUpdate()
     {
+        Debug.Log("fishingScene data : " + GameManager.instance.data);
+        Debug.Log("fishingScene item : " + GameManager.instance.inventory_Items);
+        Debug.Log("fishingScene fish : " + GameManager.instance.inventory_Fishs);
+
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");

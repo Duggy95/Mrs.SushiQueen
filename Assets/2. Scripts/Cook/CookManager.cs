@@ -60,11 +60,6 @@ public class CookManager : MonoBehaviour
         priceTxt.text = "0";
     }
 
-    void Update()
-    {
-        UIUpdate();
-    }
-
     public void GoEndScene()  //¿î¿µ¾ÀÀ¸·Î
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
@@ -94,6 +89,10 @@ public class CookManager : MonoBehaviour
 
     public void UIUpdate()
     {
+        Debug.Log("cookScene data : " + GameManager.instance.data);
+        Debug.Log("cookScene item : " + GameManager.instance.inventory_Items);
+        Debug.Log("cookScene fish : " + GameManager.instance.inventory_Fishs);
+
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");

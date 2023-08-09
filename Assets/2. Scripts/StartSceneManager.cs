@@ -34,7 +34,7 @@ public class StartSceneManager : MonoBehaviour
 
     AudioSource audioSource;
     bool config;
-    bool isStart;
+    // bool isStart;
 
     private void Awake()
     {
@@ -51,65 +51,73 @@ public class StartSceneManager : MonoBehaviour
                 mainObj.gameObject.SetActive(true);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(false);
-                isStart = true;
+                _storyManager.gameObject.SetActive(false);
+                UIUpdate();
+                /*GameManager.instance.Save("d");
+                GameManager.instance.Save("i");
+                GameManager.instance.Save("f");*/
+                //isStart = true;
             }
 
             else //
             {
+                //isStart = true;
                 blackCanvas.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 _storyManager.gameObject.SetActive(false);
+                UIUpdate();
                 GameManager.instance.Save("d");
                 GameManager.instance.Save("i");
                 GameManager.instance.Save("f");
                 GameManager.instance.todayData = new TodayData();
                 GameManager.instance.todayFishInfos.Clear();
-                UIUpdate();
             }
         }
     }
 
     private void Update()
     {
-        if (GPGSBinder.Inst.LoginS())
-            loginObj.gameObject.SetActive(false);
+        /*if (GPGSBinder.Inst.LoginS())
+            loginObj.gameObject.SetActive(false);*/
 
-        if (GPGSBinder.Inst.LoginS() && isStart && Input.GetMouseButtonDown(0))
+        /*if (GPGSBinder.Inst.LoginS() && Input.GetMouseButtonDown(0))
         {
-            if (GameManager.instance.data.dateCount == "1")
+            if (GameManager.instance.data.dateCount == "0")
             {
-                isStart = false;
+                //isStart = false;
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(true);
                 _storyManager.gameObject.SetActive(true);
                 modeObj.gameObject.SetActive(false);
             }
+
             else
             {
-                isStart = false;
+                //isStart = false;
                 _storyManager.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 UIUpdate();
             }
-        }
+        }*/
 
-        /*if (isStart && Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
-            if (GameManager.instance.data.dateCount == "1")
+            if (GameManager.instance.data.dateCount == "0")
             {
-                isStart = false;
+                //isStart = false;
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(true);
                 _storyManager.gameObject.SetActive(true);
                 modeObj.gameObject.SetActive(false);
             }
+
             else
             {
-                isStart = false;
+                //isStart = false;
                 _storyManager.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
@@ -119,8 +127,39 @@ public class StartSceneManager : MonoBehaviour
         }*/
     }
 
+    public void GameStart()
+    {
+        if(!GameManager.instance.loginSuccess)
+        {
+            return;
+        }
+        else
+        {
+            if (GameManager.instance.data.dateCount == "0")
+            {
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(true);
+                _storyManager.gameObject.SetActive(true);
+                modeObj.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                _storyManager.gameObject.SetActive(false);
+                mainObj.gameObject.SetActive(false);
+                storyObj.gameObject.SetActive(false);
+                modeObj.gameObject.SetActive(true);
+                UIUpdate();
+            }
+        }
+    }
+
     public void UIUpdate()
     {
+        Debug.Log("startScene data : " + GameManager.instance.data);
+        Debug.Log("startScene item : " + GameManager.instance.inventory_Items);
+        Debug.Log("startScene fish : " + GameManager.instance.inventory_Fishs);
+
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
@@ -146,13 +185,19 @@ public class StartSceneManager : MonoBehaviour
 
     public void OnClickSkip()
     {
-        /*mainObj.gameObject.SetActive(false);
-        storyObj.gameObject.SetActive(false);
-        modeObj.gameObject.SetActive(true);
-        UIUpdate();*/
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
-        SceneManager.LoadScene(4);
+        if (int.Parse(GameManager.instance.data.dateCount) >= 1)
+        {
+            _storyManager.gameObject.SetActive(false);
+            mainObj.gameObject.SetActive(false);
+            storyObj.gameObject.SetActive(false);
+            modeObj.gameObject.SetActive(true);
+            UIUpdate();
+        }
+        else
+        {
+            SceneManager.LoadScene(4);
+        }
     }
 
     public void FishingQuestionEsc()
