@@ -167,10 +167,10 @@ public class TutorialFish : MonoBehaviour
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
 
-        GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
+        /*GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
         water_.transform.SetParent(transform);
         GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
-        _water.transform.SetParent(transform);
+        _water.transform.SetParent(transform);*/
 
         tf.touchTxt.gameObject.SetActive(true);
 
@@ -178,8 +178,8 @@ public class TutorialFish : MonoBehaviour
         // 한바퀴 돌 때마다 방향 랜덤 설정
         while (fishing)
         {
-            water_.gameObject.SetActive(true);
-            _water.gameObject.SetActive(false);
+            /*water_.gameObject.SetActive(true);
+            _water.gameObject.SetActive(false);*/
 
             randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
 
@@ -202,8 +202,8 @@ public class TutorialFish : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
 
-            water_.gameObject.SetActive(false);
-            _water.gameObject.SetActive(true);
+            /*water_.gameObject.SetActive(false);
+            _water.gameObject.SetActive(true);*/
 
             yield return new WaitForSeconds(0.5f);
         }

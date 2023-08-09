@@ -13,6 +13,8 @@ public class TutorialCook : TutorialBase
     public GameObject InventoryImg;
     public GameObject cookInventoryFullImg;
     public Text orderTxt;
+    public Text priceTxt;
+    public Transform dish;
     //public CanvasGroup inventoryCanvas;
     public List<string> fishList = new List<string>();
     WaitForSeconds ws;
@@ -61,11 +63,14 @@ public class TutorialCook : TutorialBase
             if (count % 2 == 0)
             {
                 cookView.SetActive(false);
+                dish.transform.SetParent(orderView.transform);
                 count = 0;
             }
             else
             {
                 cookView.SetActive(true);
+                dish.transform.SetParent(cookView.transform);
+                dish.transform.SetSiblingIndex(1);  //2번째 자식.
             }
         }
     }
@@ -104,6 +109,7 @@ public class TutorialCook : TutorialBase
     public void GoOrder()
     {
         cookView.SetActive(false);
+        dish.transform.SetParent(orderView.transform);
     }
 
     public void Order(string txt)

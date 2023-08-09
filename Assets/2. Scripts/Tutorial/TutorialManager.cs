@@ -65,6 +65,10 @@ public class TutorialManager : MonoBehaviour
         endCanvas.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         bonusTxt = bonusQuestion.GetComponentsInChildren<Text>();
+
+        Debug.Log("tutorialScene data : " + GameManager.instance.data);
+        Debug.Log("tutorialScene item : " + GameManager.instance.inventory_Items);
+        Debug.Log("tutorialScene fish : " + GameManager.instance.inventory_Fishs);
     }
 
     void Update()
@@ -93,11 +97,11 @@ public class TutorialManager : MonoBehaviour
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentTutorial = tutorials[currentIndex];
-        if (currentIndex >= 13 && currentIndex <= 26)
+        if (currentIndex >= 16 && currentIndex <= 30)
         {
             inventoryBtn.interactable = false;
         }
-        else if (currentIndex >= 27)
+        else if (currentIndex >= 31)
         {
             inventoryBtn.interactable = true;
         }
@@ -116,10 +120,12 @@ public class TutorialManager : MonoBehaviour
 
         if (isSkip)
         {
+            GameManager.instance.data.dateCount = "1";
             GameManager.instance.data.gold = "300000";
         }
         else
         {
+            GameManager.instance.data.dateCount = "1";
             GameManager.instance.data.gold = "500000";
         }
 

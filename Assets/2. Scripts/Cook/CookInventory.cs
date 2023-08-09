@@ -44,12 +44,6 @@ public class CookInventory : MonoBehaviour
                     fish_Slot.GetComponentInChildren<Text>().text = _fishName + "   " + _fishCount + " " + "마리";
                     fish_Slot.isEmpty = true;
 
-                    if(_fishName =="")
-                    {
-                        print("이거 동작하니?");
-                        Destroy(fishPrefab.GetComponent<Drag>());
-                    }
-
                     if (_fishName == "광어")
                         fishImgPrefab.GetComponent<Image>().sprite = Resources.Load("Flatfish", typeof(Sprite)) as Sprite;
                     else if (_fishName == "연어")
@@ -74,7 +68,6 @@ public class CookInventory : MonoBehaviour
 
                 if (fish_Slot.GetComponentInChildren<Text>().text.Split(" ")[0] == "")
                 {
-                    print("이거 동작하니?");
                     Destroy(fishPrefab.GetComponent<Drag>());
                 }
             }
