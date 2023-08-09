@@ -39,6 +39,8 @@ public class TutorialCook : TutorialBase
         cookView.SetActive(true);
         audioSource = GetComponent<AudioSource>();
         cookInventoryFullImg.SetActive(true);
+
+        priceTxt.text = "0";
     }
 
     public override void Execute(TutorialManager tutorialManager)
@@ -94,13 +96,14 @@ public class TutorialCook : TutorialBase
         {
             isReady = true;
             cookInventoryFullImg.SetActive(false);
-            //StartCoroutine(Create());
             StartCoroutine(ShowCustomer());
             readyBtn.SetActive(false);
             orderView.SetActive(true);
             cookView.SetActive(false);
             InventoryImg.gameObject.SetActive(false);
             //inventoryCanvas.interactable = false;
+            dish.transform.SetParent(orderView.transform);
+            dish.transform.SetSiblingIndex(2);  //2번째 자식.
         }
         else
             return;

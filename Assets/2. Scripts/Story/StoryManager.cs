@@ -42,6 +42,7 @@ public class StoryManager : MonoBehaviour
         //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
         if (currentIndex >= stories.Count - 1)
         {
+            print("스토리 종료");
             CompletedAllStories();
             return;
         }
@@ -49,7 +50,7 @@ public class StoryManager : MonoBehaviour
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentStory = stories[currentIndex];
-        background.sprite = sprites[currentIndex];
+        //background.sprite = sprites[currentIndex];
 
         //새로 바뀐 튜토리얼의 Enter() 메소드 호출
         currentStory.Enter();
