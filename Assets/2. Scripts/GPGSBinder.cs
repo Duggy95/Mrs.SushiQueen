@@ -86,7 +86,6 @@ public class GPGSBinder
                             GameManager.instance.Save("i");
                             GameManager.instance.Save("f");
                             GameManager.instance.Save("d");
-                            GameManager.instance.Load();
                         }
                     });
                 }
@@ -102,7 +101,6 @@ public class GPGSBinder
                 {
                     SavedGame.Delete(game);
                     onCloudDeleted?.Invoke(true);
-                    GameManager.instance.ExitGame();
                 }
                 else
                     onCloudDeleted?.Invoke(false);

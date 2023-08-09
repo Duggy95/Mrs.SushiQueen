@@ -48,6 +48,7 @@ public class EndSceneCtrl : MonoBehaviour
         maxLevelTxt.gameObject.SetActive(false);
         noMoneyTxt.gameObject.SetActive(false);
         fullTxt.gameObject.SetActive(false);
+        UIUpdate();
     }
 
     public void OnclickSkill()
@@ -115,14 +116,12 @@ public class EndSceneCtrl : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-
-    private void Start()
-    {
-        UIUpdate();
-    }
-
     public void UIUpdate()
     {
+        Debug.Log("endScene data : " + GameManager.instance.data);
+        Debug.Log("endScene item : " + GameManager.instance.inventory_Items);
+        Debug.Log("endScene fish : " + GameManager.instance.inventory_Fishs);
+
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
