@@ -845,6 +845,7 @@ MonoBehaviour:
   exitGameQuestion: {fileID: 193331935}
   endScenePanel: {fileID: 431383396}
   endGameView: {fileID: 100164066}
+  fishScroll: {fileID: 1498260601}
   dish: {fileID: 772247575}
   dateTxt: {fileID: 1376496418}
   goldTxt: {fileID: 558540665}
@@ -11247,7 +11248,7 @@ MonoBehaviour:
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
-  orderFail: {fileID: 0}
+  orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}
   dropSound: {fileID: 8300000, guid: 17dc1d5235869b44abc67f234919308b, type: 3}
   reelIn: {fileID: 8300000, guid: 492f7a4a1e863d54389b0e23ed588664, type: 3}
   getFish: {fileID: 8300000, guid: 57f0c349c18d5d84a8fb2cee8dee4406, type: 3}

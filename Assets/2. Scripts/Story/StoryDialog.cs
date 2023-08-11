@@ -21,7 +21,6 @@ public class StoryDialog : StoryBase
         dialogManager.Next();
         if (this.dialogManager.complete == true)
         {
-            //Destroy(this, 2);
             storyManager.SetNextStory();
         }
     }

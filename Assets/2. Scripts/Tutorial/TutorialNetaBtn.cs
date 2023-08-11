@@ -14,21 +14,18 @@ public class TutorialNetaBtn : MonoBehaviour
 
     public TutorialCook tc;
     Text iconTxt;
+    AudioSource audioSource;
 
     void Start()
     {
         text = GetComponentInChildren<Text>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void FishBtn()
     {
         if (fishData == null)
             return;
-
-        /*if (board == null)
-        {
-            board = GameObject.Find("Board_RawImage");  //보드 오브젝트 찾기.
-        }*/
 
         Transform riceTr = board.transform.Find("Rice(Clone)").transform;  //보드 오브젝트의 자식으로 있는 Rice 찾기.
 
@@ -53,6 +50,7 @@ public class TutorialNetaBtn : MonoBehaviour
             UpdateUI();
             neta.GetComponent<Neta>().fishData = fishData;  //생선데이터 넘겨주기.
             riceTr.gameObject.AddComponent<DragSushi>();  //밥 오브젝트에 DragSushi 스크립트 Add.
+            audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         }
     }
 

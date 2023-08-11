@@ -137,7 +137,7 @@ public class TutorialCustomer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+        audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
         orderTxt.text = fail[0];  //실패 텍스트 출력.
         isOrdered = false;
         StartCoroutine(FadeOut());
@@ -216,6 +216,7 @@ public class TutorialCustomer : MonoBehaviour
             }
             else  //불일치 시
             {
+                audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
                 orderTxt.text = fail[Random.Range(0, fail.Length)];
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.

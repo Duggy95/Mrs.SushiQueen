@@ -185,6 +185,7 @@ public class TutorialFishing : TutorialBase
             isFishing = false;
             fishInfo.gameObject.SetActive(false);
         }
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
     }
 
     IEnumerator Eff()

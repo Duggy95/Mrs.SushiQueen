@@ -24,6 +24,8 @@ public class CookManager : MonoBehaviour
     public GameObject exitGameQuestion;
     public GameObject endScenePanel;
     public GameObject endGameView;
+    public Transform fishScroll;
+    NetaButton[] fishSlots;
     public Transform dish;
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
@@ -58,6 +60,8 @@ public class CookManager : MonoBehaviour
 
         UIUpdate();
         priceTxt.text = "0";
+
+        fishSlots = fishScroll.gameObject.GetComponentsInChildren<NetaButton>();
     }
 
     public void GoEndScene()  //운영씬으로
@@ -263,6 +267,14 @@ public class CookManager : MonoBehaviour
         inventoryCanvas.interactable = false;
         dish.transform.SetParent(orderView.transform);
         dish.transform.SetSiblingIndex(2);  //2번째 자식.
+
+        for (int i = 0; i < fishSlots.Length; i++)
+        {
+            if (fishSlots[i].fishData == null)
+            {
+                Destroy(fishSlots[i].gameObject);
+            }
+        }
     }
 
     public void Order(string txt)

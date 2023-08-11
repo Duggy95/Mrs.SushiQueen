@@ -12,7 +12,7 @@ public class StoryManager : MonoBehaviour
     public GameObject storyView;
 
     private StoryBase currentStory = null;
-    public int currentIndex = -1;
+    int currentIndex = -1;
 
     public Sprite[] sprites;
     public Image background;
@@ -20,7 +20,7 @@ public class StoryManager : MonoBehaviour
     private void Start()
     {
         SetNextStory();
-        print("스토리 시작");
+        print(stories.Count);
     }
 
     private void Update()
@@ -49,8 +49,9 @@ public class StoryManager : MonoBehaviour
 
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
+        print(currentIndex);
         currentStory = stories[currentIndex];
-        //background.sprite = sprites[currentIndex];
+        background.sprite = sprites[currentIndex];
 
         //새로 바뀐 튜토리얼의 Enter() 메소드 호출
         currentStory.Enter();
@@ -59,7 +60,6 @@ public class StoryManager : MonoBehaviour
     public void CompletedAllStories()
     {
         currentStory = null;
-
         //행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         //현재는 씬 전환.
         Debug.Log("Complete All");

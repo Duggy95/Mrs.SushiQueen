@@ -200,6 +200,7 @@ public class Customer : MonoBehaviour
                 GameManager.instance.data.score = _score.ToString();
 
                 GameManager.instance.todayData.score -= 20;
+                audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
 
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
@@ -244,7 +245,7 @@ public class Customer : MonoBehaviour
 
     public void NoBtn() //거절 버튼.
     {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+        audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
 
         int _score = int.Parse(GameManager.instance.data.score) - 5;  //평판 감소
         GameManager.instance.data.score = _score.ToString();
@@ -352,17 +353,17 @@ public class Customer : MonoBehaviour
             }
             else  //불일치 시
             {
-                print("버그 발생!!!");
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
 
                 GameManager.instance.todayData.score -= 20;
-
+                
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
                     EndGameView();
                 }
 
+                audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
                 cookManager.UIUpdate();
                 orderTxt.text = fail[Random.Range(0, fail.Length)];
                 orders.Clear();  //주문 리스트 클리어.

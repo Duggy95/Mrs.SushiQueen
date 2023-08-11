@@ -60,16 +60,7 @@ public class Dish : MonoBehaviour
 
     public void ClearBoard()  //도마 위 초밥 삭제 메서드.
     {
-        foreach (Transform child in boardTr)
-        {
-            Destroy(child.gameObject);
-        }
-    }
-
-    public void Clear()  //도마 위 초밥 삭제 메서드.
-    {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
         foreach (Transform child in boardTr)
         {
             Destroy(child.gameObject);

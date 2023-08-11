@@ -21,7 +21,7 @@ public class DialogManager : MonoBehaviour
 
     AudioSource audioSource;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         sentences = new Queue<string>();
