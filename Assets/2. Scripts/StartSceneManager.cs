@@ -48,9 +48,9 @@ public class StartSceneManager : MonoBehaviour
 
             if (!GameManager.instance.nextStage) //
             {
-                if (GameManager.instance.loginSuccess)
+                if (!GameManager.instance.loginSuccess)
                 {
-                    loginObj.gameObject.SetActive(false);
+                    loginObj.gameObject.SetActive(true);
                 }
 
                 StartCoroutine(FadeAway());
@@ -130,18 +130,26 @@ public class StartSceneManager : MonoBehaviour
                 UIUpdate();
             }
         }*/
+
+        if (GameManager.instance.loginSuccess)
+        {
+            loginObj.gameObject.SetActive(false);
+        }
+
+        else if (!GameManager.instance.loginSuccess)
+        {
+            loginObj.gameObject.SetActive(true);
+        }
     }
 
     public void LoginBtn()
     {
         GameManager.instance.LogIn();
-        loginObj.gameObject.SetActive(false);
     }
 
     public void GameReady()
     {
-        GameManager.instance.loginSuccess = GPGSBinder.Inst.LoginS();
-
+        print("login : " + GameManager.instance.loginSuccess);
         if (GameManager.instance.loginSuccess)
         {
             startPanel.gameObject.SetActive(true);
@@ -355,6 +363,7 @@ public class StartSceneManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
+        GameManager.instance.loginSuccess = false;
         GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }

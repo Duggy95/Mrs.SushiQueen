@@ -28,13 +28,13 @@ public class EndSceneCtrl : MonoBehaviour
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
+    public bool rewardAdSuccess;
 
     AudioSource audioSource;
     Color initColor = new Color(1, 1, 1, 1);
     Color selColor = new Color(1, 1, 0, 1);
 
     bool config;
-
     private void Awake()
     {
         Time.timeScale = 1;
@@ -50,6 +50,20 @@ public class EndSceneCtrl : MonoBehaviour
         noMoneyTxt.gameObject.SetActive(false);
         fullTxt.gameObject.SetActive(false);
         UIUpdate();
+    }
+
+    public void Reward()
+    {
+        if (rewardAdSuccess)
+        {
+            GameManager.instance.nextStage = true;
+            int _date = int.Parse(GameManager.instance.data.dateCount) + 1;
+            int rewardGold = int.Parse(GameManager.instance.data.gold) + 30000;
+            GameManager.instance.data.dateCount = _date.ToString();
+            GameManager.instance.data.gold = rewardGold.ToString();
+            SceneManager.LoadScene(0);
+            rewardAdSuccess = false;
+        }
     }
 
     public void OnclickSkill()
@@ -264,6 +278,7 @@ public class EndSceneCtrl : MonoBehaviour
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
+        GameManager.instance.loginSuccess = false;
         GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }

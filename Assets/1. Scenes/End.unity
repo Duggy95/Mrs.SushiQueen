@@ -7513,6 +7513,7 @@ MonoBehaviour:
   fishBtn: {fileID: 2086567961}
   shopBtn: {fileID: 62979539}
   skillBtn: {fileID: 357705087}
+  rewardAdSuccess: 0
 --- !u!82 &1050191754
 AudioSource:
   m_ObjectHideFlags: 0

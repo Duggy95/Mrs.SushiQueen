@@ -7,7 +7,7 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using GooglePlayGames.BasicApi.Events;
 
-public class GPGSBinder
+public class GPGSBinder 
 {
     static GPGSBinder inst = new GPGSBinder();
     public static GPGSBinder Inst => inst;
@@ -17,6 +17,11 @@ public class GPGSBinder
 
     IEventsClient Events =>
         PlayGamesPlatform.Instance.Events;
+
+    /*private void Awake()
+    {
+        PlayGamesPlatform.Activate();
+    }*/
 
     public bool LoginS()
     {
@@ -43,9 +48,32 @@ public class GPGSBinder
         });
     }
 
+    /*public void Login()
+    {
+        Init();
+        if (!Social.localUser.authenticated)
+        {
+            Social.localUser.Authenticate((bool isSuccess) =>
+            {
+                if (isSuccess)
+                {
+                    GameManager.instance.Load();
+                    GameManager.instance.loginSuccess = true;
+                    Debug.Log("id : " + Social.localUser.id);
+                }
+                else
+                {
+                    Debug.Log("Login Failed");
+                }
+            }
+            );
+        }
+    }*/
+
     public void Logout()
     {
         PlayGamesPlatform.Instance.SignOut();
+        GameManager.instance.loginSuccess = false;
     }
 
 

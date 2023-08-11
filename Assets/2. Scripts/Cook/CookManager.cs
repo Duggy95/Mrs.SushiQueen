@@ -277,6 +277,7 @@ public class CookManager : MonoBehaviour
         GPGSBinder.Inst.Logout();
         logOutQuestion.gameObject.SetActive(false);
         inventoryFullImg.gameObject.SetActive(false);
+        GameManager.instance.loginSuccess = false;
         GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
     }

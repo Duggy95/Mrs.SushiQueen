@@ -143,7 +143,8 @@ public class GameManager : MonoBehaviour
 
     public void LogIn()
     {
-        GPGSBinder.Inst.Login();
+        GPGSBinder.Inst.Login((success, localUser) => loginSuccess = success);
+        Debug.Log("loginSuccess : " + loginSuccess);
         /*loginSuccess = GPGSBinder.Inst.LoginS();
         Debug.Log("loginSuccess : " + loginSuccess);
 
