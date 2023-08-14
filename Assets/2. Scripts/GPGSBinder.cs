@@ -72,8 +72,8 @@ public class GPGSBinder
 
     public void Logout()
     {
-        PlayGamesPlatform.Instance.SignOut();
         GameManager.instance.loginSuccess = false;
+        PlayGamesPlatform.Instance.SignOut();
     }
 
 

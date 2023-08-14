@@ -7509,7 +7509,6 @@ MonoBehaviour:
   logOutQuestion: {fileID: 48768392}
   deleteDataQuestion: {fileID: 604979815}
   exitGameQuestion: {fileID: 1155111068}
-  admobQuestion: {fileID: 1205421002}
   fishBtn: {fileID: 2086567961}
   shopBtn: {fileID: 62979539}
   skillBtn: {fileID: 357705087}
@@ -12734,7 +12733,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1050191753}
         m_TargetAssemblyTypeName: EndSceneCtrl, Assembly-CSharp
-        m_MethodName: AdmobQuestion
+        m_MethodName: NextStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
