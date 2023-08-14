@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+
         itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
         fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
 

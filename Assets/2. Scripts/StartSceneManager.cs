@@ -30,6 +30,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject exitGameQuestion;
     public GameObject impossibleTxt;
     public GameObject startPanel;
+    public GameObject saveDataPanel;
     public StoryManager storyManager;
     public CanvasGroup blackCanvas;
     //public Image backGround;  //스토리 배경 그림
@@ -43,6 +44,9 @@ public class StartSceneManager : MonoBehaviour
     {
         Time.timeScale = 1;
         audioSource = GetComponent<AudioSource>();
+        saveDataPanel.gameObject.SetActive(false);
+        startPanel.gameObject.SetActive(false);
+
         if (GameManager.instance != null)
         {
               /*if (GPGSBinder.Inst.LoginS())
@@ -178,6 +182,8 @@ public class StartSceneManager : MonoBehaviour
         }
         else
         {
+            yield return new WaitForSeconds(5f);
+
             _storyManager.gameObject.SetActive(false);
             mainObj.gameObject.SetActive(false);
             storyObj.gameObject.SetActive(false);
@@ -361,6 +367,15 @@ public class StartSceneManager : MonoBehaviour
     public void ExitGame()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        StartCoroutine(EixtReady());
+    }
+
+    IEnumerator EixtReady()
+    {
+        saveDataPanel.SetActive(true);
+
+        yield return new WaitForSeconds(5);
 
         Application.Quit();
     }

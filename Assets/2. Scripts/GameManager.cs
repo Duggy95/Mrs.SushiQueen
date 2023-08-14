@@ -149,17 +149,14 @@ public class GameManager : MonoBehaviour
         if(GPGSBinder.Inst.LoginS())
         {
             loginSuccess = true;
+            Load();
+            Debug.Log("login : " +loginSuccess);
         }
     }
 
     public void LogIn()
     {
         GPGSBinder.Inst.Login();
-        Debug.Log("loginSuccess : " + loginSuccess);
-        /*loginSuccess = GPGSBinder.Inst.LoginS();
-        Debug.Log("loginSuccess : " + loginSuccess);
-
-        if (loginSuccess)*/
     }
 
     public void Save(string type)
@@ -193,12 +190,15 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
-        GPGSBinder.Inst.LoadCloud("DATA");
         print("loadData");
-        GPGSBinder.Inst.LoadCloud("ITEM");
+        GPGSBinder.Inst.LoadCloud("DATA");
+
         print("loadItem");
-        GPGSBinder.Inst.LoadCloud("FISH");
+        GPGSBinder.Inst.LoadCloud("ITEM");
+
         print("loadfish");
+        GPGSBinder.Inst.LoadCloud("FISH");
+
         /*if (PlayerPrefs.HasKey("ITEM"))
         {
             string item_Data = PlayerPrefs.GetString("ITEM");
@@ -237,6 +237,7 @@ public class GameManager : MonoBehaviour
         string f = "fish_Name";
         string d = "score";
 
+        print("data load start");
         // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
         if (loadData.Contains(i))
         {
