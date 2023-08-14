@@ -10001,7 +10001,7 @@ MonoBehaviour:
   modeView: {fileID: 1697723693}
   storyView: {fileID: 1043333714}
   sprites:
-  - {fileID: 21300000, guid: 6dcb504db5dcda34a8d81dd9de7885a2, type: 3}
+  - {fileID: 21300000, guid: 88c361ef861ca94488d0d81ec43fc030, type: 3}
   - {fileID: 21300000, guid: 1b86202fbcbc7824cb76594aad537d31, type: 3}
   - {fileID: 21300000, guid: b4043ac0c3fc9134b9fc3a427bc9ff0b, type: 3}
   background: {fileID: 1530157990}
