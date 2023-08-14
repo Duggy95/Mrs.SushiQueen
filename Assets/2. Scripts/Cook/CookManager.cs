@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.EditorTools;
 
 public class CookManager : MonoBehaviour
 {
@@ -23,7 +24,11 @@ public class CookManager : MonoBehaviour
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
     public GameObject endScenePanel;
-    public GameObject endGameView;
+    public GameObject gameOverView;
+    public GameObject restaurant;
+    public GameObject stamp;
+    public GameObject gameOverTxt;
+    public GameObject restartBtn;
     public Transform fishScroll;
     NetaButton[] fishSlots;
     public Transform dish;
@@ -292,6 +297,27 @@ public class CookManager : MonoBehaviour
         GameManager.instance.loginSuccess = false;
         GameManager.instance.nextStage = false;
         SceneManager.LoadScene(0);
+    }
+
+    public IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        gameOverView.gameObject.SetActive(true);
+        Vector2 initPos = new Vector2(0, -850);
+        Vector2 targetPos = new Vector2(0, -95);
+        float duration = 3f;
+        float elapsedTime = 0f;
+        while(elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
+            restaurant.transform.localPosition = Vector2.Lerp(initPos, targetPos, t);
+            yield return null;
+        }
+        stamp.gameObject.SetActive(true);
+        restartBtn.gameObject.SetActive(true);
+        gameOverTxt.gameObject.SetActive(true);
+        print("코루틴 호출");
     }
 
     private void OnDisable()

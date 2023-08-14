@@ -204,7 +204,8 @@ public class Customer : MonoBehaviour
 
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
-                    EndGameView();
+                    //EndGameView();
+                    StartCoroutine(cookManager.GameOverCoroutine());
                 }
 
                 cookManager.UIUpdate();  //UI 최신화
@@ -223,10 +224,10 @@ public class Customer : MonoBehaviour
         }
     }
 
-    void EndGameView()
+    /*void EndGameView()
     {
-        cookManager.endGameView.gameObject.SetActive(true);
-    }
+        cookManager.gameOverView.gameObject.SetActive(true);
+    }*/
 
     public void ShowTimer()  //손님 타이머 활성화
     {
@@ -253,7 +254,8 @@ public class Customer : MonoBehaviour
 
         if (int.Parse(GameManager.instance.data.score) <= 0)
         {
-            EndGameView();
+            //EndGameView();
+            StartCoroutine(cookManager.GameOverCoroutine());
         }
 
         cookManager.UIUpdate();  //UI 최신화
@@ -350,6 +352,8 @@ public class Customer : MonoBehaviour
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 StartCoroutine(FadeOut());
                 isOrdered = false;
+
+                StartCoroutine(cookManager.GameOverCoroutine());
             }
             else  //불일치 시
             {
@@ -360,7 +364,8 @@ public class Customer : MonoBehaviour
                 
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
-                    EndGameView();
+                    //EndGameView();
+                    StartCoroutine(cookManager.GameOverCoroutine());
                 }
 
                 audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
