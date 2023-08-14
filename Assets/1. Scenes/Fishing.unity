@@ -7769,7 +7769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBD89\uC740\uC0B4 \uC0DD\uC120 \uD655\uB960 1.5\uBC30 \uC99D\uAC00!!"
+  m_Text: "\uBD89\uC740\uC0B4 \uC0DD\uC120\uB9CC \uCD9C\uD604!!"
 --- !u!222 &1485418984
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8919,7 +8919,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uD770\uC0B4 \uC0DD\uC120 \uD655\uB960 1.5\uBC30 \uC99D\uAC00!!"
+  m_Text: "\uD770\uC0B4 \uC0DD\uC120\uB9CC \uCD9C\uD604!!"
 --- !u!222 &1726645330
 CanvasRenderer:
   m_ObjectHideFlags: 0

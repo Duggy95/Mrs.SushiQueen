@@ -13,6 +13,8 @@ public class StartSceneManager : MonoBehaviour
     public Text scoreTxt;
     public Text goldTxt;  //골드 텍스트
     public Text atkTxt;
+    public Text touchTxt;
+    public GameObject loginSuccessPanel;
     public GameObject inventoryImg; //인벤토리 이미지
     public GameObject inventoryFullImg;
     public GameObject _storyManager;
@@ -52,7 +54,9 @@ public class StartSceneManager : MonoBehaviour
                 {
                     loginObj.gameObject.SetActive(true);
                 }
-
+                touchTxt.gameObject.SetActive(false);
+                loginSuccessPanel.SetActive(false);
+                blackCanvas.gameObject.SetActive(true);
                 StartCoroutine(FadeAway());
                 mainObj.gameObject.SetActive(true);
                 storyObj.gameObject.SetActive(false);
@@ -134,11 +138,15 @@ public class StartSceneManager : MonoBehaviour
         if (GameManager.instance.loginSuccess)
         {
             loginObj.gameObject.SetActive(false);
+            loginSuccessPanel.gameObject.SetActive(true);
+            touchTxt.gameObject.SetActive(true);
         }
 
         else if (!GameManager.instance.loginSuccess)
         {
             loginObj.gameObject.SetActive(true);
+            loginSuccessPanel.gameObject.SetActive(false);
+            touchTxt.gameObject.SetActive(false);
         }
     }
 
