@@ -24,7 +24,7 @@ public class EndSceneCtrl : MonoBehaviour
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
-    public GameObject admobQuestion;
+    //public GameObject admobQuestion;
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
@@ -52,7 +52,7 @@ public class EndSceneCtrl : MonoBehaviour
         UIUpdate();
     }
 
-    public void Reward()
+    /*public void Reward()
     {
         if (rewardAdSuccess)
         {
@@ -64,7 +64,7 @@ public class EndSceneCtrl : MonoBehaviour
             SceneManager.LoadScene(0);
             rewardAdSuccess = false;
         }
-    }
+    }*/
 
     public void OnclickSkill()
     {
@@ -133,7 +133,7 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void UIUpdate()
     {
-        GameManager.instance.LogData();
+        //GameManager.instance.LogData();
 
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
@@ -141,10 +141,10 @@ public class EndSceneCtrl : MonoBehaviour
         atkTxt.text = GameManager.instance.data.atk;
     }
 
-    public void AdmobQuestion()
+    /*public void AdmobQuestion()
     {
         admobQuestion.gameObject.SetActive(true);
-    }
+    }*/
 
     public void EndSceneQuestionEsc()
     {

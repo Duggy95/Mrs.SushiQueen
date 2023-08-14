@@ -1,9 +1,9 @@
 lastUpgrade=01014
 proj.pluginVersion=0.10.14
-proj.AppId=1022037973239
-and.BundleId=com.duggy.mssushiqueen
+proj.AppId=446284801561
+and.BundleId=com.duggy.sushiqueen
 proj.classDir=Assets
 proj.ConstantsClassName=GPGSIds
-and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e1022037973239%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.duggy.mssushiqueen%3c%2fstring%3e%0d%0a%3c%2fresources%3e
-and.ClientId=1022037973239-uv91rvdbngaunhitfpi7rf62tgkpub3q.apps.googleusercontent.com
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e446284801561%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.duggy.sushiqueen%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=446284801561-j0jeq2s4mqc9ha7t24innuk67a1kkht9.apps.googleusercontent.com
 android.SetupDone=true

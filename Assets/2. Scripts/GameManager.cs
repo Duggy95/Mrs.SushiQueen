@@ -141,9 +141,20 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (loginSuccess)
+            return;
+
+        if(GPGSBinder.Inst.LoginS())
+        {
+            loginSuccess = true;
+        }
+    }
+
     public void LogIn()
     {
-        GPGSBinder.Inst.Login((success, localUser) => loginSuccess = success);
+        GPGSBinder.Inst.Login();
         Debug.Log("loginSuccess : " + loginSuccess);
         /*loginSuccess = GPGSBinder.Inst.LoginS();
         Debug.Log("loginSuccess : " + loginSuccess);
@@ -244,7 +255,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LogData()
+    /*public void LogData()
     {
         string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(_inventory_Items));
         Debug.Log("logItemData : " + item_Json);
@@ -252,10 +263,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("logFishData : " + fish_Json);
         string data_Json = JsonUtility.ToJson(_data);
         Debug.Log("logData : " + data_Json);
-    }
+    }*/
 
     public void DeleteData()
     {
+        GPGSBinder.Inst.DeleteCloud("ITEM");
+        GPGSBinder.Inst.DeleteCloud("FISH");
+        GPGSBinder.Inst.DeleteCloud("DATA");
+
         data = new Data();
         Save("d");
 
@@ -268,10 +283,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("deleteItemData : " + inventory_Items.Count);
         Debug.Log("deleteFishData : " + inventory_Fishs.Count);
         Debug.Log("deleteData : " + data);
-
-        /*GPGSBinder.Inst.DeleteCloud("ITEM");
-        GPGSBinder.Inst.DeleteCloud("FISH");
-        GPGSBinder.Inst.DeleteCloud("DATA");*/
 
         /*PlayerPrefs.DeleteAll();
         Debug.Log("데이터 삭제");*/

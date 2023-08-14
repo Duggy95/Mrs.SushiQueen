@@ -93,7 +93,7 @@ public class CookManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        GameManager.instance.LogData();
+        //GameManager.instance.LogData();
 
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");

@@ -53,7 +53,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.LogData();
+        // GameManager.instance.LogData();
 
         fishBtn.color = selColor;
         shopBtn.color = initColor;
