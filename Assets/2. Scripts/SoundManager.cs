@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip orderSuccess; // 주문받은대로 초밥을 줬을 때
     public AudioClip orderFail; // 주문받은대로 초밥을 주지 못했을 때
     public AudioClip dropSound;
+    public AudioClip stampSound;
 
     [Header("Fishing")]
     public AudioClip reelIn; // 릴 감는 소리
@@ -40,7 +41,7 @@ public class SoundManager : MonoBehaviour
     [Header("UpGrade")]
     public AudioClip levelUp;  // 레벨업, 구매 등 클릭 사운드
 
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     void Start()
     {

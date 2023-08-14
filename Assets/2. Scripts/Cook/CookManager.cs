@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.EditorTools;
 
 public class CookManager : MonoBehaviour
 {
@@ -302,6 +301,7 @@ public class CookManager : MonoBehaviour
     public IEnumerator GameOverCoroutine()
     {
         yield return new WaitForSeconds(1);
+        SoundManager.instance.audioSource.Stop();
         gameOverView.gameObject.SetActive(true);
         Vector2 initPos = new Vector2(0, -850);
         Vector2 targetPos = new Vector2(0, -95);
@@ -314,7 +314,21 @@ public class CookManager : MonoBehaviour
             restaurant.transform.localPosition = Vector2.Lerp(initPos, targetPos, t);
             yield return null;
         }
+
         stamp.gameObject.SetActive(true);
+        Vector3 initScale = new Vector3(1.2f, 1.2f, 1.2f);
+        Vector3 targetScale = new Vector3(0.8f, 0.8f, 0.8f);
+        duration = 0.5f;
+        elapsedTime = 0f;
+        while(elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            stamp.transform.localScale = Vector3.Lerp(initScale, targetScale, t);
+            print(elapsedTime);
+            yield return null;
+        }
+        audioSource.PlayOneShot(SoundManager.instance.stampSound, 1);
         restartBtn.gameObject.SetActive(true);
         gameOverTxt.gameObject.SetActive(true);
         print("코루틴 호출");

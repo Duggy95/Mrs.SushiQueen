@@ -11408,12 +11408,14 @@ MonoBehaviour:
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
   orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}
   dropSound: {fileID: 8300000, guid: 17dc1d5235869b44abc67f234919308b, type: 3}
+  stampSound: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   reelIn: {fileID: 8300000, guid: 492f7a4a1e863d54389b0e23ed588664, type: 3}
   getFish: {fileID: 8300000, guid: 57f0c349c18d5d84a8fb2cee8dee4406, type: 3}
   swing: {fileID: 8300000, guid: cf8d90a9e614e774c9e3fe2de841ba24, type: 3}
   throwBobber: {fileID: 8300000, guid: 5f01b19c828bbc7468db787663e94639, type: 3}
   fish: {fileID: 8300000, guid: 2962ac79e9628ba44835bae3ed529260, type: 3}
   levelUp: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &2028707780
 Transform:
   m_ObjectHideFlags: 0

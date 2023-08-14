@@ -352,8 +352,6 @@ public class Customer : MonoBehaviour
                 dish.ClearSushi();  //접시 위 초밥 삭제.
                 StartCoroutine(FadeOut());
                 isOrdered = false;
-
-                StartCoroutine(cookManager.GameOverCoroutine());
             }
             else  //불일치 시
             {
@@ -361,7 +359,7 @@ public class Customer : MonoBehaviour
                 GameManager.instance.data.score = _score.ToString();
 
                 GameManager.instance.todayData.score -= 20;
-                
+
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
                     //EndGameView();
