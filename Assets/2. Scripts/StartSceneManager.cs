@@ -374,6 +374,7 @@ public class StartSceneManager : MonoBehaviour
     IEnumerator EixtReady()
     {
         saveDataPanel.SetActive(true);
+        exitGameQuestion.SetActive(false);
 
         yield return new WaitForSeconds(5);
 

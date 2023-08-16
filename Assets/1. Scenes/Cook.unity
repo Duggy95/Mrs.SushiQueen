@@ -6122,7 +6122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 772247578}
         m_TargetAssemblyTypeName: Dish, Assembly-CSharp
-        m_MethodName: Clear
+        m_MethodName: ClearBoard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
