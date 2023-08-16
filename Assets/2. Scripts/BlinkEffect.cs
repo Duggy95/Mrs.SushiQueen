@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class BlinkEffect : MonoBehaviour
 {
-    Text text;
+    Text text;  //타이틀 화면 터치텍스트
 
     void OnEnable()
     {
         text = GetComponent<Text>();
+        //효과 시작
         StartCoroutine(FadeIn());
         StartCoroutine(ScaleUp());
     }
@@ -40,6 +41,7 @@ public class BlinkEffect : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    //크기 커지는 효과
     IEnumerator ScaleUp()
     {
         Vector3 initialScale = new Vector3(1, 1, 1);
@@ -58,6 +60,7 @@ public class BlinkEffect : MonoBehaviour
         StartCoroutine(ScaleDown());
     }
 
+    //크기 작아지는 효과
     IEnumerator ScaleDown()
     {
         Vector3 initialScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -75,10 +78,5 @@ public class BlinkEffect : MonoBehaviour
         }
 
         StartCoroutine(ScaleUp());
-    }
-
-    void Update()
-    {
-
     }
 }

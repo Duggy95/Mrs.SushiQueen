@@ -14,11 +14,6 @@ public class Sushi : MonoBehaviour
         wasabi = "없이";  //기본 값.
     }
 
-    private void Update()
-    {
-        print(sushiName + "," + wasabi);
-    }
-
     public Sushi(string sushiName, string wasabi, int gold)  //생성자
     {
         this.sushiName = sushiName;

@@ -7,7 +7,7 @@ public class NetaButton : MonoBehaviour
 {
     public GameObject netaPrefab; //회 프리팹
     public GameObject board;  //도마
-    public Text text;
+    public Text text;  //텍스트
     public FishData fishData;  //생선 데이터
     public int count;
     public bool isEmpty = true;

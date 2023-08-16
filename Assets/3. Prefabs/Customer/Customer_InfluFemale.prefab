@@ -779,7 +779,6 @@ MonoBehaviour:
   - "\uC5C6\uC774"
   - "\uBCF4\uD1B5\uC73C\uB85C"
   - "\uB9CE\uC774 \uB123\uC5B4\uC11C"
-  compliment: []
   success:
   - "\uC74C, \uB9DB\uC9D1 \uC778\uC815!!!"
   - "\uB108\uBB34 \uB9DB\uC788\uC5B4\uC694!!!^^"
@@ -789,12 +788,12 @@ MonoBehaviour:
   - "\uC2E4\uB9DD\uC774 \uD06C\uB124\uC694..."
   - "\uC774\uB7EC\uBA74 \uB9AC\uBDF0 \uC88B\uAC8C \uBABB \uB2EC\uC544\uB4DC\uB824\uC694."
   - "\uCD5C\uC545\uC774\uB124\uC694."
+  message: "\uC8FC\uC138\uC694."
   orderRecipe: 
   yesBtn: {fileID: 2989136089021097425}
   noBtn: {fileID: 2989136088729934358}
   timerObj: {fileID: 2989136090559844704}
   timer: {fileID: 2989136090559844706}
-  message: "\uC8FC\uC138\uC694."
 --- !u!114 &1161832505
 MonoBehaviour:
   m_ObjectHideFlags: 0

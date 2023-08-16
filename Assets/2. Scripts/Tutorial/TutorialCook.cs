@@ -101,7 +101,6 @@ public class TutorialCook : TutorialBase
             orderView.SetActive(true);
             cookView.SetActive(false);
             InventoryImg.gameObject.SetActive(false);
-            //inventoryCanvas.interactable = false;
             dish.transform.SetParent(orderView.transform);
             dish.transform.SetSiblingIndex(2);  //2번째 자식.
         }

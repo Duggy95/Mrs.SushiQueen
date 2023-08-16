@@ -6,53 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class CookManager : MonoBehaviour
 {
-    public CanvasGroup inventoryCanvas;
+    public CanvasGroup inventoryCanvas;  //인벤토리
     public GameObject customerPrefab;  //손님 프리팹
     public GameObject orderView;  //주문화면
     public GameObject cookView;  //요리화면
-    public GameObject configPanel;
-    public GameObject readyBtn;
+    public GameObject configPanel;  //설정 창
+    public GameObject readyBtn;  //준비완료 버튼
     public GameObject InventoryImg;  //인벤토리
-    public GameObject inventoryFullImg;
-    public GameObject blockFullImg;
-    public GameObject fishIconPrefab;
-    public GameObject[] customers;
-    public GameObject orderFishContent;
-    public GameObject endSceneQuestion;
-    public GameObject logOutQuestion;
-    public GameObject deleteDataQuestion;
-    public GameObject exitGameQuestion;
-    public GameObject endScenePanel;
-    public GameObject gameOverView;
-    public GameObject restaurant;
-    public GameObject stamp;
-    public GameObject gameOverTxt;
-    public GameObject restartBtn;
-    public Transform fishScroll;
-    NetaButton[] fishSlots;
-    public Transform dish;
+    public GameObject inventoryFullImg;  //인벤토리 켰을때 주변가리는 이미지
+    public GameObject blockFullImg;  //가리는 이미지
+    public GameObject fishIconPrefab;  //생선 아이콘 프리팹
+    public GameObject[] customers;  //손님들 배열
+    public GameObject orderFishContent;  //주문창에 생선패널
+
+    public Transform fishScroll;  //회버튼 스크롤
+    NetaButton[] fishSlots;  //회버튼 구성요소 불러오기위함
+    public Transform dish;  //접시
     public Text dateTxt;  //날짜 + 평판
     public Text goldTxt;  //골드
     public Text atkTxt;  //골드
-    public Text orderTxt;
-    public Text scoreTxt;
-    public Text priceTxt;
-    public List<string> fishList = new List<string>();
+    public Text orderTxt;  //주문 텍스트
+    public Text scoreTxt;  //점수 텍스트
+    public Text priceTxt;  //포스기 가격 텍스트
+    public List<string> fishList = new List<string>();  //드래그 드롭에서 중복확인을 위한 생선리스트
     public int fishBtnCount = 0;
-    public bool canMake = false;
-    public bool isReady = false;
-    public bool isEnd = false;
-    public Vector2 customerStartPos;
+    public bool canMake = false;  //만들기 가능한지 아닌지
+    public bool isReady = false;  //준비완료인지 아닌지
+    public bool isEnd = false;  //끝났는지 아닌지
+    public Vector2 customerStartPos;  //손님 FadeIn 시작 포즈
 
-    AudioSource audioSource;
-    WaitForSeconds ws;
-    Vector2 customerTr = Vector2.zero;
+    AudioSource audioSource;  //오디오 소스
+    WaitForSeconds ws;  //코루틴 시간
+    Vector2 customerTr = Vector2.zero;  //손님 생성 위치
     int count = 0;
     bool config = false;
 
+    [Header("Window")]
+    public GameObject endSceneQuestion;  //다음 씬 질문
+    public GameObject logOutQuestion;  //로그아웃
+    public GameObject deleteDataQuestion;  //데이터 지우기
+    public GameObject exitGameQuestion;  //종료하기
+    public GameObject endScenePanel;  //다음 씬 이동
+    public GameObject gameOverView;  //게임오버 창
+    public GameObject restaurant;  //식당 이미지
+    public GameObject stamp;  //도장
+    public GameObject gameOverTxt;  //게임오버 텍스트
+    public GameObject restartBtn;  //재시작 버튼
+
     void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1;  //시작시 timeScale 초기화
         audioSource = GetComponent<AudioSource>();
         customerStartPos = new Vector2(-450, -100);  //손님 위치
 
@@ -62,10 +65,10 @@ public class CookManager : MonoBehaviour
         
         ws = new WaitForSeconds(2);
 
-        UIUpdate();
-        priceTxt.text = "0";
+        UIUpdate();  //UI 최신화
+        priceTxt.text = "0";  //포스기 가격 텍스트
 
-        fishSlots = fishScroll.gameObject.GetComponentsInChildren<NetaButton>();
+        fishSlots = fishScroll.gameObject.GetComponentsInChildren<NetaButton>();  //생선버튼이 가지고 있는 요소들 가져오기
     }
 
     public void GoEndScene()  //운영씬으로
@@ -75,18 +78,18 @@ public class CookManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
-    public void Delete()
+    public void Delete()  //데이터 지우기
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
         GameManager.instance.DeleteData();
         UIUpdate();
         //ExitGame();
-        GameManager.instance.nextStage = false;
+        GameManager.instance.nextStage = false;  //시작화면에서 스토리+튜토리얼 보게하기 위함.
         SceneManager.LoadScene(0);
     }
 
-    public void GameOver()
+    public void GameOver()  //게임 오버
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -121,7 +124,7 @@ public class CookManager : MonoBehaviour
         logOutQuestion.gameObject.SetActive(false);
     }
 
-    public void EndSceneQuestionEsc()
+    public void EndSceneQuestionEsc()  //다음 씬 질문나가기
     {
         Time.timeScale = 1;
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
@@ -131,7 +134,7 @@ public class CookManager : MonoBehaviour
 
     }
 
-    public void EndSceneQuestion()
+    public void EndSceneQuestion()  //다음 씬 질문
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -140,7 +143,7 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(true);
     }
 
-    public void ExitGameQuestionEsc()
+    public void ExitGameQuestionEsc()  //게임종료 질문 나가기
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -148,7 +151,7 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(false);
     }
 
-    public void ExitGameQuestion()
+    public void ExitGameQuestion()  //게임종료 질문
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -156,7 +159,14 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(true);
     }
 
-    public void DeleteDataQuestionEsc()
+    public void ExitGame()  //게임종료하기
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        Application.Quit();
+    }
+
+    public void DeleteDataQuestionEsc()  //데이터 지우기 질문 나가기
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -164,7 +174,7 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(false);
     }
 
-    public void DeleteDataQuestion()
+    public void DeleteDataQuestion()  //데이터 지우기 질문
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -172,7 +182,7 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(true);
     }
 
-    public void LogOutQuestionEsc()
+    public void LogOutQuestionEsc()  //로그아웃 질문 나가기
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -180,7 +190,7 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(false);
     }
 
-    public void LogOutQuestion()
+    public void LogOutQuestion()  //로그아웃 질문
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -188,9 +198,21 @@ public class CookManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(true);
     }
 
+    public void LogOut()  //로그아웃
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        GPGSBinder.Inst.Logout();
+        logOutQuestion.gameObject.SetActive(false);
+        inventoryFullImg.gameObject.SetActive(false);
+        GameManager.instance.loginSuccess = false;
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
+    }
+
     public void ConfigBtn() //설정보여주기
     {
-        if (!config)
+        if (!config)  //꺼져있을 때 키기
         {
             audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -198,7 +220,7 @@ public class CookManager : MonoBehaviour
             inventoryFullImg.gameObject.SetActive(true);
             config = true;
         }
-        else
+        else  //켜져있을때 끄기
         {
             audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
@@ -210,7 +232,7 @@ public class CookManager : MonoBehaviour
 
     public void ViewOrder()  //주문화면 요리화면 전환 메서드
     {
-        if (canMake)  //만들 수 있을 때
+        if (canMake)  //만들 수 있을 때 = 주문 받았을 때만 화면전화 가능
         {
             count++;
             if (count % 2 == 0)
@@ -232,16 +254,17 @@ public class CookManager : MonoBehaviour
         }
     }
 
-    public void GoOrder()
+    public void GoOrder()  //주문 창으로 가기
     {
         cookView.SetActive(false);
         dish.transform.SetParent(orderView.transform);
     }
 
-    public IEnumerator Create()
+    public IEnumerator Create()  //손님 생성 메서드
     {
-        if (!isEnd)
+        if (!isEnd)  //게임이 안끝났을 때만
         {
+            //랜덤한 손님
             int random = Random.Range(0, customers.Length);
             //2초 후 손님 생성.
             yield return ws;
@@ -251,27 +274,21 @@ public class CookManager : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    public void ReadyBtn()  //준비완료 버튼
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
-        Application.Quit();
-    }
-
-    public void ReadyBtn()
-    {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
-        isReady = true;
-        StartCoroutine(Create());
+        isReady = true;  //준비완료
+        StartCoroutine(Create());  //손님 생성
         readyBtn.SetActive(false);
         orderView.SetActive(true);
         cookView.SetActive(false);
         InventoryImg.gameObject.SetActive(false);
-        inventoryCanvas.interactable = false;
-        dish.transform.SetParent(orderView.transform);
+        inventoryCanvas.interactable = false;  //인벤토리 안눌리게 끄기
+        dish.transform.SetParent(orderView.transform);  //접시 주문화면에서 보이게 하기
         dish.transform.SetSiblingIndex(2);  //2번째 자식.
 
+        //준비완료하면 빈 칸인 생선버튼들 삭제하기
         for (int i = 0; i < fishSlots.Length; i++)
         {
             if (fishSlots[i].fishData == null)
@@ -281,25 +298,14 @@ public class CookManager : MonoBehaviour
         }
     }
 
-    public void Order(string txt)
+    public void Order(string txt)  //요리화면에서 주문내용 보이게끔 하는 메서드
     {
         orderTxt.text = txt;
     }
 
-    public void LogOut()
+    public IEnumerator GameOverCoroutine()  //게임오버 코루틴
     {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
-        GPGSBinder.Inst.Logout();
-        logOutQuestion.gameObject.SetActive(false);
-        inventoryFullImg.gameObject.SetActive(false);
-        GameManager.instance.loginSuccess = false;
-        GameManager.instance.nextStage = false;
-        SceneManager.LoadScene(0);
-    }
-
-    public IEnumerator GameOverCoroutine()
-    {
+        //1초뒤 게임종료 화면띄우고 레스토랑 이미지 아래에서 위로 천천히 올라오게 하기
         yield return new WaitForSeconds(1);
         SoundManager.instance.audioSource.Stop();
         gameOverView.gameObject.SetActive(true);
@@ -315,6 +321,7 @@ public class CookManager : MonoBehaviour
             yield return null;
         }
 
+        //도장마크 보이게 하기
         stamp.gameObject.SetActive(true);
         Vector3 initScale = new Vector3(1.2f, 1.2f, 1.2f);
         Vector3 targetScale = new Vector3(0.8f, 0.8f, 0.8f);
@@ -336,6 +343,6 @@ public class CookManager : MonoBehaviour
 
     private void OnDisable()
     {
-        fishList.Clear();
+        fishList.Clear();  //생선 리스트 클리어.
     }
 }

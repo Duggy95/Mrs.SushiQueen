@@ -21,7 +21,7 @@ public class Dish : MonoBehaviour
 
     void Update()
     {
-        // UpdateDish();
+
     }
 
     public void AddSushi(string sushiName, string wasabi, int gold) //초밥 저장. DragSushi에서 초밥 접시에 놓을 때 호출.
@@ -36,17 +36,6 @@ public class Dish : MonoBehaviour
         else  //없으면
         {
             sushiCounts[sushiKey] = 1;  //갯수는 1
-        }
-    }
-
-    public void UpdateDish()
-    {
-        foreach (var sushi in sushiCounts)
-        {
-            string sushiInfo = sushi.Key; 
-            int count = sushi.Value;
-
-            Debug.Log($"초밥 정보: {sushiInfo}, 중복 횟수: {count}");
         }
     }
 

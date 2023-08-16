@@ -36,10 +36,9 @@ public class TutorialPulse : TutorialBase
 
     void OnPulseButtonClick()
     {
-        // 버튼이 클릭되었을 때 처리할 작업을 여기에 추가
-        // 예: tutorialManager.SetNextTutorial();
+        //버튼이 클릭될 때 호출
+        //다음 튜토리얼로
         manager.SetNextTutorial();
-        //Destroy(this);
         StopAllCoroutines();
         pulse.transform.localScale = new Vector2(1, 1);
         Destroy(this);

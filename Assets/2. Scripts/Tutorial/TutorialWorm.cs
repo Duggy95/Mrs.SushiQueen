@@ -11,6 +11,7 @@ public class TutorialWorm : TutorialBase
 
     public override void Enter()
     {
+        //아이템 슬롯에 지렁이 넣기
         itemSlotImg.sprite = Resources.Load("White", typeof(Sprite)) as Sprite;
         itemSlotTxt.text = "지렁이   1개";
         itemSlot.interactable = true;
@@ -18,6 +19,7 @@ public class TutorialWorm : TutorialBase
 
     public override void Execute(TutorialManager tutorialManager)
     {
+        //지렁이 들어갔으면 다음 튜토리얼
         if(itemSlotImg != null && itemSlotTxt != null)
         {
             tutorialManager.SetNextTutorial();

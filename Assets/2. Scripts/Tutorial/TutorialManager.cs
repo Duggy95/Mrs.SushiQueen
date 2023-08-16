@@ -9,8 +9,6 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField]
     private List<TutorialBase> tutorials;
-    /*[SerializeField]
-    private string nextSceneName = "Start";*/
 
     public GameObject inventoryImg;
     public GameObject configPanel;

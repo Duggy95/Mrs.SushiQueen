@@ -6,35 +6,32 @@ using UnityEngine.UI;
 public class Customer : MonoBehaviour
 {
     public Text orderTxt;  //주문 텍스트
-    //public Sprite[] sprites;  //손님 스프라이트 배열
     public string[] sushis;  //초밥 종류 배열
     public string[] easySushis;  //쉬운 초밥 종류 배열
     public string[] wasabis;  //와사비
-    public string[] compliment;  //대성공 문구.
     public string[] success;  //성공 문구.
     public string[] fail;  //실패 문구.
-    public string orderRecipe;
+    public string message;  //말 끝
+    public string orderRecipe;  //주문 내용 간추린거
     public GameObject yesBtn;  //수락 버튼
     public GameObject noBtn;  //거절 버튼
     public GameObject timerObj; //타이머 오브젝트
     public Image timer; //타이머 이미지
 
-    Image[] images;  //이미지
-    Text[] texts; //텍스트
+    Image[] images;  //이미지들
+    Text[] texts; //텍스트들
     List<Order> orders = new List<Order>();  //주문을 담을 리스트
     Dish dish;  //초밥 담는 접시
     CookManager cookManager;  //쿡 매니저.
-    Transform tr;  //위치
     AudioSource audioSource;
 
-    public string message;
     string order;  //주문
     float maxTime; //최대시간
     float currTime;  //현재시간
     float currTimePercent;  //현재시간 비율
     bool isTimer;  //타이머 존재
     bool isOrdered;  //주문수락확인.
-    int randomOrder;
+    int randomOrder;  //주문 랜덤
 
     //초밥 종류
     string sushiName1;
@@ -62,34 +59,32 @@ public class Customer : MonoBehaviour
     {
         dish = GameObject.FindGameObjectWithTag("DISH").GetComponent<Dish>();  //접시 오브젝트 Find로 가져오기
 
-        tr = GetComponent<Transform>();
-
         maxTime = int.Parse(GameManager.instance.data.customerTime);  //최대시간.
         currTime = maxTime;  //타이머 초기값 설정
     }
 
     void OnEnable()
     {
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn());  //나타나는 효과
 
-        if (int.Parse(GameManager.instance.data.dateCount) <= 5)
+        if (int.Parse(GameManager.instance.data.dateCount) <= 5)  //5일차 이하
         {
             randomOrder = 0;
             print("이지 난이도");
         }
-        else if (int.Parse(GameManager.instance.data.score) <= 600)
+        else if (int.Parse(GameManager.instance.data.score) <= 600)  //평판 600점 이하
         {
             //80퍼, 17퍼, 3퍼
             RandomChance(80, 97);
             print("첫번째");
         }
-        else if (int.Parse(GameManager.instance.data.score) <= 900)
+        else if (int.Parse(GameManager.instance.data.score) <= 900)  //평판 900점 이하
         {
             //60퍼, 30퍼, 10퍼
             RandomChance(60, 90);
             print("두번째");
         }
-        else
+        else  //그 외
         {
             //20퍼, 40퍼, 40퍼
             RandomChance(20, 60);
@@ -98,10 +93,11 @@ public class Customer : MonoBehaviour
 
         switch (randomOrder)  //랜덤한 주문.
         {
+            //이지 난이도
             case 0:
-                sushiName1 = easySushis[Random.Range(0, easySushis.Length)];
-                sushiCount1 = Random.Range(1, 4);
-                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
+                sushiName1 = easySushis[Random.Range(0, easySushis.Length)];  //초밥이름
+                sushiCount1 = Random.Range(1, 4);  //갯수
+                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];  //와사비
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + message;
                 AddOrder(sushiName1, wasabi1, sushiCount1);  //랜덤하게 결정한 요소들을 주문 리스트에 추가
                 orderTxt.text = order;  //주문 텍스트 출력.
@@ -110,9 +106,9 @@ public class Customer : MonoBehaviour
                 break;
             case 1:
                 //초밥 한 종류. Random.Range를 이용해서 초밥종류, 갯수, 와사비를 결정.
-                sushiName1 = sushis[Random.Range(0, sushis.Length)];
-                sushiCount1 = Random.Range(1, 4);
-                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
+                sushiName1 = sushis[Random.Range(0, sushis.Length)];  //초밥이름
+                sushiCount1 = Random.Range(1, 4);  //갯수
+                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];  //와사비
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + message;
                 AddOrder(sushiName1, wasabi1, sushiCount1);  //랜덤하게 결정한 요소들을 주문 리스트에 추가
                 orderTxt.text = order;  //주문 텍스트 출력.
@@ -131,11 +127,11 @@ public class Customer : MonoBehaviour
                     sushis[i] = sushis[randomIndex];
                     sushis[randomIndex] = temp;
                 }
-                sushiName1 = sushis[0];
+                sushiName1 = sushis[0];  //초밥이름
                 sushiName2 = sushis[1];
-                sushiCount1 = Random.Range(1, 4);
+                sushiCount1 = Random.Range(1, 4);  //갯수
                 sushiCount2 = Random.Range(1, 4);
-                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
+                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];  //와사비
                 wasabi2 = wasabis[Random.Range(0, wasabis.Length)];
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + "\n" +
                             sushiName2 + "초밥 " + "와사비 " + wasabi2 + " " + sushiCount2 + "개 " + message;
@@ -159,13 +155,13 @@ public class Customer : MonoBehaviour
                     sushis[i] = sushis[randomIndex];
                     sushis[randomIndex] = temp;
                 }
-                sushiName1 = sushis[0];
+                sushiName1 = sushis[0];  //초밥이름
                 sushiName2 = sushis[1];
                 sushiName3 = sushis[2];
-                sushiCount1 = Random.Range(1, 3);
+                sushiCount1 = Random.Range(1, 3);  //갯수
                 sushiCount2 = Random.Range(1, 3);
                 sushiCount3 = Random.Range(1, 3);
-                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];
+                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];  //와사비
                 wasabi2 = wasabis[Random.Range(0, wasabis.Length)];
                 wasabi3 = wasabis[Random.Range(0, wasabis.Length)];
                 order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + "\n" +
@@ -198,13 +194,12 @@ public class Customer : MonoBehaviour
                 print("님 평판 깎임.");
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
-
                 GameManager.instance.todayData.score -= 20;
                 audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
 
+                //평점 0이하로 떨어지면 게임오버 코루틴시작
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
-                    //EndGameView();
                     StartCoroutine(cookManager.GameOverCoroutine());
                 }
 
@@ -223,11 +218,6 @@ public class Customer : MonoBehaviour
             }
         }
     }
-
-    /*void EndGameView()
-    {
-        cookManager.gameOverView.gameObject.SetActive(true);
-    }*/
 
     public void ShowTimer()  //손님 타이머 활성화
     {
@@ -252,20 +242,18 @@ public class Customer : MonoBehaviour
         GameManager.instance.data.score = _score.ToString();
         GameManager.instance.todayData.score -= 5;
 
+        //평점 0이하로 떨어지면 게임오버 코루틴시작
         if (int.Parse(GameManager.instance.data.score) <= 0)
         {
-            //EndGameView();
             StartCoroutine(cookManager.GameOverCoroutine());
         }
 
         cookManager.UIUpdate();  //UI 최신화
         orderTxt.text = fail[0];  //실패 텍스트 출력.
-        isOrdered = false;
+        isOrdered = false;  //주문안받은 상태로
         StartCoroutine(FadeOut());
         yesBtn.SetActive(false);  //버튼 비활성화
         noBtn.SetActive(false);  //버튼 비활성화
-        isOrdered = false;
-        print("님 평판 깎임");
     }
 
     void AddOrder(string sushiName, string wasabi, int count)  //주문 추가 메서드
@@ -278,12 +266,13 @@ public class Customer : MonoBehaviour
     {
         isTimer = false;
 
+        //주문을 받은 상태에서만 작동
         if (isOrdered)
         {
             List<Order> orders = this.orders;  //주문 리스트
             Dictionary<string, int> sushiCounts = dish.sushiCounts;  //접시 딕셔너리 (초밥의 종류, 갯수)
             List<Sushi> sushis = dish.sushiList;  //접시 리스트 (초밥의 가격 불러올려고)
-            int totalPrice = 0;
+            int totalPrice = 0; 
             bool orderMatch = true;  //주문 일치
             cookManager.canMake = false;
             foreach (Order order in orders)
@@ -293,10 +282,10 @@ public class Customer : MonoBehaviour
                 if (sushiCounts.ContainsKey(sushiKey))  //주문한 초밥 키와 일치하는게 접시 딕셔너리에 있는가?
                 {
                     int sushiCount = sushiCounts[sushiKey];  //있다면 그 초밥 키의 갯수를 주문 갯수와 비교.
-                    if (!(sushiCount == order.count))  //주문갯수와 초밥 갯수가 일치한다면
+                    if (!(sushiCount == order.count))  //주문갯수와 초밥 갯수가 불일치한다면
                     {
                         orderMatch = false;  //불일치
-                        Debug.Log($"주문과 초밥 정보 일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
+                        //Debug.Log($"주문과 초밥 정보 일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
                         break;
                     }
                     else
@@ -311,11 +300,12 @@ public class Customer : MonoBehaviour
                                 break;
                             }
                         }
+                        //시간이 반이상 남았으면
                         if (currTimePercent >= 0.5)
                         {
                             totalPrice += sushi.gold * order.count * 3;  //생선가격 * 주문갯수 * 4
                         }
-                        else
+                        else  //그 외
                         {
                             totalPrice += sushi.gold * order.count * 2;  //생선가격 * 주문갯수 * 2
                         }
@@ -324,15 +314,13 @@ public class Customer : MonoBehaviour
                         GameManager.instance.data.gold = _gold.ToString();
                         GameManager.instance.todayData.gold += totalPrice;
                         cookManager.priceTxt.text = totalPrice.ToString("N0");
-
                         audioSource.PlayOneShot(SoundManager.instance.orderSuccess, 1);
-                        cookManager.UIUpdate();
                     }
                 }
-                else
+                else //없다면
                 {
                     orderMatch = false;  //불일치
-                    Debug.Log($"주문과 초밥 정보 불일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
+                    //Debug.Log($"주문과 초밥 정보 불일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
                     break;
                 }
             }
@@ -341,75 +329,70 @@ public class Customer : MonoBehaviour
             {
                 int _score = int.Parse(GameManager.instance.data.score) + 20;  //평판 증가
                 GameManager.instance.data.score = _score.ToString();
-
                 GameManager.instance.todayData.score += 20;
 
                 cookManager.UIUpdate();
-                orderTxt.text = success[Random.Range(0, success.Length)];
+                orderTxt.text = success[Random.Range(0, success.Length)];  //성공 멘트 랜덤
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
-                StartCoroutine(FadeOut());
-                isOrdered = false;
+                StartCoroutine(FadeOut());  //사라지게 하기
+                isOrdered = false;  //주문 안받은 상태
             }
             else  //불일치 시
             {
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
-
                 GameManager.instance.todayData.score -= 20;
-
+                //평점 0이하로 떨어지면 게임오버 코루틴시작
                 if (int.Parse(GameManager.instance.data.score) <= 0)
                 {
-                    //EndGameView();
                     StartCoroutine(cookManager.GameOverCoroutine());
                 }
 
                 audioSource.PlayOneShot(SoundManager.instance.orderFail, 1);
                 cookManager.UIUpdate();
-                orderTxt.text = fail[Random.Range(0, fail.Length)];
+                orderTxt.text = fail[Random.Range(0, fail.Length)];  //실패 멘트 랜덤
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
                 dish.ClearSushi();  //접시 위 초밥 삭제.
-                StartCoroutine(FadeOut());
-                isOrdered = false;
+                StartCoroutine(FadeOut());  //사라지게 하기
+                isOrdered = false;  //주문 안받은 상태
             }
         }
     }
 
-    void RandomChance(int num1, int num2)
+    void RandomChance(int num1, int num2)  //주문 패턴 확률 구현메서드
     {
         int randomNum = Random.Range(1, 101);
-
+        //인수1 보다 작으면
         if (randomNum <= num1)
         {
-            print(randomNum);
-            randomOrder = 1;
+            randomOrder = 1;  //한 줄 패턴
         }
+        //인수2 보다 작으면
         else if (randomNum <= num2)
         {
-            print(randomNum);
-            randomOrder = 2;
+            randomOrder = 2;  //두 줄 패턴
         }
-        else
+        else  //그외
         {
-            print(randomNum);
-            randomOrder = 3;
+            randomOrder = 3;  //세 줄 패턴
         }
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeIn() //나타나는 효과
     {
         Vector2 initPos = cookManager.customerStartPos;
-        print(initPos);
         Vector2 targetPos = initPos + new Vector2(30, 0);
+        //구성 이미지 투명
         for (int i = 0; i < images.Length; i++)
         {
             images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 0);
         }
-
+        //구성 텍스트 투명
         for (int i = 0; i < texts.Length; i++)
         {
             texts[i].color = new Color(texts[i].color.r, texts[i].color.g, texts[i].color.b, 0);
@@ -436,10 +419,10 @@ public class Customer : MonoBehaviour
         }
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOut()  //사라지는 효과
     {
-        timer.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
+        timer.gameObject.SetActive(false);  //타이머 지우기
+        yield return new WaitForSeconds(1);  //실패멘트를 볼 수 있게 잠시 텀을 주기
         Vector2 initPos = this.transform.localPosition;
         Vector2 targetPos = new Vector2(this.transform.localPosition.x - 30, this.transform.localPosition.y);
         float duration = 1f;
@@ -464,9 +447,9 @@ public class Customer : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(cookManager.Create());
-        cookManager.priceTxt.text = "0";
-        Destroy(this.gameObject, 2.5f);
+        StartCoroutine(cookManager.Create());  //사라지고 다음 손님 생성
+        cookManager.priceTxt.text = "0";  
+        Destroy(this.gameObject, 2.5f);  //생성될 동안 대기 후 삭제
     }
 }
 

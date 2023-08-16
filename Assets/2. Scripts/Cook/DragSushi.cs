@@ -20,8 +20,6 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     float top;
     float bottom;
 
-    bool isDish;
-
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -83,6 +81,7 @@ public class DragSushi : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
         else
         {
+            //µµ¸¶·Î
             sushiTr.SetParent(boardTr.transform);
             sushiTr.position = boardTr.position; 
         }
