@@ -89,15 +89,6 @@ public class CookManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void GameOver()  //게임 오버
-    {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-
-        GameManager.instance.DeleteData();
-        GameManager.instance.nextStage = false;
-        SceneManager.LoadScene(0);
-    }
-
     public void UIUpdate()
     {
         //GameManager.instance.LogData();
@@ -332,13 +323,22 @@ public class CookManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
             stamp.transform.localScale = Vector3.Lerp(initScale, targetScale, t);
-            print(elapsedTime);
+            // print(elapsedTime);
             yield return null;
         }
         audioSource.PlayOneShot(SoundManager.instance.stampSound, 1);
         restartBtn.gameObject.SetActive(true);
         gameOverTxt.gameObject.SetActive(true);
-        print("코루틴 호출");
+        // print("코루틴 호출");
+    }
+
+    public void GameOver()  //게임 오버
+    {
+        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
+        GameManager.instance.DeleteData();
+        GameManager.instance.nextStage = false;
+        SceneManager.LoadScene(0);
     }
 
     private void OnDisable()

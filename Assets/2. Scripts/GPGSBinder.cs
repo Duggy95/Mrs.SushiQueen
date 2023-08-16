@@ -79,22 +79,22 @@ public class GPGSBinder
 
     public void SaveCloud(string fileName, string saveData, Action<bool> onCloudSaved = null)
     {
-        Debug.Log("save 1 : " + fileName + "/" + saveData);
+        //Debug.Log("save 1 : " + fileName + "/" + saveData);
 
         SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork,
             ConflictResolutionStrategy.UseLastKnownGood, (status, game) =>
             {
-                Debug.Log("save 2 : " + status + "/" + SavedGameRequestStatus.Success);
+                //Debug.Log("save 2 : " + status + "/" + SavedGameRequestStatus.Success);
 
                 if (status == SavedGameRequestStatus.Success)
                 {
-                    Debug.Log("save 3 : ");
+                    //Debug.Log("save 3 : ");
 
                     var update = new SavedGameMetadataUpdate.Builder().Build();
                     byte[] bytes = System.Text.Encoding.UTF8.GetBytes(saveData);
                     SavedGame.CommitUpdate(game, update, bytes, (status2, game2) =>
                     {
-                        Debug.Log("save 4 : ");
+                        //Debug.Log("save 4 : ");
                         onCloudSaved?.Invoke(status2 == SavedGameRequestStatus.Success);
                     });
                 }
@@ -103,31 +103,31 @@ public class GPGSBinder
 
     public void LoadCloud(string fileName, Action<bool, string> onCloudLoaded = null)
     {
-        Debug.Log("load 1 : " + fileName);
+        //Debug.Log("load 1 : " + fileName);
         SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork,
             ConflictResolutionStrategy.UseLastKnownGood, (status, game) =>
             {
-                Debug.Log("load 2 : " + status + "/" + SavedGameRequestStatus.Success);
+                //Debug.Log("load 2 : " + status + "/" + SavedGameRequestStatus.Success);
 
                 if (status == SavedGameRequestStatus.Success)
                 {
-                    Debug.Log("load 3");
+                    //Debug.Log("load 3");
 
                     SavedGame.ReadBinaryData(game, (status2, loadedData) =>
                     {
-                        Debug.Log("load 4");
+                        //Debug.Log("load 4");
 
                         if (status2 == SavedGameRequestStatus.Success)
                         {
                             string data = System.Text.Encoding.UTF8.GetString(loadedData);
                             onCloudLoaded?.Invoke(true, data);
                             GameManager.instance.SetData(data);
-                            Debug.Log("load : " + data);
+                           // Debug.Log("load : " + data);
                         }
                         else
                         {
                             onCloudLoaded?.Invoke(false, null);
-                            Debug.Log("load failed");
+                            //Debug.Log("load failed");
                             /*GameManager.instance.Save("i");
                             GameManager.instance.Save("f");
                             GameManager.instance.Save("d");*/

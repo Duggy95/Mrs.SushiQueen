@@ -179,7 +179,7 @@ public class FishingManager : MonoBehaviour
         int _gold = int.Parse(GameManager.instance.data.gold) + data.gold;
         GameManager.instance.data.gold = _gold.ToString();
         GameManager.instance.todayData.gold += data.gold;
-        Debug.Log("골드 " + _gold);
+        //Debug.Log("골드 " + _gold);
         UIUpdate();
         audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
         isFishing = false;
@@ -221,7 +221,7 @@ public class FishingManager : MonoBehaviour
                         // 해당 인덱스(index)의 값 변경
                         GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
-                        Debug.Log("중복 종류 " + index + " changed to " + newValue);
+                        //Debug.Log("중복 종류 " + index + " changed to " + newValue);
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(EffScale());
                         StartCoroutine(EffMove());
@@ -263,7 +263,7 @@ public class FishingManager : MonoBehaviour
                         GameManager.instance.todayFishInfos.Add(new TodayFishInfo(data.fishName, 1));
 
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
-                        Debug.Log("안찼고 다른 종류");
+                        //Debug.Log("안찼고 다른 종류");
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(EffScale());
                         StartCoroutine(EffMove());

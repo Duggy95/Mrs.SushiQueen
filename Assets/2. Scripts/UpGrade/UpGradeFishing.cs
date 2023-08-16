@@ -110,8 +110,8 @@ public class UpGradeFishing : MonoBehaviour
     {
         Text _text = GetComponentInChildren<Text>();
         _items = ItemContent.gameObject.GetComponentsInChildren<Image>();
-        Debug.Log("아이템 칸 수 : " + _items.Length);
-        Debug.Log("text : " + _text.text);
+        //Debug.Log("아이템 칸 수 : " + _items.Length);
+        //Debug.Log("text : " + _text.text);
         bool isFull = true;
         bool isChange = false;
 
@@ -128,7 +128,7 @@ public class UpGradeFishing : MonoBehaviour
                 {
                     if (_text.text.Contains("지렁이") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
                     {
-                        Debug.Log("지렁이, 중복");
+                        //Debug.Log("지렁이, 중복");
                         isFull = FindIndexItem("지렁이", i, normalItemPrice);
                         isChange = true;
                         audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -136,7 +136,7 @@ public class UpGradeFishing : MonoBehaviour
                     }
                     else if (_text.text.Contains("새우") && int.Parse(GameManager.instance.data.gold) >= normalItemPrice)
                     {
-                        Debug.Log("새우, 중복");
+                        //Debug.Log("새우, 중복");
                         isFull = FindIndexItem("새우", i, normalItemPrice);
                         isChange = true;
                         audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -144,7 +144,7 @@ public class UpGradeFishing : MonoBehaviour
                     }
                     else if (_text.text.Contains("생선살") && int.Parse(GameManager.instance.data.gold) >= rareItemPrice)
                     {
-                        Debug.Log("생선살, 중복");
+                        //Debug.Log("생선살, 중복");
                         isFull = FindIndexItem("생선살", i, rareItemPrice);
                         isChange = true;
                         audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -154,7 +154,7 @@ public class UpGradeFishing : MonoBehaviour
                     {
                         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
-                        Debug.Log("중복, 노머니");
+                        //Debug.Log("중복, 노머니");
                         StartCoroutine(NoMoney());
                         isFull = false;
                         break;
@@ -180,7 +180,7 @@ public class UpGradeFishing : MonoBehaviour
                     {
                         if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("지렁이"))
                         {
-                            Debug.Log("지렁이, 처음");
+                            //Debug.Log("지렁이, 처음");
                             _items[i].GetComponent<CanvasGroup>().interactable = true;
                             isFull = SetItem(i, "지렁이", "1", _slot, normalItemPrice, Img);
                             audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -188,7 +188,7 @@ public class UpGradeFishing : MonoBehaviour
                         }
                         else if (int.Parse(GameManager.instance.data.gold) >= normalItemPrice && _text.text.Contains("새우"))
                         {
-                            Debug.Log("새우, 처음");
+                            //Debug.Log("새우, 처음");
                             _items[i].GetComponent<CanvasGroup>().interactable = true;
                             isFull = SetItem(i, "새우", "1", _slot, normalItemPrice, Img);
                             audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -205,7 +205,7 @@ public class UpGradeFishing : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("생선살, 처음");
+                                //Debug.Log("생선살, 처음");
                                 _items[i].GetComponent<CanvasGroup>().interactable = true;
                                 isFull = SetItem(i, "생선살", "1", _slot, rareItemPrice, Img);
                                 audioSource.PlayOneShot(SoundManager.instance.levelUp, 1);
@@ -216,7 +216,7 @@ public class UpGradeFishing : MonoBehaviour
                         {
                             audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
 
-                            Debug.Log("처음, 노머니");
+                            //Debug.Log("처음, 노머니");
                             StartCoroutine(NoMoney());
                             isFull = false;
                             break;
@@ -255,7 +255,7 @@ public class UpGradeFishing : MonoBehaviour
             _items[i].GetComponentInChildren<Text>().text = name + "   " + newValue.ToString() + "개";
             int _gold = int.Parse(GameManager.instance.data.gold) - price;
             GameManager.instance.data.gold = _gold.ToString();
-            Debug.Log("중복 종류 " + index + " changed to " + newValue);
+            //Debug.Log("중복 종류 " + index + " changed to " + newValue);
 
             endSceneCtrl.UIUpdate();
         }

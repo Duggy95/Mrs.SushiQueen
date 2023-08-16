@@ -237,7 +237,7 @@ public class Fish : MonoBehaviour
         fm.useItem_red = false;
         fm.useItem_white = false;
 
-        Debug.Log(fish_Data.Count);
+       // Debug.Log(fish_Data.Count);
 
         // 랜덤한 인덱스 추출
         int fishNum = Random.Range(0, fish_Data.Count);
@@ -251,9 +251,9 @@ public class Fish : MonoBehaviour
         string targetValue = fishData.fishName; // 찾고자 하는 값
         int count = fish_Data.Count(x => x.fishName == targetValue); // 물고기 확률
 
-        Debug.Log("물고기 확률 : " + count);
+       // Debug.Log("물고기 확률 : " + count);
 
-        Debug.Log("물장구 시작");
+       // Debug.Log("물장구 시작");
 
         // 물고기 체력바 생성 후 자신의 자식으로 넣음
         GameObject fishHP = Instantiate(hpBarPrefab, hpPos, Quaternion.identity);
@@ -329,7 +329,7 @@ public class Fish : MonoBehaviour
                 currHP += heal;
                 hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
             }
-            Debug.Log("현재 체력 " + currHP);
+            //Debug.Log("현재 체력 " + currHP);
         }
     }
 }

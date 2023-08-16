@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         {
             loginSuccess = true;
             Load();
-            Debug.Log("login : " +loginSuccess);
+            //Debug.Log("login : " +loginSuccess);
         }
     }
 
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
         if (type == "i")
         {
             string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(_inventory_Items));
-            Debug.Log("saveItemData : " + item_Json);
+            //Debug.Log("saveItemData : " + item_Json);
             string fileName = string.Format("ITEM");
             GPGSBinder.Inst.SaveCloud(fileName, item_Json);
             //PlayerPrefs.SetString("ITEM", item_Json);
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
         else if (type == "f")
         {
             string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(_inventory_Fishs));
-            Debug.Log("saveFishData : " + fish_Json);
+            //Debug.Log("saveFishData : " + fish_Json);
             string fileName = string.Format("FISH");
             GPGSBinder.Inst.SaveCloud(fileName, fish_Json);
             //PlayerPrefs.SetString("FISH", fish_Json);
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
         else if (type == "d")
         {
             string data_Json = JsonUtility.ToJson(_data);
-            Debug.Log("saveData : " + data_Json);
+            //Debug.Log("saveData : " + data_Json);
             string fileName = string.Format("DATA");
             GPGSBinder.Inst.SaveCloud(fileName, data_Json);
             //PlayerPrefs.SetString("DATA", data_Json);
@@ -242,17 +242,17 @@ public class GameManager : MonoBehaviour
         if (loadData.Contains(i))
         {
             _inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(loadData).target;
-            Debug.Log("loadItemData : " + loadData);
+            //Debug.Log("loadItemData : " + loadData);
         }
         else if (loadData.Contains(f))
         {
             _inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(loadData).target;
-            Debug.Log("loadFishData : " + loadData);
+            //Debug.Log("loadFishData : " + loadData);
         }
         else if (loadData.Contains(d))
         {
             _data = JsonUtility.FromJson<Data>(loadData);
-            Debug.Log("loadData : " + loadData);
+            //Debug.Log("loadData : " + loadData);
         }
     }
 

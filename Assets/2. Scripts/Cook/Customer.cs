@@ -57,6 +57,7 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
+        // StartCoroutine(cookManager.GameOverCoroutine());
         dish = GameObject.FindGameObjectWithTag("DISH").GetComponent<Dish>();  //접시 오브젝트 Find로 가져오기
 
         maxTime = int.Parse(GameManager.instance.data.customerTime);  //최대시간.

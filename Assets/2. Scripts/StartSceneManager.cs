@@ -109,7 +109,7 @@ public class StartSceneManager : MonoBehaviour
     // 화면 터치 시 게임 준비시작
     public void GameReady()
     {
-        print("login : " + GameManager.instance.loginSuccess);
+       // print("login : " + GameManager.instance.loginSuccess);
         if (GameManager.instance.loginSuccess)
         {
             startPanel.gameObject.SetActive(true);
@@ -156,7 +156,7 @@ public class StartSceneManager : MonoBehaviour
         // 인벤토리 활성화
         inventoryImg.gameObject.SetActive(true);
         inventoryFullImg.gameObject.SetActive(true);
-        print("인벤토리 열려라");
+        //print("인벤토리 열려라");
     }
 
     public void EscInventory()
