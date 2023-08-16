@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip BGM;  // 각 씬 별 배경음악
     public AudioClip buttonClick; // 버튼 클릭 사운드
-    public AudioClip goldSound;
+    public AudioClip goldSound;  // 골드 추가 사운드
 
     [Header("Story")]
     public AudioClip storyText; // 텍스트 출력 사운드
@@ -28,8 +28,8 @@ public class SoundManager : MonoBehaviour
     [Header("Cook")]
     public AudioClip orderSuccess; // 주문받은대로 초밥을 줬을 때
     public AudioClip orderFail; // 주문받은대로 초밥을 주지 못했을 때
-    public AudioClip dropSound;
-    public AudioClip stampSound;
+    public AudioClip dropSound;  // 드랍 후 사운드
+    public AudioClip stampSound;  // 게임 오버 시 도장 사운드
 
     [Header("Fishing")]
     public AudioClip reelIn; // 릴 감는 소리

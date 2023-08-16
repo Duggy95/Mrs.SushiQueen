@@ -10,35 +10,32 @@ public class StartSceneManager : MonoBehaviour
     public Text startTxt;  //터치해서 게임시작 텍스트
     public Text storyTxt;  //스토리 텍스트
     public Text dateTxt;  //날짜 + 평판 텍스트
-    public Text scoreTxt;
+    public Text scoreTxt; // 평판
     public Text goldTxt;  //골드 텍스트
-    public Text atkTxt;
-    public Text touchTxt;
-    public GameObject loginSuccessPanel;
+    public Text atkTxt;  // 공격력
+    public Text touchTxt;  // 터치하여 게임 시작하라는 텍스트
+    public GameObject loginSuccessPanel;  // 로그인 성공시 출력되는 판넬
     public GameObject inventoryImg; //인벤토리 이미지
-    public GameObject inventoryFullImg;
-    public GameObject _storyManager;
-    public GameObject configPanel;
-    public GameObject mainObj;
-    public GameObject storyObj;
-    public GameObject modeObj;
-    public GameObject loginObj;
-    public GameObject fishingQuestion;
-    public GameObject cookQuestion;
-    public GameObject logOutQuestion;
-    public GameObject deleteDataQuestion;
-    public GameObject exitGameQuestion;
-    public GameObject impossibleTxt;
-    public GameObject startPanel;
-    public GameObject saveDataPanel;
+    public GameObject inventoryFullImg;  // 인벤토리 열었을 때 다른 버튼 작동 못하게 막는 이미지
+    public GameObject _storyManager;  // 스토리 매니저
+    public GameObject configPanel;  // 설정창
+    public GameObject mainObj;  // 초기 화면
+    public GameObject storyObj;  // 스토리 화면
+    public GameObject modeObj;  // 모드 선택 화면
+    public GameObject loginObj;  // 로그인 버튼
+    public GameObject fishingQuestion;  // 낚시하러 갈 것인지 묻는 판넬
+    public GameObject cookQuestion;  // 요리하러 갈 것인지 묻는 판넬
+    public GameObject logOutQuestion; // 로그아웃 안내
+    public GameObject deleteDataQuestion;  // 정보 삭제 안내
+    public GameObject exitGameQuestion;  // 게임 종료 안내
+    public GameObject impossibleTxt;  // 물고기 없는 경우 요리씬 이동 불가 안내
+    public GameObject startPanel;  // 게임 시작을 알리는 판넬
+    public GameObject saveDataPanel;  // 정보 저장을 알리는 판넬
     public StoryManager storyManager;
     public CanvasGroup blackCanvas;
-    //public Image backGround;  //스토리 배경 그림
-    //public Sprite[] sprites;
 
     AudioSource audioSource;
     bool config;
-    // bool isStart;
 
     private void Awake()
     {
@@ -49,9 +46,7 @@ public class StartSceneManager : MonoBehaviour
 
         if (GameManager.instance != null)
         {
-              /*if (GPGSBinder.Inst.LoginS())
-                loginObj.gameObject.SetActive(false);*/
-
+            // 게임 시작 시
             if (!GameManager.instance.nextStage) //
             {
                 if (!GameManager.instance.loginSuccess)
@@ -61,26 +56,23 @@ public class StartSceneManager : MonoBehaviour
                 touchTxt.gameObject.SetActive(false);
                 loginSuccessPanel.SetActive(false);
                 blackCanvas.gameObject.SetActive(true);
+                // 게임 입장 효과
                 StartCoroutine(FadeAway());
                 mainObj.gameObject.SetActive(true);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(false);
                 _storyManager.gameObject.SetActive(false);
-                /*GameManager.instance.Save("d");
-                GameManager.instance.Save("i");
-                GameManager.instance.Save("f");*/
-                //isStart = true;
             }
-
+            // 게임 진행 중에 현재 씬 입장 시
             else //
             {
-                //isStart = true;
                 blackCanvas.gameObject.SetActive(false);
                 mainObj.gameObject.SetActive(false);
                 storyObj.gameObject.SetActive(false);
                 modeObj.gameObject.SetActive(true);
                 _storyManager.gameObject.SetActive(false);
                 UIUpdate();
+                // 정보 저장 및 하루 수확 정보 초기화
                 GameManager.instance.Save("d");
                 GameManager.instance.Save("i");
                 GameManager.instance.Save("f");
@@ -92,60 +84,14 @@ public class StartSceneManager : MonoBehaviour
 
     private void Update()
     {
-        /*if (GPGSBinder.Inst.LoginS())
-            loginObj.gameObject.SetActive(false);*/
-
-        /*if (GPGSBinder.Inst.LoginS() && Input.GetMouseButtonDown(0))
-        {
-            if (GameManager.instance.data.dateCount == "0")
-            {
-                //isStart = false;
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(true);
-                _storyManager.gameObject.SetActive(true);
-                modeObj.gameObject.SetActive(false);
-            }
-
-            else
-            {
-                //isStart = false;
-                _storyManager.gameObject.SetActive(false);
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(false);
-                modeObj.gameObject.SetActive(true);
-                UIUpdate();
-            }
-        }*/
-
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            if (GameManager.instance.data.dateCount == "0")
-            {
-                //isStart = false;
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(true);
-                _storyManager.gameObject.SetActive(true);
-                modeObj.gameObject.SetActive(false);
-            }
-
-            else
-            {
-                //isStart = false;
-                _storyManager.gameObject.SetActive(false);
-                mainObj.gameObject.SetActive(false);
-                storyObj.gameObject.SetActive(false);
-                modeObj.gameObject.SetActive(true);
-                UIUpdate();
-            }
-        }*/
-
+        // 로그인 성공 시 로그인 버튼 비활성화, 로그인 성공 판넬과 터치 안내 텍스트 활성화
         if (GameManager.instance.loginSuccess)
         {
             loginObj.gameObject.SetActive(false);
             loginSuccessPanel.gameObject.SetActive(true);
             touchTxt.gameObject.SetActive(true);
         }
-
+       
         else if (!GameManager.instance.loginSuccess)
         {
             loginObj.gameObject.SetActive(true);
@@ -154,11 +100,13 @@ public class StartSceneManager : MonoBehaviour
         }
     }
 
+    // 로그인
     public void LoginBtn()
     {
         GameManager.instance.LogIn();
     }
 
+    // 화면 터치 시 게임 준비시작
     public void GameReady()
     {
         print("login : " + GameManager.instance.loginSuccess);
@@ -173,6 +121,7 @@ public class StartSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        // 신규일 경우
         if (int.Parse(GameManager.instance.data.dateCount) <= 0)
         {
             mainObj.gameObject.SetActive(false);
@@ -182,6 +131,7 @@ public class StartSceneManager : MonoBehaviour
         }
         else
         {
+            // 초기엔 정보 불러오기 위해 5초 뒤 시작
             yield return new WaitForSeconds(5f);
 
             _storyManager.gameObject.SetActive(false);
@@ -194,8 +144,6 @@ public class StartSceneManager : MonoBehaviour
 
     public void UIUpdate()
     {
-        //GameManager.instance.LogData();
-
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");
@@ -219,9 +167,11 @@ public class StartSceneManager : MonoBehaviour
         inventoryFullImg.gameObject.SetActive(false);
     }
 
+    // 스토리 스킵
     public void OnClickSkip()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
+
         if (int.Parse(GameManager.instance.data.dateCount) >= 1)
         {
             _storyManager.gameObject.SetActive(false);

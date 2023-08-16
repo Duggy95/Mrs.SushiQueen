@@ -38,7 +38,7 @@ public class ItemSlot : MonoBehaviour
 
         if (fm.useItem_white || fm.useItem_red || fm.useItem_rare || fm.isFishing)
             return;
-
+        // 각 텍스트 문자에 맞는 아이템 사용
         if (_text.text.Contains("지렁이"))
         {
             audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);

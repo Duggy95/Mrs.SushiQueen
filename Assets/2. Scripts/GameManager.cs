@@ -256,16 +256,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*public void LogData()
-    {
-        string item_Json = JsonUtility.ToJson(new Serialization<InventoryItem>(_inventory_Items));
-        Debug.Log("logItemData : " + item_Json);
-        string fish_Json = JsonUtility.ToJson(new Serialization<InventoryFish>(_inventory_Fishs));
-        Debug.Log("logFishData : " + fish_Json);
-        string data_Json = JsonUtility.ToJson(_data);
-        Debug.Log("logData : " + data_Json);
-    }*/
-
     public void DeleteData()
     {
         GPGSBinder.Inst.DeleteCloud("ITEM");

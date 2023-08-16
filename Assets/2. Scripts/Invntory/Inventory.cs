@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
 
         itemSlotCount = int.Parse(GameManager.instance.data.itemCount);
         fishSlotCount = int.Parse(GameManager.instance.data.fishCount);
-
+        // 아이템 창
         for (int i = 0; i < itemSlotCount; i++)
         {
             List<InventoryItem> itemList = GameManager.instance.inventory_Items;
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
                     itemImgPrefab.GetComponentInChildren<Image>().sprite = Resources.Load("Rare", typeof(Sprite)) as Sprite;
             }
         }
-
+        // 수족관
         for (int i = 0; i < fishSlotCount; i++)
         {
             List<InventoryFish> fishList = GameManager.instance.inventory_Fishs;

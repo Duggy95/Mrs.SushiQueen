@@ -13,6 +13,7 @@ public class Receipt : MonoBehaviour
 
     private void Start()
     {
+        // 당일 잡은 물고기 정보반영
         for (int i = 0; i < GameManager.instance.todayFishInfos.Count; i++)
         {
             string fishName = GameManager.instance.todayFishInfos[i].fish_NameT;

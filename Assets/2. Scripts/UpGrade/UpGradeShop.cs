@@ -12,7 +12,10 @@ public class UpGradeShop : MonoBehaviour
     AudioSource audioSource;
 
     int level;
+    int maxLevel = 5;
     int count;
+    int maxFishCount = 7;
+    int maxCookCount = 7;
     int _gold;
 
     private void Awake()
@@ -41,13 +44,13 @@ public class UpGradeShop : MonoBehaviour
         int nextCount = count + 1;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        if (level < 4)
+        if (level < maxLevel -1)
         {
             text.text = "수족관 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
                 "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
         }
-        else if (level == 4)
+        else if (level == maxLevel - 1)
         {
             text.text = "수족관 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
@@ -63,7 +66,7 @@ public class UpGradeShop : MonoBehaviour
 
     public void GrowthAquarium()
     {
-        if (int.Parse(GameManager.instance.data.fishCount) < 7)
+        if (int.Parse(GameManager.instance.data.fishCount) < maxFishCount)
         {
             int countA = int.Parse(GameManager.instance.data.fishCount) + 1;  // 4
             int levelA = int.Parse(GameManager.instance.data.fishCount) - 1;  // 2
@@ -80,13 +83,13 @@ public class UpGradeShop : MonoBehaviour
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.fishCount = count.ToString();
                 Text text = GetComponentInChildren<Text>();
-                if (level < 4)
+                if (level < maxLevel - 1)
                 {
                     text.text = "수족관 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 물고기 공간\n최대 " + count + " -> " + nextCount + "마리";
                 }
-                else if (level == 4)
+                else if (level == maxLevel - 1)
                 {
                     text.text = "수족관 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
@@ -125,13 +128,13 @@ public class UpGradeShop : MonoBehaviour
         int nextCount = count + 1;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        if (level < 4)
+        if (level < maxLevel - 1)
         {
             text.text = "요리공간 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
                 "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
         }
-        else if (level == 4)
+        else if (level == maxLevel - 1)
         {
             text.text = "요리공간 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
@@ -147,7 +150,7 @@ public class UpGradeShop : MonoBehaviour
 
     public void GrowthCookingAbility()
     {
-        if (int.Parse(GameManager.instance.data.cookCount) < 7)
+        if (int.Parse(GameManager.instance.data.cookCount) < maxCookCount)
         {
             int countA = int.Parse(GameManager.instance.data.cookCount) + 1;
             int levelA = int.Parse(GameManager.instance.data.cookCount) - 1;
@@ -164,13 +167,13 @@ public class UpGradeShop : MonoBehaviour
                 GameManager.instance.data.gold = gold_.ToString();
                 GameManager.instance.data.cookCount = count.ToString();
                 Text text = GetComponentInChildren<Text>();
-                if (level < 4)
+                if (level < maxLevel - 1)
                 {
                     text.text = "요리공간 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n효과 : 요리할 수 있는\n물고기 수 " + count + " -> " + nextCount + "마리";
                 }
-                else if (level == 4)
+                else if (level == maxLevel - 1)
                 {
                     text.text = "요리공간 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +

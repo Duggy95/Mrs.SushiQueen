@@ -11,30 +11,31 @@ public class EndSceneCtrl : MonoBehaviour
     public Text atkTxt;
     public Text scoreTxt;
     public GameObject configPanel;
-    public GameObject fishingSV;
-    public GameObject ShopSV;
-    public GameObject SkillSV;
+    public GameObject fishingSV;  // 낚시용품 스크롤뷰
+    public GameObject ShopSV;  // 가게 업그레이드 스크롤뷰
+    public GameObject SkillSV;  // 스킬 업그레이드 스크롤뷰
     public GameObject InventoryImg;
     public GameObject inventoryFullImg;
-    public GameObject noMoneyTxt;
-    public GameObject maxLevelTxt;
-    public GameObject fullTxt;
-    public GameObject receipt;
+    public GameObject noMoneyTxt;  // 돈이 부족할 때
+    public GameObject maxLevelTxt;  // 최대 레벨일 때
+    public GameObject fullTxt;  // 인벤토리가 가득 찬 경우
+    public GameObject receipt;  // 영수증
     public GameObject endSceneQuestion;
     public GameObject logOutQuestion;
     public GameObject deleteDataQuestion;
     public GameObject exitGameQuestion;
-    //public GameObject admobQuestion;
+    // public GameObject admobQuestion;  // 광고
     public Image fishBtn;
     public Image shopBtn;
     public Image skillBtn;
-    public bool rewardAdSuccess;
+    // public bool rewardAdSuccess;
 
     AudioSource audioSource;
     Color initColor = new Color(1, 1, 1, 1);
     Color selColor = new Color(1, 1, 0, 1);
 
     bool config;
+
     private void Awake()
     {
         Time.timeScale = 1;
@@ -133,8 +134,6 @@ public class EndSceneCtrl : MonoBehaviour
 
     public void UIUpdate()
     {
-        //GameManager.instance.LogData();
-
         dateTxt.text = int.Parse(GameManager.instance.data.dateCount).ToString("N0");
         scoreTxt.text = int.Parse(GameManager.instance.data.score).ToString("N0");
         goldTxt.text = int.Parse(GameManager.instance.data.gold).ToString("N0");

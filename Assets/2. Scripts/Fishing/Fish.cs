@@ -8,16 +8,16 @@ public class Fish : MonoBehaviour
 {
     public GameObject hpBarPrefab; // 물고기 체력바 프리팹
     public GameObject bobber;   // 찌 이미지
-    public FishData[] fishDatas;
-    public FishData[] easyFishDatas;
+    public FishData[] fishDatas;  // 물고기 정보 스크립터블
+    public FishData[] easyFishDatas;  // 초보자용 전용 스크립터블
     public GameObject directionObj; // 방향 오브젝트
 
     AudioSource audioSource;
 
     Image hp; //체력바 이미지
     FishingManager fm;  // 낚시 매니저
-    GameObject _bobber;
-    FishData fishData;
+    GameObject _bobber;  // 생성된 찌 이미지
+    FishData fishData;  // 생성된 물고기의 정보
     List<GameObject> dirObj = new List<GameObject>();
 
     int maxHP; //최대체력
@@ -25,14 +25,15 @@ public class Fish : MonoBehaviour
     int heal;  // 회복력
     int _atk;  // 공격력
     int delayTime;   // 찌 던지고 물고기 나올 때까지 시간
-    int randomIndex;
+    int randomIndex;  // 좌우클릭에 대한 랜덤인덱스
     float maxTime = 15f;  // 최대 타임
     float currTime;    // 현재 타임
-    float fish_Probability;
+    float fish_Probability;  // 물고기 확률
     bool fishing = false;  // 낚시중인지
-    bool rightClick = false;
-    bool leftClick = false;
+    bool rightClick = false;  // 우측 클릭 가능 여부
+    bool leftClick = false;  // 좌측 클릭 가능 여부
 
+    // 생성된 물고기 정보를 토대로 설정
     public void Setup(FishData fishData)
     {
         maxHP = fishData.hp;
@@ -49,6 +50,7 @@ public class Fish : MonoBehaviour
         _atk = int.Parse(GameManager.instance.data.atk);
     }
 
+    // 찌가 생성됨과 동시에 물고기 정보 초기 셋팅
     void OnEnable()
     {
         currTime = maxTime;
@@ -67,6 +69,7 @@ public class Fish : MonoBehaviour
 
     private void Update()
     {
+        // 인벤토리 연 경우 터치 안되게
         if (fm.inventoryFullImg.activeSelf == true)
             return;
 
@@ -119,6 +122,7 @@ public class Fish : MonoBehaviour
         hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 줄어듬
         audioSource.PlayOneShot(SoundManager.instance.reelIn, 0.5f);
 
+        // 체력을 다 깎은 경우 각 함수 호출
         if (currHP <= 0)
         {
             Debug.Log(fishData.fishImg);
@@ -180,15 +184,6 @@ public class Fish : MonoBehaviour
                         fish_Probability *= 2f;
                 }
 
-                /*else if (fm.useItem_rare)
-                {
-                    if (fishDatas[i].grade == 0)
-                        fish_Probability *= 0.5f;
-
-                    else if (fishDatas[i].grade == 1)
-                        fish_Probability *= 2f;
-                }*/
-
                 // 확률만큼 리스트 저장
                 for (int j = 0; j < fish_Probability; j++)
                 {
@@ -196,6 +191,7 @@ public class Fish : MonoBehaviour
                 }
             }
         }
+        // 6일차부턴 기존 물고기 전부 생성 가능
         else
         {
             for (int i = 0; i < fishDatas.Length; i++)
@@ -276,11 +272,6 @@ public class Fish : MonoBehaviour
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
 
-        /*GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
-        water_.transform.SetParent(transform);
-        GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
-        _water.transform.SetParent(transform);*/
-
         fm.touchTxt.gameObject.SetActive(true);
         fm.giveupBtn.gameObject.SetActive(true);
 
@@ -288,9 +279,6 @@ public class Fish : MonoBehaviour
         // 한바퀴 돌 때마다 방향 랜덤 설정
         while (fishing)
         {
-            /*water_.gameObject.SetActive(true);
-            _water.gameObject.SetActive(false);*/
-
             randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
 
             if (randomIndex - 0 > 0)
@@ -310,12 +298,7 @@ public class Fish : MonoBehaviour
                 StartCoroutine(DirEff(dirObj[0], dirObjScale));
             }
 
-            yield return new WaitForSeconds(0.5f);
-
-            /*water_.gameObject.SetActive(false);
-            _water.gameObject.SetActive(true);*/
-
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 

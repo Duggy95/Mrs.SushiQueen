@@ -12,6 +12,7 @@ public class UpGradeSkil : MonoBehaviour
     AudioSource audioSource;
 
     int level;
+    int maxLevel = 5;
     int count;
     int _gold;
 
@@ -38,6 +39,7 @@ public class UpGradeSkil : MonoBehaviour
         }
     }
 
+    // 초기 셋팅
     public void SetCookingTimer()
     {
         count = int.Parse(GameManager.instance.data.cookTime);
@@ -46,13 +48,13 @@ public class UpGradeSkil : MonoBehaviour
         int nextCount = count + 5;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        if (level < 4)
+        if (level < maxLevel - 1)
         {
             text.text = "요리체력 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
                 "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
-        else if (level == 4)
+        else if (level == maxLevel - 1)
         {
             text.text = "요리체력 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
@@ -66,9 +68,10 @@ public class UpGradeSkil : MonoBehaviour
         }
     }
 
+    // 업그레이드 설정
     public void GrowthCookingTimer()
     {
-        if (int.Parse(GameManager.instance.data.cookHPLV) < 5)
+        if (int.Parse(GameManager.instance.data.cookHPLV) < maxLevel)
         {
             int countA = int.Parse(GameManager.instance.data.cookTime) + 10;
             int levelA = int.Parse(GameManager.instance.data.cookHPLV);
@@ -87,13 +90,13 @@ public class UpGradeSkil : MonoBehaviour
                 GameManager.instance.data.cookHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
 
-                if (level < 4)
+                if (level < maxLevel - 1)
                 {
                     text.text = "요리체력 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 요리할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
-                else if (level == 4)
+                else if (level == maxLevel - 1)
                 {
                     text.text = "요리체력 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
@@ -131,13 +134,13 @@ public class UpGradeSkil : MonoBehaviour
         int nextCount = count + 5;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        if (level < 4)
+        if (level < maxLevel - 1)
         {
             text.text = "낚시체력 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
                 "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
         }
-        else if (level == 4)
+        else if (level == maxLevel - 1)
         {
             text.text = "낚시체력 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
@@ -153,7 +156,7 @@ public class UpGradeSkil : MonoBehaviour
 
     public void GrowthFishingTimer()
     {
-        if (int.Parse(GameManager.instance.data.fishHPLV) < 5)
+        if (int.Parse(GameManager.instance.data.fishHPLV) < maxLevel)
         {
             int countA = int.Parse(GameManager.instance.data.fishTime) + 10;
             int levelA = int.Parse(GameManager.instance.data.fishHPLV);
@@ -172,13 +175,13 @@ public class UpGradeSkil : MonoBehaviour
                 GameManager.instance.data.fishHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
 
-                if (level < 4)
+                if (level < maxLevel - 1)
                 {
                     text.text = "낚시체력 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 낚시할 수 있는\n시간 " + count + " -> " + nextCount + "초";
                 }
-                else if (level == 4)
+                else if (level == maxLevel - 1)
                 {
                     text.text = "낚시체력 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
@@ -216,13 +219,13 @@ public class UpGradeSkil : MonoBehaviour
         int nextCount = count + 2;
         int nextLevel = level + 1;
         Text text = GetComponentInChildren<Text>();
-        if (level < 4)
+        if (level < maxLevel - 1)
         {
             text.text = "응대 LV." + level + " -> " + nextLevel +
                 "\n가격 : " + _gold.ToString("N0") +
                 "\n현재 손님 대기시간 \n시간 " + count + " -> " + nextCount + "초";
         }
-        else if (level == 4)
+        else if (level == maxLevel - 1)
         {
             text.text = "응대 LV." + level + " -> " + "Max" +
                 "\n가격 : " + _gold.ToString("N0") +
@@ -238,7 +241,7 @@ public class UpGradeSkil : MonoBehaviour
 
     public void GrowthCustomerTimer()
     {
-        if (int.Parse(GameManager.instance.data.customerHPLV) < 5)
+        if (int.Parse(GameManager.instance.data.customerHPLV) < maxLevel)
         {
             int countA = int.Parse(GameManager.instance.data.customerTime) + 2;
             int levelA = int.Parse(GameManager.instance.data.customerHPLV);
@@ -257,13 +260,13 @@ public class UpGradeSkil : MonoBehaviour
                 GameManager.instance.data.customerHPLV = level.ToString();
                 Text text = GetComponentInChildren<Text>();
 
-                if (level < 4)
+                if (level < maxLevel - 1)
                 {
                     text.text = "응대 LV." + level + " -> " + nextLevel +
                         "\n가격 : " + _gold.ToString("N0") +
                         "\n현재 손님 대기시간 \n시간 " + count + " -> " + nextCount + "초";
                 }
-                else if (level == 4)
+                else if (level == maxLevel - 1)
                 {
                     text.text = "응대 LV." + level + " -> " + "Max" +
                         "\n가격 : " + _gold.ToString("N0") +
