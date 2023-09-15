@@ -19,11 +19,6 @@ public class Dish : MonoBehaviour
         tr = GetComponent<Transform>();
     }
 
-    void Update()
-    {
-
-    }
-
     public void AddSushi(string sushiName, string wasabi, int gold) //초밥 저장. DragSushi에서 초밥 접시에 놓을 때 호출.
     {
         Sushi sushi = new Sushi(sushiName, wasabi, gold);

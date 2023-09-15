@@ -90,20 +90,6 @@ public class TutorialFish : MonoBehaviour
             }
         }
 
-        // 낚시 중이고 현재 시간이 0보다 많다면
-        // 카운트 다운 시작
-        // 카운트 다운이 끝났다면 fm의 물고기 도망 함수 호출
-        /*if (fishing && currTime > 0)
-        {
-            currTime -= Time.deltaTime;
-
-            if (currTime <= 0)
-            {
-                tf.Run();
-                Destroy(gameObject);
-            }
-        }*/
-
         if (tf.isFishing == false)
             Die();
     }
@@ -116,8 +102,6 @@ public class TutorialFish : MonoBehaviour
 
         if (currHP <= 0)
         {
-            Debug.Log(fishData.fishImg);
-            Debug.Log(fishData.info);
             tf.Fish(fishData);
             tf.fishCome = true;
             Die();
@@ -148,8 +132,6 @@ public class TutorialFish : MonoBehaviour
         fishing = true;   // 낚시 시작
         tf.count++;
 
-        Debug.Log("물장구 시작");
-
         // 물고기 체력바 생성 후 자신의 자식으로 넣음
         GameObject fishHP = Instantiate(hpBarPrefab, hpPos, Quaternion.identity);
         fishHP.transform.SetParent(transform);
@@ -167,20 +149,12 @@ public class TutorialFish : MonoBehaviour
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
 
-        /*GameObject water_ = Instantiate(waterEff[0], pos, Quaternion.identity);
-        water_.transform.SetParent(transform);
-        GameObject _water = Instantiate(waterEff[1], pos, Quaternion.identity);
-        _water.transform.SetParent(transform);*/
-
         tf.touchTxt.gameObject.SetActive(true);
 
         // 이미지 생성하여 번갈아가며 띄움
         // 한바퀴 돌 때마다 방향 랜덤 설정
         while (fishing)
         {
-            /*water_.gameObject.SetActive(true);
-            _water.gameObject.SetActive(false);*/
-
             randomIndex = Random.Range(0, dirObj.Count); // 배열에서 랜덤 인덱스 선택
 
             if (randomIndex - 0 > 0)
@@ -199,13 +173,7 @@ public class TutorialFish : MonoBehaviour
                 leftClick = true;
                 StartCoroutine(DirEff(dirObj[0], dirObjScale));
             }
-
-            yield return new WaitForSeconds(0.5f);
-
-            /*water_.gameObject.SetActive(false);
-            _water.gameObject.SetActive(true);*/
-
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -236,7 +204,6 @@ public class TutorialFish : MonoBehaviour
                 currHP += heal;
                 hp.fillAmount = (float)currHP / maxHP;  // 남은 체력 비율에 맞게 늘어남
             }
-            Debug.Log("현재 체력 " + currHP);
         }
     }
 }

@@ -840,16 +840,6 @@ MonoBehaviour:
   - {fileID: 7557381976995690044, guid: 8d6c2646626bd83428c65b9b8a4e8228, type: 3}
   - {fileID: 7557381976995690044, guid: 5162a222040728649b98cda1de18dd2a, type: 3}
   orderFishContent: {fileID: 1738429417}
-  endSceneQuestion: {fileID: 2137261492}
-  logOutQuestion: {fileID: 464399568}
-  deleteDataQuestion: {fileID: 1709096303}
-  exitGameQuestion: {fileID: 193331935}
-  endScenePanel: {fileID: 431383396}
-  gameOverView: {fileID: 100164066}
-  restaurant: {fileID: 1383567797}
-  stamp: {fileID: 936370242}
-  gameOverTxt: {fileID: 1422001675}
-  restartBtn: {fileID: 361149435}
   fishScroll: {fileID: 1498260601}
   dish: {fileID: 772247575}
   dateTxt: {fileID: 1376496418}
@@ -864,6 +854,16 @@ MonoBehaviour:
   isReady: 0
   isEnd: 0
   customerStartPos: {x: -280, y: -100}
+  endSceneQuestion: {fileID: 2137261492}
+  logOutQuestion: {fileID: 464399568}
+  deleteDataQuestion: {fileID: 1709096303}
+  exitGameQuestion: {fileID: 193331935}
+  endScenePanel: {fileID: 431383396}
+  gameOverView: {fileID: 100164066}
+  restaurant: {fileID: 1383567797}
+  stamp: {fileID: 936370242}
+  gameOverTxt: {fileID: 1422001675}
+  restartBtn: {fileID: 361149435}
 --- !u!4 &155169518
 Transform:
   m_ObjectHideFlags: 0
@@ -11404,6 +11404,7 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 3cd789a3d8f88144aa2cdf1650877a60, type: 3}
   buttonClick: {fileID: 8300000, guid: 2d7489577f754c24fb4c1e3c17432201, type: 3}
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  gameOverSound: {fileID: 8300000, guid: d1dd7ab97c87ef943bc9204a691b4c6a, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
   orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}

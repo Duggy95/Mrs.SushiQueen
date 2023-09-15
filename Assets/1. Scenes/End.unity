@@ -6439,16 +6439,19 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 69452598966b83346b3b36914199394f, type: 3}
   buttonClick: {fileID: 8300000, guid: 2d7489577f754c24fb4c1e3c17432201, type: 3}
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  gameOverSound: {fileID: 8300000, guid: d1dd7ab97c87ef943bc9204a691b4c6a, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
-  orderFail: {fileID: 0}
+  orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}
   dropSound: {fileID: 8300000, guid: 17dc1d5235869b44abc67f234919308b, type: 3}
+  stampSound: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   reelIn: {fileID: 8300000, guid: 492f7a4a1e863d54389b0e23ed588664, type: 3}
   getFish: {fileID: 8300000, guid: 57f0c349c18d5d84a8fb2cee8dee4406, type: 3}
   swing: {fileID: 8300000, guid: cf8d90a9e614e774c9e3fe2de841ba24, type: 3}
   throwBobber: {fileID: 8300000, guid: 5f01b19c828bbc7468db787663e94639, type: 3}
   fish: {fileID: 8300000, guid: 2962ac79e9628ba44835bae3ed529260, type: 3}
   levelUp: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &952844446
 Transform:
   m_ObjectHideFlags: 0
@@ -6731,7 +6734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &971112351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6753,7 +6756,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 800}
+  m_SizeDelta: {x: 700, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971112352
 MonoBehaviour:
@@ -7512,7 +7515,6 @@ MonoBehaviour:
   fishBtn: {fileID: 2086567961}
   shopBtn: {fileID: 62979539}
   skillBtn: {fileID: 357705087}
-  rewardAdSuccess: 0
 --- !u!82 &1050191754
 AudioSource:
   m_ObjectHideFlags: 0

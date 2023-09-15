@@ -36,6 +36,7 @@ public class StartSceneManager : MonoBehaviour
 
     AudioSource audioSource;
     bool config;
+    bool isGameStart;
 
     private void Awake()
     {
@@ -90,6 +91,8 @@ public class StartSceneManager : MonoBehaviour
             loginObj.gameObject.SetActive(false);
             loginSuccessPanel.gameObject.SetActive(true);
             touchTxt.gameObject.SetActive(true);
+            if(isGameStart)
+                touchTxt.gameObject.SetActive(false);
         }
        
         else if (!GameManager.instance.loginSuccess)
@@ -109,17 +112,18 @@ public class StartSceneManager : MonoBehaviour
     // 화면 터치 시 게임 준비시작
     public void GameReady()
     {
-       // print("login : " + GameManager.instance.loginSuccess);
+        print("login : " + GameManager.instance.loginSuccess);
         if (GameManager.instance.loginSuccess)
         {
             startPanel.gameObject.SetActive(true);
+            isGameStart = true;
             StartCoroutine(GameStart());
         }
     }
 
     IEnumerator GameStart()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
 
         // 신규일 경우
         if (int.Parse(GameManager.instance.data.dateCount) <= 0)
@@ -132,7 +136,7 @@ public class StartSceneManager : MonoBehaviour
         else
         {
             // 초기엔 정보 불러오기 위해 5초 뒤 시작
-            yield return new WaitForSeconds(5f);
+            //yield return new WaitForSeconds(2f);
 
             _storyManager.gameObject.SetActive(false);
             mainObj.gameObject.SetActive(false);

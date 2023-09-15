@@ -46,7 +46,6 @@ public class ItemSlot : MonoBehaviour
             fm.useItem_white = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useWhiteItemTxt.gameObject.SetActive(true);
-            print("지렁이 사용");
         }
 
         else if (_text.text.Contains("새우"))
@@ -56,7 +55,6 @@ public class ItemSlot : MonoBehaviour
             fm.useItem_red = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useRedItemTxt.gameObject.SetActive(true);
-            print("새우 사용");
         }
 
         else if (_text.text.Contains("생선살"))
@@ -66,7 +64,6 @@ public class ItemSlot : MonoBehaviour
             fm.useItem_rare = true;
             fm.useItemPanel.gameObject.SetActive(true);
             fm.useRareItemTxt.gameObject.SetActive(true);
-            print("생선살 사용");
         }
 
         UpdateData();

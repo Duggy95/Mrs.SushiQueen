@@ -11,7 +11,6 @@ public class TutorialManager : MonoBehaviour
     private List<TutorialBase> tutorials;
 
     public GameObject inventoryImg;
-    public GameObject configPanel;
     public GameObject modeCanvas;
     public GameObject fishCanvas;
     public GameObject cookCanvas;
@@ -58,7 +57,7 @@ public class TutorialManager : MonoBehaviour
         skillBtn.color = initColor;
 
         SetNextTutorial();
-        print(tutorials.Count);
+        //print(tutorials.Count);
         modeCanvas.SetActive(true);
         fishCanvas.SetActive(false);
         cookCanvas.SetActive(false);
@@ -112,7 +111,7 @@ public class TutorialManager : MonoBehaviour
         tutorials.Clear();
         //행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         //현재는 씬 전환.
-        Debug.Log("Complete All");
+        //Debug.Log("Complete All");
 
         if (isSkip)
         {
@@ -125,7 +124,7 @@ public class TutorialManager : MonoBehaviour
             GameManager.instance.data.gold = "500000";
         }
 
-        print("씬 이동");
+       // print("씬 이동");
         GameManager.instance.nextStage = true;
         SceneManager.LoadScene(0);
     }
@@ -187,7 +186,7 @@ public class TutorialManager : MonoBehaviour
         endingQuestion.gameObject.SetActive(false);
     }
 
-    public void ConfigBtn() //설정보여주기
+    /*public void ConfigBtn() //설정보여주기
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
         if (!config)
@@ -202,7 +201,7 @@ public class TutorialManager : MonoBehaviour
             config = false;
             Time.timeScale = 1;
         }
-    }
+    }*/
 
     public void ExitQuestion()
     {

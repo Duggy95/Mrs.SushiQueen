@@ -8,6 +8,7 @@ public class Customer : MonoBehaviour
     public Text orderTxt;  //주문 텍스트
     public string[] sushis;  //초밥 종류 배열
     public string[] easySushis;  //쉬운 초밥 종류 배열
+    public string[] normalSushis;  //쉬운 초밥 종류 배열
     public string[] wasabis;  //와사비
     public string[] success;  //성공 문구.
     public string[] fail;  //실패 문구.
@@ -68,28 +69,32 @@ public class Customer : MonoBehaviour
     {
         StartCoroutine(FadeIn());  //나타나는 효과
 
-        if (int.Parse(GameManager.instance.data.dateCount) <= 5)  //5일차 이하
+        if (int.Parse(GameManager.instance.data.dateCount) <= 10)  //5일차 이하
         {
             randomOrder = 0;
-            print("이지 난이도");
+           // print("이지 난이도");
+        }
+        else if (int.Parse(GameManager.instance.data.dateCount) > 10 && int.Parse(GameManager.instance.data.dateCount) <= 20)  //10일차 이하
+        {
+            randomOrder = 1;
         }
         else if (int.Parse(GameManager.instance.data.score) <= 600)  //평판 600점 이하
         {
             //80퍼, 17퍼, 3퍼
             RandomChance(80, 97);
-            print("첫번째");
+           // print("첫번째");
         }
         else if (int.Parse(GameManager.instance.data.score) <= 900)  //평판 900점 이하
         {
             //60퍼, 30퍼, 10퍼
             RandomChance(60, 90);
-            print("두번째");
+           // print("두번째");
         }
         else  //그 외
         {
             //20퍼, 40퍼, 40퍼
             RandomChance(20, 60);
-            print("세번째");
+           // print("세번째");
         }
 
         switch (randomOrder)  //랜덤한 주문.
@@ -106,6 +111,16 @@ public class Customer : MonoBehaviour
                 cookManager.Order(orderRecipe);
                 break;
             case 1:
+                sushiName1 = normalSushis[Random.Range(0, normalSushis.Length)];  //초밥이름
+                sushiCount1 = Random.Range(1, 4);  //갯수
+                wasabi1 = wasabis[Random.Range(0, wasabis.Length)];  //와사비
+                order = sushiName1 + "초밥 " + "와사비 " + wasabi1 + " " + sushiCount1 + "개 " + message;
+                AddOrder(sushiName1, wasabi1, sushiCount1);  //랜덤하게 결정한 요소들을 주문 리스트에 추가
+                orderTxt.text = order;  //주문 텍스트 출력.
+                orderRecipe = sushiName1 + ", " + wasabi1 + ", " + sushiCount1;
+                cookManager.Order(orderRecipe);
+                break;
+            case 2:
                 //초밥 한 종류. Random.Range를 이용해서 초밥종류, 갯수, 와사비를 결정.
                 sushiName1 = sushis[Random.Range(0, sushis.Length)];  //초밥이름
                 sushiCount1 = Random.Range(1, 4);  //갯수
@@ -116,7 +131,7 @@ public class Customer : MonoBehaviour
                 orderRecipe = sushiName1 + ", " + wasabi1 + ", " + sushiCount1;
                 cookManager.Order(orderRecipe);
                 break;
-            case 2:
+            case 3:
                 //초밥 두 종류.
                 //The Fisher-Yates Shuffle 알고리즘을 이용하여 배열을 무작위로 섞고
                 //섞인 상태에서 앞에서부터 순서대로 요소를 결정.
@@ -144,7 +159,7 @@ public class Customer : MonoBehaviour
                                        sushiName2 + ", " + wasabi2 + ", " + sushiCount2;
                 cookManager.Order(orderRecipe);
                 break;
-            case 3:
+            case 4:
                 //초밥 세 종류.
                 //The Fisher-Yates Shuffle 알고리즘을 이용하여 배열을 무작위로 섞고
                 //섞인 상태에서 앞에서부터 순서대로 요소를 결정.
@@ -192,7 +207,7 @@ public class Customer : MonoBehaviour
             //손님 타이머가 다 끝나면
             if (currTime <= 0)
             {
-                print("님 평판 깎임.");
+               // print("님 평판 깎임.");
                 int _score = int.Parse(GameManager.instance.data.score) - 20;  //평판 감소
                 GameManager.instance.data.score = _score.ToString();
                 GameManager.instance.todayData.score -= 20;
@@ -371,16 +386,16 @@ public class Customer : MonoBehaviour
         //인수1 보다 작으면
         if (randomNum <= num1)
         {
-            randomOrder = 1;  //한 줄 패턴
+            randomOrder = 2;  //한 줄 패턴
         }
         //인수2 보다 작으면
         else if (randomNum <= num2)
         {
-            randomOrder = 2;  //두 줄 패턴
+            randomOrder = 3;  //두 줄 패턴
         }
         else  //그외
         {
-            randomOrder = 3;  //세 줄 패턴
+            randomOrder = 4;  //세 줄 패턴
         }
     }
 

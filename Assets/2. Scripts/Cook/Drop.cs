@@ -38,7 +38,7 @@ public class Drop : MonoBehaviour, IDropHandler
 
         if (transform.childCount == 2 && netaBtn.isEmpty)  //네타버튼이 비어있다면
         {
-            print("드랍");
+            // print("드랍");
             Drag.draggingItem.transform.SetParent(this.transform);
             
             this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;  //이미지 가져오기

@@ -1205,18 +1205,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 8
-    m_MaxSize: 80
+    m_MinSize: 1
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Ms. Sushi Queen
+  m_Text: "\uBBF8\uC988 \uC2A4\uC2DC\uD038"
 --- !u!222 &124317848
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3115,7 +3115,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 450, y: 200}
+  m_SizeDelta: {x: 430, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487130823
 MonoBehaviour:
@@ -6375,8 +6375,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 700, y: 300}
+  m_AnchoredPosition: {x: 0, y: -200}
+  m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1188220407
 MonoBehaviour:
@@ -7804,7 +7804,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 750, y: 150}
+  m_SizeDelta: {x: 700, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1519203882
 MonoBehaviour:
@@ -9315,6 +9315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1716512910}
   - component: {fileID: 1716512911}
+  - component: {fileID: 1716512912}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9357,6 +9358,18 @@ MonoBehaviour:
   viewReceipt: 0
   nextStage: 0
   loginSuccess: 0
+--- !u!114 &1716512912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716512908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83c568580a42014eb25a0ee03432456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1759415085
 GameObject:
   m_ObjectHideFlags: 0
@@ -9805,6 +9818,7 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 80dd9808f4547ba4c925008227defbbc, type: 3}
   buttonClick: {fileID: 8300000, guid: 2d7489577f754c24fb4c1e3c17432201, type: 3}
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  gameOverSound: {fileID: 8300000, guid: d1dd7ab97c87ef943bc9204a691b4c6a, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
   orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}
@@ -9816,6 +9830,7 @@ MonoBehaviour:
   throwBobber: {fileID: 8300000, guid: 5f01b19c828bbc7468db787663e94639, type: 3}
   fish: {fileID: 8300000, guid: 2962ac79e9628ba44835bae3ed529260, type: 3}
   levelUp: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &1847762611
 Transform:
   m_ObjectHideFlags: 0

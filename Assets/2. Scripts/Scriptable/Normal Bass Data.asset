@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b3d820df750364ca03235c9bff8e86, type: 3}
+  m_Name: Normal Bass Data
+  m_EditorClassIdentifier: 
+  fishName: "\uB18D\uC5B4"
+  grade: 0
+  color: 0
+  hp: 20
+  heal: 2
+  gold: 2000
+  probability: 16
+  fishImg: {fileID: 21300000, guid: dc67354c52f206646ab5c445d7513ba7, type: 3}
+  netaImg: {fileID: 21300000, guid: 65b338e6f95d431469a7f6c7f776a0c1, type: 3}
+  info: {fileID: 7040561584231261383, guid: f7b1f40caff31c94ab74749b44d8fbda, type: 3}

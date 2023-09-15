@@ -146,17 +146,18 @@ public class GameManager : MonoBehaviour
         if (loginSuccess)
             return;
 
-        if(GPGSBinder.Inst.LoginS())
+        if (GPGSBinder.Inst.LoginS())
         {
             loginSuccess = true;
             Load();
-            //Debug.Log("login : " +loginSuccess);
         }
     }
 
     public void LogIn()
     {
         GPGSBinder.Inst.Login();
+        /*loginSuccess = true;
+        Load();*/
     }
 
     public void Save(string type)
@@ -190,13 +191,12 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
-        print("loadData");
         GPGSBinder.Inst.LoadCloud("DATA");
 
-        print("loadItem");
+
         GPGSBinder.Inst.LoadCloud("ITEM");
 
-        print("loadfish");
+
         GPGSBinder.Inst.LoadCloud("FISH");
 
         /*if (PlayerPrefs.HasKey("ITEM"))
@@ -237,30 +237,26 @@ public class GameManager : MonoBehaviour
         string f = "fish_Name";
         string d = "score";
 
-        print("data load start");
         // 문자열에 포함된 내용에 따라 해당 정보타입으로 바꿔주고 최신화
         if (loadData.Contains(i))
         {
             _inventory_Items = JsonUtility.FromJson<Serialization<InventoryItem>>(loadData).target;
-            //Debug.Log("loadItemData : " + loadData);
         }
         else if (loadData.Contains(f))
         {
             _inventory_Fishs = JsonUtility.FromJson<Serialization<InventoryFish>>(loadData).target;
-            //Debug.Log("loadFishData : " + loadData);
         }
         else if (loadData.Contains(d))
         {
             _data = JsonUtility.FromJson<Data>(loadData);
-            //Debug.Log("loadData : " + loadData);
         }
     }
 
     public void DeleteData()
     {
-        GPGSBinder.Inst.DeleteCloud("ITEM");
+        /*GPGSBinder.Inst.DeleteCloud("ITEM");
         GPGSBinder.Inst.DeleteCloud("FISH");
-        GPGSBinder.Inst.DeleteCloud("DATA");
+        GPGSBinder.Inst.DeleteCloud("DATA");*/
 
         data = new Data();
         Save("d");
@@ -271,9 +267,9 @@ public class GameManager : MonoBehaviour
         inventory_Fishs.Clear();
         Save("f");
 
-        Debug.Log("deleteItemData : " + inventory_Items.Count);
+        /*Debug.Log("deleteItemData : " + inventory_Items.Count);
         Debug.Log("deleteFishData : " + inventory_Fishs.Count);
-        Debug.Log("deleteData : " + data);
+        Debug.Log("deleteData : " + data);*/
 
         /*PlayerPrefs.DeleteAll();
         Debug.Log("데이터 삭제");*/

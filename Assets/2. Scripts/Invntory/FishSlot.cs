@@ -39,7 +39,7 @@ public class FishSlot : MonoBehaviour
             if (fishDatas[i].fishName == fish_Name)
             {
                 fishData = fishDatas[i];
-                print(fishData.fishName);
+                //print(fishData.fishName);
                 break;
             }
         }
@@ -63,7 +63,6 @@ public class FishSlot : MonoBehaviour
     {
         string[] slotInfo = _text.text.Split(" ");
         string fishName = slotInfo[0];
-        print(fishName);
         string valueToFind = fishName;
 
         int newValue = 1;

@@ -34,7 +34,6 @@ public class TutorialDrop : MonoBehaviour, IDropHandler
 
         if (transform.childCount == 2 && netaBtn.isEmpty)
         {
-            print("µå¶ø");
             Drag.draggingItem.transform.SetParent(this.transform);
 
             this.gameObject.GetComponentInChildren<Image>().sprite = fishData.netaImg;

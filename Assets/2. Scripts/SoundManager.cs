@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip BGM;  // 각 씬 별 배경음악
     public AudioClip buttonClick; // 버튼 클릭 사운드
     public AudioClip goldSound;  // 골드 추가 사운드
+    public AudioClip gameOverSound;
 
     [Header("Story")]
     public AudioClip storyText; // 텍스트 출력 사운드

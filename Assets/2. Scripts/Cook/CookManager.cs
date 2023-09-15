@@ -296,9 +296,13 @@ public class CookManager : MonoBehaviour
 
     public IEnumerator GameOverCoroutine()  //게임오버 코루틴
     {
+        GameManager.instance.DeleteData();
         //1초뒤 게임종료 화면띄우고 레스토랑 이미지 아래에서 위로 천천히 올라오게 하기
         yield return new WaitForSeconds(1);
+
         SoundManager.instance.audioSource.Stop();
+        audioSource.PlayOneShot(SoundManager.instance.gameOverSound, 1f);
+
         gameOverView.gameObject.SetActive(true);
         Vector2 initPos = new Vector2(0, -850);
         Vector2 targetPos = new Vector2(0, -95);
@@ -309,6 +313,10 @@ public class CookManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration); // 시간 비율 계산
             restaurant.transform.localPosition = Vector2.Lerp(initPos, targetPos, t);
+            if (t <= 1)
+            {
+                yield break;
+            }
             yield return null;
         }
 
@@ -318,18 +326,22 @@ public class CookManager : MonoBehaviour
         Vector3 targetScale = new Vector3(0.8f, 0.8f, 0.8f);
         duration = 0.5f;
         elapsedTime = 0f;
-        while(elapsedTime < duration)
+        restartBtn.gameObject.SetActive(true);
+        gameOverTxt.gameObject.SetActive(true);
+
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
             stamp.transform.localScale = Vector3.Lerp(initScale, targetScale, t);
+            if (t <= 1)
+            {
+                audioSource.PlayOneShot(SoundManager.instance.stampSound, 1);
+                yield break;
+            }
             // print(elapsedTime);
             yield return null;
         }
-        audioSource.PlayOneShot(SoundManager.instance.stampSound, 1);
-        restartBtn.gameObject.SetActive(true);
-        gameOverTxt.gameObject.SetActive(true);
-        // print("코루틴 호출");
     }
 
     public void GameOver()  //게임 오버

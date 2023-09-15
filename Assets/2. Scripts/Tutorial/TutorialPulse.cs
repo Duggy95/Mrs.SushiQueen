@@ -10,13 +10,9 @@ public class TutorialPulse : TutorialBase
     public GameObject pulse;
     public CanvasGroup canvas;
 
-    private void Start()
-    {
-        
-    }
     public override void Enter()
     {
-        print("버튼이요");
+        //print("버튼이요");
         manager = GetComponentInParent<TutorialManager>();
         Button button = pulse.GetComponent<Button>();
         button.onClick.AddListener(OnPulseButtonClick);

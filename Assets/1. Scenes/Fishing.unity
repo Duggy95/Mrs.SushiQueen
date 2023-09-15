@@ -1500,16 +1500,19 @@ MonoBehaviour:
   BGM: {fileID: 8300000, guid: 064c77c652ee5e94b89d63e53e797450, type: 3}
   buttonClick: {fileID: 8300000, guid: 2d7489577f754c24fb4c1e3c17432201, type: 3}
   goldSound: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  gameOverSound: {fileID: 8300000, guid: d1dd7ab97c87ef943bc9204a691b4c6a, type: 3}
   storyText: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
   orderSuccess: {fileID: 8300000, guid: 402d24a62e04c854a9507ac01b0233ef, type: 3}
-  orderFail: {fileID: 0}
+  orderFail: {fileID: 8300000, guid: f1cdd3bff8cdc9849b74b39468c27e42, type: 3}
   dropSound: {fileID: 8300000, guid: 17dc1d5235869b44abc67f234919308b, type: 3}
+  stampSound: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   reelIn: {fileID: 8300000, guid: 492f7a4a1e863d54389b0e23ed588664, type: 3}
   getFish: {fileID: 8300000, guid: 57f0c349c18d5d84a8fb2cee8dee4406, type: 3}
   swing: {fileID: 8300000, guid: cf8d90a9e614e774c9e3fe2de841ba24, type: 3}
   throwBobber: {fileID: 8300000, guid: 5f01b19c828bbc7468db787663e94639, type: 3}
   fish: {fileID: 8300000, guid: 2962ac79e9628ba44835bae3ed529260, type: 3}
   levelUp: {fileID: 8300000, guid: 10ce7234234206d4ea2915fba0e8f01c, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &239659823
 Transform:
   m_ObjectHideFlags: 0
@@ -7267,7 +7270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0, y: 141.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1371512682
@@ -7283,7 +7286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7292,7 +7295,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -7303,7 +7306,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBC18\uB300\uBC29\uD5A5\uC73C\uB85C \uD654\uBA74\uC744 \uD130\uCE58\uD558\uC138\uC694!"
+  m_Text: "\uB09A\uC2EF\uB300\uB97C \uAE30\uC900\uC73C\uB85C    \uCC0C \uC544\uB798
+    \uBC29\uD5A5\uC758       \n\uBC18\uB300\uCABD \uD654\uBA74\uC744 \uD130\uCE58\uD558\uC5EC   
+    \uBB3C\uACE0\uAE30\uB97C \uC7A1\uC544\uC8FC\uC138\uC694      "
 --- !u!222 &1371512683
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7319,7 +7324,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371512680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe5a1b4881f214140a74ad08e543fd71, type: 3}
   m_Name: 

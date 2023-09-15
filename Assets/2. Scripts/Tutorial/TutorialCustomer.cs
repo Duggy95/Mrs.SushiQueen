@@ -94,33 +94,6 @@ public class TutorialCustomer : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        /*if (isTimer)
-        {
-            currTime -= Time.deltaTime;  //시간이 줄어듬
-            currTimePercent = currTime / maxTime;  //남은시간 비율
-            timer.fillAmount = currTimePercent;  //타이머는 남은시간 비율에 맞게 줄어듬
-
-            //손님 타이머가 다 끝나면
-            if (currTime <= 0)
-            {
-                //cookManager.UIUpdate();  //UI 최신화
-                tc.GoOrder();  //주문 창으로 넘어옴.
-                tc.canMake = false;
-                orderTxt.text = fail[0];  //실패 텍스트 출력.
-                orders.Clear();  //주문 리스트 클리어.
-                dish.sushiList.Clear();  //초밥 리스트 클리어.
-                dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
-                dish.ClearSushi();  //접시 위 초밥 삭제.
-                dish.ClearBoard();  //도마 위 초밥 삭제.
-                StartCoroutine(FadeOut());
-                isTimer = false;  //타이머 비활성화 상태로 판단
-                isOrdered = false;  //주문을 안받았음.
-            }
-        }*/
-    }
-
     public void ShowTimer()  //손님 타이머 활성화
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
@@ -171,7 +144,6 @@ public class TutorialCustomer : MonoBehaviour
                     if (!(sushiCount == order.count))  //주문갯수와 초밥 갯수가 일치한다면
                     {
                         orderMatch = false;  //불일치
-                        Debug.Log($"주문과 초밥 정보 일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
                         break;
                     }
                     else
@@ -197,7 +169,6 @@ public class TutorialCustomer : MonoBehaviour
                 else
                 {
                     orderMatch = false;  //불일치
-                    Debug.Log($"주문과 초밥 정보 불일치 - 종류: {order.sushiName}, 와사비: {order.wasabi}, 갯수: {order.count}");
                     break;
                 }
             }
@@ -205,7 +176,6 @@ public class TutorialCustomer : MonoBehaviour
             if (orderMatch)  //일치 시
             {
                 orderTxt.text = success[Random.Range(0, success.Length)];
-                Debug.Log("총 가격: " + totalPrice);
                 orders.Clear();  //주문 리스트 클리어.
                 dish.sushiCounts.Clear();  //초밥 딕셔너리 클리어.
                 dish.sushiList.Clear();  //초밥 리스트 클리어.
@@ -232,7 +202,6 @@ public class TutorialCustomer : MonoBehaviour
     IEnumerator FadeIn()
     {
         Vector2 initPos = tc.customerStartPos;
-        print(initPos);
         Vector2 targetPos = initPos + new Vector2(30, 0);
         for (int i = 0; i < images.Length; i++)
         {

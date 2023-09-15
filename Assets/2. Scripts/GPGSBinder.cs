@@ -7,7 +7,7 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using GooglePlayGames.BasicApi.Events;
 
-public class GPGSBinder 
+public class GPGSBinder
 {
     static GPGSBinder inst = new GPGSBinder();
     public static GPGSBinder Inst => inst;
@@ -18,10 +18,10 @@ public class GPGSBinder
     IEventsClient Events =>
         PlayGamesPlatform.Instance.Events;
 
-    /*private void Awake()
+    private void Awake()
     {
         PlayGamesPlatform.Activate();
-    }*/
+    }
 
     public bool LoginS()
     {
@@ -44,11 +44,11 @@ public class GPGSBinder
         {
             onLoginSuccess?.Invoke(success == SignInStatus.Success, Social.localUser);
             //GameManager.instance.Load();
-            Debug.Log("id : " + Social.localUser.id);
+            //Debug.Log("id : " + Social.localUser.id);
         });
     }
 
-    /*public void Login()
+    public void Login()
     {
         Init();
         if (!Social.localUser.authenticated)
@@ -68,7 +68,7 @@ public class GPGSBinder
             }
             );
         }
-    }*/
+    }
 
     public void Logout()
     {
@@ -122,22 +122,22 @@ public class GPGSBinder
                             string data = System.Text.Encoding.UTF8.GetString(loadedData);
                             onCloudLoaded?.Invoke(true, data);
                             GameManager.instance.SetData(data);
-                           // Debug.Log("load : " + data);
+                            // Debug.Log("load : " + data);
                         }
                         else
                         {
                             onCloudLoaded?.Invoke(false, null);
                             //Debug.Log("load failed");
-                            /*GameManager.instance.Save("i");
+                            GameManager.instance.Save("i");
                             GameManager.instance.Save("f");
-                            GameManager.instance.Save("d");*/
+                            GameManager.instance.Save("d");
                         }
                     });
                 }
             });
     }
 
-    public void DeleteCloud(string fileName, Action<bool> onCloudDeleted = null)
+    /*public void DeleteCloud(string fileName, Action<bool> onCloudDeleted = null)
     {
         SavedGame.OpenWithAutomaticConflictResolution(fileName,
             DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, (status, game) =>
@@ -150,56 +150,57 @@ public class GPGSBinder
                 else
                     onCloudDeleted?.Invoke(false);
             });
-    }
+    }*/
+    /*
+        public void ShowAchievementUI() =>
+            Social.ShowAchievementsUI();
 
-    public void ShowAchievementUI() =>
-        Social.ShowAchievementsUI();
+        public void UnlockAchievement(string gpgsId, Action<bool> onUnlocked = null) =>
+            Social.ReportProgress(gpgsId, 100, success => onUnlocked?.Invoke(success));
 
-    public void UnlockAchievement(string gpgsId, Action<bool> onUnlocked = null) =>
-        Social.ReportProgress(gpgsId, 100, success => onUnlocked?.Invoke(success));
+        public void IncrementAchievement(string gpgsId, int steps, Action<bool> onUnlocked = null) =>
+            PlayGamesPlatform.Instance.IncrementAchievement(gpgsId, steps, success => onUnlocked?.Invoke(success));
 
-    public void IncrementAchievement(string gpgsId, int steps, Action<bool> onUnlocked = null) =>
-        PlayGamesPlatform.Instance.IncrementAchievement(gpgsId, steps, success => onUnlocked?.Invoke(success));
+        public void ShowAllLeaderboardUI() =>
+            Social.ShowLeaderboardUI();
 
-    public void ShowAllLeaderboardUI() =>
-        Social.ShowLeaderboardUI();
+        public void ShowTargetLeaderboardUI(string gpgsId) =>
+            ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI(gpgsId);
 
-    public void ShowTargetLeaderboardUI(string gpgsId) =>
-        ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI(gpgsId);
+        public void ReportLeaderboard(string gpgsId, long score, Action<bool> onReported = null) =>
+            Social.ReportScore(score, gpgsId, success => onReported?.Invoke(success));
 
-    public void ReportLeaderboard(string gpgsId, long score, Action<bool> onReported = null) =>
-        Social.ReportScore(score, gpgsId, success => onReported?.Invoke(success));
+        public void LoadAllLeaderboardArray(string gpgsId, Action<UnityEngine.SocialPlatforms.IScore[]> onloaded = null) =>
+            Social.LoadScores(gpgsId, onloaded);
 
-    public void LoadAllLeaderboardArray(string gpgsId, Action<UnityEngine.SocialPlatforms.IScore[]> onloaded = null) =>
-        Social.LoadScores(gpgsId, onloaded);
-
-    public void LoadCustomLeaderboardArray(string gpgsId, int rowCount, LeaderboardStart leaderboardStart,
-        LeaderboardTimeSpan leaderboardTimeSpan, Action<bool, LeaderboardScoreData> onloaded = null)
-    {
-        PlayGamesPlatform.Instance.LoadScores(gpgsId, leaderboardStart, rowCount, LeaderboardCollection.Public, leaderboardTimeSpan, data =>
+        public void LoadCustomLeaderboardArray(string gpgsId, int rowCount, LeaderboardStart leaderboardStart,
+            LeaderboardTimeSpan leaderboardTimeSpan, Action<bool, LeaderboardScoreData> onloaded = null)
         {
-            onloaded?.Invoke(data.Status == ResponseStatus.Success, data);
-        });
-    }
+            PlayGamesPlatform.Instance.LoadScores(gpgsId, leaderboardStart, rowCount, LeaderboardCollection.Public, leaderboardTimeSpan, data =>
+            {
+                onloaded?.Invoke(data.Status == ResponseStatus.Success, data);
+            });
+        }
 
-    public void IncrementEvent(string gpgsId, uint steps)
-    {
-        Events.IncrementEvent(gpgsId, steps);
-    }
-
-    public void LoadEvent(string gpgsId, Action<bool, IEvent> onEventLoaded = null)
-    {
-        Events.FetchEvent(DataSource.ReadCacheOrNetwork, gpgsId, (status, iEvent) =>
+        public void IncrementEvent(string gpgsId, uint steps)
         {
-            onEventLoaded?.Invoke(status == ResponseStatus.Success, iEvent);
-        });
-    }
+            Events.IncrementEvent(gpgsId, steps);
+        }
 
-    public void LoadAllEvent(Action<bool, List<IEvent>> onEventsLoaded = null)
-    {
-        Events.FetchAllEvents(DataSource.ReadCacheOrNetwork, (status, events) =>
+        public void LoadEvent(string gpgsId, Action<bool, IEvent> onEventLoaded = null)
         {
-            onEventsLoaded?.Invoke(status == ResponseStatus.Success, events);
-        });
-    }
+            Events.FetchEvent(DataSource.ReadCacheOrNetwork, gpgsId, (status, iEvent) =>
+            {
+                onEventLoaded?.Invoke(status == ResponseStatus.Success, iEvent);
+            });
+        }
+
+        public void LoadAllEvent(Action<bool, List<IEvent>> onEventsLoaded = null)
+        {
+            Events.FetchAllEvents(DataSource.ReadCacheOrNetwork, (status, events) =>
+            {
+                onEventsLoaded?.Invoke(status == ResponseStatus.Success, events);
+            });
+        }*/
+
 }

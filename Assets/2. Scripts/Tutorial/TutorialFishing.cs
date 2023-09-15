@@ -14,6 +14,7 @@ public class TutorialFishing : TutorialBase
     public GameObject fishInfo;
     public GameObject fishInfoImg;
     public GameObject inventoryBtn;
+    public GameObject[] touchView;
     public Text full_Txt;
     public Text fishRun;
     public Text touchTxt;
@@ -32,7 +33,6 @@ public class TutorialFishing : TutorialBase
     public override void Enter()
     {
         audioSource = GetComponent<AudioSource>();
-        print("fishing tutorial");
         fishInfoOriginScale = Vector3.one;
         fishInfoOriginPos = fishInfoImg.transform.position;
     }
@@ -57,6 +57,7 @@ public class TutorialFishing : TutorialBase
         {
             // 물고기 잡는 중으로 변경
             isFishing = true;
+
             audioSource.PlayOneShot(SoundManager.instance.swing, 1);
             StartCoroutine(ThrowBobber(Input.mousePosition));
         }
@@ -70,7 +71,13 @@ public class TutorialFishing : TutorialBase
         // 물고기 잡는 중으로 변경
         // 물고기 도망 텍스트 비활성화
         fishRun.gameObject.SetActive(false);
-        Instantiate(fishObj, mousePos, Quaternion.identity);
+        GameObject _fishObj = Instantiate(fishObj, mousePos, Quaternion.identity);
+        touchView[0].gameObject.SetActive(true);
+        touchView[0].transform.SetSiblingIndex(1);
+        touchView[1].gameObject.SetActive(true);
+        touchView[0].transform.SetSiblingIndex(2);
+        _fishObj.transform.SetParent(fishCanvas.transform);
+        _fishObj.transform.SetSiblingIndex(3);  //2번째 자식.
         //transform.position = Input.mousePosition;
     }
 
@@ -85,6 +92,8 @@ public class TutorialFishing : TutorialBase
         fishInfoImg.transform.SetSiblingIndex(0);
         fishInfo_Txt.text = fishData.info.text;
         fish_Img.sprite = fishData.fishImg;
+        touchView[0].gameObject.SetActive(false);
+        touchView[1].gameObject.SetActive(false);
         audioSource.PlayOneShot(SoundManager.instance.fish, 1);
     }
 
@@ -99,7 +108,6 @@ public class TutorialFishing : TutorialBase
         isFishing = false;
         // 화면 누르면 텍스트 비활성화
         yield return new WaitForSeconds(2f);
-        Debug.Log("다시");
         fishRun.gameObject.SetActive(false);
     }
 
@@ -130,7 +138,6 @@ public class TutorialFishing : TutorialBase
                         // 해당 인덱스(index)의 값 변경
                         //GameManager.instance.inventory_Fishs[index].fish_Count = newValue.ToString();
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + newValue.ToString() + " " + "마리";
-                        Debug.Log("중복 종류 " + index + " changed to " + newValue);
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(Eff());
                         StartCoroutine(EffMove());
@@ -164,8 +171,6 @@ public class TutorialFishing : TutorialBase
                         _slot.fish_Name = data.fishName;
 
                         _fishs[i].GetComponentInChildren<Text>().text = data.fishName + "   " + "1 마리";
-                        Debug.Log("안찼고 다른 종류");
-                        //GameManager.instance.Save("f");
                         fishInfoImg.transform.parent = inventoryBtn.transform;
                         StartCoroutine(Eff());
                         StartCoroutine(EffMove());

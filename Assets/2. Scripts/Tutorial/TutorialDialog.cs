@@ -13,7 +13,6 @@ public class TutorialDialog : TutorialBase
     
     public override void Enter()
     {
-        print("ฟฃลอ");
         StartCoroutine(ShowImage());
         dialogManager = GetComponent<DialogManager>();
         dialogManager.Ondialog(dialogs);
@@ -69,7 +68,5 @@ public class TutorialDialog : TutorialBase
             dialog.transform.position = Vector2.Lerp(initPos, targetPos, t);
             yield return null;
         }
-
-        //Destroy(this);
     }
 }

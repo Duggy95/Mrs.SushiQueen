@@ -20,7 +20,7 @@ public class StoryManager : MonoBehaviour
     private void Start()
     {
         SetNextStory();
-        print(stories.Count);
+       // print(stories.Count);
     }
 
     private void Update()
@@ -42,14 +42,12 @@ public class StoryManager : MonoBehaviour
         //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
         if (currentIndex >= stories.Count - 1)
         {
-            print("스토리 종료");
             CompletedAllStories();
             return;
         }
 
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
-        print(currentIndex);
         currentStory = stories[currentIndex];
         background.sprite = sprites[currentIndex];
 
@@ -62,7 +60,6 @@ public class StoryManager : MonoBehaviour
         currentStory = null;
         //행동 양식이 여러 종류가 되었을 때 코드 추가 작성
         //현재는 씬 전환.
-        Debug.Log("Complete All");
         SceneManager.LoadScene(4);
     }
 }

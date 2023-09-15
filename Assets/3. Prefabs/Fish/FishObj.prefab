@@ -64,6 +64,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4bfc4cd6c49a9f84e907c8ceae235c66, type: 2}
   - {fileID: 11400000, guid: f4e61f22320b7ab4e8e8ca342a6d1265, type: 2}
   easyFishDatas:
+  - {fileID: 11400000, guid: 4d813d32a9286774c8b4f3db8a2bb180, type: 2}
+  - {fileID: 11400000, guid: 0c5a6adb0c1d11341b179405e89b7d85, type: 2}
+  - {fileID: 11400000, guid: 0f3a2f33f04f4be4cac05d1933d25161, type: 2}
+  - {fileID: 11400000, guid: 72ce602a9d851b34db7b3bdab060ec5d, type: 2}
+  normalFishDatas:
   - {fileID: 11400000, guid: 79ac3d22c5c7c4f4d93c3cc3744cd5a5, type: 2}
   - {fileID: 11400000, guid: afa18e7326ed7db47ae41221be28deb0, type: 2}
   - {fileID: 11400000, guid: 73d880b3c156e8649a1e26383a7d979d, type: 2}

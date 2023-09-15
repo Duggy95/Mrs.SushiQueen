@@ -114,7 +114,9 @@ public class FishingManager : MonoBehaviour
         fishLine.SetPosition(1, endPos);
 
         // 클릭 위치에 물고기 생성
-        Instantiate(fishObj, mousePos, Quaternion.identity);
+        GameObject _fishObj = Instantiate(fishObj, mousePos, Quaternion.identity);
+        _fishObj.transform.SetParent(canvas.transform);
+        _fishObj.transform.SetSiblingIndex(1);  //2번째 자식.
     }
 
     // 잡은 경우에 물고기 정보창 띄움

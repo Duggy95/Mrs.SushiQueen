@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,17 +40,17 @@ public class Receipt : MonoBehaviour
             {
                 if (count == 1)
                 {
-                    fishInfoTxt = info[i].fish_NameT + info[i].fish_CountT + "마리";
+                    fishInfoTxt = info[i].fish_NameT + " " + info[i].fish_CountT + "마리";
                 }
                 else
                 {
-                    fishInfoTxt = fishInfoTxt + "\n" + info[i].fish_NameT + info[i].fish_CountT + "마리";
+                    fishInfoTxt = fishInfoTxt + "\n" + info[i].fish_NameT + " " + info[i].fish_CountT + "마리";
                 }
             }
 
             if (count % 2 == 0)
             {
-                fishInfoTxt = fishInfoTxt + "\t\t" + info[i].fish_NameT + info[i].fish_CountT + "마리";
+                fishInfoTxt = fishInfoTxt + "\t\t" + info[i].fish_NameT + " " + info[i].fish_CountT + "마리";
             }
         }
         if (fishInfoTxt == null)
@@ -61,7 +60,7 @@ public class Receipt : MonoBehaviour
         if (GameManager.instance.todayData.score > 0)
         {
             receiptTxt.text = "수익과 점수\n\n" + GameManager.instance.todayData.gold + "원 / " +
-                 string.Format("<color=#FF0000>{0}</color>", GameManager.instance.todayData.score) + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
+                 string.Format("<color=#FF0000>{0}</color>", "+" + GameManager.instance.todayData.score) + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
         }
         else if (GameManager.instance.todayData.score < 0)
         {
@@ -74,5 +73,5 @@ public class Receipt : MonoBehaviour
                 GameManager.instance.todayData.score + "점" + "\n\n잡은 물고기\n\n" + fishInfoTxt;
         }
         headTxt.text = GameManager.instance.data.dateCount + "일차 영수증";
-    }
+    }    
 }

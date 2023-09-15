@@ -5,4 +5,5 @@
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-1674172083345294/2243275214" />
     <meta-data android:name="com.google.android.gms.ads.AD_MANAGER_APP" android:value="true" />
   </application>
+	<uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 </manifest>

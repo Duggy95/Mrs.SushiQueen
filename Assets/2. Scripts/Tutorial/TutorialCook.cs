@@ -15,7 +15,6 @@ public class TutorialCook : TutorialBase
     public Text orderTxt;
     public Text priceTxt;
     public Transform dish;
-    //public CanvasGroup inventoryCanvas;
     public List<string> fishList = new List<string>();
     WaitForSeconds ws;
     AudioSource audioSource;

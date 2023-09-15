@@ -10,6 +10,7 @@ public class Fish : MonoBehaviour
     public GameObject bobber;   // 찌 이미지
     public FishData[] fishDatas;  // 물고기 정보 스크립터블
     public FishData[] easyFishDatas;  // 초보자용 전용 스크립터블
+    public FishData[] normalFishDatas;  // 중급용 전용 스크립터블
     public GameObject directionObj; // 방향 오브젝트
 
     AudioSource audioSource;
@@ -44,8 +45,8 @@ public class Fish : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         fm = GameObject.FindGameObjectWithTag("MANAGER").GetComponent<FishingManager>();
-        transform.SetParent(fm.canvas.transform);
-        transform.SetSiblingIndex(1);  //2번째 자식.
+        /*transform.SetParent(fm.canvas.transform);
+        transform.SetSiblingIndex(1);  //2번째 자식.*/
 
         _atk = int.Parse(GameManager.instance.data.atk);
     }
@@ -65,6 +66,33 @@ public class Fish : MonoBehaviour
         // 코루틴 함수 호출
         StartCoroutine(FishingEff(pos));
         StartCoroutine(Heal());
+        StartCoroutine(BobberMove());
+    }
+
+    IEnumerator BobberMove()
+    {
+        yield return new WaitForSeconds(1);
+
+        Vector3 startPos = _bobber.transform.position;
+        Vector3 endPos = _bobber.transform.position - new Vector3(0, 30, 0);
+
+        float elapsedTime = 0f;
+        float duration = 1f; // 이동 시간 (초)
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            _bobber.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+
+            if (elapsedTime / duration >= 1)
+            {
+                elapsedTime = 0f;
+                Vector3 temp = startPos;
+                startPos = endPos;
+                endPos = temp;
+            }
+            yield return null;
+        }
     }
 
     private void Update()
@@ -160,7 +188,7 @@ public class Fish : MonoBehaviour
         List<FishData> fish_Data = new List<FishData>();
 
         // 5일차 이하에는 노말 물고기가 나오도록
-        if (int.Parse(GameManager.instance.data.dateCount) <= 5)
+        if (int.Parse(GameManager.instance.data.dateCount) <= 10)
         {
             for (int i = 0; i < easyFishDatas.Length; i++)
             {
@@ -191,9 +219,40 @@ public class Fish : MonoBehaviour
                 }
             }
         }
+        else if (int.Parse(GameManager.instance.data.dateCount) > 5 && int.Parse(GameManager.instance.data.dateCount) <= 20)  //10일차 이하
+        {
+            for (int i = 0; i < normalFishDatas.Length; i++)
+            {
+                fish_Probability = normalFishDatas[i].probability;
+                // 아이템 썼을 때 확률 조정
+                if (fm.useItem_white)
+                {
+                    if (normalFishDatas[i].color == 0)
+                        fish_Probability *= 2f;
+
+                    else if (normalFishDatas[i].color == 1)
+                        fish_Probability *= 0f;
+                }
+
+                else if (fm.useItem_red)
+                {
+                    if (normalFishDatas[i].color == 0)
+                        fish_Probability *= 0f;
+
+                    else if (normalFishDatas[i].color == 1)
+                        fish_Probability *= 2f;
+                }
+
+                // 확률만큼 리스트 저장
+                for (int j = 0; j < fish_Probability; j++)
+                {
+                    fish_Data.Add(normalFishDatas[i]);
+                }
+            }
+        }
         // 6일차부턴 기존 물고기 전부 생성 가능
         else
-        {
+                {
             for (int i = 0; i < fishDatas.Length; i++)
             {
                 fish_Probability = fishDatas[i].probability;

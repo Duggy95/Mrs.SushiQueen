@@ -53,6 +53,11 @@ public class EndSceneCtrl : MonoBehaviour
         UIUpdate();
     }
 
+    private void Start()
+    {
+        ViewReceipt();
+    }
+
     /*public void Reward()
     {
         if (rewardAdSuccess)
