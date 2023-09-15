@@ -39,14 +39,14 @@ public class StoryManager : MonoBehaviour
             currentStory.Exit();
         }
 
-        //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
+        //마지막 스토리을 진행했다면 CompleteAllStories() 메소드 호출
         if (currentIndex >= stories.Count - 1)
         {
             CompletedAllStories();
             return;
         }
 
-        //다음 튜토리얼 과정을 currentTutorial로 등록
+        //다음 스토리를 currentStory로 등록
         currentIndex++;
         currentStory = stories[currentIndex];
         background.sprite = sprites[currentIndex];

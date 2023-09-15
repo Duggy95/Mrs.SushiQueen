@@ -110,7 +110,7 @@ public class TutorialFish : MonoBehaviour
 
     void Die()
     {
-        // 아이템 사용 텍스트 비활성화
+        // 터치설명 텍스트 비활성화
         // 방향 리스트 초기화
         // 오브젝트 삭제
         tf.touchTxt.gameObject.SetActive(false);
@@ -149,7 +149,7 @@ public class TutorialFish : MonoBehaviour
         dirObj.Add(leftObj);
         dirObj.Add(rightObj);
 
-        tf.touchTxt.gameObject.SetActive(true);
+        tf.touchTxt.gameObject.SetActive(true);  //터치 설명 텍스트 활성화
 
         // 이미지 생성하여 번갈아가며 띄움
         // 한바퀴 돌 때마다 방향 랜덤 설정

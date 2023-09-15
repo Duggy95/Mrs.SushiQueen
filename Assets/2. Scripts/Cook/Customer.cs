@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class Customer : MonoBehaviour
 {
     public Text orderTxt;  //주문 텍스트
     public string[] sushis;  //초밥 종류 배열
-    public string[] easySushis;  //쉬운 초밥 종류 배열
+    public string[] easySushis;  //매우 쉬운 초밥 종류 배열
     public string[] normalSushis;  //쉬운 초밥 종류 배열
     public string[] wasabis;  //와사비
     public string[] success;  //성공 문구.
@@ -82,19 +83,16 @@ public class Customer : MonoBehaviour
         {
             //80퍼, 17퍼, 3퍼
             RandomChance(80, 97);
-           // print("첫번째");
         }
         else if (int.Parse(GameManager.instance.data.score) <= 900)  //평판 900점 이하
         {
             //60퍼, 30퍼, 10퍼
             RandomChance(60, 90);
-           // print("두번째");
         }
         else  //그 외
         {
             //20퍼, 40퍼, 40퍼
             RandomChance(20, 60);
-           // print("세번째");
         }
 
         switch (randomOrder)  //랜덤한 주문.

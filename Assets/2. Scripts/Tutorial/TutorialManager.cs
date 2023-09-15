@@ -57,7 +57,6 @@ public class TutorialManager : MonoBehaviour
         skillBtn.color = initColor;
 
         SetNextTutorial();
-        //print(tutorials.Count);
         modeCanvas.SetActive(true);
         fishCanvas.SetActive(false);
         cookCanvas.SetActive(false);
@@ -82,17 +81,10 @@ public class TutorialManager : MonoBehaviour
             currentTutorial.Exit();
         }
 
-        //마지막 튜토리얼을 진행했다면 CompleteAllTutorials() 메소드 호출
-        if (currentIndex >= tutorials.Count - 1)
-        {
-            //CompletedAllTutorials();
-            return;
-        }
-
         //다음 튜토리얼 과정을 currentTutorial로 등록
         currentIndex++;
         currentTutorial = tutorials[currentIndex];
-        if (currentIndex >= 16 && currentIndex <= 30)
+        if (currentIndex >= 16 && currentIndex <= 30)  //장사 파트에서는 인벤토리 버튼 잠금.
         {
             inventoryBtn.interactable = false;
         }
@@ -124,7 +116,6 @@ public class TutorialManager : MonoBehaviour
             GameManager.instance.data.gold = "500000";
         }
 
-       // print("씬 이동");
         GameManager.instance.nextStage = true;
         SceneManager.LoadScene(0);
     }
@@ -186,23 +177,6 @@ public class TutorialManager : MonoBehaviour
         endingQuestion.gameObject.SetActive(false);
     }
 
-    /*public void ConfigBtn() //설정보여주기
-    {
-        audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-        if (!config)
-        {
-            configPanel.SetActive(true);
-            config = true;
-            Time.timeScale = 0;
-        }
-        else
-        {
-            configPanel.SetActive(false);
-            config = false;
-            Time.timeScale = 1;
-        }
-    }*/
-
     public void ExitQuestion()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
@@ -237,7 +211,6 @@ public class TutorialManager : MonoBehaviour
     public void GoSkipBtn()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-        //CompletedAllTutorials();
         bonusQuestion.SetActive(true);
         isSkip = true;
     }
@@ -245,7 +218,6 @@ public class TutorialManager : MonoBehaviour
     public void NextDayBtn()
     {
         audioSource.PlayOneShot(SoundManager.instance.buttonClick, 1);
-        //CompletedAllTutorials();
         bonusQuestion.SetActive(true);
         bonusTxt[0].text = "시작지원금 500,000원이 \n" + "지급되었습니다.";
     }

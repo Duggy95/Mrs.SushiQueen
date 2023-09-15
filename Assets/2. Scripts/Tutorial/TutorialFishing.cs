@@ -15,9 +15,9 @@ public class TutorialFishing : TutorialBase
     public GameObject fishInfoImg;
     public GameObject inventoryBtn;
     public GameObject[] touchView;
+    public GameObject touchTxt;
     public Text full_Txt;
     public Text fishRun;
-    public Text touchTxt;
     public Text fishInfo_Txt;
     public Image fish_Img;
     FishData data;

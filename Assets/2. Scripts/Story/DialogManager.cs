@@ -6,18 +6,16 @@ using UnityEngine.EventSystems;
 
 public class DialogManager : MonoBehaviour
 {
-    //public static DialogManager instance;
-
-    public Text dialogTxt;
+    public Text dialogTxt;  //대사 텍스트
     public GameObject nextTxt;
     public CanvasGroup canvasGroup;
-    public Queue<string> sentences;
+    public Queue<string> sentences;  //대사들을 담을 큐
     WaitForSeconds ws;
 
-    public string currSentence;
-    public float typingSpeed = 0.05f;
-    public bool isTyping = false;
-    public bool complete = false;
+    public string currSentence;  //현재 대사
+    public float typingSpeed = 0.075f;  //출력 스피드
+    public bool isTyping = false;  //대사 출력중을 나타냄
+    public bool complete = false;  //스토리 완료 여부
 
     AudioSource audioSource;
 
@@ -30,8 +28,8 @@ public class DialogManager : MonoBehaviour
 
     public void Ondialog(string[] lines)
     {
-        sentences.Clear();
-        foreach (string line in lines)
+        sentences.Clear();  //만약을 위해 큐 초기화
+        foreach (string line in lines)  //대사들 큐에 넣기
         {
             sentences.Enqueue(line);
         }
@@ -43,16 +41,15 @@ public class DialogManager : MonoBehaviour
 
     public void NextSentence()
     {
-        if (sentences.Count != 0)
+        if (sentences.Count != 0)  //큐에 대사가 남아있으면 
         {
-            //print(sentences.Count);
-            currSentence = sentences.Dequeue();
+            currSentence = sentences.Dequeue();  //큐에서 대사를 추출. 현재 대사에 넣는다.
             isTyping = true;
             nextTxt.SetActive(false);
             StopAllCoroutines();
-            StartCoroutine(Typing(currSentence));
+            StartCoroutine(Typing(currSentence));  //현재 대사 코루틴으로 출력
         }
-        else
+        else  //없으면 전체 대사 완료.
         {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
@@ -60,17 +57,10 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void SkipSentence()
-    {
-        StopAllCoroutines();
-        dialogTxt.text = "";
-        dialogTxt.text = currSentence;
-    }
-
     IEnumerator Typing(string line)
     {
         dialogTxt.text = "";
-        foreach (char letter in line.ToCharArray())
+        foreach (char letter in line.ToCharArray())  //한 글자씩 타이핑 효과
         {
             audioSource.PlayOneShot(SoundManager.instance.storyText, 0.25f);
             dialogTxt.text += letter;
@@ -78,9 +68,16 @@ public class DialogManager : MonoBehaviour
         }
     }
 
+    public void SkipSentence()  //바로 현재 대사로 완성시키는 메서드
+    {
+        StopAllCoroutines();
+        dialogTxt.text = "";
+        dialogTxt.text = currSentence;
+    }
+
     void Update()
     {
-        if (dialogTxt.text.Equals(currSentence))
+        if (dialogTxt.text.Equals(currSentence))  //현재 대사가 완성되면
         {
             nextTxt.SetActive(true);
             isTyping = false;
@@ -91,11 +88,11 @@ public class DialogManager : MonoBehaviour
     {
         if (!isTyping && Input.GetMouseButtonDown(0))
         {
-            NextSentence();
+            NextSentence();  //대사가 끝났고 마우스 왼쪽 클릭시 다음 대사 출력
         }
         else if (isTyping && Input.GetMouseButtonDown(0))
         {
-            SkipSentence();
+            SkipSentence();  //대사가 출력중이고 마우스 왼쪽 클릭시 현재 대사 완성시키기
         }
     }
 }
